@@ -1,31 +1,188 @@
-import js from "@eslint/js";
-import globals from "globals";
-import pluginReact from "eslint-plugin-react";
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
+import js from '@eslint/js';
+import globals from 'globals';
+import pluginReact from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import tseslint from 'typescript-eslint';
+import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
+import namingConvention from 'eslint-plugin-react-naming-convention';
+import { defineConfig } from 'eslint/config';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import importPlugin from 'eslint-plugin-import';
+import checkFile from 'eslint-plugin-check-file';
 
-export default tseslint.config(
-  { ignores: ['dist','.yarn','node_modules'] },
-  {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+export default defineConfig([
+    reactHooks.configs.flat.recommended,
+    eslintPluginPrettier,
+    jsxA11y.flatConfigs.recommended,
+    {
+        ...pluginReact.configs.flat['jsx-runtime'],
+        settings: {
+            react: {
+                version: '19.2',
+                defaultVersion: '19.2',
+            },
+        },
     },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      'react': pluginReact,
+    pluginReact.configs.flat.recommended,
+    {
+        files: ['**/*.{js,jsx,ts,tsx,mts}'],
+        extends: [
+            js.configs.recommended,
+            ...tseslint.configs.recommendedTypeChecked,
+            namingConvention.configs.recommended,
+        ],
+        ignores: [
+            '**/README.md',
+            '**/*.mdx',
+            '.yarn/**/*',
+            '.pnp.cjs',
+            '.pnp.loader.mjs',
+            '.react-router/**/*',
+            '**/node_modules/**/*',
+            '**/build/**/*',
+            '**/dist/**/*',
+        ],
+        languageOptions: {
+            ecmaVersion: 2020,
+            globals: globals.browser,
+            parserOptions: {
+                ecmaFeatures: { jsx: true },
+                projectService: true,
+            },
+        },
+        plugins: {
+            'react-refresh': reactRefresh,
+            import: importPlugin,
+            'check-file': checkFile,
+        },
+        rules: {
+            ...reactHooks.configs.recommended.rules,
+            'react-refresh/only-export-components': ['error', { allowConstantExport: true }],
+            'react/prefer-stateless-function': 'error',
+            'react/button-has-type': 'error',
+            'react/no-unused-prop-types': 'error',
+            'react/jsx-pascal-case': 'error',
+            'react/jsx-no-script-url': 'error',
+            'react/no-children-prop': 'error',
+            'react/no-danger': 'error',
+            'react/no-danger-with-children': 'error',
+            'react/no-unstable-nested-components': ['error', { allowAsProps: true }],
+            'react/jsx-fragments': 'error',
+            'react/destructuring-assignment': [
+                'error',
+                'always',
+                { destructureInSignature: 'always' },
+            ],
+            'react/jsx-no-leaked-render': ['error', { validStrategies: ['ternary'] }],
+            'react/jsx-max-depth': ['error', { max: 5 }],
+            'react/function-component-definition': ['error', { namedComponents: 'arrow-function' }],
+            'react/jsx-key': [
+                'error',
+                {
+                    checkFragmentShorthand: true,
+                    checkKeyMustBeforeSpread: true,
+                    warnOnDuplicates: true,
+                },
+            ],
+            'react/jsx-no-useless-fragment': 'error',
+            'react/jsx-curly-brace-presence': 'error',
+            'react/no-typos': 'error',
+            'react/display-name': 'error',
+            'react/self-closing-comp': 'error',
+            'react/jsx-sort-props': 'error',
+            'react/prefer-read-only-props': 'error',
+            'react/no-array-index-key': 'error',
+            'react/jsx-no-bind': 'error',
+            'react/jsx-props-no-spreading': 'error',
+            'react/no-multi-comp': 'error',
+            'react/react-in-jsx-scope': 'error',
+            'react/jsx-one-expression-per-line': 'off',
+            'react/prop-types': 'off',
+            '@typescript-eslint/no-restricted-types': [
+                'error',
+                {
+                    types: {
+                        'React.StatelessComponent': {
+                            message: 'Please use React.FunctionComponent instead.',
+                            fixWith: 'React.FunctionComponent',
+                        },
+                        'React.FunctionalComponent': {
+                            message: 'Please use React.FunctionComponent instead.',
+                            fixWith: 'React.FunctionComponent',
+                        },
+                        'React.FC': {
+                            message: 'Please use React.FunctionComponent instead.',
+                            fixWith: 'React.FunctionComponent',
+                        },
+                        StatelessComponent: {
+                            message: 'Please use React.FunctionComponent instead.',
+                            fixWith: 'React.FunctionComponent',
+                        },
+                        FunctionalComponent: {
+                            message: 'Please use React.FunctionComponent instead.',
+                            fixWith: 'React.FunctionComponent',
+                        },
+                        FunctionComponent: {
+                            message: 'Please use React.FunctionComponent instead.',
+                            fixWith: 'React.FunctionComponent',
+                        },
+                        FC: {
+                            message: 'Please use React.FunctionComponent instead.',
+                            fixWith: 'React.FunctionComponent',
+                        },
+                    },
+                },
+            ],
+            '@typescript-eslint/naming-convention': [
+                'error',
+                {
+                    selector: 'default',
+                    format: ['PascalCase', 'camelCase'],
+                    leadingUnderscore: 'allow',
+                },
+                {
+                    selector: 'variable',
+                    // Specify PascalCase for React components
+                    format: ['PascalCase', 'camelCase'],
+                    leadingUnderscore: 'allow',
+                },
+                {
+                    selector: 'parameter',
+                    format: ['camelCase'],
+                    leadingUnderscore: 'allow',
+                },
+                {
+                    selector: 'property',
+                    format: null,
+                    leadingUnderscore: 'allow',
+                },
+                {
+                    selector: 'typeLike',
+                    format: ['PascalCase'],
+                },
+            ],
+            'react-naming-convention/component-name': 'error',
+            'check-file/filename-naming-convention': [
+                'error',
+                {
+                    'src/**/*.{jsx,tsx}': 'PASCAL_CASE',
+                    'src/**/*.{js,ts,d.ts}': 'CAMEL_CASE',
+                },
+            ],
+        },
+        settings: {
+            react: {
+                version: '19.2',
+                defaultVersion: '19.2',
+            },
+        },
     },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+    {
+        files: ['src/**/*.d.ts'],
+        rules: {
+            '@typescript-eslint/naming-convention': 'off',
+            'check-file/filename-naming-convention': 'off',
+        },
     },
-  },
-).concat(eslintPluginPrettier)
+]);

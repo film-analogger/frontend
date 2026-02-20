@@ -1,0 +1,10 @@
+.yarn/**
+**/node_modules/**
+**/build/**
+**/dist/**
+**/terraform/**
+**/.terraform/
+README.md
+versionPath.json
+**/openApi/**
+*.mdx
