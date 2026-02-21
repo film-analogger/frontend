@@ -12,6 +12,7 @@ import importPlugin from 'eslint-plugin-import';
 import checkFile from 'eslint-plugin-check-file';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
+import vitest from '@vitest/eslint-plugin';
 
 const currentDirname = dirname(fileURLToPath(import.meta.url));
 
@@ -60,7 +61,7 @@ export default defineConfig([
         ],
         languageOptions: {
             ecmaVersion: 2020,
-            globals: globals.browser,
+            globals: { ...globals.browser, ...vitest.environments.env.globals },
             parserOptions: {
                 ecmaFeatures: { jsx: true },
                 projectService: true,
@@ -180,13 +181,7 @@ export default defineConfig([
                 },
             ],
             'react-naming-convention/component-name': 'error',
-            'check-file/filename-naming-convention': [
-                'error',
-                {
-                    'src/**/*.{jsx,tsx}': 'PASCAL_CASE',
-                    'src/**/*.{js,ts,d.ts}': 'CAMEL_CASE',
-                },
-            ],
+            'check-file/filename-naming-convention': 'off',
         },
         settings: {
             react: {
@@ -206,5 +201,65 @@ export default defineConfig([
     {
         files: ['**/*.{js,jsx}'],
         extends: [tseslint.configs.disableTypeChecked],
+    },
+    {
+        files: ['**/*.{js,ts}'],
+        ignores: ['**/*.test.{js,ts}'],
+        rules: {
+            'check-file/filename-naming-convention': [
+                'error',
+                {
+                    'src/**/*.{js,ts,d.ts}': 'CAMEL_CASE',
+                },
+            ],
+        },
+    },
+    {
+        files: ['**/*.{jsx,tsx}'],
+        ignores: ['**/*.test.{jsx,tsx}', '**/root.tsx'],
+        rules: {
+            'check-file/filename-naming-convention': [
+                'error',
+                {
+                    'src/**/*.{jsx,tsx}': 'PASCAL_CASE',
+                },
+            ],
+        },
+    },
+    {
+        files: ['**/*.test.{js,ts}'],
+        rules: {
+            'check-file/filename-naming-convention': [
+                'error',
+                {
+                    'src/**/*.{js,ts,d.ts}': 'CAMEL_CASE',
+                },
+                { ignoreMiddleExtensions: true },
+            ],
+        },
+    },
+    {
+        files: ['**/*.test.{jsx,tsx}'],
+        rules: {
+            'check-file/filename-naming-convention': [
+                'error',
+                {
+                    'src/**/*.{jsx,tsx}': 'PASCAL_CASE',
+                },
+                { ignoreMiddleExtensions: true },
+            ],
+        },
+    },
+    {
+        // update this to match your test files
+        files: ['**/*.spec.js', '**/*.test.js'],
+        plugins: { vitest: vitest },
+        languageOptions: {
+            globals: vitest.environments.env.globals,
+        },
+        rules: {
+            ...vitest.configs.recommended.rules, // you can also use vitest.configs.all.rules to enable all rules
+            'vitest/max-nested-describe': ['error', { max: 3 }], // you can also modify rules' behavior using option like this
+        },
     },
 ]);

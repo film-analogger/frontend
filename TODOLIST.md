@@ -7,13 +7,13 @@
     - [x] commit : 
         - [x] run eslint and prettier on staged files
     - [ ] pre-push : run 
-        - [ ] jest
+        - [x] vitest
         - [ ] playwright
         - [x] typescheck
         - [x] eslint on all files
 - [x] setup mui
 - [ ] setup commitlint and commitizen
-- [ ] setup jest and testing library and coverage
+- [x] setup vitest
 - [ ] setup playwright
 - [ ] i18n
 - [x] setup typescheck
