@@ -1,5 +1,5 @@
 /* eslint-disable react/no-multi-comp */
-/* eslint-disable check-file/filename-naming-convention */
+
 /* eslint-disable react-refresh/only-export-components */
 import {
     isRouteErrorResponse,
