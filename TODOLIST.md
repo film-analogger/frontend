@@ -8,6 +8,7 @@
 - [ ] setup commitlint and commitizen
 - [ ] setup jest and testing library and coverage
 - [ ] setup playwright
+- [ ] i18n
 - [x] setup typescheck
 
 ## tech ci cd 

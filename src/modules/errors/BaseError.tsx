@@ -10,6 +10,7 @@ const BaseError: React.FunctionComponent = () => {
                 content="An error occurred"
                 name="description"
             />
+            <h1>Error</h1>
             <Outlet />
         </>
     );
