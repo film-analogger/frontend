@@ -3,8 +3,10 @@
 ## tech local development
 
 - [x] setup eslint and prettier
-- [ ] setup mui
 - [ ] setup husky and lint-staged
+    - [x] commit : run eslint and prettier on staged files
+    - [ ] pre-push : run jest playwright tyepscheck and eslint on all files
+- [ ] setup mui
 - [ ] setup commitlint and commitizen
 - [ ] setup jest and testing library and coverage
 - [ ] setup playwright

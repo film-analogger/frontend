@@ -10,8 +10,25 @@ import { defineConfig } from 'eslint/config';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import importPlugin from 'eslint-plugin-import';
 import checkFile from 'eslint-plugin-check-file';
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
+
+const currentDirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig([
+    {
+        ignores: [
+            '**/README.md',
+            '**/*.mdx',
+            '.yarn/**/*',
+            '.pnp.cjs',
+            '.pnp.loader.mjs',
+            '.react-router/**/*',
+            '**/node_modules/**/*',
+            '**/build/**/*',
+            '**/dist/**/*',
+        ],
+    },
     reactHooks.configs.flat.recommended,
     eslintPluginPrettier,
     jsxA11y.flatConfigs.recommended,
@@ -25,13 +42,11 @@ export default defineConfig([
         },
     },
     pluginReact.configs.flat.recommended,
+    tseslint.configs.strictTypeChecked,
+    tseslint.configs.stylisticTypeChecked,
     {
         files: ['**/*.{js,jsx,ts,tsx,mts}'],
-        extends: [
-            js.configs.recommended,
-            ...tseslint.configs.recommendedTypeChecked,
-            namingConvention.configs.recommended,
-        ],
+        extends: [js.configs.recommended, namingConvention.configs.recommended],
         ignores: [
             '**/README.md',
             '**/*.mdx',
@@ -49,6 +64,7 @@ export default defineConfig([
             parserOptions: {
                 ecmaFeatures: { jsx: true },
                 projectService: true,
+                tsconfigRootDir: currentDirname,
             },
         },
         plugins: {
@@ -134,6 +150,7 @@ export default defineConfig([
                     },
                 },
             ],
+            '@typescript-eslint/await-thenable': 'off',
             '@typescript-eslint/naming-convention': [
                 'error',
                 {
@@ -180,9 +197,14 @@ export default defineConfig([
     },
     {
         files: ['src/**/*.d.ts'],
+        extends: [tseslint.configs.disableTypeChecked],
         rules: {
             '@typescript-eslint/naming-convention': 'off',
             'check-file/filename-naming-convention': 'off',
         },
+    },
+    {
+        files: ['**/*.{js,jsx}'],
+        extends: [tseslint.configs.disableTypeChecked],
     },
 ]);
