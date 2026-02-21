@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Welcome } from '../welcome/Welcome';
+import { Typography } from '@mui/material';
 
 const Home: React.FunctionComponent = () => {
     return (
@@ -10,8 +10,7 @@ const Home: React.FunctionComponent = () => {
                 content="toto"
                 name="description"
             />
-            <h1>Home</h1>
-            <Welcome />
+            <Typography variant="h1">Home</Typography>
         </>
     );
 };

@@ -1,14 +1,15 @@
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 import { Outlet } from 'react-router';
 
 const Dashboard: React.FunctionComponent = () => {
     return (
-        <div>
-            <h1>Dashboard</h1>
+        <Box>
+            <Typography variant="h1">Dashboard</Typography>
             {/* will either be home.tsx or settings.tsx */}
             <Outlet />
-        </div>
+        </Box>
     );
 };
 

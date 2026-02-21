@@ -4,9 +4,14 @@
 
 - [x] setup eslint and prettier
 - [ ] setup husky and lint-staged
-    - [x] commit : run eslint and prettier on staged files
-    - [ ] pre-push : run jest playwright tyepscheck and eslint on all files
-- [ ] setup mui
+    - [x] commit : 
+        - [x] run eslint and prettier on staged files
+    - [ ] pre-push : run 
+        - [ ] jest
+        - [ ] playwright
+        - [x] typescheck
+        - [x] eslint on all files
+- [x] setup mui
 - [ ] setup commitlint and commitizen
 - [ ] setup jest and testing library and coverage
 - [ ] setup playwright

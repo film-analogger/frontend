@@ -1,10 +1,11 @@
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 const Home: React.FunctionComponent = () => {
     return (
-        <div>
-            <h1>Home</h1>
-        </div>
+        <Box>
+            <Typography variant="h1">Home</Typography>
+        </Box>
     );
 };
 
