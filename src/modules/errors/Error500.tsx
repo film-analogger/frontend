@@ -1,15 +1,15 @@
-import { Typography } from '@mui/material';
 import React from 'react';
+import Error from '~/components/tools/Error/Error';
 
 const Error500: React.FunctionComponent = () => {
     return (
-        <>
-            <title>Error</title>
-            <Typography variant="h2">500 - Internal Server Error</Typography>
-            <Typography variant="body1">
-                Something went wrong on our end. Please try again later.
-            </Typography>
-        </>
+        <Error
+            detail="Something went wrong on our end. Please try again later."
+            metaDescription="Something went wrong on our end. Please try again later."
+            pageTitle="Internal Server Error"
+            statusCode={500}
+            title="Internal Server Error"
+        />
     );
 };
 
