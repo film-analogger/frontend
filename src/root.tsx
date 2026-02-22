@@ -70,21 +70,12 @@ export const Layout = ({ children }: { readonly children: React.ReactNode }) => 
 const cache = createEmotionCache();
 
 const App: React.FunctionComponent = () => {
-    if (typeof window !== 'undefined') {
-        return (
-            <CacheProvider value={cache}>
-                <AppTheme>
-                    <Outlet />
-                </AppTheme>
-            </CacheProvider>
-        );
-    }
     return (
-        <React.StrictMode>
+        <CacheProvider value={cache}>
             <AppTheme>
                 <Outlet />
             </AppTheme>
-        </React.StrictMode>
+        </CacheProvider>
     );
 };
 

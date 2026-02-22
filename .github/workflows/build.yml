@@ -1,19 +1,13 @@
-name: i18n Check
+name: Build
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-permissions:
-  checks: write
-  contents: read
-  pull-requests: write
-
 jobs:
-  i18n-check:
+  build:
     timeout-minutes: 10
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -21,7 +15,13 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm install -g yarn && yarn set version berry && yarn install --immutable
-    
-    - name: Run i18n-check
-      run: |
-        yarn i18n:check          
+    - name: Typecheck
+      run: yarn typecheck
+    - name: Build
+      run: yarn build
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: build
+        path: build/
+        retention-days: 7
