@@ -7,10 +7,15 @@ export default defineConfig({
     plugins: [
         reactRouter(),
         tsconfigPaths(),
-        eslint({
-            cache: true,
-            fix: true,
-        }),
+        // eslint-disable-next-line no-undef
+        ...(!process.env.CI
+            ? [
+                  eslint({
+                      cache: true,
+                      fix: true,
+                  }),
+              ]
+            : []),
     ],
     server: {
         port: 3000,
