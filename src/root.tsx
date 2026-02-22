@@ -72,11 +72,13 @@ const cache = createEmotionCache();
 const App: React.FunctionComponent = () => {
     if (typeof window !== 'undefined') {
         return (
-            <CacheProvider value={cache}>
-                <AppTheme>
-                    <Outlet />
-                </AppTheme>
-            </CacheProvider>
+            <React.StrictMode>
+                <CacheProvider value={cache}>
+                    <AppTheme>
+                        <Outlet />
+                    </AppTheme>
+                </CacheProvider>
+            </React.StrictMode>
         );
     }
     return (
