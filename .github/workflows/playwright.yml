@@ -21,8 +21,10 @@ jobs:
       run: npm install -g yarn && yarn set version berry && yarn install
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
+
     - name: Run Playwright tests
       run: yarn playwright test
+
     - name: Publish test results
       uses: dorny/test-reporter@v1
       if: ${{ !cancelled() }}
@@ -30,7 +32,9 @@ jobs:
         name: Playwright Tests
         path: test-results/junit.xml
         reporter: java-junit
-    - uses: actions/upload-artifact@v4
+
+    - name: Publish test artifacts
+      uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
