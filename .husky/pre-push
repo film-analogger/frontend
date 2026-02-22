@@ -1,3 +1,4 @@
 yarn lint
 yarn typecheck
 yarn test
+yarn pw
