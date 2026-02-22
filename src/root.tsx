@@ -14,11 +14,14 @@ import { CacheProvider } from '@emotion/react';
 
 import React from 'react';
 
+import 'src/i18n/i18n';
+
 import type { Route } from './+types/root';
 import './app.css';
 import createEmotionCache from './createCache';
 import AppTheme from './Theme';
 import { Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 export const links: Route.LinksFunction = () => [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -34,9 +37,11 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export const Layout = ({ children }: { readonly children: React.ReactNode }) => {
+    const { t } = useTranslation();
+
     return (
         <html
-            lang="en"
+            lang="fr"
             suppressHydrationWarning
         >
             <head>
@@ -44,6 +49,11 @@ export const Layout = ({ children }: { readonly children: React.ReactNode }) => 
                 <meta
                     content="width=device-width, initial-scale=1"
                     name="viewport"
+                />
+                <title>{t('app.title')}</title>
+                <meta
+                    content={t('app.description')}
+                    name="description"
                 />
                 <Meta />
                 <Links />
@@ -70,9 +80,11 @@ const App: React.FunctionComponent = () => {
         );
     }
     return (
-        <AppTheme>
-            <Outlet />
-        </AppTheme>
+        <React.StrictMode>
+            <AppTheme>
+                <Outlet />
+            </AppTheme>
+        </React.StrictMode>
     );
 };
 

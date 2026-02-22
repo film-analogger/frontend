@@ -1,0 +1,15 @@
+{
+    "app": {
+        "title": "Film Analogger",
+        "description": "A film camera logbook application for photo development and printing",
+        "theme": {
+            "light": "Light",
+            "dark": "Dark",
+            "system": "System"
+        }
+    },
+    "home": {
+        "title": "Home",
+        "welcome": "Welcome to Film Analogger!"
+    }
+}

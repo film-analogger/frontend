@@ -1,0 +1,15 @@
+{
+    "app": {
+        "title": "Film Analogger",
+        "description": "Une application de carnet de bord pour les appareils photo argentiques, le developement et les tirages photo.",
+        "theme": {
+            "light": "Clair",
+            "dark": "Sombre",
+            "system": "Système"
+        }
+    },
+    "home": {
+        "title": "Accueil",
+        "welcome": "Bienvenue sur Film Analogger !"
+    }
+}
