@@ -17,6 +17,15 @@ jobs:
       run: npm install -g yarn && yarn && yarn set version berry
     - name: Run Vitest tests
       run: yarn test:coverage
+
+    - name: Publish test results
+      uses: dorny/test-reporter@v1
+      if: ${{ !cancelled() }}
+      with:
+        name: Vitest Tests
+        path: test-results/junit.xml
+        reporter: java-junit
+        
     - name: Upload coverage report
       uses: actions/upload-artifact@v4
       with:

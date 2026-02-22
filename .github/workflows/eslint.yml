@@ -15,9 +15,8 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm install -g yarn && yarn && yarn set version berry
-    - name: Run Vitest tests
-      run: yarn lint:ci
-      continue-on-error: true
-    - uses: ldiego73/eslint-report-action@v1.1
+    - name: Run ESLint with reviewdog
+      uses: reviewdog/action-eslint@v1
       with:
-        report: reports/lint.json
+        reporter: github-pr-review
+        eslint_flags: '-c eslint.config.mts -f json'

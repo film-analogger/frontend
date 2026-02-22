@@ -3,10 +3,10 @@
 ## tech local development
 
 - [x] setup eslint and prettier
-- [ ] setup husky and lint-staged
+- [x] setup husky and lint-staged
     - [x] commit : 
         - [x] run eslint and prettier on staged files
-    - [ ] pre-push : run 
+    - [x] pre-push : run 
         - [x] vitest
         - [x] playwright
         - [x] typescheck

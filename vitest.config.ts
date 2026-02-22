@@ -13,5 +13,9 @@ export default defineConfig({
             provider: 'v8',
             include: ['src/**/*.{ts,tsx}'],
         },
+        reporters: ['default', 'junit'],
+        outputFile: {
+            junit: 'test-results/junit.xml',
+        },
     },
 });
