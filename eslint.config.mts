@@ -229,6 +229,7 @@ export default defineConfig([
     {
         files: ['**/*.test.{js,ts}'],
         rules: {
+            'react/jsx-props-no-spreading': 'off',
             'check-file/filename-naming-convention': [
                 'error',
                 {
@@ -241,6 +242,7 @@ export default defineConfig([
     {
         files: ['**/*.test.{jsx,tsx}'],
         rules: {
+            'react/jsx-props-no-spreading': 'off',
             'check-file/filename-naming-convention': [
                 'error',
                 {

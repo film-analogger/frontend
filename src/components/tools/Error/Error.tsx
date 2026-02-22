@@ -17,7 +17,7 @@ const Error: React.FunctionComponent<ErrorProps> = ({
     metaDescription,
 }) => {
     return (
-        <Box className="error-container">
+        <Box data-testid="error-container">
             <title>{pageTitle}</title>
             {metaDescription ? (
                 <meta
@@ -35,13 +35,13 @@ const Error: React.FunctionComponent<ErrorProps> = ({
                 }}
             >
                 <Typography
-                    className="error-status-code"
+                    data-testid="error-status-code"
                     variant="h1"
                 >
                     {statusCode}
                 </Typography>
                 <Typography
-                    className="error-title"
+                    data-testid="error-title"
                     variant="h2"
                 >
                     {title}
@@ -49,7 +49,7 @@ const Error: React.FunctionComponent<ErrorProps> = ({
             </Box>
             {detail ? (
                 <Typography
-                    className="error-detail"
+                    data-testid="error-detail"
                     variant="body1"
                 >
                     {detail}
