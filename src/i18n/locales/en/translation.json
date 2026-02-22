@@ -1,0 +1,41 @@
+{
+    "app": {
+        "title": "Film Analogger",
+        "description": "A film camera logbook application for photo development and printing",
+        "theme": {
+            "light": "Light",
+            "dark": "Dark",
+            "system": "System"
+        }
+    },
+    "home": {
+        "title": "Home",
+        "welcome": "Welcome to Film Analogger!"
+    },
+    "dashboard": {
+        "title": "Dashboard"
+    },
+    "settings": {
+        "title": "Settings"
+    },
+    "errors" : {
+        "404": {
+            "title": "Page not found",
+            "detail": "The page you are looking for does not exist.",
+            "pageTitle": "404 - Page not found",
+            "metaDescription": "The page you are looking for does not exist."
+        },
+        "500": {
+            "title": "Internal server error",
+            "detail": "An unexpected error occurred on the server.",
+            "pageTitle": "500 - Internal server error",
+            "metaDescription": "An unexpected error occurred on the server."
+        },
+        "403": {
+            "title": "Forbidden",
+            "detail": "You do not have permission to access this page.",
+            "pageTitle": "403 - Forbidden",
+            "metaDescription": "You do not have permission to access this page."
+        }
+    }
+}

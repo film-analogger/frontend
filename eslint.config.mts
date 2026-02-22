@@ -13,6 +13,8 @@ import checkFile from 'eslint-plugin-check-file';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import vitest from '@vitest/eslint-plugin';
+import i18next from 'eslint-plugin-i18next';
+import { fixupConfigRules } from '@eslint/compat';
 
 const currentDirname = dirname(fileURLToPath(import.meta.url));
 
@@ -33,6 +35,11 @@ export default defineConfig([
     reactHooks.configs.flat.recommended,
     eslintPluginPrettier,
     jsxA11y.flatConfigs.recommended,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+    fixupConfigRules(i18next.configs['flat/recommended'] as any),
+    pluginReact.configs.flat.recommended,
+    tseslint.configs.strictTypeChecked,
+    tseslint.configs.stylisticTypeChecked,
     {
         ...pluginReact.configs.flat['jsx-runtime'],
         settings: {
@@ -42,9 +49,6 @@ export default defineConfig([
             },
         },
     },
-    pluginReact.configs.flat.recommended,
-    tseslint.configs.strictTypeChecked,
-    tseslint.configs.stylisticTypeChecked,
     {
         files: ['**/*.{js,jsx,ts,tsx,mts}'],
         extends: [js.configs.recommended, namingConvention.configs.recommended],
@@ -243,6 +247,7 @@ export default defineConfig([
         files: ['**/*.test.{jsx,tsx}'],
         rules: {
             'react/jsx-props-no-spreading': 'off',
+            'react/react-in-jsx-scope': 'off',
             'check-file/filename-naming-convention': [
                 'error',
                 {
@@ -260,6 +265,7 @@ export default defineConfig([
             globals: vitest.environments.env.globals,
         },
         rules: {
+            'react/react-in-jsx-scope': 'off',
             ...vitest.configs.recommended.rules, // you can also use vitest.configs.all.rules to enable all rules
             'vitest/max-nested-describe': ['error', { max: 3 }], // you can also modify rules' behavior using option like this
         },

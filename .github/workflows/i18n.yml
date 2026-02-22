@@ -1,4 +1,4 @@
-name: Vitest Tests
+name: i18n Check
 on:
   push:
     branches: [ main, master ]
@@ -8,10 +8,12 @@ permissions:
   checks: write
   contents: read
   pull-requests: write
+
 jobs:
-  test:
+  i18n-check:
     timeout-minutes: 10
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -19,17 +21,7 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm install -g yarn && yarn set version berry && yarn install --frozen-lockfile
-    - name: Run Vitest tests
-      run: yarn test:coverage
-
-    - name: Publish test results
-      uses: dorny/test-reporter@v1
-      if: ${{ !cancelled() }}
-      with:
-        name: Vitest Tests
-        path: test-results/junit.xml
-        reporter: java-junit
-
-    - name: Publish coverage report
-      uses: davelosert/vitest-coverage-report-action@v2
-      if: ${{ !cancelled() }}
+    
+    - name: Run i18n-check
+      run: |
+        yarn i18n:check          

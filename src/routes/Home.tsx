@@ -1,18 +1,11 @@
 import React from 'react';
 
 import { Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const Home: React.FunctionComponent = () => {
-    return (
-        <>
-            <title>MyTitle</title>
-            <meta
-                content="toto"
-                name="description"
-            />
-            <Typography variant="h1">Home</Typography>
-        </>
-    );
+    const { t } = useTranslation();
+    return <Typography variant="h1">{t('home.title')}</Typography>;
 };
 
 export default Home;

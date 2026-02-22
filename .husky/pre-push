@@ -2,3 +2,4 @@ yarn lint
 yarn typecheck
 yarn test
 yarn pw
+yarn i18n:check

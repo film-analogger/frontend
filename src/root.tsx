@@ -14,11 +14,14 @@ import { CacheProvider } from '@emotion/react';
 
 import React from 'react';
 
+import 'src/i18n/i18n';
+
 import type { Route } from './+types/root';
 import './app.css';
 import createEmotionCache from './createCache';
 import AppTheme from './Theme';
 import { Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 export const links: Route.LinksFunction = () => [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -34,6 +37,8 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export const Layout = ({ children }: { readonly children: React.ReactNode }) => {
+    const { t } = useTranslation();
+
     return (
         <html
             lang="en"
@@ -44,6 +49,11 @@ export const Layout = ({ children }: { readonly children: React.ReactNode }) => 
                 <meta
                     content="width=device-width, initial-scale=1"
                     name="viewport"
+                />
+                <title>{t('app.title')}</title>
+                <meta
+                    content={t('app.description')}
+                    name="description"
                 />
                 <Meta />
                 <Links />
@@ -62,17 +72,21 @@ const cache = createEmotionCache();
 const App: React.FunctionComponent = () => {
     if (typeof window !== 'undefined') {
         return (
-            <CacheProvider value={cache}>
-                <AppTheme>
-                    <Outlet />
-                </AppTheme>
-            </CacheProvider>
+            <React.StrictMode>
+                <CacheProvider value={cache}>
+                    <AppTheme>
+                        <Outlet />
+                    </AppTheme>
+                </CacheProvider>
+            </React.StrictMode>
         );
     }
     return (
-        <AppTheme>
-            <Outlet />
-        </AppTheme>
+        <React.StrictMode>
+            <AppTheme>
+                <Outlet />
+            </AppTheme>
+        </React.StrictMode>
     );
 };
 
