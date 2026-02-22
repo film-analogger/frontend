@@ -17,5 +17,25 @@
     },
     "settings": {
         "title": "Paramètres"
+    },
+    "errors" : {
+        "404": {
+            "title": "Page non trouvée",
+            "detail": "La page que vous recherchez n'existe pas.",
+            "pageTitle": "404 - Page non trouvée",
+            "metaDescription": "La page que vous recherchez n'existe pas."
+        },
+        "500": {
+            "title": "Erreur interne du serveur",
+            "detail": "Une erreur inattendue s'est produite sur le serveur.",
+            "pageTitle": "500 - Erreur interne du serveur",
+            "metaDescription": "Une erreur inattendue s'est produite sur le serveur."
+        },
+        "403": {
+            "title": "Accès refusé",
+            "detail": "Vous n'avez pas la permission d'accéder à cette page.",
+            "pageTitle": "403 - Accès refusé",
+            "metaDescription": "Vous n'avez pas la permission d'accéder à cette page."
+        }
     }
 }

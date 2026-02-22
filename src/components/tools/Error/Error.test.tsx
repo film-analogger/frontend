@@ -1,12 +1,31 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import Error from './Error';
 
+vi.mock('react-i18next', () => ({
+    useTranslation: () => ({
+        t: (key: string) => {
+            const translations: Record<string, string> = {
+                'errors.404.title': 'Not Found',
+                'errors.404.pageTitle': 'Page Not Found',
+                'errors.404.metaDescription': 'The page you are looking for does not exist.',
+                'errors.404.detail': 'The page you are looking for does not exist.',
+                'errors.500.title': 'Internal Server Error',
+                'errors.500.detail': 'Internal Server Error Detail',
+                'errors.500.metaDescription': 'Internal Server Error Meta Description',
+                'errors.500.pageTitle': 'Internal Server Error Page Title',
+            };
+            return translations[key] ?? key;
+        },
+    }),
+}));
+
 describe('Error component', () => {
-    const defaultProps = {
+    const defaultProps: React.ComponentProps<typeof Error> = {
         statusCode: 404,
-        title: 'Not Found',
-        pageTitle: 'Page Not Found',
+        title: 'errors.404.title',
+        pageTitle: 'errors.404.pageTitle',
     };
 
     it('renders the error container', () => {
@@ -38,7 +57,7 @@ describe('Error component', () => {
         render(
             <Error
                 {...defaultProps}
-                detail="The page you are looking for does not exist."
+                detail="errors.404.detail"
             />,
         );
         expect(screen.getByTestId('error-detail')).toHaveTextContent(
@@ -55,28 +74,28 @@ describe('Error component', () => {
         render(
             <Error
                 {...defaultProps}
-                metaDescription="Custom meta description"
+                metaDescription="errors.404.metaDescription"
             />,
         );
         const metaTag = document.querySelector('meta[name="description"]');
         expect(metaTag).toBeInTheDocument();
-        expect(metaTag).toHaveAttribute('content', 'Custom meta description');
+        expect(metaTag).toHaveAttribute('content', 'The page you are looking for does not exist.');
     });
 
     it('renders correctly with a 500 status code', () => {
         render(
             <Error
-                detail="Something went wrong on our end."
-                metaDescription="500 error page"
-                pageTitle="Server Error"
+                detail="errors.500.detail"
+                metaDescription="errors.500.metaDescription"
+                pageTitle="errors.500.pageTitle"
                 statusCode={500}
-                title="Internal Server Error"
+                title="errors.500.title"
             />,
         );
         expect(screen.getByTestId('error-status-code')).toHaveTextContent('500');
         expect(screen.getByTestId('error-title')).toHaveTextContent('Internal Server Error');
         expect(screen.getByTestId('error-detail')).toHaveTextContent(
-            'Something went wrong on our end.',
+            'Internal Server Error Detail',
         );
     });
 
@@ -84,8 +103,8 @@ describe('Error component', () => {
         render(
             <Error
                 {...defaultProps}
-                detail="Detailed error message"
-                metaDescription="Meta description"
+                detail="errors.404.detail"
+                metaDescription="errors.404.metaDescription"
             />,
         );
         expect(screen.getByTestId('error-detail')).toBeInTheDocument();

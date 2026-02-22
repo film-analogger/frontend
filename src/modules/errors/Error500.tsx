@@ -4,11 +4,11 @@ import Error from '~/components/tools/Error/Error';
 const Error500: React.FunctionComponent = () => {
     return (
         <Error
-            detail="Something went wrong on our end. Please try again later."
-            metaDescription="Something went wrong on our end. Please try again later."
-            pageTitle="Internal Server Error"
+            detail="errors.500.detail"
+            metaDescription="errors.500.metaDescription"
+            pageTitle="errors.500.pageTitle"
             statusCode={500}
-            title="Internal Server Error"
+            title="errors.500.title"
         />
     );
 };

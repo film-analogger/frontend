@@ -1,12 +1,15 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
+import { useTranslation } from 'react-i18next';
+import { type ParseKeys } from 'i18next';
+
 interface ErrorProps {
     readonly statusCode: number;
-    readonly title: string;
-    readonly detail?: string;
-    readonly pageTitle: string;
-    readonly metaDescription?: string;
+    readonly title: ParseKeys;
+    readonly detail?: ParseKeys;
+    readonly pageTitle: ParseKeys;
+    readonly metaDescription?: ParseKeys;
 }
 
 const Error: React.FunctionComponent<ErrorProps> = ({
@@ -16,12 +19,14 @@ const Error: React.FunctionComponent<ErrorProps> = ({
     pageTitle,
     metaDescription,
 }) => {
+    const { t } = useTranslation();
+
     return (
         <Box data-testid="error-container">
-            <title>{pageTitle}</title>
+            <title>{t(pageTitle)}</title>
             {metaDescription ? (
                 <meta
-                    content={metaDescription}
+                    content={t(metaDescription)}
                     name="description"
                 />
             ) : null}
@@ -44,7 +49,7 @@ const Error: React.FunctionComponent<ErrorProps> = ({
                     data-testid="error-title"
                     variant="h2"
                 >
-                    {title}
+                    {t(title)}
                 </Typography>
             </Box>
             {detail ? (
@@ -52,7 +57,7 @@ const Error: React.FunctionComponent<ErrorProps> = ({
                     data-testid="error-detail"
                     variant="body1"
                 >
-                    {detail}
+                    {t(detail)}
                 </Typography>
             ) : null}
         </Box>

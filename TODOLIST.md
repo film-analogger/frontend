@@ -15,7 +15,7 @@
 - [ ] setup commitlint and commitizen
 - [x] setup vitest
 - [x] setup playwright
-- [ ] i18n
+- [x] i18n
 - [x] setup typescheck
 
 ## tech ci cd 

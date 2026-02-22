@@ -19,7 +19,7 @@
         "pw:ui": "playwright test --ui",
         "pw:report": "playwright show-report",
         "pw:headed": "playwright test --headed",
-        "i18n:check": "i18n-check --locales src/i18n/locales -s en -u src -f i18next"
+        "i18n:check": "i18n-check --locales src/i18n/locales -s en -f i18next"
     },
     "lint-staged": {
         "*": "yarn lint"

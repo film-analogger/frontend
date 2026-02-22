@@ -4,11 +4,11 @@ import Error from '~/components/tools/Error/Error';
 const Error403: React.FunctionComponent = () => {
     return (
         <Error
-            detail="You don't have permission to access this page."
-            metaDescription="You don't have permission to access this page."
-            pageTitle="Forbidden"
+            detail="errors.403.detail"
+            metaDescription="errors.403.metaDescription"
+            pageTitle="errors.403.pageTitle"
             statusCode={403}
-            title="Forbidden"
+            title="errors.403.title"
         />
     );
 };

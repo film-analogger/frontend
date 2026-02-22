@@ -4,11 +4,11 @@ import Error from '~/components/tools/Error/Error';
 const Error404: React.FunctionComponent = () => {
     return (
         <Error
-            detail="The page you are looking for does not exist."
-            metaDescription="The page you are looking for does not exist."
-            pageTitle="Not Found"
+            detail="errors.404.detail"
+            metaDescription="errors.404.metaDescription"
+            pageTitle="errors.404.pageTitle"
             statusCode={404}
-            title="Not Found"
+            title="errors.404.title"
         />
     );
 };
