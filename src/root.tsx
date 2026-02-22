@@ -41,7 +41,7 @@ export const Layout = ({ children }: { readonly children: React.ReactNode }) => 
 
     return (
         <html
-            lang="fr"
+            lang="en"
             suppressHydrationWarning
         >
             <head>

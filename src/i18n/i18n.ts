@@ -9,14 +9,14 @@ import fr from './locales/fr/translation.json';
 i18n.use(LanguageDetector)
     .use(initReactI18next)
     .init({
-        fallbackLng: 'en-EN',
-        debug: true,
+        fallbackLng: 'en',
+        debug: import.meta.env.DEV,
         interpolation: {
             escapeValue: false,
         },
         resources: {
-            'en-EN': { translation: en },
-            'fr-FR': { translation: fr },
+            en: { translation: en },
+            fr: { translation: fr },
         },
     })
     .catch((err: unknown) => {

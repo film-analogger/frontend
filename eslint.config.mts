@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import js from '@eslint/js';
 import globals from 'globals';
 import pluginReact from 'eslint-plugin-react';
@@ -38,6 +35,7 @@ export default defineConfig([
     reactHooks.configs.flat.recommended,
     eslintPluginPrettier,
     jsxA11y.flatConfigs.recommended,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
     fixupConfigRules(i18next.configs['flat/recommended'] as any),
     pluginReact.configs.flat.recommended,
     tseslint.configs.strictTypeChecked,

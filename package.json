@@ -71,7 +71,6 @@
         "globals": "^17.3.0",
         "husky": "^9.1.7",
         "i18next-browser-languagedetector": "^8.2.1",
-        "i18next-http-backend": "^3.0.2",
         "jiti": "^2.6.1",
         "jsdom": "^28.1.0",
         "lint-staged": "^16.2.7",
