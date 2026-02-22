@@ -12,7 +12,7 @@
         - [x] typescheck
         - [x] eslint on all files
 - [x] setup mui
-- [ ] setup commitlint and commitizen
+- [x] setup commitlint and commitizen
 - [x] setup vitest
 - [x] setup playwright
 - [x] i18n
@@ -22,7 +22,7 @@
 
 - [ ] setup github actions for ci and cd :
     - [x] ci : run eslint, prettier, jest and playwright
-    - [ ] cd : build 
+    - [x] cd : build 
 
 ## features 
 

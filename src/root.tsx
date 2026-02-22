@@ -83,9 +83,11 @@ const App: React.FunctionComponent = () => {
     }
     return (
         <React.StrictMode>
-            <AppTheme>
-                <Outlet />
-            </AppTheme>
+            <CacheProvider value={cache}>
+                <AppTheme>
+                    <Outlet />
+                </AppTheme>
+            </CacheProvider>
         </React.StrictMode>
     );
 };
