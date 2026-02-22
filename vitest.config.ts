@@ -12,6 +12,7 @@ export default defineConfig({
         coverage: {
             provider: 'v8',
             include: ['src/**/*.{ts,tsx}'],
+            reporter: ['text', 'json', 'json-summary'],
         },
         reporters: ['default', 'junit'],
         outputFile: {
