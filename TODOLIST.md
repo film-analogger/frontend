@@ -21,7 +21,7 @@
 ## tech ci cd 
 
 - [ ] setup github actions for ci and cd :
-    - [ ] ci : run eslint, prettier, jest and playwright
+    - [x] ci : run eslint, prettier, jest and playwright
     - [ ] cd : build 
 
 ## features 
