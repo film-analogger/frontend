@@ -11,6 +11,7 @@
         "typegen": "react-router typegen && tsc",
         "lint": "eslint -c eslint.config.mts --fix --cache",
         "lint:nocache": "eslint -c eslint.config.mts --fix",
+        "lint:ci": "eslint -c eslint.config.mts -f json -o reports/lint.json",
         "prepare": "husky",
         "test": "vitest",
         "test:coverage": "vitest run --coverage",

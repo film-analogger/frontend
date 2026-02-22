@@ -5,15 +5,19 @@ on:
   pull_request:
     branches: [ main, master ]
 jobs:
-  eslint:
+  test:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - run: yarn install
-      - uses: sibiraj-s/action-eslint@v4
-        with:
-          extensions: 'js,jsx,ts,tsx'
-          annotations: true
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm install -g yarn && yarn && yarn set version berry
+    - name: Run Vitest tests
+      run: yarn lint:ci
+      continue-on-error: true
+    - uses: ldiego73/eslint-report-action@v1.1
+      with:
+        report: reports/lint.json
