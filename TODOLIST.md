@@ -8,13 +8,13 @@
         - [x] run eslint and prettier on staged files
     - [ ] pre-push : run 
         - [x] vitest
-        - [ ] playwright
+        - [x] playwright
         - [x] typescheck
         - [x] eslint on all files
 - [x] setup mui
 - [ ] setup commitlint and commitizen
 - [x] setup vitest
-- [ ] setup playwright
+- [x] setup playwright
 - [ ] i18n
 - [x] setup typescheck
 

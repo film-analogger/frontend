@@ -14,7 +14,10 @@
         "prepare": "husky",
         "test": "vitest",
         "test:coverage": "vitest run --coverage",
-        "pw": "playwright test"
+        "pw": "playwright test",
+        "pw:ui": "playwright test --ui",
+        "pw:report": "playwright show-report",
+        "pw:headed": "playwright test --headed"
     },
     "lint-staged": {
         "*": "yarn lint"
