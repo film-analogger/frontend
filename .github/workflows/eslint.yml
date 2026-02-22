@@ -14,9 +14,9 @@ jobs:
       with:
         node-version: lts/*
     - name: Install dependencies
-      run: npm install -g yarn && yarn && yarn set version berry
+      run: npm install -g yarn && yarn set version berry && yarn install
     - name: Run ESLint with reviewdog
       uses: reviewdog/action-eslint@v1
       with:
         reporter: github-pr-review
-        eslint_flags: '-c eslint.config.mts -f json'
+        eslint_flags: '-c eslint.config.mts'
