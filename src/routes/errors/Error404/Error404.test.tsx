@@ -1,30 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import Error404 from './Error404';
-
-vi.mock('~/components/tools/Error/Error', () => ({
-    default: ({
-        detail,
-        metaDescription,
-        pageTitle,
-        statusCode,
-        title,
-    }: {
-        detail: string;
-        metaDescription: string;
-        pageTitle: string;
-        statusCode: number;
-        title: string;
-    }) => (
-        <div>
-            <span data-testid="detail">{detail}</span>
-            <span data-testid="metaDescription">{metaDescription}</span>
-            <span data-testid="pageTitle">{pageTitle}</span>
-            <span data-testid="statusCode">{statusCode}</span>
-            <span data-testid="title">{title}</span>
-        </div>
-    ),
-}));
 
 describe('Error404', () => {
     it('renders without crashing', () => {

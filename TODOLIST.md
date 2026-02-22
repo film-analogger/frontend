@@ -30,8 +30,14 @@
 - [ ] user profile
 - [ ] dashboard
 - [ ] film log
+    - [ ] import export csv,json, ocr ? 
+    - [ ] print a4, a5 , photo
 - [ ] film details
+    - [ ] import export csv,json, ocr ? 
+    - [ ] print a4, a5 , photo
 - [ ] print lab sheet
+    - [ ] import export csv,json, ocr ? 
+    - [ ] print a4, a5 , photo
 - [ ] settings
 - [ ] dark mode
 - [ ] data

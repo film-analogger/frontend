@@ -244,7 +244,7 @@ export default defineConfig([
         },
     },
     {
-        files: ['**/*.test.{jsx,tsx}'],
+        files: ['**/*.test.{jsx,tsx}', '**/__mocks__/**/*.{jsx,tsx}'],
         rules: {
             'react/jsx-props-no-spreading': 'off',
             'react/react-in-jsx-scope': 'off',
