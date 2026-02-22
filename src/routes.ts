@@ -1,17 +1,17 @@
 import { type RouteConfig, index, layout, prefix, route } from '@react-router/dev/routes';
 
 export default [
-    layout('./modules/dashboard/Dashboard.tsx', [
-        index('./modules/dashboard/Home.tsx'),
+    layout('./routes/dashboard/Dashboard.tsx', [
+        index('./routes/dashboard/Home.tsx'),
         // child routes
-        route('settings', './modules/dashboard/Settings.tsx'),
+        route('settings', './routes/dashboard/Settings.tsx'),
     ]),
     ...prefix('error', [
-        layout('./modules/errors/BaseError.tsx', [
-            route('404', './modules/errors/Error404.tsx'),
-            route('403', './modules/errors/Error403.tsx'),
-            route('500', './modules/errors/Error500.tsx'),
+        layout('./routes/errors/BaseError/BaseError.tsx', [
+            route('404', './routes/errors/Error404/Error404.tsx'),
+            route('403', './routes/errors/Error403/Error403.tsx'),
+            route('500', './routes/errors/Error500/Error500.tsx'),
         ]),
     ]),
-    route('*', './modules/errors/CatchAllRedirect404.tsx'),
+    route('*', './routes/errors/CatchAllRedirect404/CatchAllRedirect404.tsx'),
 ] satisfies RouteConfig;

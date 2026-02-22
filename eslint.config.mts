@@ -248,6 +248,8 @@ export default defineConfig([
         rules: {
             'react/jsx-props-no-spreading': 'off',
             'react/react-in-jsx-scope': 'off',
+            'i18next/no-literal-string': 'off',
+            '@typescript-eslint/no-empty-function': 'off',
             'check-file/filename-naming-convention': [
                 'error',
                 {

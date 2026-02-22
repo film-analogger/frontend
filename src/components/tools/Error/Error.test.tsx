@@ -110,4 +110,28 @@ describe('Error component', () => {
         expect(screen.getByTestId('error-detail')).toBeInTheDocument();
         expect(document.querySelector('meta[name="description"]')).toBeInTheDocument();
     });
+    it('renders status code with h1 variant and bold font weight', () => {
+        render(<Error {...defaultProps} />);
+        const statusCodeElement = screen.getByTestId('error-status-code');
+        expect(statusCodeElement.tagName).toBe('H1');
+        expect(statusCodeElement).toHaveStyle({ fontWeight: 700 });
+    });
+
+    it('renders title with h3 variant and medium font weight', () => {
+        render(<Error {...defaultProps} />);
+        const titleElement = screen.getByTestId('error-title');
+        expect(titleElement.tagName).toBe('H3');
+        expect(titleElement).toHaveStyle({ fontWeight: 500 });
+    });
+
+    it('renders detail with subtitle1 variant', () => {
+        render(
+            <Error
+                {...defaultProps}
+                detail="errors.404.detail"
+            />,
+        );
+        const detailElement = screen.getByTestId('error-detail');
+        expect(detailElement.tagName).toBe('H6');
+    });
 });

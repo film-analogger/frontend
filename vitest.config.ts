@@ -19,4 +19,9 @@ export default defineConfig({
             junit: 'test-results/junit.xml',
         },
     },
+    resolve: {
+        alias: {
+            '~/': new URL('./src/', import.meta.url).pathname,
+        },
+    },
 });
