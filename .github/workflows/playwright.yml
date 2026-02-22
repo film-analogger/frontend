@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: lts/*
     - name: Install dependencies
-      run: npm install -g yarn && yarn set version berry && yarn install
+      run: npm install -g yarn && yarn set version berry && yarn install --frozen-lockfile
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
 
