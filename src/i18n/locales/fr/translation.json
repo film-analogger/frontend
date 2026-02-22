@@ -11,5 +11,11 @@
     "home": {
         "title": "Accueil",
         "welcome": "Bienvenue sur Film Analogger !"
+    },
+    "dashboard": {
+        "title": "Tableau de bord"
+    },
+    "settings": {
+        "title": "Paramètres"
     }
 }

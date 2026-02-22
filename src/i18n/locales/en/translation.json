@@ -11,5 +11,11 @@
     "home": {
         "title": "Home",
         "welcome": "Welcome to Film Analogger!"
+    },
+    "dashboard": {
+        "title": "Dashboard"
+    },
+    "settings": {
+        "title": "Settings"
     }
 }
