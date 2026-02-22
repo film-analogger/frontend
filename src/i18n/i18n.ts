@@ -6,7 +6,9 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './locales/en/translation.json';
 import fr from './locales/fr/translation.json';
 
-i18n.use(LanguageDetector)
+const i18nInstance = typeof window !== 'undefined' ? i18n.use(LanguageDetector) : i18n;
+
+i18nInstance
     .use(initReactI18next)
     .init({
         fallbackLng: 'en',
@@ -22,3 +24,5 @@ i18n.use(LanguageDetector)
     .catch((err: unknown) => {
         console.error('Error initializing i18n:', err);
     });
+
+export default i18n;

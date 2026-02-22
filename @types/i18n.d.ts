@@ -1,9 +1,9 @@
 import 'i18next';
 
-import ressources from '../src/i18n/ressources';
+import resources from '../src/i18n/resources';
 
 declare module 'i18next' {
     interface CustomTypeOptions {
-        resources: typeof ressources;
+        resources: typeof resources;
     }
 }
