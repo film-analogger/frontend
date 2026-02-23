@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import AxeBuilder from '@axe-core/playwright'; // 1
+import AxeBuilder from '@axe-core/playwright';
 
 test.describe('404 error page', () => {
     test('not found navigate redirects to 404', async ({ page }) => {

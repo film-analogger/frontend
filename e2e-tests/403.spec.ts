@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import AxeBuilder from '@axe-core/playwright'; // 1
+import AxeBuilder from '@axe-core/playwright';
 
 test.describe('403 error page', () => {
     test('403 error page', async ({ page }) => {

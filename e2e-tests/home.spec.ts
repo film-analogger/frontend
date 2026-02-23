@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import AxeBuilder from '@axe-core/playwright'; // 1
+import AxeBuilder from '@axe-core/playwright';
 
 test.describe('Home page', () => {
     test('has title', async ({ page }) => {
