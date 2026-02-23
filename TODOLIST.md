@@ -16,6 +16,7 @@
 - [x] setup vitest
 - [x] setup playwright
 - [x] i18n
+- [x] a11y
 - [x] setup typescheck
 
 ## tech ci cd 
