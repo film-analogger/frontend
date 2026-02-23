@@ -48,6 +48,7 @@ const Error: React.FunctionComponent<ErrorProps> = ({
                     {statusCode}
                 </Typography>
                 <Typography
+                    component="p"
                     data-testid="error-title"
                     fontWeight={500}
                     variant="h3"
@@ -57,6 +58,7 @@ const Error: React.FunctionComponent<ErrorProps> = ({
             </Box>
             {detail ? (
                 <Typography
+                    component="p"
                     data-testid="error-detail"
                     variant="subtitle1"
                 >

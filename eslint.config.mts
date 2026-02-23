@@ -89,7 +89,7 @@ export default defineConfig([
             'react/no-danger': 'error',
             'react/no-danger-with-children': 'error',
             'react/no-unstable-nested-components': ['error', { allowAsProps: true }],
-            'react/jsx-fragments': 'error',
+            'react/jsx-fragments': ['error', 'element'],
             'react/destructuring-assignment': [
                 'error',
                 'always',

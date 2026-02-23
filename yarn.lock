@@ -52,6 +52,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@axe-core/playwright@npm:^4.11.1":
+  version: 4.11.1
+  resolution: "@axe-core/playwright@npm:4.11.1"
+  dependencies:
+    axe-core: "npm:~4.11.1"
+  peerDependencies:
+    playwright-core: ">= 1.0.0"
+  checksum: 10/d2a0fce217fa415682c4730a0f82a5f3cf2b3081281ea4373f10aeb8a83417e84214e6bd75954a9ba3a23532e0afa0dad87cfcbfc88358170a50702266fad0cd
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.10.4, @babel/code-frame@npm:^7.28.6, @babel/code-frame@npm:^7.29.0":
   version: 7.29.0
   resolution: "@babel/code-frame@npm:7.29.0"
@@ -1417,6 +1428,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@film-analogger/frontend@workspace:."
   dependencies:
+    "@axe-core/playwright": "npm:^4.11.1"
     "@commitlint/cli": "npm:^20.4.2"
     "@commitlint/config-conventional": "npm:^20.4.2"
     "@emotion/react": "npm:^11.14.0"
@@ -1424,7 +1436,7 @@ __metadata:
     "@eslint/compat": "npm:^2.0.2"
     "@eslint/eslintrc": "npm:^3.3.3"
     "@eslint/js": "npm:^10.0.1"
-    "@fontsource/roboto": "npm:^5.2.9"
+    "@fontsource/roboto": "npm:^5.2.10"
     "@lingual/i18n-check": "npm:^0.8.19"
     "@mui/icons-material": "npm:^7.3.8"
     "@mui/material": "npm:^7.3.8"
@@ -1453,7 +1465,7 @@ __metadata:
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-react-hooks: "npm:^7.0.1"
     eslint-plugin-react-naming-convention: "npm:^2.13.0"
-    eslint-plugin-react-refresh: "npm:^0.5.0"
+    eslint-plugin-react-refresh: "npm:^0.5.1"
     globals: "npm:^17.3.0"
     husky: "npm:^9.1.7"
     i18next: "npm:^25.8.13"
@@ -1477,7 +1489,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@fontsource/roboto@npm:^5.2.9":
+"@fontsource/roboto@npm:^5.2.10":
   version: 5.2.10
   resolution: "@fontsource/roboto@npm:5.2.10"
   checksum: 10/2fc9e9db66cfab68ff45b573cc2bf20fe8d7e962f09b6edd32d53681fdcd7bdedd65440012683491785583383a585bdbfb67903171159bf4c3520f2f0d26d92a
@@ -3203,7 +3215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:^4.10.0":
+"axe-core@npm:^4.10.0, axe-core@npm:~4.11.1":
   version: 4.11.1
   resolution: "axe-core@npm:4.11.1"
   checksum: 10/bbc8e8959258a229b92fbaa73437050825579815051cac7b0fdbb6752946fea226e403bfeeef3d60d712477bdd4c01afdc8455f27c3d85e4251df88b032b6250
@@ -4850,7 +4862,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:^0.5.0":
+"eslint-plugin-react-refresh@npm:^0.5.1":
   version: 0.5.1
   resolution: "eslint-plugin-react-refresh@npm:0.5.1"
   peerDependencies:

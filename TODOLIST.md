@@ -42,3 +42,9 @@
 - [ ] dark mode
 - [ ] data
 - [ ] export film log sheet in pdf 
+- [ ] contact form
+- [ ] about page
+- [ ] terms of use page
+- [ ] privacy policy page
+- [ ] RGPD compliance
+- [ ] cookie consent
