@@ -122,7 +122,7 @@ describe('Error component', () => {
     it('renders title with h3 variant and medium font weight', () => {
         render(<Error {...defaultProps} />);
         const titleElement = screen.getByTestId('error-title');
-        expect(titleElement.tagName).toBe('H3');
+        expect(titleElement.tagName.toLowerCase()).toBe('p');
         expect(titleElement).toHaveStyle({ fontWeight: 500 });
     });
 
@@ -134,6 +134,6 @@ describe('Error component', () => {
             />,
         );
         const detailElement = screen.getByTestId('error-detail');
-        expect(detailElement.tagName).toBe('H6');
+        expect(detailElement.tagName.toLowerCase()).toBe('p');
     });
 });
