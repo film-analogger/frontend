@@ -244,10 +244,12 @@ export default defineConfig([
         },
     },
     {
-        files: ['**/*.test.{jsx,tsx}'],
+        files: ['**/*.test.{jsx,tsx}', '**/__mocks__/**/*.{jsx,tsx}'],
         rules: {
             'react/jsx-props-no-spreading': 'off',
             'react/react-in-jsx-scope': 'off',
+            'i18next/no-literal-string': 'off',
+            '@typescript-eslint/no-empty-function': 'off',
             'check-file/filename-naming-convention': [
                 'error',
                 {

@@ -33,21 +33,24 @@ const Error: React.FunctionComponent<ErrorProps> = ({
             <Box
                 sx={{
                     display: 'flex',
+                    flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center',
                     height: '100%',
-                    gap: 3,
+                    gap: 1,
                 }}
             >
                 <Typography
                     data-testid="error-status-code"
+                    fontWeight={700}
                     variant="h1"
                 >
                     {statusCode}
                 </Typography>
                 <Typography
                     data-testid="error-title"
-                    variant="h2"
+                    fontWeight={500}
+                    variant="h3"
                 >
                     {t(title)}
                 </Typography>
@@ -55,7 +58,7 @@ const Error: React.FunctionComponent<ErrorProps> = ({
             {detail ? (
                 <Typography
                     data-testid="error-detail"
-                    variant="body1"
+                    variant="subtitle1"
                 >
                     {t(detail)}
                 </Typography>
