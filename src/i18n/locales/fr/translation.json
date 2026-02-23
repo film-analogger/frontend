@@ -37,5 +37,13 @@
             "pageTitle": "403 - Accès refusé",
             "metaDescription": "Vous n'avez pas la permission d'accéder à cette page."
         }
+    },
+    "components": {
+        "footer": {
+            "copyright": "© {{year}} Film Analogger. Tous droits réservés.",
+            "privacy": "Politique de confidentialité",
+            "terms": "Conditions d'utilisation",
+            "contact": "Contact"
+        }
     }
 }
