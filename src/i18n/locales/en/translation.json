@@ -37,5 +37,13 @@
             "pageTitle": "403 - Forbidden",
             "metaDescription": "You do not have permission to access this page."
         }
+    },
+    "components": {
+        "footer": {
+            "copyright": "© {{year}} Film Analogger. All rights reserved.",
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Use",
+            "contact": "Contact"
+        }
     }
 }

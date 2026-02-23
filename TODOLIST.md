@@ -16,6 +16,7 @@
 - [x] setup vitest
 - [x] setup playwright
 - [x] i18n
+- [x] a11y
 - [x] setup typescheck
 
 ## tech ci cd 
@@ -42,3 +43,9 @@
 - [ ] dark mode
 - [ ] data
 - [ ] export film log sheet in pdf 
+- [ ] contact form
+- [ ] about page
+- [ ] terms of use page
+- [ ] privacy policy page
+- [ ] RGPD compliance
+- [ ] cookie consent
