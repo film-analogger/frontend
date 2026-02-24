@@ -7,10 +7,7 @@ const Legals: React.FunctionComponent = () => {
     const { t } = useTranslation();
 
     return (
-        <Container
-            component="main"
-            maxWidth="sm"
-        >
+        <Container maxWidth="sm">
             <Box sx={{ textAlign: 'center', py: 8 }}>
                 <Typography
                     component="h1"
