@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Footer Links', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://localhost:3000/');
+        await page.goto('/');
     });
 
     test('footer privacy link available and accessible', async ({ page }) => {

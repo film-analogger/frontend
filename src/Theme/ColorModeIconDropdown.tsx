@@ -61,6 +61,7 @@ const ColorModeIconDropdown: React.FunctionComponent<IconButtonOwnProps> = (prop
                 aria-controls={open ? 'color-scheme-menu' : undefined}
                 aria-expanded={open ? 'true' : undefined}
                 aria-haspopup="true"
+                aria-label="color-scheme-toggle"
                 data-screenshot="toggle-mode"
                 disableRipple
                 onClick={handleClick}
