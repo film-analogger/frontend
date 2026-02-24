@@ -5,6 +5,13 @@ export default [
         index('./routes/dashboard/Home.tsx'),
         // child routes
         route('settings', './routes/dashboard/Settings.tsx'),
+        ...prefix('legal', [
+            route('contact', './routes/legal/contact/Contact.tsx'),
+            route('privacy', './routes/legal/privacy/Privacy.tsx'),
+            route('terms', './routes/legal/terms/Terms.tsx'),
+            route('cookies', './routes/legal/cookies/Cookies.tsx'),
+            route('legals', './routes/legal/legals/Legals.tsx'),
+        ]),
     ]),
     ...prefix('error', [
         layout('./routes/errors/BaseError/BaseError.tsx', [
@@ -13,5 +20,6 @@ export default [
             route('500', './routes/errors/Error500/Error500.tsx'),
         ]),
     ]),
+
     route('*', './routes/errors/CatchAllRedirect404/CatchAllRedirect404.tsx'),
 ] satisfies RouteConfig;
