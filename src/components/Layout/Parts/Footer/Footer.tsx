@@ -42,13 +42,13 @@ const Footer: React.FunctionComponent = () => {
                     <Box>
                         <Typography
                             color="text.secondary"
-                            variant="body2"
+                            variant="body1"
                         >
                             {t('components.footer.copyright', { year: currentYear })}
                         </Typography>
                         <Typography
                             color="text.secondary"
-                            variant="caption"
+                            variant="body2"
                         >
                             {t('components.footer.subtitle')}
                         </Typography>
@@ -58,7 +58,7 @@ const Footer: React.FunctionComponent = () => {
                             <React.Fragment key={title}>
                                 <Link
                                     color="inherit"
-                                    fontSize="0.65rem"
+                                    fontSize="0.825rem"
                                     href={link}
                                     underline="none"
                                     variant="caption"
