@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2300" height="512" viewBox="0 0 2300 512" fill="none" role="img" aria-label="Film Analogger inline logo">
+  <defs>
+    <mask id="film-mask">
+      <rect x="80" y="96" width="352" height="320" rx="32" fill="white"/>
+      <!-- Sprocket holes left -->
+      <rect x="96" y="128" width="24" height="32" rx="6" fill="black"/>
+      <rect x="96" y="192" width="24" height="32" rx="6" fill="black"/>
+      <rect x="96" y="256" width="24" height="32" rx="6" fill="black"/>
+      <rect x="96" y="320" width="24" height="32" rx="6" fill="black"/>
+      <!-- Sprocket holes right -->
+      <rect x="392" y="128" width="24" height="32" rx="6" fill="black"/>
+      <rect x="392" y="192" width="24" height="32" rx="6" fill="black"/>
+      <rect x="392" y="256" width="24" height="32" rx="6" fill="black"/>
+      <rect x="392" y="320" width="24" height="32" rx="6" fill="black"/>
+    </mask>
+  </defs>
+
+  <g transform="translate(-71, -63) scale(1.19)">
+    <!-- Film strip body with punched-through perforations -->
+    <rect x="80" y="96" width="352" height="320" rx="32" fill="#F3B285" mask="url(#film-mask)"/>
+
+    <!-- Film frames area -->
+    <rect x="140" y="128" width="232" height="252" rx="16" fill="#0F766E"/>
+
+    <!-- Frame 1 -->
+    <rect x="160" y="148" width="96" height="104" rx="10" fill="#083C38"/>
+    <!-- Frame 2 -->
+    <rect x="272" y="148" width="80" height="104" rx="10" fill="#083C38"/>
+    <!-- Frame 3 -->
+    <rect x="160" y="268" width="80" height="92" rx="10" fill="#083C38"/>
+    <!-- Frame 4 -->
+    <rect x="256" y="268" width="96" height="92" rx="10" fill="#083C38"/>
+
+    <!-- Lens detail top-right -->
+    <circle cx="380" cy="108" r="22" fill="#0F766E"/>
+    <circle cx="380" cy="108" r="10" fill="#083C38"/>
+
+    <!-- Film curl bottom -->
+    <path d="M80 384 Q80 416 112 416 L400 416 Q432 416 432 384" stroke="#E8A06E" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M432 384 Q432 440 472 448" stroke="#E8A06E" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Single-line text -->
+  <text x="512" y="338" font-family="Inter, sans-serif" font-weight="700" font-size="240">
+    <tspan fill="#F3B285">Film </tspan><tspan fill="#0F766E">Analogger</tspan>
+  </text>
+</svg>
