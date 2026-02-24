@@ -250,6 +250,7 @@ export default defineConfig([
             'react/react-in-jsx-scope': 'off',
             'i18next/no-literal-string': 'off',
             '@typescript-eslint/no-empty-function': 'off',
+            '@typescript-eslint/restrict-template-expressions': 'off',
             'check-file/filename-naming-convention': [
                 'error',
                 {
