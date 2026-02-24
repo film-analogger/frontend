@@ -115,11 +115,20 @@ export default defineConfig([
             'react/prefer-read-only-props': 'error',
             'react/no-array-index-key': 'error',
             'react/jsx-no-bind': 'error',
-            'react/jsx-props-no-spreading': 'error',
+            'react/jsx-props-no-spreading': 'off',
             'react/no-multi-comp': 'error',
             'react/react-in-jsx-scope': 'error',
             'react/jsx-one-expression-per-line': 'off',
             'react/prop-types': 'off',
+            '@typescript-eslint/prefer-nullish-coalescing': [
+                'error',
+                {
+                    ignoreIfStatements: true,
+                    ignoreConditionalTests: true,
+                    ignoreMixedLogicalExpressions: true,
+                    ignorePrimitives: true,
+                },
+            ],
             '@typescript-eslint/no-restricted-types': [
                 'error',
                 {

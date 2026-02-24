@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 import CssBaseline from '@mui/material/CssBaseline';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { colorSchemes, typography, shadows, shape } from './themePrimitives';
 import { inputsCustomizations } from './Customizations/Inputs';
 import { dataDisplayCustomizations } from './Customizations/DataDisplay';
@@ -9,7 +11,6 @@ import { navigationCustomizations } from './Customizations/Navigation';
 import { surfacesCustomizations } from './Customizations/Surfaces';
 
 const theme = createTheme({
-    cssVariables: true,
     components: {
         ...inputsCustomizations,
         ...dataDisplayCustomizations,
@@ -17,7 +18,7 @@ const theme = createTheme({
         ...navigationCustomizations,
         ...surfacesCustomizations,
     },
-    colorSchemes, // Recently added in v6 for building light & dark mode app, see https://mui.com/material-ui/customization/palette/#color-schemes
+    colorSchemes,
     typography,
     shadows,
     shape,
@@ -30,7 +31,23 @@ interface AppThemeProps {
 const AppTheme: React.FunctionComponent<AppThemeProps> = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
-            <CssBaseline />
+            <CssBaseline enableColorScheme />
+            <GlobalStyles
+                styles={{
+                    '*, *::before, *::after': {
+                        transition:
+                            'background-color 400ms ease, color 200ms ease, border-color 200ms ease',
+                    },
+                    body: {
+                        transition:
+                            'background-color 400ms ease, color 200ms ease, border-color 200ms ease',
+                    },
+                    '@media (prefers-reduced-motion: reduce)': {
+                        '*, *::before, *::after': { transition: 'none' },
+                        body: { transition: 'none' },
+                    },
+                }}
+            />
             {children}
         </ThemeProvider>
     );
