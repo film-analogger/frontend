@@ -1,7 +1,7 @@
 import { type RouteConfig, index, layout, prefix, route } from '@react-router/dev/routes';
 
 export default [
-    layout('./routes/dashboard/Dashboard.tsx', [
+    layout('./routes/dashboard/Dashboard/Dashboard.tsx', [
         index('./routes/dashboard/Home.tsx'),
         // child routes
         route('settings', './routes/dashboard/Settings.tsx'),
