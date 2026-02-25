@@ -7,7 +7,7 @@ const Footer: React.FunctionComponent = () => {
     const { t } = useTranslation();
     const currentYear = new Date().getFullYear();
 
-    const footerEntires = [
+    const footerEntries = [
         { title: 'components.footer.privacy', link: '/legal/privacy' },
         { title: 'components.footer.terms', link: '/legal/terms' },
         { title: 'components.footer.cookies', link: '/legal/cookies' },
@@ -56,19 +56,18 @@ const Footer: React.FunctionComponent = () => {
                         </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', gap: 2 }}>
-                        {footerEntires.map(({ title, link }) => (
-                            <React.Fragment key={title}>
-                                <Link
-                                    color="inherit"
-                                    fontSize="0.825rem"
-                                    fontWeight={600}
-                                    href={link}
-                                    underline="none"
-                                    variant="caption"
-                                >
-                                    {t(title)}
-                                </Link>
-                            </React.Fragment>
+                        {footerEntries.map(({ title, link }) => (
+                            <Link
+                                color="inherit"
+                                fontSize="0.825rem"
+                                fontWeight={600}
+                                href={link}
+                                key={title}
+                                underline="none"
+                                variant="caption"
+                            >
+                                {t(title)}
+                            </Link>
                         ))}
                     </Box>
                 </Box>
