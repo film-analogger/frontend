@@ -5,10 +5,11 @@ const LinkBehavior = React.forwardRef<
     HTMLAnchorElement,
     Omit<RouterLinkProps, 'to'> & { readonly href: RouterLinkProps['to'] }
 >((props, ref) => {
-    const { href, children, className, style } = props;
+    const { href, children, className, style, ...other } = props;
     // Map href (Material UI) -> to (react-router)
     return (
         <RouterLink
+            {...other}
             className={className}
             ref={ref}
             style={style}

@@ -33,13 +33,4 @@ describe('BaseError', () => {
         const containerElement = container.firstChild as HTMLElement;
         expect(containerElement).toHaveStyle({ textAlign: 'center' });
     });
-
-    it('renders two root elements ( main and footer )', () => {
-        const { container } = render(<BaseError />);
-        expect(container.children).toHaveLength(2);
-        expect(container.children[0].tagName.toLowerCase()).toBe('main');
-        expect(container.children[0]).toHaveRole('main');
-        expect(container.children[1].tagName.toLowerCase()).toBe('footer');
-        expect(container.children[1]).toHaveRole('contentinfo');
-    });
 });

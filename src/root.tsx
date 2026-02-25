@@ -112,14 +112,14 @@ export const ErrorBoundary = ({ error }: Route.ErrorBoundaryProps) => {
     return (
         <Box
             component="main"
-            sx={{ pt: 8, p: 2, maxWidth: 'lg', mx: 'auto' }}
+            sx={{ paddingTop: 8, padding: 2, maxWidth: 'lg', marginX: 'auto' }}
         >
             <h1>{message}</h1>
             <p>{details}</p>
             {stack ? (
                 <Box
                     component="pre"
-                    sx={{ width: '100%', p: 2, overflowX: 'auto' }}
+                    sx={{ width: '100%', padding: 2, overflowX: 'auto' }}
                 >
                     <code>{stack}</code>
                 </Box>

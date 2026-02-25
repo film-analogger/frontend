@@ -49,3 +49,4 @@
 - [ ] privacy policy page
 - [ ] RGPD compliance
 - [ ] cookie consent
+- [ ] menu collapsible ( default on mobile ) 

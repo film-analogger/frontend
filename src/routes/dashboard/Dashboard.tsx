@@ -1,19 +1,21 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
 
 import { Outlet } from 'react-router';
-import { useTranslation } from 'react-i18next';
 import AppBar from '~/components/Layout/Parts/AppBar/AppBar';
 import Footer from '~/components/Layout/Parts/Footer/Footer';
+import SideMenu from '~/components/Layout/Parts/SideMenu/SideMenu';
+import { drawerWidth } from '~/Theme/Constants/layout';
 
 const Dashboard: React.FunctionComponent = () => {
-    const { t } = useTranslation();
     return (
         <React.Fragment>
+            <SideMenu />
             <AppBar />
-            <Box component="main">
-                <Typography variant="h1">{t('dashboard.title')}</Typography>
-                {/* will either be home.tsx or settings.tsx */}
+            <Box
+                component="main"
+                sx={{ overflow: 'auto', marginLeft: { xs: 0, md: drawerWidth }, p: 3 }}
+            >
                 <Outlet />
             </Box>
             <Footer />
