@@ -37,6 +37,7 @@ const OpenSource: React.FunctionComponent = () => {
                 <Link
                     aria-label="Github Organisation Page"
                     href="https://github.com/film-analogger"
+                    rel="noopener noreferrer"
                     target="_blank"
                 >
                     <GitHubIcon

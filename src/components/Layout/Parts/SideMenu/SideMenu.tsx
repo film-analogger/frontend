@@ -2,8 +2,6 @@ import { styled } from '@mui/material/styles';
 import MuiDrawer, { drawerClasses } from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-// import SelectContent from './SelectContent';
-// import MenuContent from './MenuContent';
 import type React from 'react';
 import OpenSource from '../OpenSource/OpenSource';
 import {
