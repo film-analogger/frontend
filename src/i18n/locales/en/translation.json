@@ -69,6 +69,22 @@
             "cookies": "Cookie Management",
             "legals": "Legal Notices",
             "contact": "Contact"
+        },
+        "opensource": {
+            "title": "Open Source",
+            "description": "Film Analogger is an open source project. Check out our GitHub organization to contribute or report issues."
+        },
+        "applogo": {
+            "logoLight": "Film Analogger light logo",
+            "logoDark": "Film Analogger dark logo"
+        },
+        "sidemenu": {
+            "home": "Home",
+            "filmLogSheet": "Film Log Sheet",
+            "developmentCharts": "Development Charts",
+            "printLogSheet": "Print Log Sheet",
+            "films": "Films",
+            "photoPaper": "Photo Paper"
         }
     }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Box, Container, Typography, Link } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { drawerWidth } from '~/Theme/Constants/layout';
 
 const Footer: React.FunctionComponent = () => {
     const { t } = useTranslation();
@@ -27,6 +28,7 @@ const Footer: React.FunctionComponent = () => {
                 bgcolor: 'background.paper',
                 borderTop: '1px solid',
                 borderColor: 'divider',
+                paddingLeft: drawerWidth,
             }}
         >
             <Container maxWidth="lg">
