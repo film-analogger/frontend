@@ -30,6 +30,7 @@ const OpenSource: React.FunctionComponent = () => {
                     {t('components.opensource.description')}
                 </Typography>
                 <Link
+                    aria-label="Github Organisation Page"
                     href="https://github.com/film-analogger"
                     target="_blank"
                 >

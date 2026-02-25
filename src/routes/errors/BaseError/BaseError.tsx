@@ -8,7 +8,6 @@ const BaseError: React.FunctionComponent = () => {
     return (
         <React.Fragment>
             <Container
-                component="main"
                 maxWidth="sm"
                 sx={{ textAlign: 'center', py: 8 }}
             >

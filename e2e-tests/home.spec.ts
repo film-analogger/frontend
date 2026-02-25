@@ -13,12 +13,12 @@ test.describe('Home page', () => {
     test('Home h1 title', async ({ page }) => {
         await page.goto('/');
 
-        await expect(page.getByText('Home')).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Home' })).toBeVisible();
     });
 
     test('Home accessibility', async ({ page }) => {
         await page.goto('/');
-        await expect(page.getByText('Home')).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Home' })).toBeVisible();
 
         const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
         expect(accessibilityScanResults.violations).toEqual([]);

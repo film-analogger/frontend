@@ -70,92 +70,97 @@ const SideMenu: React.FunctionComponent = () => {
     ];
 
     return (
-        <Drawer
-            sx={{
-                display: { xs: 'none', md: 'block' },
-                [`& .${drawerClasses.paper}`]: {
-                    backgroundColor: 'background.paper',
-                },
-            }}
-            variant="permanent"
-        >
-            <Box
-                component={RouterLink}
+        <Box component="nav">
+            <Drawer
                 sx={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    textDecoration: 'none',
-                    color: 'text.primary',
-                    flexGrow: 1,
-                    mt: headerMt,
-                    p: headerPadding,
+                    display: { xs: 'none', md: 'block' },
+                    [`& .${drawerClasses.paper}`]: {
+                        backgroundColor: 'background.paper',
+                    },
                 }}
-                to="/"
+                variant="permanent"
             >
-                <AppLogo />
-            </Box>
-            <Divider />
-            <Box
-                sx={{
-                    overflow: 'auto',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}
-            >
-                <Stack sx={{ flexGrow: 1, p: 1, justifyContent: 'space-between' }}>
-                    <List dense>
-                        {mainListItems.map((item) => (
-                            <ListItem
-                                disablePadding
-                                key={item.href}
-                                sx={{ display: 'block', padding: 0.5 }}
-                            >
-                                <ListItemButton
-                                    LinkComponent={Link}
-                                    href={item.href}
-                                    sx={{
-                                        height: 50,
-                                        width: '100%',
-                                        '&::before': {
-                                            opacity: 0,
-                                        },
-                                    }}
+                <Box
+                    component={RouterLink}
+                    sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        textDecoration: 'none',
+                        color: 'text.primary',
+                        flexGrow: 1,
+                        mt: headerMt,
+                        p: headerPadding,
+                    }}
+                    to="/"
+                >
+                    <AppLogo />
+                </Box>
+                <Divider />
+                <Box
+                    sx={{
+                        overflow: 'auto',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}
+                >
+                    <Stack sx={{ flexGrow: 1, p: 1, justifyContent: 'space-between' }}>
+                        <List dense>
+                            {mainListItems.map((item) => (
+                                <ListItem
+                                    disablePadding
+                                    key={item.href}
+                                    sx={{ display: 'block', padding: 0.5 }}
                                 >
-                                    <ListItemIcon>{item.icon}</ListItemIcon>
-                                    <ListItemText primary={t(item.translation)} />
-                                </ListItemButton>
-                            </ListItem>
-                        ))}
-                    </List>
-                    <List dense>
-                        {secondaryListItems.map((item) => (
-                            <ListItem
-                                disablePadding
-                                key={item.href}
-                                sx={{ display: 'block', padding: 0.5 }}
-                            >
-                                <ListItemButton
-                                    LinkComponent={Link}
-                                    href={item.href}
-                                    sx={{
-                                        height: 50,
-                                        width: '100%',
-                                        '&::before': {
-                                            opacity: 0,
-                                        },
-                                    }}
+                                    <ListItemButton
+                                        LinkComponent={Link}
+                                        aria-label={t(item.translation)}
+                                        href={item.href}
+                                        sx={{
+                                            height: 50,
+                                            width: '100%',
+                                            '&::before': {
+                                                opacity: 0,
+                                            },
+                                        }}
+                                    >
+                                        <ListItemIcon>{item.icon}</ListItemIcon>
+                                        <ListItemText primary={t(item.translation)} />
+                                    </ListItemButton>
+                                </ListItem>
+                            ))}
+                        </List>
+                        <List dense>
+                            {secondaryListItems.map((item) => (
+                                <ListItem
+                                    disablePadding
+                                    key={item.href}
+                                    sx={{ display: 'block', padding: 0.5 }}
                                 >
-                                    <ListItemIcon>{item.icon}</ListItemIcon>
-                                    <ListItemText primary={t(item.translation)} />
-                                </ListItemButton>
-                            </ListItem>
-                        ))}
-                    </List>
-                </Stack>
-                <OpenSource />
-            </Box>
-        </Drawer>
+                                    <ListItemButton
+                                        LinkComponent={Link}
+                                        aria-description={t(item.translation)}
+                                        aria-label={t(item.translation)}
+                                        href={item.href}
+                                        sx={{
+                                            height: 50,
+                                            width: '100%',
+                                            '&::before': {
+                                                opacity: 0,
+                                            },
+                                        }}
+                                    >
+                                        <ListItemIcon>{item.icon}</ListItemIcon>
+                                        <ListItemText primary={t(item.translation)} />
+                                    </ListItemButton>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Stack>
+                    <OpenSource />
+                </Box>
+            </Drawer>
+        </Box>
     );
 };
 
