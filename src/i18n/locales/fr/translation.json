@@ -38,11 +38,36 @@
             "metaDescription": "Vous n'avez pas la permission d'accéder à cette page."
         }
     },
+    "legal" : {
+        "contact" : {
+            "title": "Contactez-nous",
+            "description": "TODO"
+        },
+        "privacy": {
+            "title": "Politique de confidentialité",
+            "description": "TODO"
+        },
+        "terms": {
+            "title": "Conditions d'utilisation",
+            "description": "TODO"
+        },
+        "cookies": {
+            "title": "Gestion des cookies",
+            "description": "TODO"
+        },
+        "legals": {
+            "title": "Mentions légales",
+            "description": "TODO"
+        }
+    },
     "components": {
         "footer": {
             "copyright": "© {{year}} Film Analogger. Tous droits réservés.",
-            "privacy": "Politique de confidentialité",
+            "subtitle": "Développé avec ❤️ en France.",
+            "privacy": "Confidentialité",
             "terms": "Conditions d'utilisation",
+            "cookies": "Cookies",
+            "legals": "Mentions légales",
             "contact": "Contact"
         }
     }

@@ -3,12 +3,14 @@ import React from 'react';
 
 import { Outlet } from 'react-router';
 import { useTranslation } from 'react-i18next';
+import AppBar from '~/components/Layout/Parts/AppBar/AppBar';
 import Footer from '~/components/Layout/Parts/Footer/Footer';
 
 const Dashboard: React.FunctionComponent = () => {
     const { t } = useTranslation();
     return (
         <React.Fragment>
+            <AppBar />
             <Box component="main">
                 <Typography variant="h1">{t('dashboard.title')}</Typography>
                 {/* will either be home.tsx or settings.tsx */}

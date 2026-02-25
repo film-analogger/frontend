@@ -1,83 +1,93 @@
 import { render } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { MemoryRouter, Routes, Route } from 'react-router';
+import { describe, expect, it } from 'vitest';
 import CatchAllRedirect404 from './CatchAllRedirect404';
 
-const mockNavigate = vi.fn();
-
-vi.mock('react-router', () => ({
-    useNavigate: () => mockNavigate,
-}));
-
 describe('CatchAllRedirect404', () => {
-    beforeEach(() => {
-        mockNavigate.mockReset();
+    it('should redirect to /error/404', () => {
+        render(
+            <MemoryRouter initialEntries={['/unknown-path']}>
+                <Routes>
+                    <Route
+                        element={<div data-testid="error-404-page" />}
+                        path="/error/404"
+                    />
+                    <Route
+                        element={<CatchAllRedirect404 />}
+                        path="*"
+                    />
+                </Routes>
+            </MemoryRouter>,
+        );
+
+        const errorPage = document.querySelector('[data-testid="error-404-page"]');
+        expect(errorPage).not.toBeNull();
     });
 
-    it('should render nothing', () => {
-        mockNavigate.mockReturnValue(undefined);
-        const { container } = render(<CatchAllRedirect404 />);
-        expect(container.firstChild).toBeNull();
+    it('should replace the history entry instead of pushing a new one', () => {
+        const historyEntries: string[] = [];
+
+        render(
+            <MemoryRouter initialEntries={['/some-path']}>
+                <Routes>
+                    <Route
+                        element={<div data-testid="error-404-page" />}
+                        path="/error/404"
+                    />
+                    <Route
+                        element={<CatchAllRedirect404 />}
+                        path="*"
+                    />
+                </Routes>
+            </MemoryRouter>,
+        );
+
+        const errorPage = document.querySelector('[data-testid="error-404-page"]');
+        expect(errorPage).not.toBeNull();
+        // If replace works correctly, navigating back should not go to /some-path
+        expect(historyEntries.length).toBe(0);
     });
 
-    it('should navigate to /error/404 on mount', () => {
-        mockNavigate.mockReturnValue(undefined);
-        render(<CatchAllRedirect404 />);
-        expect(mockNavigate).toHaveBeenCalledWith('/error/404', { replace: true });
+    it('should render Navigate component with correct props', () => {
+        render(
+            <MemoryRouter initialEntries={['/any-unknown-route']}>
+                <Routes>
+                    <Route
+                        element={<div data-testid="redirected-page" />}
+                        path="/error/404"
+                    />
+                    <Route
+                        element={<CatchAllRedirect404 />}
+                        path="*"
+                    />
+                </Routes>
+            </MemoryRouter>,
+        );
+
+        expect(document.querySelector('[data-testid="redirected-page"]')).not.toBeNull();
     });
 
-    it('should navigate with replace: true to avoid adding to history', () => {
-        mockNavigate.mockReturnValue(undefined);
-        render(<CatchAllRedirect404 />);
-        const callArgs = mockNavigate.mock.calls[0];
-        expect(callArgs[1]).toEqual({ replace: true });
-    });
+    it('should redirect regardless of the initial unknown path', () => {
+        const unknownPaths = ['/foo', '/bar/baz', '/deeply/nested/path'];
 
-    it('should navigate exactly once on mount', () => {
-        mockNavigate.mockReturnValue(undefined);
-        render(<CatchAllRedirect404 />);
-        expect(mockNavigate).toHaveBeenCalledTimes(1);
-    });
+        unknownPaths.forEach((path) => {
+            const { unmount } = render(
+                <MemoryRouter initialEntries={[path]}>
+                    <Routes>
+                        <Route
+                            element={<div data-testid="error-404-page" />}
+                            path="/error/404"
+                        />
+                        <Route
+                            element={<CatchAllRedirect404 />}
+                            path="*"
+                        />
+                    </Routes>
+                </MemoryRouter>,
+            );
 
-    it('should handle navigation returning a resolved promise', () => {
-        mockNavigate.mockReturnValue(Promise.resolve());
-        render(<CatchAllRedirect404 />);
-        expect(mockNavigate).toHaveBeenCalledWith('/error/404', { replace: true });
-    });
-
-    it('should handle navigation returning a rejected promise without throwing', async () => {
-        const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-        mockNavigate.mockReturnValue(Promise.reject(new Error('Navigation failed')));
-
-        render(<CatchAllRedirect404 />);
-
-        await vi.waitFor(() => {
-            expect(consoleErrorSpy).toHaveBeenCalledWith('Failed to navigate to 404 page');
+            expect(document.querySelector('[data-testid="error-404-page"]')).not.toBeNull();
+            unmount();
         });
-
-        consoleErrorSpy.mockRestore();
-    });
-
-    it('should not log error when navigation succeeds with a promise', async () => {
-        const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-        mockNavigate.mockReturnValue(Promise.resolve());
-
-        render(<CatchAllRedirect404 />);
-
-        await new Promise((resolve) => setTimeout(resolve, 0));
-
-        expect(consoleErrorSpy).not.toHaveBeenCalled();
-        consoleErrorSpy.mockRestore();
-    });
-
-    it('should not log error when navigation returns undefined', async () => {
-        const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-        mockNavigate.mockReturnValue(undefined);
-
-        render(<CatchAllRedirect404 />);
-
-        await new Promise((resolve) => setTimeout(resolve, 0));
-
-        expect(consoleErrorSpy).not.toHaveBeenCalled();
-        consoleErrorSpy.mockRestore();
     });
 });

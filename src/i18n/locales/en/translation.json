@@ -38,11 +38,36 @@
             "metaDescription": "You do not have permission to access this page."
         }
     },
+    "legal" : {
+        "contact" : {
+            "title": "Contact us",
+            "description": "TODO"
+        },
+        "privacy": {
+            "title": "Privacy Policy",
+            "description": "TODO"
+        },
+        "terms": {
+            "title": "Terms of Use",
+            "description": "TODO"
+        },
+        "cookies": {
+            "title": "Cookie Management",
+            "description": "TODO"
+        },
+        "legals": {
+            "title": "Legal Notices",
+            "description": "TODO"
+        }
+    },
     "components": {
         "footer": {
             "copyright": "© {{year}} Film Analogger. All rights reserved.",
+            "subtitle": "Built with ❤️ in France.",
             "privacy": "Privacy Policy",
             "terms": "Terms of Use",
+            "cookies": "Cookie Management",
+            "legals": "Legal Notices",
             "contact": "Contact"
         }
     }

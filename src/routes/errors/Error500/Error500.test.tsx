@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import Error500 from './Error500';
 
+vi.mock('~/components/tools/Error/Error');
+
 describe('Error500', () => {
     it('renders without crashing', () => {
         render(<Error500 />);

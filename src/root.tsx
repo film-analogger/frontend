@@ -17,7 +17,6 @@ import React from 'react';
 import 'src/i18n/i18n';
 
 import type { Route } from './+types/root';
-import './app.css';
 import createEmotionCache from './createCache';
 import AppTheme from './Theme';
 import { Box } from '@mui/material';

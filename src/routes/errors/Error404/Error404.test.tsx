@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import Error404 from './Error404';
 
+vi.mock('~/components/tools/Error/Error');
+
 describe('Error404', () => {
     it('renders without crashing', () => {
         render(<Error404 />);

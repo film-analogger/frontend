@@ -1,18 +1,11 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import type React from 'react';
+import { Navigate } from 'react-router';
 
-const CatchAllRedirect404 = () => {
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const result = navigate('/error/404', { replace: true });
-        if (result instanceof Promise) {
-            result.catch(() => {
-                console.error('Failed to navigate to 404 page');
-            });
-        }
-    }, [navigate]);
-    return null;
-};
+const CatchAllRedirect404: React.FunctionComponent = () => (
+    <Navigate
+        replace
+        to="/error/404"
+    />
+);
 
 export default CatchAllRedirect404;

@@ -7,6 +7,14 @@ const Footer: React.FunctionComponent = () => {
     const { t } = useTranslation();
     const currentYear = new Date().getFullYear();
 
+    const footerEntries = [
+        { title: 'components.footer.privacy', link: '/legal/privacy' },
+        { title: 'components.footer.terms', link: '/legal/terms' },
+        { title: 'components.footer.cookies', link: '/legal/cookies' },
+        { title: 'components.footer.legals', link: '/legal/legals' },
+        { title: 'components.footer.contact', link: '/legal/contact' },
+    ];
+
     return (
         <Box
             component="footer"
@@ -14,7 +22,7 @@ const Footer: React.FunctionComponent = () => {
                 position: 'absolute',
                 bottom: 0,
                 width: '100%',
-                py: 3,
+                py: 1.5,
                 mt: 'auto',
                 bgcolor: 'background.paper',
                 borderTop: '1px solid',
@@ -31,37 +39,36 @@ const Footer: React.FunctionComponent = () => {
                         gap: 2,
                     }}
                 >
-                    <Typography
-                        color="text.secondary"
-                        variant="body2"
-                    >
-                        {t('components.footer.copyright', { year: currentYear })}
-                    </Typography>
-                    <Box sx={{ display: 'flex', gap: 3 }}>
-                        <Link
-                            color="inherit"
-                            href="#"
-                            underline="none"
+                    <Box>
+                        <Typography
+                            color="text.secondary"
+                            fontWeight={600}
+                            variant="body1"
+                        >
+                            {t('components.footer.copyright', { year: currentYear })}
+                        </Typography>
+                        <Typography
+                            color="text.secondary"
+                            fontWeight={600}
                             variant="caption"
                         >
-                            {t('components.footer.privacy')}
-                        </Link>
-                        <Link
-                            color="inherit"
-                            href="#"
-                            underline="none"
-                            variant="caption"
-                        >
-                            {t('components.footer.terms')}
-                        </Link>
-                        <Link
-                            color="inherit"
-                            href="#"
-                            underline="none"
-                            variant="caption"
-                        >
-                            {t('components.footer.contact')}
-                        </Link>
+                            {t('components.footer.subtitle')}
+                        </Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', gap: 2 }}>
+                        {footerEntries.map(({ title, link }) => (
+                            <Link
+                                color="inherit"
+                                fontSize="0.825rem"
+                                fontWeight={600}
+                                href={link}
+                                key={title}
+                                underline="none"
+                                variant="caption"
+                            >
+                                {t(title)}
+                            </Link>
+                        ))}
                     </Box>
                 </Box>
             </Container>

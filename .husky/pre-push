@@ -1,5 +1,10 @@
+echo start lint
 yarn lint
+echo start typecheck
 yarn typecheck
+echo start tests
 yarn test
+echo start playwright tests
 yarn pw
+echo start i18n check
 yarn i18n:check

@@ -21,8 +21,6 @@ vi.mock('react-i18next', () => ({
     }),
 }));
 
-vi.unmock('./Error');
-
 describe('Error component', () => {
     const defaultProps: React.ComponentProps<typeof Error> = {
         statusCode: 404,
