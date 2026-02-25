@@ -1,4 +1,11 @@
-import { createTheme, alpha, type PaletteMode, type Shadows } from '@mui/material/styles';
+import {
+    createTheme,
+    alpha,
+    type PaletteMode,
+    type Shadows,
+    darken,
+    lighten,
+} from '@mui/material/styles';
 
 declare module '@mui/material/Paper' {
     interface PaperPropsVariantOverrides {
@@ -30,17 +37,30 @@ const defaultTheme = createTheme();
 
 const customShadows: Shadows = [...defaultTheme.shadows];
 
-export const brand = {
-    50: 'rgb(229, 242, 255)',
-    100: 'rgb(214, 235, 255)',
-    200: 'rgb(153, 204, 255)',
-    300: 'rgb(77, 166, 255)',
-    400: 'rgb(2, 122, 242)',
-    500: 'rgb(2, 107, 212)',
-    600: 'rgb(28, 140, 253)',
-    700: 'rgb(0, 89, 179)',
-    800: 'rgb(0, 41, 82)',
-    900: 'rgb(0, 54, 107)',
+export const primary = {
+    50: 'rgb(224, 241, 242)',
+    100: 'rgb(178, 222, 220)',
+    200: 'rgb(129, 201, 198)',
+    300: 'rgb(79, 179, 175)',
+    400: 'rgb(44, 163, 157)',
+    500: 'rgb(18, 147, 139)',
+    600: 'rgb(16, 134, 126)',
+    700: 'rgb(15, 118, 109)',
+    800: 'rgb(15, 102, 94)',
+    900: 'rgb(13, 74, 66)',
+};
+
+export const secondary = {
+    50: 'rgb(250, 234, 228)',
+    100: 'rgb(248, 208, 181)',
+    200: 'rgb(248, 208, 181)',
+    300: 'rgb(243, 179, 133)',
+    400: 'rgb(233, 131, 36)',
+    500: 'rgb(229, 115, 0)',
+    600: 'rgb(219, 108, 0)',
+    700: 'rgb(206, 101, 0)',
+    800: 'rgb(193, 93, 0)',
+    900: 'rgb(170, 79, 0)',
 };
 
 export const gray = {
@@ -99,15 +119,21 @@ export const colorSchemes = {
     light: {
         palette: {
             primary: {
-                light: brand[200],
-                main: brand[400],
-                dark: brand[700],
-                contrastText: brand[50],
+                light: primary[200],
+                main: primary[400],
+                dark: primary[700],
+                contrastText: primary[50],
+            },
+            secondary: {
+                light: primary[200],
+                main: primary[400],
+                dark: primary[700],
+                contrastText: primary[50],
             },
             info: {
-                light: brand[100],
-                main: brand[300],
-                dark: brand[600],
+                light: primary[100],
+                main: primary[300],
+                dark: primary[600],
                 contrastText: gray[50],
             },
             warning: {
@@ -130,12 +156,12 @@ export const colorSchemes = {
             },
             divider: alpha(gray[300], 0.4),
             background: {
-                default: 'rgb(252, 252, 252)',
-                paper: 'rgb(245, 246, 250)',
+                default: secondary[50],
+                paper: lighten(secondary[100], 0.5),
             },
             text: {
-                primary: gray[800],
-                secondary: gray[600],
+                primary: primary[900],
+                secondary: darken(primary[800], 0.2),
                 warning: orange[400],
             },
             action: {
@@ -149,16 +175,16 @@ export const colorSchemes = {
     dark: {
         palette: {
             primary: {
-                contrastText: brand[50],
-                light: brand[300],
-                main: brand[400],
-                dark: brand[700],
+                contrastText: primary[50],
+                light: primary[300],
+                main: primary[400],
+                dark: primary[700],
             },
             info: {
-                contrastText: brand[300],
-                light: brand[500],
-                main: brand[700],
-                dark: brand[900],
+                contrastText: primary[300],
+                light: primary[500],
+                main: primary[700],
+                dark: primary[900],
             },
             warning: {
                 light: orange[400],
@@ -178,14 +204,14 @@ export const colorSchemes = {
             grey: {
                 ...gray,
             },
-            divider: alpha(gray[700], 0.6),
+            divider: alpha(secondary[700], 0.2),
             background: {
-                default: gray[900],
-                paper: 'rgb(12, 16, 23)',
+                default: darken(primary[900], 0.6),
+                paper: darken(primary[900], 0.5),
             },
             text: {
-                primary: 'rgb(255, 255, 255)',
-                secondary: gray[400],
+                primary: secondary[50],
+                secondary: secondary[300],
             },
             action: {
                 hover: alpha(gray[600], 0.2),
@@ -269,27 +295,27 @@ export const getDesignTokens = (mode: PaletteMode) => {
         palette: {
             mode,
             primary: {
-                light: brand[200],
-                main: brand[400],
-                dark: brand[700],
-                contrastText: brand[50],
+                light: primary[200],
+                main: primary[400],
+                dark: primary[700],
+                contrastText: primary[50],
                 ...(mode === 'dark' && {
-                    contrastText: brand[50],
-                    light: brand[300],
-                    main: brand[400],
-                    dark: brand[700],
+                    contrastText: primary[50],
+                    light: primary[300],
+                    main: primary[400],
+                    dark: primary[700],
                 }),
             },
             info: {
-                light: brand[100],
-                main: brand[300],
-                dark: brand[600],
+                light: primary[100],
+                main: primary[300],
+                dark: primary[600],
                 contrastText: gray[50],
                 ...(mode === 'dark' && {
-                    contrastText: brand[300],
-                    light: brand[500],
-                    main: brand[700],
-                    dark: brand[900],
+                    contrastText: primary[300],
+                    light: primary[500],
+                    main: primary[700],
+                    dark: primary[900],
                 }),
             },
             warning: {
