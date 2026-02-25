@@ -24,7 +24,12 @@ const OpenSource: React.FunctionComponent = () => {
                     {t('components.opensource.title')}
                 </Typography>
                 <Typography
-                    sx={{ mb: 2, color: 'text.secondary', fontWeight: 600, fontSize: '0.875rem' }}
+                    sx={{
+                        marginBottom: 2,
+                        color: 'text.secondary',
+                        fontWeight: 600,
+                        fontSize: '0.875rem',
+                    }}
                     variant="body2"
                 >
                     {t('components.opensource.description')}
@@ -36,7 +41,7 @@ const OpenSource: React.FunctionComponent = () => {
                 >
                     <GitHubIcon
                         fontSize="small"
-                        sx={{ mr: 1 }}
+                        sx={{ marginRight: 1 }}
                     />
                 </Link>
             </CardContent>

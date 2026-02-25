@@ -14,7 +14,7 @@ const AppBar: React.FunctionComponent = () => {
             sx={{
                 borderBottom: '1px solid',
                 borderColor: 'divider',
-                paddingLeft: drawerWidth,
+                paddingLeft: { xs: 2, md: drawerWidth },
                 width: '100%',
             }}
         >
@@ -22,14 +22,14 @@ const AppBar: React.FunctionComponent = () => {
                 sx={{
                     gap: 1.5,
                     height: headerHeight,
-                    // width: `calc(100% - ${drawerWidth})`,
-                    mt: headerMt,
+                    mmarginTop: headerMt,
                     display: 'flex',
                     justifyContent: 'space-between',
                 }}
             >
                 <Box>
                     <MenuIcon />
+                    {/* TODO: Add click handler to toggle collapsible mobile navigation menu */}
                 </Box>
                 <Box>
                     <ColorModeIconDropdown />

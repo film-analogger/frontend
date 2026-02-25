@@ -261,6 +261,9 @@ export default defineConfig([
             '@typescript-eslint/no-empty-function': 'off',
             '@typescript-eslint/restrict-template-expressions': 'off',
             '@typescript-eslint/no-unsafe-argument': 'off',
+            '@typescript-eslint/no-unsafe-call': 'off',
+            '@typescript-eslint/no-unsafe-member-access': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
             'check-file/filename-naming-convention': [
                 'error',
                 {

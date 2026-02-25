@@ -23,12 +23,12 @@ const Footer: React.FunctionComponent = () => {
                 position: 'absolute',
                 bottom: 0,
                 width: '100%',
-                py: 1.5,
-                mt: 'auto',
+                paddingY: 1.5,
+                marginTop: 'auto',
                 bgcolor: 'background.paper',
                 borderTop: '1px solid',
                 borderColor: 'divider',
-                paddingLeft: drawerWidth,
+                paddingLeft: { xs: 2, md: drawerWidth },
             }}
         >
             <Container maxWidth="lg">

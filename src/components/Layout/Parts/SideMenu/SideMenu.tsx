@@ -31,7 +31,7 @@ const Drawer = styled(MuiDrawer)({
     width: drawerWidth,
     flexShrink: 0,
     boxSizing: 'border-box',
-    mt: 10,
+    marginTop: 10,
     [`& .${drawerClasses.paper}`]: {
         width: drawerWidth,
         boxSizing: 'border-box',
@@ -88,7 +88,7 @@ const SideMenu: React.FunctionComponent = () => {
                         textDecoration: 'none',
                         color: 'text.primary',
                         flexGrow: 1,
-                        mt: headerMt,
+                        marginTop: headerMt,
                         p: headerPadding,
                     }}
                     to="/"
@@ -139,7 +139,6 @@ const SideMenu: React.FunctionComponent = () => {
                                 >
                                     <ListItemButton
                                         LinkComponent={Link}
-                                        aria-description={t(item.translation)}
                                         aria-label={t(item.translation)}
                                         href={item.href}
                                         sx={{

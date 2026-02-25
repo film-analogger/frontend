@@ -14,7 +14,7 @@ const Dashboard: React.FunctionComponent = () => {
             <AppBar />
             <Box
                 component="main"
-                sx={{ overflow: 'auto', marginLeft: drawerWidth, p: 3 }}
+                sx={{ overflow: 'auto', marginLeft: { xs: 0, md: drawerWidth }, p: 3 }}
             >
                 <Outlet />
             </Box>
