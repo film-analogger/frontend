@@ -160,8 +160,8 @@ export const colorSchemes = {
                 paper: lighten(secondary[100], 0.5),
             },
             text: {
-                primary: primary[900],
-                secondary: darken(primary[800], 0.2),
+                primary: darken(primary[900], 0.3),
+                secondary: darken(primary[800], 0.3),
                 warning: orange[400],
             },
             action: {
@@ -295,81 +295,53 @@ export const getDesignTokens = (mode: PaletteMode) => {
         palette: {
             mode,
             primary: {
-                light: primary[200],
-                main: primary[400],
-                dark: primary[700],
-                contrastText: primary[50],
+                ...colorSchemes.light.palette.primary,
                 ...(mode === 'dark' && {
-                    contrastText: primary[50],
-                    light: primary[300],
-                    main: primary[400],
-                    dark: primary[700],
+                    ...colorSchemes.dark.palette.primary,
                 }),
             },
             info: {
-                light: primary[100],
-                main: primary[300],
-                dark: primary[600],
-                contrastText: gray[50],
+                ...colorSchemes.light.palette.info,
                 ...(mode === 'dark' && {
-                    contrastText: primary[300],
-                    light: primary[500],
-                    main: primary[700],
-                    dark: primary[900],
+                    ...colorSchemes.dark.palette.info,
                 }),
             },
             warning: {
-                light: orange[300],
-                main: orange[400],
-                dark: orange[800],
+                ...colorSchemes.light.palette.warning,
                 ...(mode === 'dark' && {
-                    light: orange[400],
-                    main: orange[500],
-                    dark: orange[700],
+                    ...colorSchemes.dark.palette.warning,
                 }),
             },
             error: {
-                light: red[300],
-                main: red[400],
-                dark: red[800],
+                ...colorSchemes.light.palette.error,
                 ...(mode === 'dark' && {
-                    light: red[400],
-                    main: red[500],
-                    dark: red[700],
+                    ...colorSchemes.dark.palette.error,
                 }),
             },
             success: {
-                light: green[300],
-                main: green[400],
-                dark: green[800],
+                ...colorSchemes.light.palette.success,
                 ...(mode === 'dark' && {
-                    light: green[400],
-                    main: green[500],
-                    dark: green[700],
+                    ...colorSchemes.dark.palette.success,
                 }),
             },
             grey: {
                 ...gray,
             },
-            divider: mode === 'dark' ? alpha(gray[700], 0.6) : alpha(gray[300], 0.4),
+            divider:
+                mode === 'dark'
+                    ? colorSchemes.dark.palette.divider
+                    : colorSchemes.light.palette.divider,
             background: {
-                default: 'rgb(252, 252, 252)',
-                paper: 'rgb(245, 246, 250)',
-                ...(mode === 'dark' && { default: gray[900], paper: 'rgb(12, 16, 23)' }),
+                ...colorSchemes.light.palette.background,
+                ...(mode === 'dark' && { ...colorSchemes.dark.palette.background }),
             },
             text: {
-                primary: gray[800],
-                secondary: gray[600],
-                warning: orange[400],
-                ...(mode === 'dark' && { primary: 'rgb(255, 255, 255)', secondary: gray[400] }),
+                ...colorSchemes.light.palette.text,
+                ...(mode === 'dark' && { ...colorSchemes.dark.palette.text }),
             },
             action: {
-                hover: alpha(gray[200], 0.2),
-                selected: alpha(gray[200], 0.3),
-                ...(mode === 'dark' && {
-                    hover: alpha(gray[600], 0.2),
-                    selected: alpha(gray[600], 0.3),
-                }),
+                ...colorSchemes.light.palette.action,
+                ...(mode === 'dark' && { ...colorSchemes.dark.palette.action }),
             },
         },
         typography,
