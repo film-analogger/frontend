@@ -53,14 +53,27 @@ export const primary = {
 export const secondary = {
     50: 'rgb(250, 234, 228)',
     100: 'rgb(248, 208, 181)',
-    200: 'rgb(248, 208, 181)',
-    300: 'rgb(243, 179, 133)',
+    200: 'rgb(243, 179, 133)',
+    300: 'rgb(238, 151, 82)',
     400: 'rgb(233, 131, 36)',
     500: 'rgb(229, 115, 0)',
     600: 'rgb(219, 108, 0)',
     700: 'rgb(206, 101, 0)',
     800: 'rgb(193, 93, 0)',
     900: 'rgb(170, 79, 0)',
+};
+
+export const brand = {
+    50: 'rgb(229, 242, 255)',
+    100: 'rgb(214, 235, 255)',
+    200: 'rgb(153, 204, 255)',
+    300: 'rgb(77, 166, 255)',
+    400: 'rgb(2, 122, 242)',
+    500: 'rgb(2, 107, 212)',
+    600: 'rgb(28, 140, 253)',
+    700: 'rgb(0, 89, 179)',
+    800: 'rgb(0, 41, 82)',
+    900: 'rgb(0, 54, 107)',
 };
 
 export const gray = {
@@ -125,15 +138,15 @@ export const colorSchemes = {
                 contrastText: primary[50],
             },
             secondary: {
-                light: primary[200],
-                main: primary[400],
-                dark: primary[700],
-                contrastText: primary[50],
+                light: secondary[200],
+                main: secondary[400],
+                dark: secondary[700],
+                contrastText: secondary[50],
             },
             info: {
-                light: primary[100],
-                main: primary[300],
-                dark: primary[600],
+                light: brand[100],
+                main: brand[300],
+                dark: brand[600],
                 contrastText: gray[50],
             },
             warning: {
@@ -180,11 +193,17 @@ export const colorSchemes = {
                 main: primary[400],
                 dark: primary[700],
             },
+            secondary: {
+                light: secondary[200],
+                main: secondary[400],
+                dark: secondary[700],
+                contrastText: secondary[50],
+            },
             info: {
-                contrastText: primary[300],
-                light: primary[500],
-                main: primary[700],
-                dark: primary[900],
+                contrastText: brand[300],
+                light: brand[500],
+                main: brand[700],
+                dark: brand[900],
             },
             warning: {
                 light: orange[400],
@@ -298,6 +317,12 @@ export const getDesignTokens = (mode: PaletteMode) => {
                 ...colorSchemes.light.palette.primary,
                 ...(mode === 'dark' && {
                     ...colorSchemes.dark.palette.primary,
+                }),
+            },
+            secondary: {
+                ...colorSchemes.light.palette.secondary,
+                ...(mode === 'dark' && {
+                    ...colorSchemes.dark.palette.secondary,
                 }),
             },
             info: {

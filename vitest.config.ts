@@ -18,7 +18,7 @@ export default defineConfig({
                 'src/routes.ts',
                 'src/root.tsx',
                 'src/createCache.ts',
-                'src/i18n/ressource.ts',
+                'src/i18n/resource.ts',
             ],
             reporter: ['text', 'json', 'json-summary'],
         },

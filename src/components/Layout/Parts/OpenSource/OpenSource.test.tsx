@@ -45,7 +45,7 @@ describe('OpenSource Component', () => {
     it('should have correct aria-label on GitHub link', () => {
         render(<OpenSource />);
         const link = screen.getByRole('link');
-        expect(link).toHaveAttribute('aria-label', 'Github Organisation Page');
+        expect(link).toHaveAttribute('aria-label', 'GitHub Organisation Page');
     });
 
     it('should render GitHub icon', () => {

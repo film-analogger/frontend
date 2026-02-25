@@ -11,21 +11,12 @@ import { darken } from '@mui/material';
 const OpenSource: React.FunctionComponent = () => {
     const { t } = useTranslation();
 
-    const githubSx: NonNullable<SxProps<Theme>> = React.useCallback(
+    const subTextSx: NonNullable<SxProps<Theme>> = React.useCallback(
         (theme: Theme) => ({
-            fontWeight: 600,
-            fontSize: '0.875rem',
             color: darken(theme.palette.text.secondary, 0.2),
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-            justifyContent: 'space-between',
+            fontWeight: 500,
+            fontSize: '0.825rem',
         }),
-        [],
-    );
-
-    const githubIconSx: SxProps<Theme> = React.useCallback(
-        (theme: Theme) => ({ color: darken(theme.palette.text.secondary, 0.2) }),
         [],
     );
 
@@ -37,11 +28,19 @@ const OpenSource: React.FunctionComponent = () => {
             <CardContent>
                 <Typography
                     gutterBottom
-                    sx={githubSx}
+                    sx={{
+                        fontWeight: 600,
+                        fontSize: '0.875rem',
+                        color: 'text.secondary',
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%',
+                        justifyContent: 'space-between',
+                    }}
                 >
                     {t('components.opensource.title')}
                     <Link
-                        aria-label="Github Organisation Page"
+                        aria-label="GitHub Organisation Page"
                         href="https://github.com/film-analogger"
                         rel="noopener noreferrer"
                         sx={{ color: 'text.secondary' }}
@@ -49,17 +48,12 @@ const OpenSource: React.FunctionComponent = () => {
                     >
                         <GitHubIcon
                             fontSize="small"
-                            sx={githubIconSx}
+                            sx={{ color: 'text.secondary' }}
                         />
                     </Link>
                 </Typography>
                 <Typography
-                    sx={{
-                        marginBottom: 2,
-                        color: 'text.secondary',
-                        fontWeight: 600,
-                        fontSize: '0.825rem',
-                    }}
+                    sx={subTextSx}
                     variant="body2"
                 >
                     {t('components.opensource.description')}
