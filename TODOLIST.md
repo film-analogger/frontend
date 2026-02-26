@@ -5,6 +5,7 @@
 - [x] setup eslint and prettier
 - [x] setup husky and lint-staged
     - [x] commit : 
+        - [x] run commitlint on commit message
         - [x] run eslint and prettier on staged files
     - [x] pre-push : run 
         - [x] vitest
@@ -12,7 +13,8 @@
         - [x] typescheck
         - [x] eslint on all files
 - [x] setup mui
-- [x] setup commitlint and commitizen
+- [x] setup commitlint
+- [ ] setup commitizen
 - [x] setup vitest
 - [x] setup playwright
 - [x] i18n
@@ -22,7 +24,7 @@
 ## tech ci cd 
 
 - [ ] setup github actions for ci and cd :
-    - [x] ci : run eslint, prettier, jest and playwright
+    - [x] ci : run eslint, prettier, jest and playwright, commitlint
     - [x] cd : build 
 
 ## features 
