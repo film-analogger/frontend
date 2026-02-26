@@ -6,6 +6,10 @@
             "light": "Light",
             "dark": "Dark",
             "system": "System"
+        },
+        "language": {
+            "en": "English",
+            "fr": "Français"
         }
     },
     "home": {

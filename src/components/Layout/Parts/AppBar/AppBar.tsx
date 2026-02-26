@@ -4,6 +4,7 @@ import { AppBar as MuiAppBar, Box, Toolbar } from '@mui/material';
 import ColorModeIconDropdown from '~/Theme/ColorModeIconDropdown';
 import { drawerWidth, headerHeight, headerMt } from '~/Theme/Constants/layout';
 import MenuIcon from '@mui/icons-material/Menu';
+import LanguageIconDropdown from '~/i18n/LanguageIconDropdown';
 
 const AppBar: React.FunctionComponent = () => {
     return (
@@ -22,7 +23,7 @@ const AppBar: React.FunctionComponent = () => {
                 sx={{
                     gap: 1.5,
                     height: headerHeight,
-                    mmarginTop: headerMt,
+                    marginTop: headerMt,
                     display: 'flex',
                     justifyContent: 'space-between',
                 }}
@@ -31,8 +32,9 @@ const AppBar: React.FunctionComponent = () => {
                     <MenuIcon />
                     {/* TODO: Add click handler to toggle collapsible mobile navigation menu */}
                 </Box>
-                <Box>
+                <Box sx={{ display: 'flex', gap: 1 }}>
                     <ColorModeIconDropdown />
+                    <LanguageIconDropdown />
                 </Box>
             </Toolbar>
         </MuiAppBar>
