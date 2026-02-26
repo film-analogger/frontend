@@ -37,7 +37,7 @@ const LanguageIconDropdown: React.FunctionComponent<IconButtonOwnProps> = (props
                 aria-expanded={open ? 'true' : undefined}
                 aria-haspopup="true"
                 aria-label="language-select-toggle"
-                data-screenshot="toggle-mode"
+                data-screenshot="toggle-language"
                 disableRipple
                 onClick={handleClick}
                 size="small"
