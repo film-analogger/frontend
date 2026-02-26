@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('Language selection switches UI text between English and French', async ({ page }) => {
     await page.goto('http://localhost:3000/');
     await expect(page.getByRole('link', { name: 'Home' })).toContainText('Home');
     await page.getByRole('button', { name: 'language-select-toggle' }).click();
