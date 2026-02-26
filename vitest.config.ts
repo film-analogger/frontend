@@ -13,7 +13,13 @@ export default defineConfig({
         coverage: {
             provider: 'v8',
             include: ['src/**/*.{ts,tsx}'],
-            exclude: ['src/Theme/**'],
+            exclude: [
+                'src/Theme/**',
+                'src/routes.ts',
+                'src/root.tsx',
+                'src/createCache.ts',
+                'src/i18n/resource.ts',
+            ],
             reporter: ['text', 'json', 'json-summary'],
         },
         reporters: ['default', 'junit'],

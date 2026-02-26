@@ -1,4 +1,11 @@
-import { createTheme, alpha, type PaletteMode, type Shadows } from '@mui/material/styles';
+import {
+    createTheme,
+    alpha,
+    type PaletteMode,
+    type Shadows,
+    darken,
+    lighten,
+} from '@mui/material/styles';
 
 declare module '@mui/material/Paper' {
     interface PaperPropsVariantOverrides {
@@ -29,6 +36,32 @@ declare module '@mui/material/styles' {
 const defaultTheme = createTheme();
 
 const customShadows: Shadows = [...defaultTheme.shadows];
+
+export const primary = {
+    50: 'rgb(224, 241, 242)',
+    100: 'rgb(178, 222, 220)',
+    200: 'rgb(129, 201, 198)',
+    300: 'rgb(79, 179, 175)',
+    400: 'rgb(44, 163, 157)',
+    500: 'rgb(18, 147, 139)',
+    600: 'rgb(16, 134, 126)',
+    700: 'rgb(15, 118, 109)',
+    800: 'rgb(15, 102, 94)',
+    900: 'rgb(13, 74, 66)',
+};
+
+export const secondary = {
+    50: 'rgb(250, 234, 228)',
+    100: 'rgb(248, 208, 181)',
+    200: 'rgb(243, 179, 133)',
+    300: 'rgb(238, 151, 82)',
+    400: 'rgb(233, 131, 36)',
+    500: 'rgb(229, 115, 0)',
+    600: 'rgb(219, 108, 0)',
+    700: 'rgb(206, 101, 0)',
+    800: 'rgb(193, 93, 0)',
+    900: 'rgb(170, 79, 0)',
+};
 
 export const brand = {
     50: 'rgb(229, 242, 255)',
@@ -99,10 +132,16 @@ export const colorSchemes = {
     light: {
         palette: {
             primary: {
-                light: brand[200],
-                main: brand[400],
-                dark: brand[700],
-                contrastText: brand[50],
+                light: primary[200],
+                main: primary[400],
+                dark: primary[700],
+                contrastText: primary[50],
+            },
+            secondary: {
+                light: secondary[200],
+                main: secondary[400],
+                dark: secondary[700],
+                contrastText: secondary[50],
             },
             info: {
                 light: brand[100],
@@ -130,12 +169,12 @@ export const colorSchemes = {
             },
             divider: alpha(gray[300], 0.4),
             background: {
-                default: 'rgb(252, 252, 252)',
-                paper: 'rgb(245, 246, 250)',
+                default: secondary[50],
+                paper: lighten(secondary[100], 0.5),
             },
             text: {
-                primary: gray[800],
-                secondary: gray[600],
+                primary: darken(primary[900], 0.3),
+                secondary: darken(primary[800], 0.3),
                 warning: orange[400],
             },
             action: {
@@ -149,10 +188,16 @@ export const colorSchemes = {
     dark: {
         palette: {
             primary: {
-                contrastText: brand[50],
-                light: brand[300],
-                main: brand[400],
-                dark: brand[700],
+                contrastText: primary[50],
+                light: primary[300],
+                main: primary[400],
+                dark: primary[700],
+            },
+            secondary: {
+                light: secondary[200],
+                main: secondary[400],
+                dark: secondary[700],
+                contrastText: secondary[50],
             },
             info: {
                 contrastText: brand[300],
@@ -178,14 +223,14 @@ export const colorSchemes = {
             grey: {
                 ...gray,
             },
-            divider: alpha(gray[700], 0.6),
+            divider: alpha(secondary[700], 0.2),
             background: {
-                default: gray[900],
-                paper: 'rgb(12, 16, 23)',
+                default: darken(primary[900], 0.6),
+                paper: darken(primary[900], 0.5),
             },
             text: {
-                primary: 'rgb(255, 255, 255)',
-                secondary: gray[400],
+                primary: secondary[50],
+                secondary: secondary[300],
             },
             action: {
                 hover: alpha(gray[600], 0.2),
@@ -269,81 +314,59 @@ export const getDesignTokens = (mode: PaletteMode) => {
         palette: {
             mode,
             primary: {
-                light: brand[200],
-                main: brand[400],
-                dark: brand[700],
-                contrastText: brand[50],
+                ...colorSchemes.light.palette.primary,
                 ...(mode === 'dark' && {
-                    contrastText: brand[50],
-                    light: brand[300],
-                    main: brand[400],
-                    dark: brand[700],
+                    ...colorSchemes.dark.palette.primary,
+                }),
+            },
+            secondary: {
+                ...colorSchemes.light.palette.secondary,
+                ...(mode === 'dark' && {
+                    ...colorSchemes.dark.palette.secondary,
                 }),
             },
             info: {
-                light: brand[100],
-                main: brand[300],
-                dark: brand[600],
-                contrastText: gray[50],
+                ...colorSchemes.light.palette.info,
                 ...(mode === 'dark' && {
-                    contrastText: brand[300],
-                    light: brand[500],
-                    main: brand[700],
-                    dark: brand[900],
+                    ...colorSchemes.dark.palette.info,
                 }),
             },
             warning: {
-                light: orange[300],
-                main: orange[400],
-                dark: orange[800],
+                ...colorSchemes.light.palette.warning,
                 ...(mode === 'dark' && {
-                    light: orange[400],
-                    main: orange[500],
-                    dark: orange[700],
+                    ...colorSchemes.dark.palette.warning,
                 }),
             },
             error: {
-                light: red[300],
-                main: red[400],
-                dark: red[800],
+                ...colorSchemes.light.palette.error,
                 ...(mode === 'dark' && {
-                    light: red[400],
-                    main: red[500],
-                    dark: red[700],
+                    ...colorSchemes.dark.palette.error,
                 }),
             },
             success: {
-                light: green[300],
-                main: green[400],
-                dark: green[800],
+                ...colorSchemes.light.palette.success,
                 ...(mode === 'dark' && {
-                    light: green[400],
-                    main: green[500],
-                    dark: green[700],
+                    ...colorSchemes.dark.palette.success,
                 }),
             },
             grey: {
                 ...gray,
             },
-            divider: mode === 'dark' ? alpha(gray[700], 0.6) : alpha(gray[300], 0.4),
+            divider:
+                mode === 'dark'
+                    ? colorSchemes.dark.palette.divider
+                    : colorSchemes.light.palette.divider,
             background: {
-                default: 'rgb(252, 252, 252)',
-                paper: 'rgb(245, 246, 250)',
-                ...(mode === 'dark' && { default: gray[900], paper: 'rgb(12, 16, 23)' }),
+                ...colorSchemes.light.palette.background,
+                ...(mode === 'dark' && { ...colorSchemes.dark.palette.background }),
             },
             text: {
-                primary: gray[800],
-                secondary: gray[600],
-                warning: orange[400],
-                ...(mode === 'dark' && { primary: 'rgb(255, 255, 255)', secondary: gray[400] }),
+                ...colorSchemes.light.palette.text,
+                ...(mode === 'dark' && { ...colorSchemes.dark.palette.text }),
             },
             action: {
-                hover: alpha(gray[200], 0.2),
-                selected: alpha(gray[200], 0.3),
-                ...(mode === 'dark' && {
-                    hover: alpha(gray[600], 0.2),
-                    selected: alpha(gray[600], 0.3),
-                }),
+                ...colorSchemes.light.palette.action,
+                ...(mode === 'dark' && { ...colorSchemes.dark.palette.action }),
             },
         },
         typography,

@@ -1,14 +1,24 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
-import type React from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { Link } from '@mui/material';
+import { Link, type SxProps } from '@mui/material';
+import type { Theme } from '@mui/material/styles';
+import { darken } from '@mui/material';
 
 const OpenSource: React.FunctionComponent = () => {
     const { t } = useTranslation();
+
+    const subTextSx: NonNullable<SxProps<Theme>> = React.useCallback(
+        (theme: Theme) => ({
+            color: darken(theme.palette.text.secondary, 0.1),
+            fontWeight: 500,
+            fontSize: '0.825rem',
+        }),
+        [],
+    );
 
     return (
         <Card
@@ -16,35 +26,38 @@ const OpenSource: React.FunctionComponent = () => {
             variant="outlined"
         >
             <CardContent>
-                <AutoAwesomeRoundedIcon fontSize="small" />
                 <Typography
                     gutterBottom
-                    sx={{ fontWeight: 600, fontSize: '0.875rem' }}
-                >
-                    {t('components.opensource.title')}
-                </Typography>
-                <Typography
                     sx={{
-                        marginBottom: 2,
-                        color: 'text.secondary',
                         fontWeight: 600,
                         fontSize: '0.875rem',
+                        color: 'text.secondary',
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%',
+                        justifyContent: 'space-between',
                     }}
+                >
+                    {t('components.opensource.title')}
+                    <Link
+                        aria-label="GitHub Organisation Page"
+                        href="https://github.com/film-analogger"
+                        rel="noopener noreferrer"
+                        sx={{ color: 'text.secondary' }}
+                        target="_blank"
+                    >
+                        <GitHubIcon
+                            fontSize="small"
+                            sx={{ color: 'text.secondary' }}
+                        />
+                    </Link>
+                </Typography>
+                <Typography
+                    sx={subTextSx}
                     variant="body2"
                 >
                     {t('components.opensource.description')}
                 </Typography>
-                <Link
-                    aria-label="Github Organisation Page"
-                    href="https://github.com/film-analogger"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                >
-                    <GitHubIcon
-                        fontSize="small"
-                        sx={{ marginRight: 1 }}
-                    />
-                </Link>
             </CardContent>
         </Card>
     );

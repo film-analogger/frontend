@@ -45,12 +45,18 @@ describe('OpenSource Component', () => {
     it('should have correct aria-label on GitHub link', () => {
         render(<OpenSource />);
         const link = screen.getByRole('link');
-        expect(link).toHaveAttribute('aria-label', 'Github Organisation Page');
+        expect(link).toHaveAttribute('aria-label', 'GitHub Organisation Page');
     });
 
     it('should render GitHub icon', () => {
-        const { container } = render(<OpenSource />);
-        const icons = container.querySelectorAll('svg');
-        expect(icons.length).toBeGreaterThanOrEqual(2);
+        render(<OpenSource />);
+        const icon = screen.getByRole('link').querySelector('svg');
+        expect(icon).toBeInTheDocument();
+    });
+
+    it('should have rel="noopener noreferrer" on GitHub link', () => {
+        render(<OpenSource />);
+        const link = screen.getByRole('link');
+        expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     });
 });

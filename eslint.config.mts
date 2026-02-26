@@ -164,6 +164,7 @@ export default defineConfig([
                     },
                 },
             ],
+            'react-hooks/exhaustive-deps': 'error',
             '@typescript-eslint/await-thenable': 'off',
             '@typescript-eslint/naming-convention': [
                 'error',
