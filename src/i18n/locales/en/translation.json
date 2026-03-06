@@ -64,6 +64,10 @@
             "description": "TODO"
         }
     },
+    "auth": {
+        "loading": "Signing in...",
+        "logout": "Logout"
+    },
     "components": {
         "footer": {
             "copyright": "© {{year}} Film Analogger. All rights reserved.",

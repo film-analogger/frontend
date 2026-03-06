@@ -21,6 +21,7 @@ import createEmotionCache from './createCache';
 import AppTheme from './Theme';
 import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import KeycloakProvider from './keycloak/KeycloakProvider';
 
 export const links: Route.LinksFunction = () => [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -74,7 +75,9 @@ const App: React.FunctionComponent = () => {
             <React.StrictMode>
                 <CacheProvider value={cache}>
                     <AppTheme>
-                        <Outlet />
+                        <KeycloakProvider>
+                            <Outlet />
+                        </KeycloakProvider>
                     </AppTheme>
                 </CacheProvider>
             </React.StrictMode>

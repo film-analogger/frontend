@@ -64,6 +64,10 @@
             "description": "TODO"
         }
     },
+    "auth": {
+        "loading": "Connexion en cours...",
+        "logout": "Déconnexion"
+    },
     "components": {
         "footer": {
             "copyright": "© {{year}} Film Analogger. Tous droits réservés.",

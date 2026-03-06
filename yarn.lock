@@ -1542,6 +1542,7 @@ __metadata:
     isbot: "npm:^5.1.35"
     jiti: "npm:^2.6.1"
     jsdom: "npm:^28.1.0"
+    keycloak-js: "npm:^26.2.3"
     lint-staged: "npm:^16.2.7"
     pinst: "npm:^3.0.0"
     prettier: "npm:^3.8.1"
@@ -7287,6 +7288,13 @@ __metadata:
     object.assign: "npm:^4.1.4"
     object.values: "npm:^1.1.6"
   checksum: 10/b61d44613687dfe4cc8ad4b4fbf3711bf26c60b8d5ed1f494d723e0808415c59b24a7c0ed8ab10736a40ff84eef38cbbfb68b395e05d31117b44ffc59d31edfc
+  languageName: node
+  linkType: hard
+
+"keycloak-js@npm:^26.2.3":
+  version: 26.2.3
+  resolution: "keycloak-js@npm:26.2.3"
+  checksum: 10/8718782ee0a3bde35c76fbe7fcb35d4456f4fa50628ef3fe5d69a9ed301a26ce5a7d8f6912614d65a46145d9cf19d2858ba11a5eda52d4654850bef6457f261c
   languageName: node
   linkType: hard
 
