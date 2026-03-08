@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import React from 'react';
-
+import { Scrollbar } from 'react-scrollbars-custom';
 import { Outlet } from 'react-router';
 import AppBar from '~/components/Layout/Parts/AppBar/AppBar';
 import Footer from '~/components/Layout/Parts/Footer/Footer';
@@ -16,7 +16,14 @@ const Dashboard: React.FunctionComponent = () => {
                 component="main"
                 sx={{ overflow: 'auto', marginLeft: { xs: 0, md: drawerWidth }, p: 3 }}
             >
-                <Outlet />
+                <Scrollbar
+                    style={{
+                        width: '100%',
+                        height: 'calc(100vh - 64px - 32px)', // 100vh - headerHeight - paddingY
+                    }}
+                >
+                    <Outlet />
+                </Scrollbar>
             </Box>
             <Footer />
         </React.Fragment>

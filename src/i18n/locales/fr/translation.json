@@ -23,6 +23,9 @@
         "title": "Paramètres"
     },
     "errors": {
+        "api" : {
+            "loadingData" : "Une erreur s'est produite lors du chargement des données. Veuillez réessayer plus tard."
+        },
         "404": {
             "title": "Page non trouvée",
             "detail": "La page que vous recherchez n'existe pas.",
@@ -85,6 +88,10 @@
         "applogo": {
             "logoLight": "Film Analogger logo clair",
             "logoDark": "Film Analogger logo sombre"
+        },
+        "filmCard": {
+            "iso": "ISO {{iso}}",
+            "slide": "Inversible"
         },
         "sidemenu": {
             "home": "Accueil",

@@ -11,7 +11,16 @@ vi.mock('@mui/material', async () => {
 vi.mock('@mui/icons-material/Menu', () => ({
     default: () => <div data-testid="menu-icon">MenuIcon</div>,
 }));
-
+vi.mock('~/keycloak/useKeycloak', () => ({
+    useKeycloak: () => ({
+        keycloak: {
+            authenticated: false,
+            login: vi.fn(),
+            logout: vi.fn(),
+        },
+        initialized: true,
+    }),
+}));
 vi.mock('~/Theme/ColorModeIconDropdown', () => ({
     default: () => <div data-testid="color-mode-dropdown">ColorModeIconDropdown</div>,
 }));

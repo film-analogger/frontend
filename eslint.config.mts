@@ -31,6 +31,7 @@ export default defineConfig([
             '**/build/**/*',
             '**/dist/**/*',
             'src/api/schema.d.ts',
+            '**/src/api/filmAnaloggerApi/**',
         ],
     },
     reactHooks.configs.flat.recommended,
@@ -130,6 +131,7 @@ export default defineConfig([
                     ignorePrimitives: true,
                 },
             ],
+            '@typescript-eslint/no-misused-spread': 'off',
             '@typescript-eslint/no-restricted-types': [
                 'error',
                 {
@@ -244,6 +246,7 @@ export default defineConfig([
     {
         files: ['**/*.test.{js,ts}'],
         rules: {
+            'react/no-multi-comp': 'off',
             'react/jsx-props-no-spreading': 'off',
             'check-file/filename-naming-convention': [
                 'error',
@@ -258,6 +261,7 @@ export default defineConfig([
         files: ['**/*.test.{jsx,tsx}', '**/*.spec.{jsx,tsx}', '**/__mocks__/**/*.{jsx,tsx}'],
         rules: {
             'react/jsx-props-no-spreading': 'off',
+            'react/no-multi-comp': 'off',
             'react/react-in-jsx-scope': 'off',
             'i18next/no-literal-string': 'off',
             '@typescript-eslint/no-empty-function': 'off',

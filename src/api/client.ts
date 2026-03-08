@@ -1,61 +1,34 @@
-import createClient from 'openapi-fetch';
-
-import type { components, paths } from './schema';
 import { useKeycloak } from '~/keycloak/useKeycloak';
+import {
+    Configuration,
+    FilmApi,
+    type FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead,
+} from './filmAnaloggerApi';
+import { useTranslation } from 'react-i18next';
 
-export type Film =
-    components['schemas']['Film-read-film_translatable-read_timestampable-blameable-read'];
+export type FilmRead = FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead;
 
-const useClientApi = () => {
+const useFilmApi = () => {
     const { keycloak } = useKeycloak();
 
-    const client = createClient<paths>({ baseUrl: 'http://localhost:1080' });
+    const { i18n } = useTranslation();
 
-    client.use({
-        async onRequest({ request }) {
-            if (!keycloak.authenticated) {
-                throw new Error('User is not authenticated');
-            }
-            await keycloak.updateToken(5).catch((err: unknown) => {
-                console.error('Failed to refresh token', err);
-                throw new Error('Fail to refresh token');
-            });
+    const configuration = new Configuration({
+        accessToken: keycloak.updateToken(5).then(() => {
             if (!keycloak.token) {
                 throw new Error('No token available');
             }
-            request.headers.set('Authorization', `Bearer ${keycloak.token}`);
-            return request;
+            return keycloak.token;
+        }),
+        baseOptions: {
+            headers: {
+                'X-LOCALE': i18n.language,
+            },
         },
     });
+    const filmApi = new FilmApi(configuration);
 
-    return { client };
+    return { filmApi };
 };
 
-const useFilmApi = () => {
-    const { client } = useClientApi();
-
-    const getFilms = async () => {
-        const { data, error } = await client.GET('/films');
-
-        if (error) {
-            console.log('error', error);
-            // switch (error.status) {
-            //     case 401:
-            //         throw new Error('Unauthorized: Please log in to access this resource.');
-            //     case 403:
-            //         throw new Error('Forbidden: You do not have permission to access this resource.');
-            //     default:
-            //         throw new Error(`Failed to fetch films: ${error.message}`);
-            // }
-            throw new Error(`Failed to fetch films`);
-        }
-        console.log('data', data);
-
-        const content = data as { 'hydra:member'?: Film[] };
-        return content['hydra:member'] ?? [];
-    };
-
-    return { getFilms };
-};
-
-export { useClientApi, useFilmApi };
+export { useFilmApi };
