@@ -13,7 +13,7 @@ if (!i18nInstance.isInitialized) {
         .use(initReactI18next)
         .init({
             fallbackLng: 'en',
-            debug: import.meta.env.DEV,
+            debug: false,
             interpolation: {
                 escapeValue: false,
             },

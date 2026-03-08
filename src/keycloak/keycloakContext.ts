@@ -1,5 +1,5 @@
 import type Keycloak from 'keycloak-js';
-import { createContext, useContext } from 'react';
+import { createContext } from 'react';
 
 export interface KeycloakContextValue {
     authenticated: boolean;
@@ -7,11 +7,3 @@ export interface KeycloakContextValue {
 }
 
 export const KeycloakContext = createContext<KeycloakContextValue | null>(null);
-
-export const useKeycloak = (): KeycloakContextValue => {
-    const context = useContext(KeycloakContext);
-    if (!context) {
-        throw new Error('useKeycloak must be used within KeycloakProvider');
-    }
-    return context;
-};

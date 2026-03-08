@@ -59,11 +59,11 @@ const SideMenu: React.FunctionComponent = () => {
     ];
 
     const secondaryListItems = [
-        { translation: 'components.sidemenu.films', icon: <CameraRollIcon />, href: '/film-list' },
+        { translation: 'components.sidemenu.films', icon: <CameraRollIcon />, href: '/data/films' },
         {
             translation: 'components.sidemenu.photoPaper',
             icon: <NoteIcon />,
-            href: '/photo-paper-list',
+            href: '/data/photopapers',
         },
     ];
 

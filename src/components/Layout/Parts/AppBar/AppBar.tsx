@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import ColorModeIconDropdown from '~/Theme/ColorModeIconDropdown';
 import { drawerWidth, headerHeight, headerMt } from '~/Theme/Constants/layout';
 import LanguageIconDropdown from '~/i18n/LanguageIconDropdown';
-import { useKeycloak } from '~/keycloak/keycloakContext';
+import { useKeycloak } from '~/keycloak/useKeycloak';
 
 const AppBar: React.FunctionComponent = () => {
     const { t } = useTranslation();

@@ -32,28 +32,24 @@ const KeycloakProvider: React.FunctionComponent<KeycloakProviderProps> = ({ chil
             });
     }, []);
 
-    if (!initialized) {
-        return (
-            <Box
-                sx={{
-                    alignItems: 'center',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 2,
-                    height: '100vh',
-                    justifyContent: 'center',
-                }}
-            >
-                <CircularProgress />
-                <Typography variant="body2">{t('auth.loading')}</Typography>
-            </Box>
-        );
-    }
-
-    return (
+    return initialized && authenticated ? (
         <KeycloakContext.Provider value={{ authenticated, keycloak }}>
             {children}
         </KeycloakContext.Provider>
+    ) : (
+        <Box
+            sx={{
+                alignItems: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                height: '100vh',
+                justifyContent: 'center',
+            }}
+        >
+            <CircularProgress />
+            <Typography variant="body2">{t('auth.loading')}</Typography>
+        </Box>
     );
 };
 

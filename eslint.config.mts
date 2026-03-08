@@ -30,6 +30,7 @@ export default defineConfig([
             '**/node_modules/**/*',
             '**/build/**/*',
             '**/dist/**/*',
+            'src/api/schema.d.ts',
         ],
     },
     reactHooks.configs.flat.recommended,
@@ -37,7 +38,6 @@ export default defineConfig([
     jsxA11y.flatConfigs.recommended,
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
     fixupConfigRules(i18next.configs['flat/recommended'] as any),
-    pluginReact.configs.flat.recommended,
     tseslint.configs.strictTypeChecked,
     tseslint.configs.stylisticTypeChecked,
     {
@@ -75,6 +75,7 @@ export default defineConfig([
         plugins: {
             'react-refresh': reactRefresh,
             import: importPlugin,
+            react: pluginReact,
             'check-file': checkFile,
         },
         rules: {
