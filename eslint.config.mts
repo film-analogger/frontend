@@ -32,6 +32,7 @@ export default defineConfig([
             '**/dist/**/*',
             'src/api/schema.d.ts',
             '**/src/api/filmAnaloggerApi/**',
+            '.design-sync/**',
         ],
     },
     reactHooks.configs.flat.recommended,

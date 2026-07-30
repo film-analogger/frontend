@@ -1,0 +1,46 @@
+{
+  "projectId": "035de3ff-d1ff-42b4-85f9-a94a46a7ef1a",
+  "pkg": "@film-analogger/frontend",
+  "globalName": "FilmAnalogger",
+  "shape": "package",
+  "entry": "./.design-sync/fixtures/entry.ts",
+  "tsconfig": "tsconfig.json",
+  "readmeHeader": ".design-sync/conventions.md",
+  "guidelinesGlob": [],
+  "componentSrcMap": {
+    "AppLogo": "src/components/Widgets/AppLogo/AppLogo.tsx",
+    "FilmCard": "src/components/Widgets/FilmCard/FilmCard.tsx",
+    "FilmName": "src/components/Widgets/FilmName/FilmName.tsx",
+    "IsoChip": "src/components/Widgets/IsoChip/IsoChip.tsx",
+    "ProcessChip": "src/components/Widgets/ProcessChip/ProcessChip.tsx",
+    "Footer": "src/components/Layout/Parts/Footer/Footer.tsx",
+    "OpenSource": "src/components/Layout/Parts/OpenSource/OpenSource.tsx",
+    "SideMenu": "src/components/Layout/Parts/SideMenu/SideMenu.tsx",
+    "Error": "src/components/tools/Error/Error.tsx",
+    "IconComponent": "src/Theme/Components/IconComponent.tsx",
+    "LinkBehavior": "src/Theme/Components/LinkBehavior.tsx"
+  },
+  "extraEntries": ["react-router"],
+  "provider": {
+    "component": "AppTheme",
+    "inner": { "component": "MemoryRouter" }
+  },
+  "overrides": {
+    "SideMenu": { "cardMode": "single", "viewport": "960x700" },
+    "Footer": { "cardMode": "column" },
+    "IsoChip": { "cardMode": "column" }
+  },
+  "dtsPropsFor": {
+    "AppLogo": "width?: string; height?: string;",
+    "FilmCard": "film: { id?: string; name: string; inversible?: boolean; description?: string; process: 'C-41' | 'E-6' | 'B&W' | 'ECN-2' | 'RA4' | (string & {}); sensibility: number; primaryColor?: string | null; secondaryColor?: string | null; tertiaryColor?: string | null; manufacturer: { name: string; primaryColor?: string | null; secondaryColor?: string | null; tertiaryColor?: string | null; }; };",
+    "FilmName": "film: { name: string; primaryColor?: string | null; secondaryColor?: string | null; tertiaryColor?: string | null; manufacturer: { name: string; primaryColor?: string | null; secondaryColor?: string | null; tertiaryColor?: string | null; }; }; sx?: object;",
+    "IsoChip": "film: { sensibility: number };",
+    "ProcessChip": "film: { process: 'C-41' | 'E-6' | 'B&W' | 'ECN-2' | 'RA4' | (string & {}) };",
+    "Footer": "",
+    "OpenSource": "",
+    "SideMenu": "",
+    "Error": "statusCode: number; title: string; detail?: string; pageTitle: string; metaDescription?: string;",
+    "IconComponent": "className?: string; style?: React.CSSProperties; sx?: object;",
+    "LinkBehavior": "href: string; children?: React.ReactNode; className?: string; style?: React.CSSProperties;"
+  }
+}
