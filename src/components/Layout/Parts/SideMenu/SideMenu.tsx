@@ -29,7 +29,6 @@ const Drawer = styled(MuiDrawer)({
     width: drawerWidth,
     flexShrink: 0,
     boxSizing: 'border-box',
-    marginTop: 10,
     [`& .${drawerClasses.paper}`]: {
         width: drawerWidth,
         boxSizing: 'border-box',
