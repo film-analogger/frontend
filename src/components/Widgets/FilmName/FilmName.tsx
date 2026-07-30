@@ -20,8 +20,8 @@ export const FilmName: React.FunctionComponent<{
         <Box sx={sx}>
             <Typography
                 component="div"
-                fontWeight="bold"
                 sx={{
+                    fontWeight: 'bold',
                     paddingLeft: '15px',
                     borderRadius: '10px 10px 0 0',
                     backgroundColor: film.manufacturer.primaryColor,
@@ -37,8 +37,8 @@ export const FilmName: React.FunctionComponent<{
             </Typography>
             <Typography
                 component="div"
-                fontWeight="bold"
                 sx={{
+                    fontWeight: 'bold',
                     paddingLeft: '15px',
                     borderRadius: '0 0 10px 10px',
                     backgroundColor: film.primaryColor,

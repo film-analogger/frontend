@@ -39,9 +39,7 @@ export const FilmCard: React.FunctionComponent<{
                 <FilmName film={film} />
                 <Stack
                     direction="row"
-                    justifyContent="flex-end"
-                    mb={0.5}
-                    sx={{ marginTop: '5px' }}
+                    sx={{ justifyContent: 'flex-end', mb: 0.5, marginTop: '5px' }}
                 >
                     <ProcessChip film={film} />
                     <IsoChip film={film} />

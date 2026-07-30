@@ -42,7 +42,7 @@ const Error: React.FunctionComponent<ErrorProps> = ({
             >
                 <Typography
                     data-testid="error-status-code"
-                    fontWeight={700}
+                    sx={{ fontWeight: 700 }}
                     variant="h1"
                 >
                     {statusCode}
@@ -50,7 +50,7 @@ const Error: React.FunctionComponent<ErrorProps> = ({
                 <Typography
                     component="p"
                     data-testid="error-title"
-                    fontWeight={500}
+                    sx={{ fontWeight: 500 }}
                     variant="h3"
                 >
                     {t(title)}
