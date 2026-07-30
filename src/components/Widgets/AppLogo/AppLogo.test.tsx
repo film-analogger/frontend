@@ -39,7 +39,7 @@ describe('AppLogo', () => {
                 breakpoints: {
                     up: vi.fn().mockReturnValue(true),
                 },
-            } as any);
+            });
 
             vi.mocked(mockUseTranslation).mockReturnValue({
                 t: (key: string) => key,
@@ -116,7 +116,7 @@ describe('AppLogo', () => {
                 breakpoints: {
                     up: vi.fn().mockReturnValue(true),
                 },
-            } as any);
+            });
 
             vi.mocked(mockUseTranslation).mockReturnValue({
                 t: (key: string) => key,

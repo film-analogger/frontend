@@ -37,8 +37,8 @@ export default defineConfig([
     reactHooks.configs.flat.recommended,
     eslintPluginPrettier,
     jsxA11y.flatConfigs.recommended,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-    fixupConfigRules(i18next.configs['flat/recommended'] as any),
+
+    fixupConfigRules(i18next.configs['flat/recommended']),
     tseslint.configs.strictTypeChecked,
     tseslint.configs.stylisticTypeChecked,
     {
