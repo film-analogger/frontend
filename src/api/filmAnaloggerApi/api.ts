@@ -79,6 +79,24 @@ export interface ApiManufacturersGetCollection200Response {
     'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
     'hydra:member': Array<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead>;
 }
+/**
+ * PrintSession.jsonld-read-print-session_timestampable-blameable-read collection.
+ */
+export interface ApiPrintSessionsGetCollection200Response {
+    'hydra:totalItems'?: number;
+    'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
+    'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
+    'hydra:member': Array<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead>;
+}
+/**
+ * Print.jsonld-read-print_timestampable-blameable-read collection.
+ */
+export interface ApiPrintSessionsIdprintsGetCollection200Response {
+    'hydra:totalItems'?: number;
+    'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
+    'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
+    'hydra:member': Array<PrintJsonldReadPrintTimestampableBlameableRead>;
+}
 export interface AppUserJsonldReadAppUserTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -118,6 +136,38 @@ export interface AppUserWriteAppUserJsonMergePatch {
     'website'?: string | null;
     'description'?: string | null;
 }
+export interface ChemicalBathJsonldReadPrintSessionTimestampableBlameableRead {
+    'chemistry': ChemistryJsonldReadPrintSessionTimestampableBlameableRead;
+    'dilutionOverride'?: string | null;
+    'durationSeconds'?: number | null;
+    /**
+     * The dilution actually used for this bath: the explicit override if set, otherwise the catalogued Chemistry\'s official dilution (falling back to its first dilution if none is flagged official).
+     */
+    'effectiveDilution'?: string | null;
+}
+export interface ChemicalBathMultipartReadPrintSessionTimestampableBlameableRead {
+    'chemistry': ChemistryMultipartReadPrintSessionTimestampableBlameableRead;
+    'dilutionOverride'?: string | null;
+    'durationSeconds'?: number | null;
+    /**
+     * The dilution actually used for this bath: the explicit override if set, otherwise the catalogued Chemistry\'s official dilution (falling back to its first dilution if none is flagged official).
+     */
+    'effectiveDilution'?: string | null;
+}
+export interface ChemicalBathReadPrintSessionTimestampableBlameableRead {
+    'chemistry': ChemistryReadPrintSessionTimestampableBlameableRead;
+    'dilutionOverride'?: string | null;
+    'durationSeconds'?: number | null;
+    /**
+     * The dilution actually used for this bath: the explicit override if set, otherwise the catalogued Chemistry\'s official dilution (falling back to its first dilution if none is flagged official).
+     */
+    'effectiveDilution'?: string | null;
+}
+export interface ChemicalBathWritePrintSession {
+    'chemistry': string;
+    'dilutionOverride'?: string | null;
+    'durationSeconds'?: number | null;
+}
 export interface ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -146,7 +196,8 @@ export const ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableR
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum = typeof ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum];
@@ -165,12 +216,27 @@ export interface ChemistryJsonldReadManufacturerTimestampableBlameableReadTransl
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface ChemistryJsonldReadPrintSessionTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
 export interface ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableRead {
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface ChemistryMultipartReadPrintSessionTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -201,7 +267,8 @@ export const ChemistryReadChemistryTranslatableReadTimestampableBlameableReadPro
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type ChemistryReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum = typeof ChemistryReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof ChemistryReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum];
@@ -212,6 +279,12 @@ export interface ChemistryReadManufacturerTimestampableBlameableReadTranslatable
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface ChemistryReadPrintSessionTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -258,7 +331,8 @@ export const ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBl
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum = typeof ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum];
@@ -312,7 +386,8 @@ export const ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameabl
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum = typeof ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum];
@@ -328,7 +403,8 @@ export const ChemistryTypeWriteChemistryTypeProcessEnum = {
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type ChemistryTypeWriteChemistryTypeProcessEnum = typeof ChemistryTypeWriteChemistryTypeProcessEnum[keyof typeof ChemistryTypeWriteChemistryTypeProcessEnum];
@@ -344,7 +420,8 @@ export const ChemistryTypeWriteChemistryTypeJsonMergePatchProcessEnum = {
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type ChemistryTypeWriteChemistryTypeJsonMergePatchProcessEnum = typeof ChemistryTypeWriteChemistryTypeJsonMergePatchProcessEnum[keyof typeof ChemistryTypeWriteChemistryTypeJsonMergePatchProcessEnum];
@@ -364,7 +441,8 @@ export const ChemistryWriteChemistryProcessEnum = {
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type ChemistryWriteChemistryProcessEnum = typeof ChemistryWriteChemistryProcessEnum[keyof typeof ChemistryWriteChemistryProcessEnum];
@@ -384,7 +462,8 @@ export const ChemistryWriteChemistryJsonMergePatchProcessEnum = {
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type ChemistryWriteChemistryJsonMergePatchProcessEnum = typeof ChemistryWriteChemistryJsonMergePatchProcessEnum[keyof typeof ChemistryWriteChemistryJsonMergePatchProcessEnum];
@@ -495,6 +574,165 @@ export interface ErrorJsonld {
     'type'?: string;
     'description'?: string | null;
 }
+export interface ExposureJsonldReadPrintTimestampableBlameableRead {
+    'id'?: string;
+    'order': number;
+    'kind': ExposureJsonldReadPrintTimestampableBlameableReadKindEnum;
+    'baseSeconds': number;
+    'stopOffsetNumerator'?: number;
+    'stopOffsetDenominator'?: number;
+    'grade': ExposureJsonldReadPrintTimestampableBlameableReadGradeEnum;
+    'aperture'?: string | null;
+    'observation'?: string | null;
+    /**
+     * f-stop printing: adjustments are made in fractions of a stop applied to the base time, not on the lens aperture. E.g. \"32s + 1/3\" (baseSeconds=32, stopOffsetNumerator=1, stopOffsetDenominator=3) gives 32 x 2^(1/3) =~ 40.3s.
+     */
+    'effectiveSeconds'?: number;
+}
+
+export const ExposureJsonldReadPrintTimestampableBlameableReadKindEnum = {
+    Base: 'base',
+    Burn: 'burn',
+    Dodge: 'dodge'
+} as const;
+
+export type ExposureJsonldReadPrintTimestampableBlameableReadKindEnum = typeof ExposureJsonldReadPrintTimestampableBlameableReadKindEnum[keyof typeof ExposureJsonldReadPrintTimestampableBlameableReadKindEnum];
+export const ExposureJsonldReadPrintTimestampableBlameableReadGradeEnum = {
+    NoFilter: 'no_filter',
+    _00: '00',
+    _0: '0',
+    _05: '0.5',
+    _1: '1',
+    _15: '1.5',
+    _2: '2',
+    _25: '2.5',
+    _3: '3',
+    _35: '3.5',
+    _4: '4',
+    _45: '4.5',
+    _5: '5'
+} as const;
+
+export type ExposureJsonldReadPrintTimestampableBlameableReadGradeEnum = typeof ExposureJsonldReadPrintTimestampableBlameableReadGradeEnum[keyof typeof ExposureJsonldReadPrintTimestampableBlameableReadGradeEnum];
+
+export interface ExposureMultipartReadPrintTimestampableBlameableRead {
+    'id'?: string;
+    'order': number;
+    'kind': ExposureMultipartReadPrintTimestampableBlameableReadKindEnum;
+    'baseSeconds': number;
+    'stopOffsetNumerator'?: number;
+    'stopOffsetDenominator'?: number;
+    'grade': ExposureMultipartReadPrintTimestampableBlameableReadGradeEnum;
+    'aperture'?: string | null;
+    'observation'?: string | null;
+    /**
+     * f-stop printing: adjustments are made in fractions of a stop applied to the base time, not on the lens aperture. E.g. \"32s + 1/3\" (baseSeconds=32, stopOffsetNumerator=1, stopOffsetDenominator=3) gives 32 x 2^(1/3) =~ 40.3s.
+     */
+    'effectiveSeconds'?: number;
+}
+
+export const ExposureMultipartReadPrintTimestampableBlameableReadKindEnum = {
+    Base: 'base',
+    Burn: 'burn',
+    Dodge: 'dodge'
+} as const;
+
+export type ExposureMultipartReadPrintTimestampableBlameableReadKindEnum = typeof ExposureMultipartReadPrintTimestampableBlameableReadKindEnum[keyof typeof ExposureMultipartReadPrintTimestampableBlameableReadKindEnum];
+export const ExposureMultipartReadPrintTimestampableBlameableReadGradeEnum = {
+    NoFilter: 'no_filter',
+    _00: '00',
+    _0: '0',
+    _05: '0.5',
+    _1: '1',
+    _15: '1.5',
+    _2: '2',
+    _25: '2.5',
+    _3: '3',
+    _35: '3.5',
+    _4: '4',
+    _45: '4.5',
+    _5: '5'
+} as const;
+
+export type ExposureMultipartReadPrintTimestampableBlameableReadGradeEnum = typeof ExposureMultipartReadPrintTimestampableBlameableReadGradeEnum[keyof typeof ExposureMultipartReadPrintTimestampableBlameableReadGradeEnum];
+
+export interface ExposureReadPrintTimestampableBlameableRead {
+    'id'?: string;
+    'order': number;
+    'kind': ExposureReadPrintTimestampableBlameableReadKindEnum;
+    'baseSeconds': number;
+    'stopOffsetNumerator'?: number;
+    'stopOffsetDenominator'?: number;
+    'grade': ExposureReadPrintTimestampableBlameableReadGradeEnum;
+    'aperture'?: string | null;
+    'observation'?: string | null;
+    /**
+     * f-stop printing: adjustments are made in fractions of a stop applied to the base time, not on the lens aperture. E.g. \"32s + 1/3\" (baseSeconds=32, stopOffsetNumerator=1, stopOffsetDenominator=3) gives 32 x 2^(1/3) =~ 40.3s.
+     */
+    'effectiveSeconds'?: number;
+}
+
+export const ExposureReadPrintTimestampableBlameableReadKindEnum = {
+    Base: 'base',
+    Burn: 'burn',
+    Dodge: 'dodge'
+} as const;
+
+export type ExposureReadPrintTimestampableBlameableReadKindEnum = typeof ExposureReadPrintTimestampableBlameableReadKindEnum[keyof typeof ExposureReadPrintTimestampableBlameableReadKindEnum];
+export const ExposureReadPrintTimestampableBlameableReadGradeEnum = {
+    NoFilter: 'no_filter',
+    _00: '00',
+    _0: '0',
+    _05: '0.5',
+    _1: '1',
+    _15: '1.5',
+    _2: '2',
+    _25: '2.5',
+    _3: '3',
+    _35: '3.5',
+    _4: '4',
+    _45: '4.5',
+    _5: '5'
+} as const;
+
+export type ExposureReadPrintTimestampableBlameableReadGradeEnum = typeof ExposureReadPrintTimestampableBlameableReadGradeEnum[keyof typeof ExposureReadPrintTimestampableBlameableReadGradeEnum];
+
+export interface ExposureWritePrint {
+    'order': number;
+    'kind': ExposureWritePrintKindEnum;
+    'baseSeconds': number;
+    'stopOffsetNumerator'?: number;
+    'stopOffsetDenominator'?: number;
+    'grade': ExposureWritePrintGradeEnum;
+    'aperture'?: string | null;
+    'observation'?: string | null;
+}
+
+export const ExposureWritePrintKindEnum = {
+    Base: 'base',
+    Burn: 'burn',
+    Dodge: 'dodge'
+} as const;
+
+export type ExposureWritePrintKindEnum = typeof ExposureWritePrintKindEnum[keyof typeof ExposureWritePrintKindEnum];
+export const ExposureWritePrintGradeEnum = {
+    NoFilter: 'no_filter',
+    _00: '00',
+    _0: '0',
+    _05: '0.5',
+    _1: '1',
+    _15: '1.5',
+    _2: '2',
+    _25: '2.5',
+    _3: '3',
+    _35: '3.5',
+    _4: '4',
+    _45: '4.5',
+    _5: '5'
+} as const;
+
+export type ExposureWritePrintGradeEnum = typeof ExposureWritePrintGradeEnum[keyof typeof ExposureWritePrintGradeEnum];
+
 export interface FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -527,7 +765,8 @@ export const FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadProcess
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadProcessEnum = typeof FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadProcessEnum];
@@ -586,7 +825,8 @@ export const FilmReadFilmTranslatableReadTimestampableBlameableReadProcessEnum =
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type FilmReadFilmTranslatableReadTimestampableBlameableReadProcessEnum = typeof FilmReadFilmTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof FilmReadFilmTranslatableReadTimestampableBlameableReadProcessEnum];
@@ -621,7 +861,8 @@ export const FilmWriteFilmProcessEnum = {
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type FilmWriteFilmProcessEnum = typeof FilmWriteFilmProcessEnum[keyof typeof FilmWriteFilmProcessEnum];
@@ -645,7 +886,8 @@ export const FilmWriteFilmJsonMergePatchProcessEnum = {
     E6: 'E-6',
     Bw: 'B&W',
     Ecn2: 'ECN-2',
-    Ra4: 'RA4'
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
 } as const;
 
 export type FilmWriteFilmJsonMergePatchProcessEnum = typeof FilmWriteFilmJsonMergePatchProcessEnum[keyof typeof FilmWriteFilmJsonMergePatchProcessEnum];
@@ -882,6 +1124,392 @@ export interface ModelError {
      */
     'type'?: string;
 }
+export interface PrintJsonldReadPrintSessionTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PrintJsonldReadPrintTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'session': PrintSessionJsonldReadPrintTimestampableBlameableRead;
+    'number': number;
+    'filmFormat'?: string | null;
+    'contactSheetRef'?: string | null;
+    'negativeNumber'?: string | null;
+    'negativeFormat'?: PrintJsonldReadPrintTimestampableBlameableReadNegativeFormatEnum | null;
+    'focalLength'?: PrintJsonldReadPrintTimestampableBlameableReadFocalLengthEnum | null;
+    'condensers'?: Array<string>;
+    'columnHeightCm'?: number | null;
+    'paperWidthCm'?: number | null;
+    'paperHeightCm'?: number | null;
+    'borderCm'?: number | null;
+    'copies'?: number | null;
+    'paperBrand'?: PrintJsonldReadPrintTimestampableBlameableReadPaperBrandEnum | null;
+    'paperBrandOther'?: string | null;
+    'paperModel'?: string | null;
+    'paperBase'?: PrintJsonldReadPrintTimestampableBlameableReadPaperBaseEnum | null;
+    'paperSurface'?: PrintJsonldReadPrintTimestampableBlameableReadPaperSurfaceEnum | null;
+    'paperSurfaceOther'?: string | null;
+    'preFlashSeconds'?: number | null;
+    'exposures'?: Array<ExposureJsonldReadPrintTimestampableBlameableRead>;
+    'maskingNotes'?: string | null;
+    'notes'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+
+export const PrintJsonldReadPrintTimestampableBlameableReadNegativeFormatEnum = {
+    _24x36: '24x36',
+    _6x45: '6x45',
+    _6x6: '6x6',
+    _6x7: '6x7',
+    _6x9: '6x9'
+} as const;
+
+export type PrintJsonldReadPrintTimestampableBlameableReadNegativeFormatEnum = typeof PrintJsonldReadPrintTimestampableBlameableReadNegativeFormatEnum[keyof typeof PrintJsonldReadPrintTimestampableBlameableReadNegativeFormatEnum];
+export const PrintJsonldReadPrintTimestampableBlameableReadFocalLengthEnum = {
+    NUMBER_50: 50,
+    NUMBER_75: 75,
+    NUMBER_80: 80,
+    NUMBER_90: 90,
+    NUMBER_100: 100,
+    NUMBER_105: 105
+} as const;
+
+export type PrintJsonldReadPrintTimestampableBlameableReadFocalLengthEnum = typeof PrintJsonldReadPrintTimestampableBlameableReadFocalLengthEnum[keyof typeof PrintJsonldReadPrintTimestampableBlameableReadFocalLengthEnum];
+export const PrintJsonldReadPrintTimestampableBlameableReadPaperBrandEnum = {
+    Ilford: 'ilford',
+    Foma: 'foma',
+    Bergger: 'bergger',
+    Other: 'other'
+} as const;
+
+export type PrintJsonldReadPrintTimestampableBlameableReadPaperBrandEnum = typeof PrintJsonldReadPrintTimestampableBlameableReadPaperBrandEnum[keyof typeof PrintJsonldReadPrintTimestampableBlameableReadPaperBrandEnum];
+export const PrintJsonldReadPrintTimestampableBlameableReadPaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PrintJsonldReadPrintTimestampableBlameableReadPaperBaseEnum = typeof PrintJsonldReadPrintTimestampableBlameableReadPaperBaseEnum[keyof typeof PrintJsonldReadPrintTimestampableBlameableReadPaperBaseEnum];
+export const PrintJsonldReadPrintTimestampableBlameableReadPaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PrintJsonldReadPrintTimestampableBlameableReadPaperSurfaceEnum = typeof PrintJsonldReadPrintTimestampableBlameableReadPaperSurfaceEnum[keyof typeof PrintJsonldReadPrintTimestampableBlameableReadPaperSurfaceEnum];
+
+export interface PrintMultipartReadPrintSessionTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PrintReadPrintSessionTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PrintReadPrintTimestampableBlameableRead {
+    'id'?: string;
+    'session': PrintSessionReadPrintTimestampableBlameableRead;
+    'number': number;
+    'filmFormat'?: string | null;
+    'contactSheetRef'?: string | null;
+    'negativeNumber'?: string | null;
+    'negativeFormat'?: PrintReadPrintTimestampableBlameableReadNegativeFormatEnum | null;
+    'focalLength'?: PrintReadPrintTimestampableBlameableReadFocalLengthEnum | null;
+    'condensers'?: Array<string>;
+    'columnHeightCm'?: number | null;
+    'paperWidthCm'?: number | null;
+    'paperHeightCm'?: number | null;
+    'borderCm'?: number | null;
+    'copies'?: number | null;
+    'paperBrand'?: PrintReadPrintTimestampableBlameableReadPaperBrandEnum | null;
+    'paperBrandOther'?: string | null;
+    'paperModel'?: string | null;
+    'paperBase'?: PrintReadPrintTimestampableBlameableReadPaperBaseEnum | null;
+    'paperSurface'?: PrintReadPrintTimestampableBlameableReadPaperSurfaceEnum | null;
+    'paperSurfaceOther'?: string | null;
+    'preFlashSeconds'?: number | null;
+    'exposures'?: Array<ExposureReadPrintTimestampableBlameableRead>;
+    'maskingNotes'?: string | null;
+    'notes'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+
+export const PrintReadPrintTimestampableBlameableReadNegativeFormatEnum = {
+    _24x36: '24x36',
+    _6x45: '6x45',
+    _6x6: '6x6',
+    _6x7: '6x7',
+    _6x9: '6x9'
+} as const;
+
+export type PrintReadPrintTimestampableBlameableReadNegativeFormatEnum = typeof PrintReadPrintTimestampableBlameableReadNegativeFormatEnum[keyof typeof PrintReadPrintTimestampableBlameableReadNegativeFormatEnum];
+export const PrintReadPrintTimestampableBlameableReadFocalLengthEnum = {
+    NUMBER_50: 50,
+    NUMBER_75: 75,
+    NUMBER_80: 80,
+    NUMBER_90: 90,
+    NUMBER_100: 100,
+    NUMBER_105: 105
+} as const;
+
+export type PrintReadPrintTimestampableBlameableReadFocalLengthEnum = typeof PrintReadPrintTimestampableBlameableReadFocalLengthEnum[keyof typeof PrintReadPrintTimestampableBlameableReadFocalLengthEnum];
+export const PrintReadPrintTimestampableBlameableReadPaperBrandEnum = {
+    Ilford: 'ilford',
+    Foma: 'foma',
+    Bergger: 'bergger',
+    Other: 'other'
+} as const;
+
+export type PrintReadPrintTimestampableBlameableReadPaperBrandEnum = typeof PrintReadPrintTimestampableBlameableReadPaperBrandEnum[keyof typeof PrintReadPrintTimestampableBlameableReadPaperBrandEnum];
+export const PrintReadPrintTimestampableBlameableReadPaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PrintReadPrintTimestampableBlameableReadPaperBaseEnum = typeof PrintReadPrintTimestampableBlameableReadPaperBaseEnum[keyof typeof PrintReadPrintTimestampableBlameableReadPaperBaseEnum];
+export const PrintReadPrintTimestampableBlameableReadPaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PrintReadPrintTimestampableBlameableReadPaperSurfaceEnum = typeof PrintReadPrintTimestampableBlameableReadPaperSurfaceEnum[keyof typeof PrintReadPrintTimestampableBlameableReadPaperSurfaceEnum];
+
+export interface PrintSessionJsonldReadPrintSessionTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'date': string;
+    'lab': string;
+    'number': number;
+    'enlarger': string;
+    'temperatureCelsius': number;
+    'chemicalBaths'?: Array<ChemicalBathJsonldReadPrintSessionTimestampableBlameableRead>;
+    'wash'?: string | null;
+    'notes'?: string | null;
+    'prints'?: Array<PrintJsonldReadPrintSessionTimestampableBlameableRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PrintSessionJsonldReadPrintTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PrintSessionMultipartReadPrintTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PrintSessionReadPrintSessionTimestampableBlameableRead {
+    'id'?: string;
+    'date': string;
+    'lab': string;
+    'number': number;
+    'enlarger': string;
+    'temperatureCelsius': number;
+    'chemicalBaths'?: Array<ChemicalBathReadPrintSessionTimestampableBlameableRead>;
+    'wash'?: string | null;
+    'notes'?: string | null;
+    'prints'?: Array<PrintReadPrintSessionTimestampableBlameableRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PrintSessionReadPrintTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PrintSessionWritePrintSession {
+    'date': string;
+    'lab': string;
+    'number': number;
+    'enlarger': string;
+    'temperatureCelsius': number;
+    'chemicalBaths'?: Array<ChemicalBathWritePrintSession>;
+    'wash'?: string | null;
+    'notes'?: string | null;
+}
+export interface PrintSessionWritePrintSessionJsonMergePatch {
+    'date'?: string;
+    'lab'?: string;
+    'number'?: number;
+    'enlarger'?: string;
+    'temperatureCelsius'?: number;
+    'chemicalBaths'?: Array<ChemicalBathWritePrintSession>;
+    'wash'?: string | null;
+    'notes'?: string | null;
+}
+export interface PrintWritePrint {
+    'session': string;
+    'number': number;
+    'filmFormat'?: string | null;
+    'contactSheetRef'?: string | null;
+    'negativeNumber'?: string | null;
+    'negativeFormat'?: PrintWritePrintNegativeFormatEnum | null;
+    'focalLength'?: PrintWritePrintFocalLengthEnum | null;
+    'condensers'?: Array<string>;
+    'columnHeightCm'?: number | null;
+    'paperWidthCm'?: number | null;
+    'paperHeightCm'?: number | null;
+    'borderCm'?: number | null;
+    'copies'?: number | null;
+    'paperBrand'?: PrintWritePrintPaperBrandEnum | null;
+    'paperBrandOther'?: string | null;
+    'paperModel'?: string | null;
+    'paperBase'?: PrintWritePrintPaperBaseEnum | null;
+    'paperSurface'?: PrintWritePrintPaperSurfaceEnum | null;
+    'paperSurfaceOther'?: string | null;
+    'preFlashSeconds'?: number | null;
+    'exposures'?: Array<ExposureWritePrint>;
+    'maskingNotes'?: string | null;
+    'notes'?: string | null;
+}
+
+export const PrintWritePrintNegativeFormatEnum = {
+    _24x36: '24x36',
+    _6x45: '6x45',
+    _6x6: '6x6',
+    _6x7: '6x7',
+    _6x9: '6x9'
+} as const;
+
+export type PrintWritePrintNegativeFormatEnum = typeof PrintWritePrintNegativeFormatEnum[keyof typeof PrintWritePrintNegativeFormatEnum];
+export const PrintWritePrintFocalLengthEnum = {
+    NUMBER_50: 50,
+    NUMBER_75: 75,
+    NUMBER_80: 80,
+    NUMBER_90: 90,
+    NUMBER_100: 100,
+    NUMBER_105: 105
+} as const;
+
+export type PrintWritePrintFocalLengthEnum = typeof PrintWritePrintFocalLengthEnum[keyof typeof PrintWritePrintFocalLengthEnum];
+export const PrintWritePrintPaperBrandEnum = {
+    Ilford: 'ilford',
+    Foma: 'foma',
+    Bergger: 'bergger',
+    Other: 'other'
+} as const;
+
+export type PrintWritePrintPaperBrandEnum = typeof PrintWritePrintPaperBrandEnum[keyof typeof PrintWritePrintPaperBrandEnum];
+export const PrintWritePrintPaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PrintWritePrintPaperBaseEnum = typeof PrintWritePrintPaperBaseEnum[keyof typeof PrintWritePrintPaperBaseEnum];
+export const PrintWritePrintPaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PrintWritePrintPaperSurfaceEnum = typeof PrintWritePrintPaperSurfaceEnum[keyof typeof PrintWritePrintPaperSurfaceEnum];
+
+export interface PrintWritePrintJsonMergePatch {
+    'session'?: string;
+    'number'?: number;
+    'filmFormat'?: string | null;
+    'contactSheetRef'?: string | null;
+    'negativeNumber'?: string | null;
+    'negativeFormat'?: PrintWritePrintJsonMergePatchNegativeFormatEnum | null;
+    'focalLength'?: PrintWritePrintJsonMergePatchFocalLengthEnum | null;
+    'condensers'?: Array<string>;
+    'columnHeightCm'?: number | null;
+    'paperWidthCm'?: number | null;
+    'paperHeightCm'?: number | null;
+    'borderCm'?: number | null;
+    'copies'?: number | null;
+    'paperBrand'?: PrintWritePrintJsonMergePatchPaperBrandEnum | null;
+    'paperBrandOther'?: string | null;
+    'paperModel'?: string | null;
+    'paperBase'?: PrintWritePrintJsonMergePatchPaperBaseEnum | null;
+    'paperSurface'?: PrintWritePrintJsonMergePatchPaperSurfaceEnum | null;
+    'paperSurfaceOther'?: string | null;
+    'preFlashSeconds'?: number | null;
+    'exposures'?: Array<ExposureWritePrint>;
+    'maskingNotes'?: string | null;
+    'notes'?: string | null;
+}
+
+export const PrintWritePrintJsonMergePatchNegativeFormatEnum = {
+    _24x36: '24x36',
+    _6x45: '6x45',
+    _6x6: '6x6',
+    _6x7: '6x7',
+    _6x9: '6x9'
+} as const;
+
+export type PrintWritePrintJsonMergePatchNegativeFormatEnum = typeof PrintWritePrintJsonMergePatchNegativeFormatEnum[keyof typeof PrintWritePrintJsonMergePatchNegativeFormatEnum];
+export const PrintWritePrintJsonMergePatchFocalLengthEnum = {
+    NUMBER_50: 50,
+    NUMBER_75: 75,
+    NUMBER_80: 80,
+    NUMBER_90: 90,
+    NUMBER_100: 100,
+    NUMBER_105: 105
+} as const;
+
+export type PrintWritePrintJsonMergePatchFocalLengthEnum = typeof PrintWritePrintJsonMergePatchFocalLengthEnum[keyof typeof PrintWritePrintJsonMergePatchFocalLengthEnum];
+export const PrintWritePrintJsonMergePatchPaperBrandEnum = {
+    Ilford: 'ilford',
+    Foma: 'foma',
+    Bergger: 'bergger',
+    Other: 'other'
+} as const;
+
+export type PrintWritePrintJsonMergePatchPaperBrandEnum = typeof PrintWritePrintJsonMergePatchPaperBrandEnum[keyof typeof PrintWritePrintJsonMergePatchPaperBrandEnum];
+export const PrintWritePrintJsonMergePatchPaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PrintWritePrintJsonMergePatchPaperBaseEnum = typeof PrintWritePrintJsonMergePatchPaperBaseEnum[keyof typeof PrintWritePrintJsonMergePatchPaperBaseEnum];
+export const PrintWritePrintJsonMergePatchPaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PrintWritePrintJsonMergePatchPaperSurfaceEnum = typeof PrintWritePrintJsonMergePatchPaperSurfaceEnum[keyof typeof PrintWritePrintJsonMergePatchPaperSurfaceEnum];
+
 
 /**
  * AppUserApi - axios parameter creator
@@ -3571,6 +4199,1407 @@ export class ManufacturerApi extends BaseAPI {
      */
     public apiManufacturersPost(requestParameters: ManufacturerApiApiManufacturersPostRequest, options?: RawAxiosRequestConfig) {
         return ManufacturerApiFp(this.configuration).apiManufacturersPost(requestParameters.manufacturerWriteManufacturer, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * PrintApi - axios parameter creator
+ */
+export const PrintApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieves the collection of Print resources.
+         * @summary Retrieves the collection of Print resources.
+         * @param {string} id PrintSession identifier
+         * @param {number} [page] The collection page number
+         * @param {string} [session] 
+         * @param {Array<string>} [session2] 
+         * @param {string} [paperBrand] 
+         * @param {Array<string>} [paperBrand2] 
+         * @param {string} [contactSheetRef] 
+         * @param {string} [negativeNumber] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsIdprintsGetCollection: async (id: string, page?: number, session?: string, session2?: Array<string>, paperBrand?: string, paperBrand2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiPrintSessionsIdprintsGetCollection', 'id', id)
+            const localVarPath = `/print_sessions/{id}/prints`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (session !== undefined) {
+                localVarQueryParameter['session'] = session;
+            }
+
+            if (session2) {
+                localVarQueryParameter['session[]'] = session2;
+            }
+
+            if (paperBrand !== undefined) {
+                localVarQueryParameter['paperBrand'] = paperBrand;
+            }
+
+            if (paperBrand2) {
+                localVarQueryParameter['paperBrand[]'] = paperBrand2;
+            }
+
+            if (contactSheetRef !== undefined) {
+                localVarQueryParameter['contactSheetRef'] = contactSheetRef;
+            }
+
+            if (negativeNumber !== undefined) {
+                localVarQueryParameter['negativeNumber'] = negativeNumber;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves the collection of Print resources.
+         * @summary Retrieves the collection of Print resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [session] 
+         * @param {Array<string>} [session2] 
+         * @param {string} [paperBrand] 
+         * @param {Array<string>} [paperBrand2] 
+         * @param {string} [contactSheetRef] 
+         * @param {string} [negativeNumber] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintsGetCollection: async (page?: number, session?: string, session2?: Array<string>, paperBrand?: string, paperBrand2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/prints`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (session !== undefined) {
+                localVarQueryParameter['session'] = session;
+            }
+
+            if (session2) {
+                localVarQueryParameter['session[]'] = session2;
+            }
+
+            if (paperBrand !== undefined) {
+                localVarQueryParameter['paperBrand'] = paperBrand;
+            }
+
+            if (paperBrand2) {
+                localVarQueryParameter['paperBrand[]'] = paperBrand2;
+            }
+
+            if (contactSheetRef !== undefined) {
+                localVarQueryParameter['contactSheetRef'] = contactSheetRef;
+            }
+
+            if (negativeNumber !== undefined) {
+                localVarQueryParameter['negativeNumber'] = negativeNumber;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes the Print resource.
+         * @summary Removes the Print resource.
+         * @param {string} id Print identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintsIdDelete: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiPrintsIdDelete', 'id', id)
+            const localVarPath = `/prints/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a Print resource.
+         * @summary Retrieves a Print resource.
+         * @param {string} id Print identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintsIdGet: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiPrintsIdGet', 'id', id)
+            const localVarPath = `/prints/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates the Print resource.
+         * @summary Updates the Print resource.
+         * @param {string} id Print identifier
+         * @param {PrintWritePrintJsonMergePatch} printWritePrintJsonMergePatch The updated Print resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintsIdPatch: async (id: string, printWritePrintJsonMergePatch: PrintWritePrintJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiPrintsIdPatch', 'id', id)
+            // verify required parameter 'printWritePrintJsonMergePatch' is not null or undefined
+            assertParamExists('apiPrintsIdPatch', 'printWritePrintJsonMergePatch', printWritePrintJsonMergePatch)
+            const localVarPath = `/prints/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/merge-patch+json';
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(printWritePrintJsonMergePatch, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a Print resource.
+         * @summary Creates a Print resource.
+         * @param {PrintWritePrint} printWritePrint The new Print resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintsPost: async (printWritePrint: PrintWritePrint, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'printWritePrint' is not null or undefined
+            assertParamExists('apiPrintsPost', 'printWritePrint', printWritePrint)
+            const localVarPath = `/prints`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/ld+json';
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(printWritePrint, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PrintApi - functional programming interface
+ */
+export const PrintApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PrintApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Retrieves the collection of Print resources.
+         * @summary Retrieves the collection of Print resources.
+         * @param {string} id PrintSession identifier
+         * @param {number} [page] The collection page number
+         * @param {string} [session] 
+         * @param {Array<string>} [session2] 
+         * @param {string} [paperBrand] 
+         * @param {Array<string>} [paperBrand2] 
+         * @param {string} [contactSheetRef] 
+         * @param {string} [negativeNumber] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintSessionsIdprintsGetCollection(id: string, page?: number, session?: string, session2?: Array<string>, paperBrand?: string, paperBrand2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiPrintSessionsIdprintsGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsIdprintsGetCollection(id, page, session, session2, paperBrand, paperBrand2, contactSheetRef, negativeNumber, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintApi.apiPrintSessionsIdprintsGetCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves the collection of Print resources.
+         * @summary Retrieves the collection of Print resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [session] 
+         * @param {Array<string>} [session2] 
+         * @param {string} [paperBrand] 
+         * @param {Array<string>} [paperBrand2] 
+         * @param {string} [contactSheetRef] 
+         * @param {string} [negativeNumber] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintsGetCollection(page?: number, session?: string, session2?: Array<string>, paperBrand?: string, paperBrand2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiPrintSessionsIdprintsGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintsGetCollection(page, session, session2, paperBrand, paperBrand2, contactSheetRef, negativeNumber, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintApi.apiPrintsGetCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Removes the Print resource.
+         * @summary Removes the Print resource.
+         * @param {string} id Print identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintsIdDelete(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintsIdDelete(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintApi.apiPrintsIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a Print resource.
+         * @summary Retrieves a Print resource.
+         * @param {string} id Print identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJsonldReadPrintTimestampableBlameableRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintsIdGet(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintApi.apiPrintsIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Updates the Print resource.
+         * @summary Updates the Print resource.
+         * @param {string} id Print identifier
+         * @param {PrintWritePrintJsonMergePatch} printWritePrintJsonMergePatch The updated Print resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintsIdPatch(id: string, printWritePrintJsonMergePatch: PrintWritePrintJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJsonldReadPrintTimestampableBlameableRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintsIdPatch(id, printWritePrintJsonMergePatch, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintApi.apiPrintsIdPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Creates a Print resource.
+         * @summary Creates a Print resource.
+         * @param {PrintWritePrint} printWritePrint The new Print resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintsPost(printWritePrint: PrintWritePrint, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJsonldReadPrintTimestampableBlameableRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintsPost(printWritePrint, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintApi.apiPrintsPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * PrintApi - factory interface
+ */
+export const PrintApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PrintApiFp(configuration)
+    return {
+        /**
+         * Retrieves the collection of Print resources.
+         * @summary Retrieves the collection of Print resources.
+         * @param {PrintApiApiPrintSessionsIdprintsGetCollectionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsIdprintsGetCollection(requestParameters: PrintApiApiPrintSessionsIdprintsGetCollectionRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiPrintSessionsIdprintsGetCollection200Response> {
+            return localVarFp.apiPrintSessionsIdprintsGetCollection(requestParameters.id, requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.paperBrand, requestParameters.paperBrand2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves the collection of Print resources.
+         * @summary Retrieves the collection of Print resources.
+         * @param {PrintApiApiPrintsGetCollectionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintsGetCollection(requestParameters: PrintApiApiPrintsGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiPrintSessionsIdprintsGetCollection200Response> {
+            return localVarFp.apiPrintsGetCollection(requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.paperBrand, requestParameters.paperBrand2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes the Print resource.
+         * @summary Removes the Print resource.
+         * @param {PrintApiApiPrintsIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintsIdDelete(requestParameters: PrintApiApiPrintsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiPrintsIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a Print resource.
+         * @summary Retrieves a Print resource.
+         * @param {PrintApiApiPrintsIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintsIdGet(requestParameters: PrintApiApiPrintsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintJsonldReadPrintTimestampableBlameableRead> {
+            return localVarFp.apiPrintsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates the Print resource.
+         * @summary Updates the Print resource.
+         * @param {PrintApiApiPrintsIdPatchRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintsIdPatch(requestParameters: PrintApiApiPrintsIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintJsonldReadPrintTimestampableBlameableRead> {
+            return localVarFp.apiPrintsIdPatch(requestParameters.id, requestParameters.printWritePrintJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a Print resource.
+         * @summary Creates a Print resource.
+         * @param {PrintApiApiPrintsPostRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintsPost(requestParameters: PrintApiApiPrintsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintJsonldReadPrintTimestampableBlameableRead> {
+            return localVarFp.apiPrintsPost(requestParameters.printWritePrint, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for apiPrintSessionsIdprintsGetCollection operation in PrintApi.
+ */
+export interface PrintApiApiPrintSessionsIdprintsGetCollectionRequest {
+    /**
+     * PrintSession identifier
+     */
+    readonly id: string
+
+    /**
+     * The collection page number
+     */
+    readonly page?: number
+
+    /**
+     * 
+     */
+    readonly session?: string
+
+    /**
+     * 
+     */
+    readonly session2?: Array<string>
+
+    /**
+     * 
+     */
+    readonly paperBrand?: string
+
+    /**
+     * 
+     */
+    readonly paperBrand2?: Array<string>
+
+    /**
+     * 
+     */
+    readonly contactSheetRef?: string
+
+    /**
+     * 
+     */
+    readonly negativeNumber?: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPrintsGetCollection operation in PrintApi.
+ */
+export interface PrintApiApiPrintsGetCollectionRequest {
+    /**
+     * The collection page number
+     */
+    readonly page?: number
+
+    /**
+     * 
+     */
+    readonly session?: string
+
+    /**
+     * 
+     */
+    readonly session2?: Array<string>
+
+    /**
+     * 
+     */
+    readonly paperBrand?: string
+
+    /**
+     * 
+     */
+    readonly paperBrand2?: Array<string>
+
+    /**
+     * 
+     */
+    readonly contactSheetRef?: string
+
+    /**
+     * 
+     */
+    readonly negativeNumber?: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPrintsIdDelete operation in PrintApi.
+ */
+export interface PrintApiApiPrintsIdDeleteRequest {
+    /**
+     * Print identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPrintsIdGet operation in PrintApi.
+ */
+export interface PrintApiApiPrintsIdGetRequest {
+    /**
+     * Print identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPrintsIdPatch operation in PrintApi.
+ */
+export interface PrintApiApiPrintsIdPatchRequest {
+    /**
+     * Print identifier
+     */
+    readonly id: string
+
+    /**
+     * The updated Print resource
+     */
+    readonly printWritePrintJsonMergePatch: PrintWritePrintJsonMergePatch
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPrintsPost operation in PrintApi.
+ */
+export interface PrintApiApiPrintsPostRequest {
+    /**
+     * The new Print resource
+     */
+    readonly printWritePrint: PrintWritePrint
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * PrintApi - object-oriented interface
+ */
+export class PrintApi extends BaseAPI {
+    /**
+     * Retrieves the collection of Print resources.
+     * @summary Retrieves the collection of Print resources.
+     * @param {PrintApiApiPrintSessionsIdprintsGetCollectionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintSessionsIdprintsGetCollection(requestParameters: PrintApiApiPrintSessionsIdprintsGetCollectionRequest, options?: RawAxiosRequestConfig) {
+        return PrintApiFp(this.configuration).apiPrintSessionsIdprintsGetCollection(requestParameters.id, requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.paperBrand, requestParameters.paperBrand2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves the collection of Print resources.
+     * @summary Retrieves the collection of Print resources.
+     * @param {PrintApiApiPrintsGetCollectionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintsGetCollection(requestParameters: PrintApiApiPrintsGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
+        return PrintApiFp(this.configuration).apiPrintsGetCollection(requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.paperBrand, requestParameters.paperBrand2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes the Print resource.
+     * @summary Removes the Print resource.
+     * @param {PrintApiApiPrintsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintsIdDelete(requestParameters: PrintApiApiPrintsIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return PrintApiFp(this.configuration).apiPrintsIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a Print resource.
+     * @summary Retrieves a Print resource.
+     * @param {PrintApiApiPrintsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintsIdGet(requestParameters: PrintApiApiPrintsIdGetRequest, options?: RawAxiosRequestConfig) {
+        return PrintApiFp(this.configuration).apiPrintsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates the Print resource.
+     * @summary Updates the Print resource.
+     * @param {PrintApiApiPrintsIdPatchRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintsIdPatch(requestParameters: PrintApiApiPrintsIdPatchRequest, options?: RawAxiosRequestConfig) {
+        return PrintApiFp(this.configuration).apiPrintsIdPatch(requestParameters.id, requestParameters.printWritePrintJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates a Print resource.
+     * @summary Creates a Print resource.
+     * @param {PrintApiApiPrintsPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintsPost(requestParameters: PrintApiApiPrintsPostRequest, options?: RawAxiosRequestConfig) {
+        return PrintApiFp(this.configuration).apiPrintsPost(requestParameters.printWritePrint, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * PrintSessionApi - axios parameter creator
+ */
+export const PrintSessionApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieves the collection of PrintSession resources.
+         * @summary Retrieves the collection of PrintSession resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [dateBefore] 
+         * @param {string} [dateStrictlyBefore] 
+         * @param {string} [dateAfter] 
+         * @param {string} [dateStrictlyAfter] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsGetCollection: async (page?: number, dateBefore?: string, dateStrictlyBefore?: string, dateAfter?: string, dateStrictlyAfter?: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/print_sessions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (dateBefore !== undefined) {
+                localVarQueryParameter['date[before]'] = dateBefore;
+            }
+
+            if (dateStrictlyBefore !== undefined) {
+                localVarQueryParameter['date[strictly_before]'] = dateStrictlyBefore;
+            }
+
+            if (dateAfter !== undefined) {
+                localVarQueryParameter['date[after]'] = dateAfter;
+            }
+
+            if (dateStrictlyAfter !== undefined) {
+                localVarQueryParameter['date[strictly_after]'] = dateStrictlyAfter;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes the PrintSession resource.
+         * @summary Removes the PrintSession resource.
+         * @param {string} id PrintSession identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsIdDelete: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiPrintSessionsIdDelete', 'id', id)
+            const localVarPath = `/print_sessions/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a PrintSession resource.
+         * @summary Retrieves a PrintSession resource.
+         * @param {string} id PrintSession identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsIdGet: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiPrintSessionsIdGet', 'id', id)
+            const localVarPath = `/print_sessions/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates the PrintSession resource.
+         * @summary Updates the PrintSession resource.
+         * @param {string} id PrintSession identifier
+         * @param {PrintSessionWritePrintSessionJsonMergePatch} printSessionWritePrintSessionJsonMergePatch The updated PrintSession resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsIdPatch: async (id: string, printSessionWritePrintSessionJsonMergePatch: PrintSessionWritePrintSessionJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiPrintSessionsIdPatch', 'id', id)
+            // verify required parameter 'printSessionWritePrintSessionJsonMergePatch' is not null or undefined
+            assertParamExists('apiPrintSessionsIdPatch', 'printSessionWritePrintSessionJsonMergePatch', printSessionWritePrintSessionJsonMergePatch)
+            const localVarPath = `/print_sessions/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/merge-patch+json';
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(printSessionWritePrintSessionJsonMergePatch, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a PrintSession resource.
+         * @summary Creates a PrintSession resource.
+         * @param {PrintSessionWritePrintSession} printSessionWritePrintSession The new PrintSession resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsPost: async (printSessionWritePrintSession: PrintSessionWritePrintSession, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'printSessionWritePrintSession' is not null or undefined
+            assertParamExists('apiPrintSessionsPost', 'printSessionWritePrintSession', printSessionWritePrintSession)
+            const localVarPath = `/print_sessions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/ld+json';
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(printSessionWritePrintSession, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PrintSessionApi - functional programming interface
+ */
+export const PrintSessionApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PrintSessionApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Retrieves the collection of PrintSession resources.
+         * @summary Retrieves the collection of PrintSession resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [dateBefore] 
+         * @param {string} [dateStrictlyBefore] 
+         * @param {string} [dateAfter] 
+         * @param {string} [dateStrictlyAfter] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintSessionsGetCollection(page?: number, dateBefore?: string, dateStrictlyBefore?: string, dateAfter?: string, dateStrictlyAfter?: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiPrintSessionsGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsGetCollection(page, dateBefore, dateStrictlyBefore, dateAfter, dateStrictlyAfter, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintSessionApi.apiPrintSessionsGetCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Removes the PrintSession resource.
+         * @summary Removes the PrintSession resource.
+         * @param {string} id PrintSession identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintSessionsIdDelete(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsIdDelete(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintSessionApi.apiPrintSessionsIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a PrintSession resource.
+         * @summary Retrieves a PrintSession resource.
+         * @param {string} id PrintSession identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintSessionsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsIdGet(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintSessionApi.apiPrintSessionsIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Updates the PrintSession resource.
+         * @summary Updates the PrintSession resource.
+         * @param {string} id PrintSession identifier
+         * @param {PrintSessionWritePrintSessionJsonMergePatch} printSessionWritePrintSessionJsonMergePatch The updated PrintSession resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintSessionsIdPatch(id: string, printSessionWritePrintSessionJsonMergePatch: PrintSessionWritePrintSessionJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsIdPatch(id, printSessionWritePrintSessionJsonMergePatch, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintSessionApi.apiPrintSessionsIdPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Creates a PrintSession resource.
+         * @summary Creates a PrintSession resource.
+         * @param {PrintSessionWritePrintSession} printSessionWritePrintSession The new PrintSession resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPrintSessionsPost(printSessionWritePrintSession: PrintSessionWritePrintSession, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsPost(printSessionWritePrintSession, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PrintSessionApi.apiPrintSessionsPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * PrintSessionApi - factory interface
+ */
+export const PrintSessionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PrintSessionApiFp(configuration)
+    return {
+        /**
+         * Retrieves the collection of PrintSession resources.
+         * @summary Retrieves the collection of PrintSession resources.
+         * @param {PrintSessionApiApiPrintSessionsGetCollectionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsGetCollection(requestParameters: PrintSessionApiApiPrintSessionsGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiPrintSessionsGetCollection200Response> {
+            return localVarFp.apiPrintSessionsGetCollection(requestParameters.page, requestParameters.dateBefore, requestParameters.dateStrictlyBefore, requestParameters.dateAfter, requestParameters.dateStrictlyAfter, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes the PrintSession resource.
+         * @summary Removes the PrintSession resource.
+         * @param {PrintSessionApiApiPrintSessionsIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsIdDelete(requestParameters: PrintSessionApiApiPrintSessionsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiPrintSessionsIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a PrintSession resource.
+         * @summary Retrieves a PrintSession resource.
+         * @param {PrintSessionApiApiPrintSessionsIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsIdGet(requestParameters: PrintSessionApiApiPrintSessionsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead> {
+            return localVarFp.apiPrintSessionsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates the PrintSession resource.
+         * @summary Updates the PrintSession resource.
+         * @param {PrintSessionApiApiPrintSessionsIdPatchRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsIdPatch(requestParameters: PrintSessionApiApiPrintSessionsIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead> {
+            return localVarFp.apiPrintSessionsIdPatch(requestParameters.id, requestParameters.printSessionWritePrintSessionJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a PrintSession resource.
+         * @summary Creates a PrintSession resource.
+         * @param {PrintSessionApiApiPrintSessionsPostRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPrintSessionsPost(requestParameters: PrintSessionApiApiPrintSessionsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead> {
+            return localVarFp.apiPrintSessionsPost(requestParameters.printSessionWritePrintSession, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for apiPrintSessionsGetCollection operation in PrintSessionApi.
+ */
+export interface PrintSessionApiApiPrintSessionsGetCollectionRequest {
+    /**
+     * The collection page number
+     */
+    readonly page?: number
+
+    /**
+     * 
+     */
+    readonly dateBefore?: string
+
+    /**
+     * 
+     */
+    readonly dateStrictlyBefore?: string
+
+    /**
+     * 
+     */
+    readonly dateAfter?: string
+
+    /**
+     * 
+     */
+    readonly dateStrictlyAfter?: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPrintSessionsIdDelete operation in PrintSessionApi.
+ */
+export interface PrintSessionApiApiPrintSessionsIdDeleteRequest {
+    /**
+     * PrintSession identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPrintSessionsIdGet operation in PrintSessionApi.
+ */
+export interface PrintSessionApiApiPrintSessionsIdGetRequest {
+    /**
+     * PrintSession identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPrintSessionsIdPatch operation in PrintSessionApi.
+ */
+export interface PrintSessionApiApiPrintSessionsIdPatchRequest {
+    /**
+     * PrintSession identifier
+     */
+    readonly id: string
+
+    /**
+     * The updated PrintSession resource
+     */
+    readonly printSessionWritePrintSessionJsonMergePatch: PrintSessionWritePrintSessionJsonMergePatch
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPrintSessionsPost operation in PrintSessionApi.
+ */
+export interface PrintSessionApiApiPrintSessionsPostRequest {
+    /**
+     * The new PrintSession resource
+     */
+    readonly printSessionWritePrintSession: PrintSessionWritePrintSession
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * PrintSessionApi - object-oriented interface
+ */
+export class PrintSessionApi extends BaseAPI {
+    /**
+     * Retrieves the collection of PrintSession resources.
+     * @summary Retrieves the collection of PrintSession resources.
+     * @param {PrintSessionApiApiPrintSessionsGetCollectionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintSessionsGetCollection(requestParameters: PrintSessionApiApiPrintSessionsGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
+        return PrintSessionApiFp(this.configuration).apiPrintSessionsGetCollection(requestParameters.page, requestParameters.dateBefore, requestParameters.dateStrictlyBefore, requestParameters.dateAfter, requestParameters.dateStrictlyAfter, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes the PrintSession resource.
+     * @summary Removes the PrintSession resource.
+     * @param {PrintSessionApiApiPrintSessionsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintSessionsIdDelete(requestParameters: PrintSessionApiApiPrintSessionsIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return PrintSessionApiFp(this.configuration).apiPrintSessionsIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a PrintSession resource.
+     * @summary Retrieves a PrintSession resource.
+     * @param {PrintSessionApiApiPrintSessionsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintSessionsIdGet(requestParameters: PrintSessionApiApiPrintSessionsIdGetRequest, options?: RawAxiosRequestConfig) {
+        return PrintSessionApiFp(this.configuration).apiPrintSessionsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates the PrintSession resource.
+     * @summary Updates the PrintSession resource.
+     * @param {PrintSessionApiApiPrintSessionsIdPatchRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintSessionsIdPatch(requestParameters: PrintSessionApiApiPrintSessionsIdPatchRequest, options?: RawAxiosRequestConfig) {
+        return PrintSessionApiFp(this.configuration).apiPrintSessionsIdPatch(requestParameters.id, requestParameters.printSessionWritePrintSessionJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates a PrintSession resource.
+     * @summary Creates a PrintSession resource.
+     * @param {PrintSessionApiApiPrintSessionsPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPrintSessionsPost(requestParameters: PrintSessionApiApiPrintSessionsPostRequest, options?: RawAxiosRequestConfig) {
+        return PrintSessionApiFp(this.configuration).apiPrintSessionsPost(requestParameters.printSessionWritePrintSession, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
