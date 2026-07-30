@@ -5,6 +5,7 @@ export default [
         index('./routes/dashboard/Home.tsx'),
         // child routes
         route('settings', './routes/dashboard/Settings.tsx'),
+        route('profile', './routes/dashboard/Profile.tsx'),
         ...prefix('data', [route('films', './routes/data/films/FilmList.tsx')]),
         ...prefix('legal', [
             route('contact', './routes/legal/contact/Contact.tsx'),

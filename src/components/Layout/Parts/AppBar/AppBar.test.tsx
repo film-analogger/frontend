@@ -11,18 +11,11 @@ vi.mock('@mui/material', async () => {
 vi.mock('@mui/icons-material/Menu', () => ({
     default: () => <div data-testid="menu-icon">MenuIcon</div>,
 }));
-vi.mock('~/keycloak/useKeycloak', () => ({
-    useKeycloak: () => ({
-        keycloak: {
-            authenticated: false,
-            login: vi.fn(),
-            logout: vi.fn(),
-        },
-        initialized: true,
-    }),
-}));
 vi.mock('~/Theme/ColorModeIconDropdown', () => ({
     default: () => <div data-testid="color-mode-dropdown">ColorModeIconDropdown</div>,
+}));
+vi.mock('~/components/Layout/Parts/UserMenu/UserMenu', () => ({
+    default: () => <div data-testid="user-menu">UserMenu</div>,
 }));
 
 vi.mock('~/Theme/Constants/layout', () => ({
@@ -45,6 +38,11 @@ describe('AppBar', () => {
     it('renders ColorModeIconDropdown', () => {
         render(<AppBar />);
         expect(screen.getByTestId('color-mode-dropdown')).toBeInTheDocument();
+    });
+
+    it('renders UserMenu', () => {
+        render(<AppBar />);
+        expect(screen.getByTestId('user-menu')).toBeInTheDocument();
     });
 
     it('has correct styling properties', () => {

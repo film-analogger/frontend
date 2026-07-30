@@ -658,10 +658,10 @@ export interface HydraCollectionBaseSchema {
 export interface HydraCollectionBaseSchemaAllOfHydraView {
     '@id'?: string;
     '@type'?: string;
-    'hydra:first'?: string;
-    'hydra:last'?: string;
-    'hydra:previous'?: string;
-    'hydra:next'?: string;
+    'hydra:first'?: string | null;
+    'hydra:last'?: string | null;
+    'hydra:previous'?: string | null;
+    'hydra:next'?: string | null;
 }
 export interface HydraCollectionBaseSchemaNoPagination {
     'hydra:totalItems'?: number;

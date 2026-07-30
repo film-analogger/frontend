@@ -22,6 +22,13 @@
     "settings": {
         "title": "Settings"
     },
+    "profile": {
+        "title": "Profile",
+        "email": "Email",
+        "website": "Website",
+        "description": "About",
+        "memberSince": "Member since {{date}}"
+    },
     "errors" : {
         "api" : {
             "loadingData" : "An error occurred while loading data. Please try again later."
@@ -100,6 +107,9 @@
             "printLogSheet": "Print Log Sheet",
             "films": "Films",
             "photoPaper": "Photo Paper"
+        },
+        "usermenu": {
+            "profile": "Profile"
         }
     }
 }

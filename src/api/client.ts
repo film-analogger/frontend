@@ -1,19 +1,22 @@
 import { useKeycloak } from '~/keycloak/useKeycloak';
 import {
+    AppUserApi,
     Configuration,
     FilmApi,
+    type AppUserJsonldReadAppUserTimestampableBlameableRead,
     type FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead,
 } from './filmAnaloggerApi';
 import { useTranslation } from 'react-i18next';
 
 export type FilmRead = FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead;
+export type AppUserRead = AppUserJsonldReadAppUserTimestampableBlameableRead;
 
-const useFilmApi = () => {
+const useApiConfiguration = () => {
     const { keycloak } = useKeycloak();
 
     const { i18n } = useTranslation();
 
-    const configuration = new Configuration({
+    return new Configuration({
         accessToken: keycloak.updateToken(5).then(() => {
             if (!keycloak.token) {
                 throw new Error('No token available');
@@ -26,9 +29,20 @@ const useFilmApi = () => {
             },
         },
     });
+};
+
+const useFilmApi = () => {
+    const configuration = useApiConfiguration();
     const filmApi = new FilmApi(configuration);
 
     return { filmApi };
 };
 
-export { useFilmApi };
+const useAppUserApi = () => {
+    const configuration = useApiConfiguration();
+    const appUserApi = new AppUserApi(configuration);
+
+    return { appUserApi };
+};
+
+export { useFilmApi, useAppUserApi };

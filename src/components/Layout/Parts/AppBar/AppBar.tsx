@@ -1,18 +1,13 @@
 import React from 'react';
 
-import { AppBar as MuiAppBar, Box, IconButton, Toolbar, Tooltip } from '@mui/material';
-import LogoutIcon from '@mui/icons-material/Logout';
+import { AppBar as MuiAppBar, Box, Toolbar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useTranslation } from 'react-i18next';
 import ColorModeIconDropdown from '~/Theme/ColorModeIconDropdown';
 import { drawerWidth, headerHeight, headerMt } from '~/Theme/Constants/layout';
 import LanguageIconDropdown from '~/i18n/LanguageIconDropdown';
-import { useKeycloak } from '~/keycloak/useKeycloak';
+import UserMenu from '~/components/Layout/Parts/UserMenu/UserMenu';
 
 const AppBar: React.FunctionComponent = () => {
-    const { t } = useTranslation();
-    const { keycloak } = useKeycloak();
-
     return (
         <MuiAppBar
             color="transparent"
@@ -41,11 +36,7 @@ const AppBar: React.FunctionComponent = () => {
                 <Box sx={{ display: 'flex', gap: 1 }}>
                     <ColorModeIconDropdown />
                     <LanguageIconDropdown />
-                    <Tooltip title={t('auth.logout')}>
-                        <IconButton onClick={() => void keycloak.logout()}>
-                            <LogoutIcon />
-                        </IconButton>
-                    </Tooltip>
+                    <UserMenu />
                 </Box>
             </Toolbar>
         </MuiAppBar>
