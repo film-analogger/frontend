@@ -71,6 +71,11 @@ export default defineConfig({
     /* Run your local dev server before starting the tests */
     webServer: {
         command: 'yarn run dev',
+        /* Without this Playwright does not wait for the server to be ready. */
+        url: 'http://localhost:3000',
         reuseExistingServer: !process.env.CI,
+        timeout: 120 * 1000,
+        /* Stands in for the Keycloak server. See src/keycloak/e2eKeycloak.ts */
+        env: { VITE_E2E_AUTH: 'true' },
     },
 });

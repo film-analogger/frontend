@@ -19,6 +19,11 @@ export default defineConfig({
     ],
     server: {
         port: 3000,
-        open: true,
+        // eslint-disable-next-line no-undef
+        ...(process.env.VITE_E2E_AUTH === 'true'
+            ? // Playwright targets port 3000: fail loudly rather than silently
+              // moving to another one, and keep the run headless.
+              { strictPort: true, open: false }
+            : { open: true }),
     },
 });
