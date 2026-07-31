@@ -17,6 +17,15 @@ vi.mock('../OpenSource/OpenSource', () => ({
     default: () => <div data-testid="open-source">OpenSource</div>,
 }));
 
+vi.mock('./useNavCounts', () => ({
+    useNavCounts: () => ({ films: 12, chemistries: 9, manufacturers: 6, sessions: 28 }),
+}));
+
+const mockSetAppearance = vi.fn();
+vi.mock('~/Theme/useAppearanceMode', () => ({
+    useAppearanceMode: () => ({ current: 'dark', setAppearance: mockSetAppearance }),
+}));
+
 const renderSideMenu = () =>
     render(
         <BrowserRouter>
@@ -35,18 +44,36 @@ describe('SideMenu', () => {
         expect(screen.getByTestId('app-logo')).toBeInTheDocument();
     });
 
-    it('should render main navigation items', () => {
+    it('should render logbook navigation items', () => {
         renderSideMenu();
         expect(screen.getByText('components.sidemenu.home')).toBeInTheDocument();
+        expect(screen.getByText('components.sidemenu.sessions')).toBeInTheDocument();
         expect(screen.getByText('components.sidemenu.filmLogSheet')).toBeInTheDocument();
         expect(screen.getByText('components.sidemenu.developmentCharts')).toBeInTheDocument();
-        expect(screen.getByText('components.sidemenu.printLogSheet')).toBeInTheDocument();
     });
 
-    it('should render secondary navigation items', () => {
+    it('should render reference navigation items with counts', () => {
         renderSideMenu();
         expect(screen.getByText('components.sidemenu.films')).toBeInTheDocument();
+        expect(screen.getByText('components.sidemenu.chemistries')).toBeInTheDocument();
+        expect(screen.getByText('components.sidemenu.manufacturers')).toBeInTheDocument();
         expect(screen.getByText('components.sidemenu.photoPaper')).toBeInTheDocument();
+        expect(screen.getByText('12')).toBeInTheDocument();
+        expect(screen.getByText('9')).toBeInTheDocument();
+        expect(screen.getByText('6')).toBeInTheDocument();
+    });
+
+    it('should render "soon" items as disabled', () => {
+        renderSideMenu();
+        expect(screen.getByLabelText('components.sidemenu.filmLogSheet')).toHaveAttribute(
+            'aria-disabled',
+            'true',
+        );
+    });
+
+    it('should render the lab mode toggle', () => {
+        renderSideMenu();
+        expect(screen.getByText('components.sidemenu.labMode')).toBeInTheDocument();
     });
 
     it('should render open source section', () => {
@@ -60,8 +87,9 @@ describe('SideMenu', () => {
             'href',
             '/',
         );
-        expect(
-            screen.getByLabelText('components.sidemenu.filmLogSheet').closest('a'),
-        ).toHaveAttribute('href', '/film-log-sheet');
+        expect(screen.getByLabelText('components.sidemenu.sessions').closest('a')).toHaveAttribute(
+            'href',
+            '/sessions',
+        );
     });
 });

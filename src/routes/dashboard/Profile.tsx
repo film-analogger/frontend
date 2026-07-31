@@ -1,8 +1,16 @@
-import { Avatar, Box, Card, CardContent, Link, Stack, Typography } from '@mui/material';
+import { Box, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCurrentAppUser } from '~/api/useCurrentAppUser';
+import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import ColorModeSelect from '~/Theme/ColorModeSelect';
+import { ProfileIdentity } from './ProfileIdentity';
+import { ProfileInfoRow } from './ProfileInfoRow';
+
+export const handle: RouteCrumbHandle = {
+    crumb: { section: 'app.account', title: 'profile.title' },
+};
 
 const Profile: React.FunctionComponent = () => {
     const { t, i18n } = useTranslation();
@@ -27,87 +35,66 @@ const Profile: React.FunctionComponent = () => {
                     size="3rem"
                 />
             ) : (
-                <Card
-                    sx={{ maxWidth: 480 }}
-                    variant="outlined"
+                <Grid
+                    container
+                    spacing={2}
                 >
-                    <CardContent>
-                        <Stack
-                            direction="row"
-                            spacing={2}
-                            sx={{ alignItems: 'center', mb: 2 }}
-                        >
-                            <Avatar
-                                src={user.avatarUrl ?? undefined}
-                                sx={{ height: 64, width: 64 }}
-                            >
-                                {!user.avatarUrl ? displayName.charAt(0).toUpperCase() : null}
-                            </Avatar>
-                            <Box>
-                                <Typography variant="h5">{displayName}</Typography>
-                                <Typography
-                                    color="text.secondary"
-                                    variant="body2"
-                                >
-                                    @{user.username}
-                                </Typography>
-                            </Box>
-                        </Stack>
-                        <Stack spacing={1.5}>
-                            <Box>
-                                <Typography
-                                    color="text.secondary"
-                                    variant="caption"
-                                >
-                                    {t('profile.email')}
-                                </Typography>
-                                <Typography variant="body1">{user.email}</Typography>
-                            </Box>
-                            {user.website ? (
-                                <Box>
-                                    <Typography
-                                        color="text.secondary"
-                                        variant="caption"
-                                    >
-                                        {t('profile.website')}
-                                    </Typography>
-                                    <Typography variant="body1">
-                                        <Link
+                    <Grid size={{ xs: 12, md: 7 }}>
+                        <Card variant="outlined">
+                            <CardContent>
+                                <ProfileIdentity
+                                    avatarUrl={user.avatarUrl ?? undefined}
+                                    displayName={displayName}
+                                    username={user.username}
+                                />
+                                <Stack spacing={1.5}>
+                                    <ProfileInfoRow
+                                        label={t('profile.email')}
+                                        value={user.email}
+                                    />
+                                    {user.website ? (
+                                        <ProfileInfoRow
                                             href={user.website}
-                                            rel="noopener noreferrer"
-                                            target="_blank"
+                                            label={t('profile.website')}
+                                            value={user.website}
+                                        />
+                                    ) : null}
+                                    {user.description ? (
+                                        <ProfileInfoRow
+                                            label={t('profile.description')}
+                                            value={user.description}
+                                        />
+                                    ) : null}
+                                    {user.createdAt ? (
+                                        <Typography
+                                            color="text.secondary"
+                                            variant="caption"
                                         >
-                                            {user.website}
-                                        </Link>
-                                    </Typography>
-                                </Box>
-                            ) : null}
-                            {user.description ? (
-                                <Box>
-                                    <Typography
-                                        color="text.secondary"
-                                        variant="caption"
-                                    >
-                                        {t('profile.description')}
-                                    </Typography>
-                                    <Typography variant="body1">{user.description}</Typography>
-                                </Box>
-                            ) : null}
-                            {user.createdAt ? (
+                                            {t('profile.memberSince', {
+                                                date: new Date(user.createdAt).toLocaleDateString(
+                                                    i18n.language,
+                                                ),
+                                            })}
+                                        </Typography>
+                                    ) : null}
+                                </Stack>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 5 }}>
+                        <Card variant="outlined">
+                            <CardContent>
                                 <Typography
-                                    color="text.secondary"
-                                    variant="caption"
+                                    sx={{ mb: 2, fontWeight: 600 }}
+                                    variant="subtitle1"
                                 >
-                                    {t('profile.memberSince', {
-                                        date: new Date(user.createdAt).toLocaleDateString(
-                                            i18n.language,
-                                        ),
-                                    })}
+                                    {t('profile.appearance')}
                                 </Typography>
-                            ) : null}
-                        </Stack>
-                    </CardContent>
-                </Card>
+                                <ColorModeSelect fullWidth />
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
             )}
         </Box>
     );

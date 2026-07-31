@@ -13,6 +13,11 @@ declare module '@mui/material/Paper' {
     }
 }
 declare module '@mui/material/styles' {
+    interface ColorSchemeOverrides {
+        lab: true;
+    }
+}
+declare module '@mui/material/styles' {
     interface ColorRange {
         50: string;
         100: string;
@@ -238,6 +243,54 @@ export const colorSchemes = {
             },
             baseShadow:
                 'rgba(9, 11, 17, 0.7) 0px 4px 16px 0px, rgba(19, 23, 32, 0.8) 0px 8px 16px -5px',
+        },
+    },
+    // Inactinic darkroom mode: red-on-black only, so it is safe under photographic safelights.
+    lab: {
+        palette: {
+            primary: {
+                light: '#FF4D33',
+                main: '#FF0000',
+                dark: '#B30000',
+                contrastText: '#000000',
+            },
+            secondary: {
+                light: '#FF8A4D',
+                main: '#FF6A00',
+                dark: '#B34A00',
+                contrastText: '#000000',
+            },
+            info: { light: '#FF6A00', main: '#FF4D33', dark: '#B30000', contrastText: '#000000' },
+            warning: {
+                light: '#FF8A4D',
+                main: '#FF6A00',
+                dark: '#B34A00',
+                contrastText: '#000000',
+            },
+            error: { light: '#FF4D33', main: '#FF0000', dark: '#B30000', contrastText: '#000000' },
+            success: {
+                light: '#FF6A00',
+                main: '#FF4D33',
+                dark: '#B30000',
+                contrastText: '#000000',
+            },
+            grey: {
+                ...gray,
+            },
+            divider: 'rgba(255, 26, 0, 0.45)',
+            background: {
+                default: '#000000',
+                paper: '#0D0000',
+            },
+            text: {
+                primary: '#FF1A00',
+                secondary: '#E60F00',
+            },
+            action: {
+                hover: 'rgba(255, 0, 0, 0.16)',
+                selected: 'rgba(255, 0, 0, 0.24)',
+            },
+            baseShadow: 'rgba(255, 0, 0, 0.25) 0px 0px 0px 1px',
         },
     },
 };

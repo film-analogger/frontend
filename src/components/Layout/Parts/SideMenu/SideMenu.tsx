@@ -5,25 +5,32 @@ import Divider from '@mui/material/Divider';
 import type React from 'react';
 import OpenSource from '../OpenSource/OpenSource';
 import {
+    Chip,
     Link,
     List,
     ListItem,
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    ListSubheader,
     Stack,
+    Typography,
 } from '@mui/material';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import TheatersIcon from '@mui/icons-material/Theaters';
-import CameraRollIcon from '@mui/icons-material/CameraRoll';
+import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
+import GradientIcon from '@mui/icons-material/Gradient';
 import ScienceIcon from '@mui/icons-material/Science';
-import PhotoSizeSelectLargeIcon from '@mui/icons-material/PhotoSizeSelectLarge';
-import NoteIcon from '@mui/icons-material/Note';
-import { Link as RouterLink } from 'react-router';
+import CameraRollIcon from '@mui/icons-material/CameraRoll';
+import BiotechIcon from '@mui/icons-material/Biotech';
+import FactoryIcon from '@mui/icons-material/Factory';
+import TextureIcon from '@mui/icons-material/Texture';
+import { Link as RouterLink, useLocation } from 'react-router';
 
 import { AppLogo } from '~/components/Widgets/AppLogo/AppLogo';
 import { drawerWidth, headerMt, headerPadding } from '~/Theme/Constants/layout';
 import { useTranslation } from 'react-i18next';
+import { useNavCounts } from './useNavCounts';
+import { LabModeToggle } from './LabModeToggle';
 
 const Drawer = styled(MuiDrawer)({
     width: drawerWidth,
@@ -35,34 +42,80 @@ const Drawer = styled(MuiDrawer)({
     },
 });
 
+interface NavItem {
+    translation: string;
+    icon: React.ReactNode;
+    href?: string;
+    family?: string[];
+    count?: number;
+    soon?: boolean;
+}
+
 const SideMenu: React.FunctionComponent = () => {
     const { t } = useTranslation();
+    const location = useLocation();
+    const counts = useNavCounts();
 
-    const mainListItems = [
-        { translation: 'components.sidemenu.home', icon: <HomeRoundedIcon />, href: '/' },
-        {
-            translation: 'components.sidemenu.filmLogSheet',
-            icon: <TheatersIcon />,
-            href: '/film-log-sheet',
-        },
-        {
-            translation: 'components.sidemenu.developmentCharts',
-            icon: <ScienceIcon />,
-            href: '/development-charts',
-        },
-        {
-            translation: 'components.sidemenu.printLogSheet',
-            icon: <PhotoSizeSelectLargeIcon />,
-            href: '/print-log-sheet',
-        },
-    ];
+    const isActive = (item: NavItem) => {
+        if (!item.href) {
+            return false;
+        }
+        const paths = [item.href, ...(item.family ?? [])];
+        return paths.some((path) =>
+            path === '/' ? location.pathname === '/' : location.pathname.startsWith(path),
+        );
+    };
 
-    const secondaryListItems = [
-        { translation: 'components.sidemenu.films', icon: <CameraRollIcon />, href: '/data/films' },
+    const groups: { label: string; items: NavItem[] }[] = [
         {
-            translation: 'components.sidemenu.photoPaper',
-            icon: <NoteIcon />,
-            href: '/data/photopapers',
+            label: 'components.sidemenu.group.logbook',
+            items: [
+                { translation: 'components.sidemenu.home', icon: <HomeRoundedIcon />, href: '/' },
+                {
+                    translation: 'components.sidemenu.sessions',
+                    icon: <LocalPrintshopIcon />,
+                    href: '/sessions',
+                    count: counts.sessions,
+                },
+                {
+                    translation: 'components.sidemenu.filmLogSheet',
+                    icon: <GradientIcon />,
+                    soon: true,
+                },
+                {
+                    translation: 'components.sidemenu.developmentCharts',
+                    icon: <ScienceIcon />,
+                    soon: true,
+                },
+            ],
+        },
+        {
+            label: 'components.sidemenu.group.reference',
+            items: [
+                {
+                    translation: 'components.sidemenu.films',
+                    icon: <CameraRollIcon />,
+                    href: '/data/films',
+                    count: counts.films,
+                },
+                {
+                    translation: 'components.sidemenu.chemistries',
+                    icon: <BiotechIcon />,
+                    href: '/data/chemistries',
+                    count: counts.chemistries,
+                },
+                {
+                    translation: 'components.sidemenu.manufacturers',
+                    icon: <FactoryIcon />,
+                    href: '/data/manufacturers',
+                    count: counts.manufacturers,
+                },
+                {
+                    translation: 'components.sidemenu.photoPaper',
+                    icon: <TextureIcon />,
+                    soon: true,
+                },
+            ],
         },
     ];
 
@@ -102,57 +155,79 @@ const SideMenu: React.FunctionComponent = () => {
                     }}
                 >
                     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: 'space-between' }}>
-                        <List dense>
-                            {mainListItems.map((item) => (
-                                <ListItem
-                                    disablePadding
-                                    key={item.href}
-                                    sx={{ display: 'block', padding: 0.5 }}
+                        <Box>
+                            {groups.map((group) => (
+                                <List
+                                    dense
+                                    key={group.label}
+                                    subheader={
+                                        <ListSubheader
+                                            component="div"
+                                            disableSticky
+                                            sx={{
+                                                lineHeight: '28px',
+                                                fontSize: '0.68rem',
+                                                fontWeight: 700,
+                                                letterSpacing: '0.08em',
+                                                textTransform: 'uppercase',
+                                            }}
+                                        >
+                                            {t(group.label)}
+                                        </ListSubheader>
+                                    }
                                 >
-                                    <ListItemButton
-                                        LinkComponent={Link}
-                                        aria-label={t(item.translation)}
-                                        href={item.href}
-                                        sx={{
-                                            height: 50,
-                                            width: '100%',
-                                            '&::before': {
-                                                opacity: 0,
-                                            },
-                                        }}
-                                    >
-                                        <ListItemIcon>{item.icon}</ListItemIcon>
-                                        <ListItemText primary={t(item.translation)} />
-                                    </ListItemButton>
-                                </ListItem>
+                                    {group.items.map((item) => {
+                                        const active = isActive(item);
+                                        return (
+                                            <ListItem
+                                                disablePadding
+                                                key={item.translation}
+                                                sx={{ display: 'block', padding: 0.5 }}
+                                            >
+                                                <ListItemButton
+                                                    aria-label={t(item.translation)}
+                                                    disabled={item.soon}
+                                                    selected={active}
+                                                    sx={{
+                                                        height: 44,
+                                                        width: '100%',
+                                                        borderRadius: 2,
+                                                        '&::before': {
+                                                            opacity: 0,
+                                                        },
+                                                    }}
+                                                    {...(item.href
+                                                        ? { LinkComponent: Link, href: item.href }
+                                                        : {})}
+                                                >
+                                                    <ListItemIcon>{item.icon}</ListItemIcon>
+                                                    <ListItemText primary={t(item.translation)} />
+                                                    {item.soon ? (
+                                                        <Chip
+                                                            label={t('components.sidemenu.soon')}
+                                                            size="small"
+                                                            variant="outlined"
+                                                        />
+                                                    ) : null}
+                                                    {typeof item.count === 'number' ? (
+                                                        <Typography
+                                                            color="text.secondary"
+                                                            variant="caption"
+                                                        >
+                                                            {item.count}
+                                                        </Typography>
+                                                    ) : null}
+                                                </ListItemButton>
+                                            </ListItem>
+                                        );
+                                    })}
+                                </List>
                             ))}
-                        </List>
-                        <List dense>
-                            {secondaryListItems.map((item) => (
-                                <ListItem
-                                    disablePadding
-                                    key={item.href}
-                                    sx={{ display: 'block', padding: 0.5 }}
-                                >
-                                    <ListItemButton
-                                        LinkComponent={Link}
-                                        aria-label={t(item.translation)}
-                                        href={item.href}
-                                        sx={{
-                                            height: 50,
-                                            width: '100%',
-                                            '&::before': {
-                                                opacity: 0,
-                                            },
-                                        }}
-                                    >
-                                        <ListItemIcon>{item.icon}</ListItemIcon>
-                                        <ListItemText primary={t(item.translation)} />
-                                    </ListItemButton>
-                                </ListItem>
-                            ))}
-                        </List>
+                        </Box>
                     </Stack>
+                    <Box sx={{ p: 1 }}>
+                        <LabModeToggle />
+                    </Box>
                     <OpenSource />
                 </Box>
             </Drawer>

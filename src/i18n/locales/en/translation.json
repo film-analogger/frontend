@@ -2,9 +2,11 @@
     "app": {
         "title": "Film Analogger",
         "description": "A film camera logbook application for photo development and printing",
+        "account": "Account",
         "theme": {
             "light": "Light",
             "dark": "Dark",
+            "lab": "Darkroom mode",
             "system": "System"
         },
         "language": {
@@ -14,20 +16,205 @@
     },
     "home": {
         "title": "Home",
-        "welcome": "Welcome to Film Analogger!"
+        "welcome": "Welcome to Film Analogger!",
+        "newSession": "New print session",
+        "stats": {
+            "sessions": "Sessions",
+            "prints": "Prints",
+            "medianBase": "Median base time",
+            "medianBaseValue": "{{seconds}}s"
+        },
+        "recentSessions": "Recent sessions",
+        "viewAllSessions": "View all",
+        "noSessions": "No print session yet.",
+        "filmsPreview": "Films",
+        "viewAllFilms": "Reference"
+    },
+    "films": {
+        "list": {
+            "title": "Films",
+            "count": "{{count}} film",
+            "count_other": "{{count}} films"
+        },
+        "detail": {
+            "title": "Film detail",
+            "specsTitle": "Characteristics",
+            "specs": {
+                "process": "Process",
+                "emulsionType": "Emulsion type",
+                "sensibility": "Sensibility",
+                "inversible": "Inversible",
+                "manufacturer": "Manufacturer",
+                "yes": "yes",
+                "no": "no"
+            },
+            "compatibleChemistries": "Compatible chemistries",
+            "compatibleChemistriesHint": "Same process ({{process}})",
+            "noCompatibleChemistries": "No chemistry catalogued for this process yet."
+        }
+    },
+    "sessions": {
+        "list": {
+            "title": "Print sessions",
+            "count": "{{count}} session",
+            "count_other": "{{count}} sessions",
+            "numberLabel": "Session #{{number}}",
+            "temperature": "{{temperature}} °C"
+        },
+        "detail": {
+            "title": "Print session",
+            "chemicalChain": "Chemical chain",
+            "chemicalChainHint": "The catalogued chemistry name isn't exposed by the API for this bath yet — only duration and dilution are shown.",
+            "noChemicalBaths": "No chemical bath recorded for this session.",
+            "bathOrder": "Bath {{order}}",
+            "overridden": "overridden",
+            "bathDuration": "{{seconds}}s",
+            "baseSecondsValue": "{{seconds}}s",
+            "prints": "Prints ({{count}})",
+            "noPrints": "No print recorded for this session yet.",
+            "printNumber": "Print {{number}}",
+            "negative": "Negative {{negative}}",
+            "copies": "{{count}} copy",
+            "copies_other": "{{count}} copies",
+            "noExposures": "No exposure recorded for this print yet.",
+            "exposureKind": {
+                "base": "Base",
+                "burn": "Burn",
+                "dodge": "Dodge"
+            },
+            "notes": "Session notes"
+        },
+        "wizard": {
+            "title": "New print session",
+            "subtitle": "Context, chemical chain, prints and exposures, then review.",
+            "steps": {
+                "context": "Session",
+                "chemicals": "Chemical chain",
+                "prints": "Prints & exposures",
+                "review": "Review"
+            },
+            "fields": {
+                "date": "Date",
+                "number": "Session number",
+                "lab": "Lab",
+                "enlarger": "Enlarger",
+                "temperature": "Temperature (°C)",
+                "wash": "Wash",
+                "chemistry": "Chemistry",
+                "dilutionOverride": "Dilution override",
+                "durationSeconds": "Duration (s)",
+                "exposureKind": "Kind",
+                "baseSeconds": "Base (s)",
+                "stopNumerator": "Stop numerator",
+                "stopDenominator": "Stop denominator",
+                "grade": "Grade",
+                "observation": "Observation",
+                "negativeNumber": "Negative",
+                "negativeFormat": "Negative format",
+                "focalLength": "Focal length",
+                "copies": "Copies",
+                "paperBrand": "Paper brand",
+                "paperModel": "Paper model",
+                "paperBase": "Paper base",
+                "paperSurface": "Paper surface",
+                "columnHeightCm": "Column height (cm)",
+                "borderCm": "Border (cm)",
+                "printNotes": "Print notes",
+                "sessionNotes": "Session notes"
+            },
+            "focalLengthOption": "{{focal}} mm",
+            "removeBath": "Remove bath",
+            "addBath": "Add a bath",
+            "printTitle": "Print {{number}}",
+            "removePrint": "Remove print",
+            "exposures": "Exposures",
+            "addExposure": "Add an exposure",
+            "removeExposure": "Remove exposure",
+            "effectivePreview": "{{seconds}}s",
+            "back": "Back",
+            "next": "Next step",
+            "submit": "Close session",
+            "submitting": "Saving…",
+            "review": {
+                "session": "Session",
+                "enlarger": "Enlarger",
+                "baths": "Chemical baths",
+                "bathsCount": "{{count}} bath",
+                "bathsCount_other": "{{count}} baths",
+                "prints": "Prints",
+                "printsCount": "{{count}} print",
+                "printsCount_other": "{{count}} prints",
+                "exposures": "Exposures",
+                "exposuresCount": "{{count}} exposure",
+                "exposuresCount_other": "{{count}} exposures"
+            }
+        }
+    },
+    "manufacturers": {
+        "list": {
+            "title": "Manufacturers",
+            "count": "{{count}} manufacturer",
+            "count_other": "{{count}} manufacturers",
+            "films": "films",
+            "chemistries": "chemistries"
+        },
+        "detail": {
+            "title": "Manufacturer detail",
+            "films": "Films ({{count}})",
+            "chemistries": "Chemistries ({{count}})",
+            "noFilms": "No film catalogued for this manufacturer yet.",
+            "noChemistries": "No chemistry catalogued for this manufacturer yet."
+        }
+    },
+    "chemistries": {
+        "list": {
+            "title": "Chemistries",
+            "count": "{{count}} product",
+            "count_other": "{{count}} products",
+            "columns": {
+                "product": "Product",
+                "manufacturer": "Manufacturer",
+                "process": "Process",
+                "type": "Type",
+                "dilutions": "Dilutions"
+            }
+        },
+        "detail": {
+            "title": "Chemistry detail",
+            "officialDoc": "Official documentation",
+            "dilutions": "Dilutions",
+            "noDilutions": "No dilution catalogued for this chemistry yet.",
+            "official": "official",
+            "chemistryParts": "{{count}} part of chemistry",
+            "chemistryParts_other": "{{count}} parts of chemistry",
+            "waterParts": "{{count}} part of water",
+            "waterParts_other": "{{count}} parts of water"
+        }
     },
     "dashboard": {
         "title": "Dashboard"
     },
     "settings": {
-        "title": "Settings"
+        "title": "Settings",
+        "labDefaults": {
+            "title": "Darkroom defaults",
+            "stopNotation": "Stop notation",
+            "stopNotationHelp": "Fractions (⅓) or decimals (0.33)",
+            "stopNotationFraction": "Fractions",
+            "stopNotationDecimal": "Decimals",
+            "defaultLab": "Default lab",
+            "defaultLabHelp": "Pre-filled when creating a new session",
+            "defaultEnlarger": "Default enlarger",
+            "defaultEnlargerHelp": "Pre-filled when creating a new session"
+        }
     },
     "profile": {
         "title": "Profile",
         "email": "Email",
         "website": "Website",
         "description": "About",
-        "memberSince": "Member since {{date}}"
+        "memberSince": "Member since {{date}}",
+        "appearance": "Appearance"
     },
     "errors" : {
         "api" : {
@@ -101,15 +288,29 @@
             "slide": "Slide"
         },
         "sidemenu": {
+            "group": {
+                "logbook": "Logbook",
+                "reference": "Reference"
+            },
             "home": "Home",
-            "filmLogSheet": "Film Log Sheet",
-            "developmentCharts": "Development Charts",
-            "printLogSheet": "Print Log Sheet",
+            "sessions": "Print sessions",
+            "filmLogSheet": "Negatives",
+            "developmentCharts": "Development",
             "films": "Films",
-            "photoPaper": "Photo Paper"
+            "chemistries": "Chemistries",
+            "manufacturers": "Manufacturers",
+            "photoPaper": "Photo paper",
+            "soon": "Soon",
+            "labMode": "Darkroom mode",
+            "labModeOn": "Active · inactinic lighting",
+            "labModeOff": "Red contrast, larger controls"
         },
         "usermenu": {
             "profile": "Profile"
+        },
+        "header": {
+            "search": "Search",
+            "searchPlaceholder": "Film, chemistry…"
         }
     }
 }

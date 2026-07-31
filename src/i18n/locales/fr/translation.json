@@ -2,9 +2,11 @@
     "app": {
         "title": "Film Analogger",
         "description": "Une application de carnet de bord pour les appareils photo argentiques, le développement et les tirages photo.",
+        "account": "Compte",
         "theme": {
             "light": "Clair",
             "dark": "Sombre",
+            "lab": "Mode labo",
             "system": "Système"
         },
         "language": {
@@ -14,20 +16,205 @@
     },
     "home": {
         "title": "Accueil",
-        "welcome": "Bienvenue sur Film Analogger !"
+        "welcome": "Bienvenue sur Film Analogger !",
+        "newSession": "Nouvelle séance de tirage",
+        "stats": {
+            "sessions": "Séances",
+            "prints": "Tirages",
+            "medianBase": "Temps de base médian",
+            "medianBaseValue": "{{seconds}}s"
+        },
+        "recentSessions": "Séances récentes",
+        "viewAllSessions": "Tout voir",
+        "noSessions": "Aucune séance de tirage pour le moment.",
+        "filmsPreview": "Pellicules",
+        "viewAllFilms": "Référentiel"
+    },
+    "films": {
+        "list": {
+            "title": "Pellicules",
+            "count": "{{count}} pellicule",
+            "count_other": "{{count}} pellicules"
+        },
+        "detail": {
+            "title": "Détail pellicule",
+            "specsTitle": "Caractéristiques",
+            "specs": {
+                "process": "Procédé",
+                "emulsionType": "Type d'émulsion",
+                "sensibility": "Sensibilité",
+                "inversible": "Inversible",
+                "manufacturer": "Fabricant",
+                "yes": "oui",
+                "no": "non"
+            },
+            "compatibleChemistries": "Chimies compatibles",
+            "compatibleChemistriesHint": "Même procédé ({{process}})",
+            "noCompatibleChemistries": "Aucune chimie référencée pour ce procédé pour le moment."
+        }
+    },
+    "sessions": {
+        "list": {
+            "title": "Séances de tirage",
+            "count": "{{count}} séance",
+            "count_other": "{{count}} séances",
+            "numberLabel": "Séance n°{{number}}",
+            "temperature": "{{temperature}} °C"
+        },
+        "detail": {
+            "title": "Séance de tirage",
+            "chemicalChain": "Chaîne chimique",
+            "chemicalChainHint": "Le nom de la chimie référencée n'est pas encore exposé par l'API pour ce bain — seuls la durée et la dilution sont affichés.",
+            "noChemicalBaths": "Aucun bain chimique enregistré pour cette séance.",
+            "bathOrder": "Bain {{order}}",
+            "overridden": "forcée",
+            "bathDuration": "{{seconds}}s",
+            "baseSecondsValue": "{{seconds}}s",
+            "prints": "Tirages ({{count}})",
+            "noPrints": "Aucun tirage enregistré pour cette séance pour le moment.",
+            "printNumber": "Tirage {{number}}",
+            "negative": "Négatif {{negative}}",
+            "copies": "{{count}} exemplaire",
+            "copies_other": "{{count}} exemplaires",
+            "noExposures": "Aucune exposition enregistrée pour ce tirage pour le moment.",
+            "exposureKind": {
+                "base": "Base",
+                "burn": "Brûlage",
+                "dodge": "Masquage"
+            },
+            "notes": "Notes de séance"
+        },
+        "wizard": {
+            "title": "Nouvelle séance de tirage",
+            "subtitle": "Contexte, chaîne chimique, tirages et expositions, puis relecture.",
+            "steps": {
+                "context": "Séance",
+                "chemicals": "Chaîne chimique",
+                "prints": "Tirages & expositions",
+                "review": "Relecture"
+            },
+            "fields": {
+                "date": "Date",
+                "number": "Numéro de séance",
+                "lab": "Labo",
+                "enlarger": "Agrandisseur",
+                "temperature": "Température (°C)",
+                "wash": "Rinçage",
+                "chemistry": "Chimie",
+                "dilutionOverride": "Dilution forcée",
+                "durationSeconds": "Durée (s)",
+                "exposureKind": "Type",
+                "baseSeconds": "Base (s)",
+                "stopNumerator": "Numérateur du stop",
+                "stopDenominator": "Dénominateur du stop",
+                "grade": "Grade",
+                "observation": "Observation",
+                "negativeNumber": "Négatif",
+                "negativeFormat": "Format négatif",
+                "focalLength": "Focale",
+                "copies": "Exemplaires",
+                "paperBrand": "Marque du papier",
+                "paperModel": "Modèle de papier",
+                "paperBase": "Support",
+                "paperSurface": "Surface",
+                "columnHeightCm": "Hauteur colonne (cm)",
+                "borderCm": "Bordure (cm)",
+                "printNotes": "Notes du tirage",
+                "sessionNotes": "Notes de séance"
+            },
+            "focalLengthOption": "{{focal}} mm",
+            "removeBath": "Retirer le bain",
+            "addBath": "Ajouter un bain",
+            "printTitle": "Tirage {{number}}",
+            "removePrint": "Retirer le tirage",
+            "exposures": "Expositions",
+            "addExposure": "Ajouter une exposition",
+            "removeExposure": "Retirer l'exposition",
+            "effectivePreview": "{{seconds}}s",
+            "back": "Retour",
+            "next": "Étape suivante",
+            "submit": "Clore la séance",
+            "submitting": "Enregistrement…",
+            "review": {
+                "session": "Séance",
+                "enlarger": "Agrandisseur",
+                "baths": "Bains chimiques",
+                "bathsCount": "{{count}} bain",
+                "bathsCount_other": "{{count}} bains",
+                "prints": "Tirages",
+                "printsCount": "{{count}} tirage",
+                "printsCount_other": "{{count}} tirages",
+                "exposures": "Expositions",
+                "exposuresCount": "{{count}} exposition",
+                "exposuresCount_other": "{{count}} expositions"
+            }
+        }
+    },
+    "manufacturers": {
+        "list": {
+            "title": "Fabricants",
+            "count": "{{count}} fabricant",
+            "count_other": "{{count}} fabricants",
+            "films": "pellicules",
+            "chemistries": "chimies"
+        },
+        "detail": {
+            "title": "Détail fabricant",
+            "films": "Pellicules ({{count}})",
+            "chemistries": "Chimies ({{count}})",
+            "noFilms": "Aucune pellicule référencée pour ce fabricant pour le moment.",
+            "noChemistries": "Aucune chimie référencée pour ce fabricant pour le moment."
+        }
+    },
+    "chemistries": {
+        "list": {
+            "title": "Chimies",
+            "count": "{{count}} produit",
+            "count_other": "{{count}} produits",
+            "columns": {
+                "product": "Produit",
+                "manufacturer": "Fabricant",
+                "process": "Procédé",
+                "type": "Type",
+                "dilutions": "Dilutions"
+            }
+        },
+        "detail": {
+            "title": "Détail chimie",
+            "officialDoc": "Fiche technique",
+            "dilutions": "Dilutions",
+            "noDilutions": "Aucune dilution référencée pour cette chimie pour le moment.",
+            "official": "officielle",
+            "chemistryParts": "{{count}} part de chimie",
+            "chemistryParts_other": "{{count}} parts de chimie",
+            "waterParts": "{{count}} part d'eau",
+            "waterParts_other": "{{count}} parts d'eau"
+        }
     },
     "dashboard": {
         "title": "Tableau de bord"
     },
     "settings": {
-        "title": "Paramètres"
+        "title": "Paramètres",
+        "labDefaults": {
+            "title": "Valeurs par défaut du labo",
+            "stopNotation": "Notation des stops",
+            "stopNotationHelp": "Fractions (⅓) ou décimales (0,33)",
+            "stopNotationFraction": "Fractions",
+            "stopNotationDecimal": "Décimales",
+            "defaultLab": "Labo par défaut",
+            "defaultLabHelp": "Pré-rempli à la création d'une nouvelle séance",
+            "defaultEnlarger": "Agrandisseur par défaut",
+            "defaultEnlargerHelp": "Pré-rempli à la création d'une nouvelle séance"
+        }
     },
     "profile": {
         "title": "Profil",
         "email": "Email",
         "website": "Site web",
         "description": "À propos",
-        "memberSince": "Membre depuis le {{date}}"
+        "memberSince": "Membre depuis le {{date}}",
+        "appearance": "Apparence"
     },
     "errors": {
         "api" : {
@@ -101,15 +288,29 @@
             "slide": "Inversible"
         },
         "sidemenu": {
+            "group": {
+                "logbook": "Carnet",
+                "reference": "Référentiel"
+            },
             "home": "Accueil",
-            "filmLogSheet": "Suivis des Négatifs",
+            "sessions": "Séances de tirage",
+            "filmLogSheet": "Négatifs",
             "developmentCharts": "Développement",
-            "printLogSheet": "Carnet de tirage",
             "films": "Pellicules",
-            "photoPaper": "Papiers photo"
+            "chemistries": "Chimies",
+            "manufacturers": "Fabricants",
+            "photoPaper": "Papiers photo",
+            "soon": "À venir",
+            "labMode": "Mode labo",
+            "labModeOn": "Actif · éclairage inactinique",
+            "labModeOff": "Contraste rouge, contrôles agrandis"
         },
         "usermenu": {
             "profile": "Profil"
+        },
+        "header": {
+            "search": "Recherche",
+            "searchPlaceholder": "Pellicule, chimie…"
         }
     }
 }

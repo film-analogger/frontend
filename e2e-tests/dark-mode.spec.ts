@@ -11,25 +11,31 @@ test.describe('dark mode', () => {
             'background-color',
             colorSchemes.light.palette.background.default,
         );
-        await page.getByLabel('color-scheme-toggle').click();
-        await page.getByRole('menuitem', { name: 'Dark' }).click();
+        await page.getByLabel('Dark', { exact: true }).click();
         await expect(page.locator('body')).toHaveCSS(
             'background-color',
             colorSchemes.dark.palette.background.default,
         );
-        await page.getByLabel('color-scheme-toggle').click();
-        await page.getByRole('menuitem', { name: 'System' }).click();
+        await page.getByLabel('Light', { exact: true }).click();
         await expect(page.locator('body')).toHaveCSS(
             'background-color',
             colorSchemes.light.palette.background.default,
         );
     });
 
+    test('darkroom (lab) mode toggle', async ({ page }) => {
+        await page.goto('/');
+        await page.getByLabel('Darkroom mode', { exact: true }).click();
+        await expect(page.locator('body')).toHaveCSS(
+            'background-color',
+            colorSchemes.lab.palette.background.default,
+        );
+    });
+
     test('dark mode home accessibility', async ({ page }) => {
         await page.goto('/');
 
-        await page.getByLabel('color-scheme-toggle').click();
-        await page.getByRole('menuitem', { name: 'Dark' }).click();
+        await page.getByLabel('Dark', { exact: true }).click();
         await expect(page.locator('body')).toHaveCSS(
             'background-color',
             colorSchemes.dark.palette.background.default,
@@ -42,8 +48,7 @@ test.describe('dark mode', () => {
     test('footer dark mode', async ({ page }) => {
         await page.goto('/');
 
-        await page.getByLabel('color-scheme-toggle').click();
-        await page.getByRole('menuitem', { name: 'Dark' }).click();
+        await page.getByLabel('Dark', { exact: true }).click();
         await expect(page.locator('footer')).toHaveCSS(
             'background-color',
             colorSchemes.dark.palette.background.paper,

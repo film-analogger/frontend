@@ -82,7 +82,25 @@ export default defineConfig([
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
-            'react-refresh/only-export-components': ['error', { allowConstantExport: true }],
+            'react-refresh/only-export-components': [
+                'error',
+                {
+                    allowConstantExport: true,
+                    // React Router 7 route module convention: these exports live
+                    // alongside the default route component.
+                    allowExportNames: [
+                        'handle',
+                        'loader',
+                        'action',
+                        'meta',
+                        'links',
+                        'shouldRevalidate',
+                        'clientLoader',
+                        'clientAction',
+                        'headers',
+                    ],
+                },
+            ],
             'react/prefer-stateless-function': 'error',
             'react/button-has-type': 'error',
             'react/no-unused-prop-types': 'error',

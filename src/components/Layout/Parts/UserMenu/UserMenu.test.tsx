@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import UserMenu from './UserMenu';
@@ -60,16 +60,18 @@ describe('UserMenu', () => {
     it('displays the display name and email from the Keycloak token when the API user is not loaded', () => {
         renderUserMenu();
         fireEvent.click(screen.getByLabelText('user-menu-toggle'));
-        expect(screen.getByText('Jane Doe')).toBeInTheDocument();
-        expect(screen.getByText('jane@example.com')).toBeInTheDocument();
+        const menu = within(screen.getByRole('menu'));
+        expect(menu.getByText('Jane Doe')).toBeInTheDocument();
+        expect(menu.getByText('jane@example.com')).toBeInTheDocument();
     });
 
     it('prefers the API user name and email over the Keycloak token', () => {
         mockUser = { email: 'api@example.com', name: 'API Jane', username: 'jane' };
         renderUserMenu();
         fireEvent.click(screen.getByLabelText('user-menu-toggle'));
-        expect(screen.getByText('API Jane')).toBeInTheDocument();
-        expect(screen.getByText('api@example.com')).toBeInTheDocument();
+        const menu = within(screen.getByRole('menu'));
+        expect(menu.getByText('API Jane')).toBeInTheDocument();
+        expect(menu.getByText('api@example.com')).toBeInTheDocument();
     });
 
     it('falls back to the username when no name is available', () => {
@@ -77,7 +79,7 @@ describe('UserMenu', () => {
         mockTokenParsed = undefined;
         renderUserMenu();
         fireEvent.click(screen.getByLabelText('user-menu-toggle'));
-        expect(screen.getByText('jane')).toBeInTheDocument();
+        expect(within(screen.getByRole('menu')).getByText('jane')).toBeInTheDocument();
     });
 
     it('renders a link to the profile page', () => {

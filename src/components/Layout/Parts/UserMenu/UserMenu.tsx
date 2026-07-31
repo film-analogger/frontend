@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
+import ButtonBase from '@mui/material/ButtonBase';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -38,23 +38,39 @@ const UserMenu: React.FunctionComponent = () => {
 
     return (
         <React.Fragment>
-            <IconButton
+            <ButtonBase
                 aria-controls={open ? 'user-menu' : undefined}
                 aria-expanded={open ? 'true' : undefined}
                 aria-haspopup="true"
                 aria-label="user-menu-toggle"
                 data-screenshot="toggle-user-menu"
-                disableRipple
                 onClick={handleClick}
-                size="small"
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    padding: '2px 10px 2px 2px',
+                    borderRadius: 24,
+                    border: '1px solid',
+                    borderColor: 'divider',
+                }}
             >
                 <Avatar
                     src={avatarUrl}
-                    sx={{ height: 32, width: 32 }}
+                    sx={{ height: 28, width: 28 }}
                 >
                     {!avatarUrl && displayName ? displayName.charAt(0).toUpperCase() : null}
                 </Avatar>
-            </IconButton>
+                {displayName ? (
+                    <Typography
+                        noWrap
+                        sx={{ display: { xs: 'none', sm: 'block' }, maxWidth: 140 }}
+                        variant="body2"
+                    >
+                        {displayName}
+                    </Typography>
+                ) : null}
+            </ButtonBase>
             <Menu
                 anchorEl={anchorEl}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}

@@ -6,7 +6,20 @@ export default [
         // child routes
         route('settings', './routes/dashboard/Settings.tsx'),
         route('profile', './routes/dashboard/Profile.tsx'),
-        ...prefix('data', [route('films', './routes/data/films/FilmList.tsx')]),
+        route('sessions', './routes/sessions/SessionList.tsx'),
+        route('sessions/new', './routes/sessions/wizard/NewSessionWizard.tsx'),
+        route('sessions/:sessionId', './routes/sessions/SessionDetail.tsx'),
+        ...prefix('data', [
+            route('films', './routes/data/films/FilmList.tsx'),
+            route('films/:filmId', './routes/data/films/FilmDetail.tsx'),
+            route('manufacturers', './routes/data/manufacturers/ManufacturerList.tsx'),
+            route(
+                'manufacturers/:manufacturerId',
+                './routes/data/manufacturers/ManufacturerDetail.tsx',
+            ),
+            route('chemistries', './routes/data/chemistries/ChemistryList.tsx'),
+            route('chemistries/:chemistryId', './routes/data/chemistries/ChemistryDetail.tsx'),
+        ]),
         ...prefix('legal', [
             route('contact', './routes/legal/contact/Contact.tsx'),
             route('privacy', './routes/legal/privacy/Privacy.tsx'),

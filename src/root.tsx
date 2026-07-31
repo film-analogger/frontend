@@ -1,6 +1,5 @@
 /* eslint-disable react/no-multi-comp */
 
-/* eslint-disable react-refresh/only-export-components */
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts } from 'react-router';
 
 // import { CacheProvider } from '@emotion/react';
