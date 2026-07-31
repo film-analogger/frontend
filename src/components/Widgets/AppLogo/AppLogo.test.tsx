@@ -24,16 +24,19 @@ import {
 import { useTranslation as mockUseTranslation } from 'react-i18next';
 import { useMediaQuery as useMediaQueryMock } from '@mui/material';
 
+const mockColorScheme = (colorScheme: string | undefined) => {
+    vi.mocked(mockUseColorScheme).mockReturnValue({
+        colorScheme,
+        setMode: vi.fn(),
+        setColorScheme: vi.fn(),
+    } as any);
+};
+
 describe('AppLogo', () => {
     describe('Inline logo', () => {
         beforeEach(() => {
             vi.mocked(useMediaQueryMock).mockReturnValue(true);
-
-            vi.mocked(mockUseColorScheme).mockReturnValue({
-                mode: 'light',
-                systemMode: 'light',
-                setMode: vi.fn(),
-            } as any);
+            mockColorScheme('light');
 
             vi.mocked(mockUseTheme).mockReturnValue({
                 breakpoints: {
@@ -49,32 +52,19 @@ describe('AppLogo', () => {
 
         it('renders light logo in light mode', () => {
             render(<AppLogo />);
-            const lightLogo = screen.getByAltText('components.applogo.logoLight');
-            expect(lightLogo).toBeInTheDocument();
+            expect(screen.getByAltText('components.applogo.logoLight')).toBeInTheDocument();
         });
 
         it('renders dark logo in dark mode', () => {
-            vi.mocked(mockUseColorScheme).mockReturnValue({
-                mode: 'dark',
-                systemMode: 'dark',
-                setMode: vi.fn(),
-            } as any);
-
+            mockColorScheme('dark');
             render(<AppLogo />);
-            const darkLogo = screen.getByAltText('components.applogo.logoDark');
-            expect(darkLogo).toBeInTheDocument();
+            expect(screen.getByAltText('components.applogo.logoDark')).toBeInTheDocument();
         });
 
-        it('uses systemMode when mode is system', () => {
-            vi.mocked(mockUseColorScheme).mockReturnValue({
-                mode: 'system',
-                systemMode: 'dark',
-                setMode: vi.fn(),
-            } as any);
-
+        it('renders the darkroom logo in lab mode', () => {
+            mockColorScheme('lab');
             render(<AppLogo />);
-            const darkLogo = screen.getByAltText('components.applogo.logoDark');
-            expect(darkLogo).toBeInTheDocument();
+            expect(screen.getByAltText('components.applogo.logoLab')).toBeInTheDocument();
         });
 
         it('accepts custom width and height props', () => {
@@ -90,27 +80,24 @@ describe('AppLogo', () => {
         });
 
         it('uses correct image sources dark mode', () => {
-            vi.mocked(mockUseColorScheme).mockReturnValue({
-                mode: 'dark',
-                systemMode: 'dark',
-                setMode: vi.fn(),
-            } as any);
-
+            mockColorScheme('dark');
             render(<AppLogo />);
             const images = screen.getAllByRole('img');
             expect(images.some((img: any) => img.src.includes('logodark-inline'))).toBe(true);
+        });
+
+        it('uses correct image sources lab mode', () => {
+            mockColorScheme('lab');
+            render(<AppLogo />);
+            const images = screen.getAllByRole('img');
+            expect(images.some((img: any) => img.src.includes('logolab-inline'))).toBe(true);
         });
     });
 
     describe('Small logo', () => {
         beforeEach(() => {
             vi.mocked(useMediaQueryMock).mockReturnValue(false);
-
-            vi.mocked(mockUseColorScheme).mockReturnValue({
-                mode: 'light',
-                systemMode: 'light',
-                setMode: vi.fn(),
-            } as any);
+            mockColorScheme('light');
 
             vi.mocked(mockUseTheme).mockReturnValue({
                 breakpoints: {
@@ -126,32 +113,19 @@ describe('AppLogo', () => {
 
         it('renders light logo in light mode', () => {
             render(<AppLogo />);
-            const lightLogo = screen.getByAltText('components.applogo.logoLight-small');
-            expect(lightLogo).toBeInTheDocument();
+            expect(screen.getByAltText('components.applogo.logoLight')).toBeInTheDocument();
         });
 
         it('renders dark logo in dark mode', () => {
-            vi.mocked(mockUseColorScheme).mockReturnValue({
-                mode: 'dark',
-                systemMode: 'dark',
-                setMode: vi.fn(),
-            } as any);
-
+            mockColorScheme('dark');
             render(<AppLogo />);
-            const darkLogo = screen.getByAltText('components.applogo.logoDark-small');
-            expect(darkLogo).toBeInTheDocument();
+            expect(screen.getByAltText('components.applogo.logoDark')).toBeInTheDocument();
         });
 
-        it('uses systemMode when mode is system', () => {
-            vi.mocked(mockUseColorScheme).mockReturnValue({
-                mode: 'system',
-                systemMode: 'dark',
-                setMode: vi.fn(),
-            } as any);
-
+        it('renders the darkroom logo in lab mode', () => {
+            mockColorScheme('lab');
             render(<AppLogo />);
-            const darkLogo = screen.getByAltText('components.applogo.logoDark-small');
-            expect(darkLogo).toBeInTheDocument();
+            expect(screen.getByAltText('components.applogo.logoLab')).toBeInTheDocument();
         });
 
         it('accepts custom width and height props', () => {
@@ -161,7 +135,7 @@ describe('AppLogo', () => {
                     width="100px"
                 />,
             );
-            const lightLogo = screen.getByAltText('components.applogo.logoLight-small');
+            const lightLogo = screen.getByAltText('components.applogo.logoLight');
             expect(lightLogo).toHaveStyle({ height: '100px', width: '100px' });
         });
 
@@ -172,15 +146,17 @@ describe('AppLogo', () => {
         });
 
         it('uses correct image sources dark mode', () => {
-            vi.mocked(mockUseColorScheme).mockReturnValue({
-                mode: 'dark',
-                systemMode: 'dark',
-                setMode: vi.fn(),
-            } as any);
-
+            mockColorScheme('dark');
             render(<AppLogo />);
             const images = screen.getAllByRole('img');
             expect(images.some((img: any) => img.src.includes('logodark.svg'))).toBe(true);
+        });
+
+        it('uses correct image sources lab mode', () => {
+            mockColorScheme('lab');
+            render(<AppLogo />);
+            const images = screen.getAllByRole('img');
+            expect(images.some((img: any) => img.src.includes('logolab.svg'))).toBe(true);
         });
     });
 });

@@ -1,21 +1,10 @@
 import { styled } from '@mui/material/styles';
 import MuiDrawer, { drawerClasses } from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
+import ButtonBase from '@mui/material/ButtonBase';
 import type React from 'react';
 import OpenSource from '../OpenSource/OpenSource';
-import {
-    Chip,
-    Link,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    ListSubheader,
-    Stack,
-    Typography,
-} from '@mui/material';
+import { Chip, Stack, Typography } from '@mui/material';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
 import GradientIcon from '@mui/icons-material/Gradient';
@@ -27,10 +16,11 @@ import TextureIcon from '@mui/icons-material/Texture';
 import { Link as RouterLink, useLocation } from 'react-router';
 
 import { AppLogo } from '~/components/Widgets/AppLogo/AppLogo';
-import { drawerWidth, headerMt, headerPadding } from '~/Theme/Constants/layout';
+import { drawerWidth } from '~/Theme/Constants/layout';
 import { useTranslation } from 'react-i18next';
 import { useNavCounts } from './useNavCounts';
 import { LabModeToggle } from './LabModeToggle';
+import { useAppearanceMode } from '~/Theme/useAppearanceMode';
 
 const Drawer = styled(MuiDrawer)({
     width: drawerWidth,
@@ -55,6 +45,8 @@ const SideMenu: React.FunctionComponent = () => {
     const { t } = useTranslation();
     const location = useLocation();
     const counts = useNavCounts();
+    const { current } = useAppearanceMode();
+    const activeColor = current === 'light' ? 'primary.dark' : 'primary.light';
 
     const isActive = (item: NavItem) => {
         if (!item.href) {
@@ -126,6 +118,8 @@ const SideMenu: React.FunctionComponent = () => {
                     display: { xs: 'none', md: 'block' },
                     [`& .${drawerClasses.paper}`]: {
                         backgroundColor: 'background.paper',
+                        borderRight: '1px solid',
+                        borderColor: 'divider',
                     },
                 }}
                 variant="permanent"
@@ -137,15 +131,13 @@ const SideMenu: React.FunctionComponent = () => {
                         alignItems: 'center',
                         textDecoration: 'none',
                         color: 'text.primary',
-                        flexGrow: 1,
-                        marginTop: headerMt,
-                        p: headerPadding,
+                        px: 2,
+                        py: 2.25,
                     }}
                     to="/"
                 >
-                    <AppLogo />
+                    <AppLogo height="34px" />
                 </Box>
-                <Divider />
                 <Box
                     sx={{
                         overflow: 'auto',
@@ -154,78 +146,119 @@ const SideMenu: React.FunctionComponent = () => {
                         flexDirection: 'column',
                     }}
                 >
-                    <Stack sx={{ flexGrow: 1, p: 1, justifyContent: 'space-between' }}>
-                        <Box>
-                            {groups.map((group) => (
-                                <List
-                                    dense
-                                    key={group.label}
-                                    subheader={
-                                        <ListSubheader
-                                            component="div"
-                                            disableSticky
-                                            sx={{
-                                                lineHeight: '28px',
-                                                fontSize: '0.68rem',
-                                                fontWeight: 700,
-                                                letterSpacing: '0.08em',
-                                                textTransform: 'uppercase',
-                                            }}
-                                        >
-                                            {t(group.label)}
-                                        </ListSubheader>
-                                    }
+                    <Stack sx={{ flexGrow: 1, p: 1.5, gap: 2.25 }}>
+                        {groups.map((group) => (
+                            <Box key={group.label}>
+                                <Stack
+                                    direction="row"
+                                    sx={{ alignItems: 'center', gap: 1, px: 1.25, pb: 0.75 }}
                                 >
+                                    <Typography
+                                        sx={{
+                                            fontSize: '10.5px',
+                                            fontWeight: 700,
+                                            letterSpacing: '0.05em',
+                                            textTransform: 'uppercase',
+                                            color: 'text.secondary',
+                                            opacity: 0.75,
+                                            whiteSpace: 'nowrap',
+                                        }}
+                                    >
+                                        {t(group.label)}
+                                    </Typography>
+                                    <Box
+                                        sx={{ flex: 1, height: '1px', backgroundColor: 'divider' }}
+                                    />
+                                </Stack>
+                                <Stack sx={{ gap: 0.25 }}>
                                     {group.items.map((item) => {
                                         const active = isActive(item);
                                         return (
-                                            <ListItem
-                                                disablePadding
+                                            <ButtonBase
+                                                aria-label={t(item.translation)}
+                                                component={item.href ? RouterLink : 'div'}
+                                                disabled={item.soon}
                                                 key={item.translation}
-                                                sx={{ display: 'block', padding: 0.5 }}
+                                                sx={{
+                                                    width: '100%',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'flex-start',
+                                                    gap: 1.25,
+                                                    py: 1,
+                                                    px: 1.25,
+                                                    borderRadius: '9px',
+                                                    textAlign: 'left',
+                                                    color: active ? activeColor : 'text.primary',
+                                                    backgroundColor: active
+                                                        ? 'action.selected'
+                                                        : 'transparent',
+                                                    '&:hover': {
+                                                        backgroundColor: item.soon
+                                                            ? 'transparent'
+                                                            : 'action.hover',
+                                                    },
+                                                }}
+                                                {...(item.href ? { to: item.href } : {})}
                                             >
-                                                <ListItemButton
-                                                    aria-label={t(item.translation)}
-                                                    disabled={item.soon}
-                                                    selected={active}
+                                                <Box
                                                     sx={{
-                                                        height: 44,
-                                                        width: '100%',
-                                                        borderRadius: 2,
-                                                        '&::before': {
-                                                            opacity: 0,
-                                                        },
+                                                        display: 'flex',
+                                                        fontSize: '20px',
+                                                        color: active
+                                                            ? activeColor
+                                                            : 'text.secondary',
+                                                        opacity: item.soon ? 0.5 : 1,
+                                                        '& svg': { fontSize: '20px' },
                                                     }}
-                                                    {...(item.href
-                                                        ? { LinkComponent: Link, href: item.href }
-                                                        : {})}
                                                 >
-                                                    <ListItemIcon>{item.icon}</ListItemIcon>
-                                                    <ListItemText primary={t(item.translation)} />
-                                                    {item.soon ? (
-                                                        <Chip
-                                                            label={t('components.sidemenu.soon')}
-                                                            size="small"
-                                                            variant="outlined"
-                                                        />
-                                                    ) : null}
-                                                    {typeof item.count === 'number' ? (
-                                                        <Typography
-                                                            color="text.secondary"
-                                                            variant="caption"
-                                                        >
-                                                            {item.count}
-                                                        </Typography>
-                                                    ) : null}
-                                                </ListItemButton>
-                                            </ListItem>
+                                                    {item.icon}
+                                                </Box>
+                                                <Typography
+                                                    noWrap
+                                                    sx={{
+                                                        flex: 1,
+                                                        fontSize: '14px',
+                                                        fontWeight: active ? 600 : 500,
+                                                        color: 'inherit',
+                                                    }}
+                                                >
+                                                    {t(item.translation)}
+                                                </Typography>
+                                                {item.soon ? (
+                                                    <Chip
+                                                        label={t('components.sidemenu.soon')}
+                                                        size="small"
+                                                        sx={{
+                                                            height: 18,
+                                                            fontSize: '9px',
+                                                            fontWeight: 700,
+                                                            letterSpacing: '0.03em',
+                                                            textTransform: 'uppercase',
+                                                        }}
+                                                        variant="outlined"
+                                                    />
+                                                ) : null}
+                                                {typeof item.count === 'number' ? (
+                                                    <Typography
+                                                        sx={{
+                                                            fontSize: '11px',
+                                                            fontWeight: 600,
+                                                            color: 'text.secondary',
+                                                            opacity: 0.8,
+                                                        }}
+                                                    >
+                                                        {item.count}
+                                                    </Typography>
+                                                ) : null}
+                                            </ButtonBase>
                                         );
                                     })}
-                                </List>
-                            ))}
-                        </Box>
+                                </Stack>
+                            </Box>
+                        ))}
                     </Stack>
-                    <Box sx={{ p: 1 }}>
+                    <Box sx={{ p: 1.5, pt: 0 }}>
                         <LabModeToggle />
                     </Box>
                     <OpenSource />

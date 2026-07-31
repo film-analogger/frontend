@@ -281,7 +281,8 @@
         },
         "applogo": {
             "logoLight": "Film Analogger light logo",
-            "logoDark": "Film Analogger dark logo"
+            "logoDark": "Film Analogger dark logo",
+            "logoLab": "Film Analogger darkroom logo"
         },
         "filmCard": {
             "iso": "ISO {{iso}}",

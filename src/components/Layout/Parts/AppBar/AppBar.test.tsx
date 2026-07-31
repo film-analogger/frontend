@@ -51,7 +51,7 @@ describe('AppBar', () => {
 
     it('renders no breadcrumb when the route has no crumb handle', () => {
         renderAppBar();
-        expect(screen.queryByLabelText('back')).toBeNull();
+        expect(screen.queryByText('films.list.title')).toBeNull();
     });
 
     it('renders the breadcrumb from the route handle', () => {
@@ -60,7 +60,7 @@ describe('AppBar', () => {
         });
         expect(screen.getByText('components.sidemenu.group.reference')).toBeInTheDocument();
         expect(screen.getByText('films.list.title')).toBeInTheDocument();
-        expect(screen.getByLabelText('back')).toBeInTheDocument();
+        expect(screen.queryByLabelText('back')).toBeNull();
     });
 
     it('has correct styling properties', () => {

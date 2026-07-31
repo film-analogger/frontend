@@ -281,7 +281,8 @@
         },
         "applogo": {
             "logoLight": "Film Analogger logo clair",
-            "logoDark": "Film Analogger logo sombre"
+            "logoDark": "Film Analogger logo sombre",
+            "logoLab": "Film Analogger logo labo"
         },
         "filmCard": {
             "iso": "ISO {{iso}}",
@@ -290,7 +291,7 @@
         "sidemenu": {
             "group": {
                 "logbook": "Carnet",
-                "reference": "Référentiel"
+                "reference": "Référentiels"
             },
             "home": "Accueil",
             "sessions": "Séances de tirage",

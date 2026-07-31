@@ -1,40 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="76 82 400 370" fill="none" role="img" aria-label="Film Analogger logo">
-  <defs>
-    <mask id="film-mask">
-      <rect x="80" y="96" width="352" height="320" rx="32" fill="white"/>
-      <!-- Sprocket holes left -->
-      <rect x="96" y="128" width="24" height="32" rx="6" fill="black"/>
-      <rect x="96" y="192" width="24" height="32" rx="6" fill="black"/>
-      <rect x="96" y="256" width="24" height="32" rx="6" fill="black"/>
-      <rect x="96" y="320" width="24" height="32" rx="6" fill="black"/>
-      <!-- Sprocket holes right -->
-      <rect x="392" y="128" width="24" height="32" rx="6" fill="black"/>
-      <rect x="392" y="192" width="24" height="32" rx="6" fill="black"/>
-      <rect x="392" y="256" width="24" height="32" rx="6" fill="black"/>
-      <rect x="392" y="320" width="24" height="32" rx="6" fill="black"/>
-    </mask>
-  </defs>
-
-  <!-- Film strip body with punched-through perforations -->
-  <rect x="80" y="96" width="352" height="320" rx="32" fill="#0F766E" mask="url(#film-mask)"/>
-
-  <!-- Film frames area -->
-  <rect x="140" y="128" width="232" height="252" rx="16" fill="#F3B285"/>
-
-  <!-- Frame 1 -->
-  <rect x="160" y="148" width="96" height="104" rx="10" fill="#0B5E58"/>
-  <!-- Frame 2 -->
-  <rect x="272" y="148" width="80" height="104" rx="10" fill="#0B5E58"/>
-  <!-- Frame 3 -->
-  <rect x="160" y="268" width="80" height="92" rx="10" fill="#0B5E58"/>
-  <!-- Frame 4 -->
-  <rect x="256" y="268" width="96" height="92" rx="10" fill="#0B5E58"/>
-
-  <!-- Lens detail top-right -->
-  <circle cx="380" cy="108" r="22" fill="#F3B285"/>
-  <circle cx="380" cy="108" r="10" fill="#0B5E58"/>
-
-  <!-- Film curl bottom -->
-  <path d="M80 384 Q80 416 112 416 L400 416 Q432 416 432 384" stroke="#0A6259" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <path d="M432 384 Q432 440 472 448" stroke="#0A6259" stroke-width="6" fill="none" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 64 64" role="img" aria-label="Film Analogger">
+  <mask id="fa">
+    <path d="M11 14 H33 V23 H19 V30 H26 V38 H19 V50 H11 A2 2 0 0 1 9 48 V16 A2 2 0 0 1 11 14 Z" fill="#fff"></path><path d="M43 14 H52 L34 50 H25 Z" fill="#fff"></path><rect x="45" y="14" width="9" height="36" rx="1.5" fill="#fff"></rect><rect x="34" y="33.5" width="12" height="6.5" rx="1.5" fill="#fff"></rect>
+    <rect x="10.5" y="19" width="3.8" height="6" rx="1.9" fill="#000"></rect><rect x="10.5" y="29" width="3.8" height="6" rx="1.9" fill="#000"></rect><rect x="10.5" y="39" width="3.8" height="6" rx="1.9" fill="#000"></rect><rect x="48.9" y="19" width="3.8" height="6" rx="1.9" fill="#000"></rect><rect x="48.9" y="29" width="3.8" height="6" rx="1.9" fill="#000"></rect><rect x="48.9" y="39" width="3.8" height="6" rx="1.9" fill="#000"></rect>
+  </mask>
+  <rect x="0" y="0" width="64" height="64" fill="#0F766E" mask="url(#fa)"></rect>
 </svg>

@@ -13,6 +13,15 @@ import { Link as RouterLink } from 'react-router';
 import { useCurrentAppUser } from '~/api/useCurrentAppUser';
 import { useKeycloak } from '~/keycloak/useKeycloak';
 
+const getInitials = (name: string): string => {
+    const words = name.trim().split(/\s+/);
+    const first = words.at(0) ?? '';
+    const last = words.at(-1) ?? '';
+    return words.length === 1
+        ? first.charAt(0).toUpperCase()
+        : `${first.charAt(0)}${last.charAt(0)}`.toUpperCase();
+};
+
 const UserMenu: React.FunctionComponent = () => {
     const { t } = useTranslation();
     const { keycloak } = useKeycloak();
@@ -57,15 +66,25 @@ const UserMenu: React.FunctionComponent = () => {
             >
                 <Avatar
                     src={avatarUrl}
-                    sx={{ height: 28, width: 28 }}
+                    sx={{
+                        height: 28,
+                        width: 28,
+                        fontSize: '12px',
+                        fontWeight: 700,
+                        backgroundColor: 'primary.main',
+                        color: 'primary.contrastText',
+                    }}
                 >
-                    {!avatarUrl && displayName ? displayName.charAt(0).toUpperCase() : null}
+                    {!avatarUrl && displayName ? getInitials(displayName) : null}
                 </Avatar>
                 {displayName ? (
                     <Typography
                         noWrap
-                        sx={{ display: { xs: 'none', sm: 'block' }, maxWidth: 140 }}
-                        variant="body2"
+                        sx={{
+                            display: { xs: 'none', sm: 'block' },
+                            maxWidth: 140,
+                            fontSize: '13px',
+                        }}
                     >
                         {displayName}
                     </Typography>

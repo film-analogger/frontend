@@ -5,6 +5,7 @@ import WbIncandescentIcon from '@mui/icons-material/WbIncandescentRounded';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppearanceMode, type AppearanceMode } from '~/Theme/useAppearanceMode';
+import { pillSwitchContainerSx, pillSwitchItemSx } from '~/Theme/pillSwitchStyles';
 
 const OPTIONS: { mode: Exclude<AppearanceMode, 'system'>; icon: React.ReactNode }[] = [
     { mode: 'light', icon: <LightModeIcon fontSize="small" /> },
@@ -23,38 +24,18 @@ export const AppearanceModeSwitch: React.FunctionComponent = () => {
     return (
         <Box
             data-screenshot="appearance-mode-switch"
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 0.25,
-                padding: 0.375,
-                borderRadius: 2.5,
-                border: '1px solid',
-                borderColor: 'divider',
-                backgroundColor: 'background.paper',
-            }}
+            sx={pillSwitchContainerSx}
         >
             <Stack direction="row">
                 {OPTIONS.map((option) => (
                     <IconButton
                         aria-label={t(`app.theme.${option.mode}`)}
-                        color={current === option.mode ? 'primary' : 'default'}
                         key={option.mode}
                         onClick={() => {
                             setAppearance(option.mode);
                         }}
                         size="small"
-                        sx={{
-                            borderRadius: 1.5,
-                            backgroundColor:
-                                current === option.mode ? 'primary.main' : 'transparent',
-                            color:
-                                current === option.mode ? 'primary.contrastText' : 'text.secondary',
-                            '&:hover': {
-                                backgroundColor:
-                                    current === option.mode ? 'primary.dark' : 'action.hover',
-                            },
-                        }}
+                        sx={pillSwitchItemSx(current === option.mode)}
                         title={t(`app.theme.${option.mode}`)}
                     >
                         {option.icon}

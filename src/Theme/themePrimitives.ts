@@ -1,11 +1,4 @@
-import {
-    createTheme,
-    alpha,
-    type PaletteMode,
-    type Shadows,
-    darken,
-    lighten,
-} from '@mui/material/styles';
+import { createTheme, type PaletteMode, type Shadows, darken, lighten } from '@mui/material/styles';
 
 declare module '@mui/material/Paper' {
     interface PaperPropsVariantOverrides {
@@ -133,20 +126,24 @@ export const red = {
     900: 'rgb(30, 1, 1)',
 };
 
+// Design system source of truth: the "TEAL" palette from the imported
+// claude.ai/design mockup (Film Analogger.dc.html). Kept as flat tokens
+// (rather than derived from the primary/secondary ramps above) so the app
+// matches the mockup's exact hex/rgba values.
 export const colorSchemes = {
     light: {
         palette: {
             primary: {
-                light: primary[200],
-                main: primary[400],
-                dark: primary[700],
-                contrastText: primary[50],
+                light: lighten('#0F766D', 0.3),
+                main: '#0F766D',
+                dark: '#0B5B54',
+                contrastText: '#FFFFFF',
             },
             secondary: {
-                light: secondary[200],
-                main: secondary[400],
-                dark: secondary[700],
-                contrastText: secondary[50],
+                light: lighten('#B85C00', 0.3),
+                main: '#B85C00',
+                dark: darken('#B85C00', 0.25),
+                contrastText: '#FFFFFF',
             },
             info: {
                 light: brand[100],
@@ -172,37 +169,36 @@ export const colorSchemes = {
             grey: {
                 ...gray,
             },
-            divider: alpha(gray[300], 0.4),
+            divider: 'rgba(27, 25, 23, 0.13)',
             background: {
-                default: secondary[50],
-                paper: lighten(secondary[100], 0.5),
+                default: '#F3F0EA',
+                paper: '#FFFFFF',
             },
             text: {
-                primary: darken(primary[900], 0.3),
-                secondary: darken(primary[800], 0.3),
+                primary: '#1B1917',
+                secondary: '#6B6459',
                 warning: orange[400],
             },
             action: {
-                hover: alpha(gray[200], 0.2),
-                selected: alpha(gray[200], 0.3),
+                hover: 'rgba(15, 118, 109, 0.08)',
+                selected: 'rgba(15, 118, 109, 0.12)',
             },
-            baseShadow:
-                'rgba(9, 11, 17, 0.07) 0px 4px 16px 0px, rgba(19, 23, 32, 0.07) 0px 8px 16px -5px',
+            baseShadow: 'rgba(27, 25, 23, 0.10) 0px 6px 20px 0px',
         },
     },
     dark: {
         palette: {
             primary: {
-                contrastText: primary[50],
-                light: primary[300],
-                main: primary[400],
-                dark: primary[700],
+                contrastText: '#04211E',
+                light: '#81C9C6',
+                main: '#2CA39D',
+                dark: '#0F766D',
             },
             secondary: {
-                light: secondary[200],
-                main: secondary[400],
-                dark: secondary[700],
-                contrastText: secondary[50],
+                light: lighten('#E98324', 0.25),
+                main: '#E98324',
+                dark: darken('#E98324', 0.25),
+                contrastText: '#04211E',
             },
             info: {
                 contrastText: brand[300],
@@ -228,21 +224,20 @@ export const colorSchemes = {
             grey: {
                 ...gray,
             },
-            divider: alpha(secondary[700], 0.2),
+            divider: 'rgba(242, 237, 228, 0.13)',
             background: {
-                default: darken(primary[900], 0.6),
-                paper: darken(primary[900], 0.5),
+                default: '#14130F',
+                paper: '#1B1A15',
             },
             text: {
-                primary: secondary[50],
-                secondary: secondary[300],
+                primary: '#F2EDE4',
+                secondary: '#A79F93',
             },
             action: {
-                hover: alpha(gray[600], 0.2),
-                selected: alpha(gray[600], 0.3),
+                hover: 'rgba(129, 201, 198, 0.10)',
+                selected: 'rgba(129, 201, 198, 0.15)',
             },
-            baseShadow:
-                'rgba(9, 11, 17, 0.7) 0px 4px 16px 0px, rgba(19, 23, 32, 0.8) 0px 8px 16px -5px',
+            baseShadow: 'rgba(0, 0, 0, 0.5) 0px 8px 24px 0px',
         },
     },
     // Inactinic darkroom mode: red-on-black only, so it is safe under photographic safelights.
@@ -285,10 +280,24 @@ export const colorSchemes = {
             text: {
                 primary: '#FF1A00',
                 secondary: '#E60F00',
+                disabled: 'rgba(255, 26, 0, 0.5)',
+                icon: 'rgba(255, 26, 0, 0.5)',
             },
+            // A custom (non-'light'/'dark') MUI color scheme name gets none of the
+            // usual mode-based defaults, so every field components rely on (e.g.
+            // Button's hover state) must be provided explicitly here.
             action: {
+                active: '#FF1A00',
                 hover: 'rgba(255, 0, 0, 0.16)',
+                hoverOpacity: 0.08,
                 selected: 'rgba(255, 0, 0, 0.24)',
+                selectedOpacity: 0.16,
+                disabled: 'rgba(255, 26, 0, 0.3)',
+                disabledBackground: 'rgba(255, 26, 0, 0.12)',
+                disabledOpacity: 0.38,
+                focus: 'rgba(255, 26, 0, 0.12)',
+                focusOpacity: 0.12,
+                activatedOpacity: 0.24,
             },
             baseShadow: 'rgba(255, 0, 0, 0.25) 0px 0px 0px 1px',
         },

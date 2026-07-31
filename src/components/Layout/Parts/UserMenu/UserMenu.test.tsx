@@ -46,6 +46,18 @@ describe('UserMenu', () => {
         expect(screen.getByLabelText('user-menu-toggle')).toBeInTheDocument();
     });
 
+    it('shows the first and last name initials in the avatar', () => {
+        mockTokenParsed = { email: 'jane@example.com', name: 'Jane Doe' };
+        renderUserMenu();
+        expect(screen.getByText('JD')).toBeInTheDocument();
+    });
+
+    it('shows a single initial in the avatar for a one-word name', () => {
+        mockTokenParsed = { email: 'jane@example.com', name: 'Jane' };
+        renderUserMenu();
+        expect(screen.getByText('J')).toBeInTheDocument();
+    });
+
     it('does not show the menu initially', () => {
         renderUserMenu();
         expect(screen.queryByRole('menu')).toBeNull();

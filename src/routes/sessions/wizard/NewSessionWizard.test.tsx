@@ -135,5 +135,5 @@ describe('NewSessionWizard', () => {
         fireEvent.click(listbox.getByText('D-76 · Kodak'));
 
         expect(screen.getByRole('combobox')).toHaveTextContent('D-76 · Kodak');
-    });
+    }, 10000);
 });

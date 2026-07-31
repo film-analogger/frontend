@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useKeycloak } from '~/keycloak/useKeycloak';
 import {
     AppUserApi,
@@ -39,66 +40,70 @@ const useApiConfiguration = () => {
 
     const { i18n } = useTranslation();
 
-    return new Configuration({
-        accessToken: keycloak.updateToken(5).then(() => {
-            if (!keycloak.token) {
-                throw new Error('No token available');
-            }
-            return keycloak.token;
-        }),
-        baseOptions: {
-            headers: {
-                'X-LOCALE': i18n.language,
-            },
-        },
-    });
+    return useMemo(
+        () =>
+            new Configuration({
+                accessToken: keycloak.updateToken(5).then(() => {
+                    if (!keycloak.token) {
+                        throw new Error('No token available');
+                    }
+                    return keycloak.token;
+                }),
+                baseOptions: {
+                    headers: {
+                        'X-LOCALE': i18n.language,
+                    },
+                },
+            }),
+        [keycloak, i18n.language],
+    );
 };
 
 const useFilmApi = () => {
     const configuration = useApiConfiguration();
-    const filmApi = new FilmApi(configuration);
+    const filmApi = useMemo(() => new FilmApi(configuration), [configuration]);
 
     return { filmApi };
 };
 
 const useAppUserApi = () => {
     const configuration = useApiConfiguration();
-    const appUserApi = new AppUserApi(configuration);
+    const appUserApi = useMemo(() => new AppUserApi(configuration), [configuration]);
 
     return { appUserApi };
 };
 
 const useManufacturerApi = () => {
     const configuration = useApiConfiguration();
-    const manufacturerApi = new ManufacturerApi(configuration);
+    const manufacturerApi = useMemo(() => new ManufacturerApi(configuration), [configuration]);
 
     return { manufacturerApi };
 };
 
 const useChemistryApi = () => {
     const configuration = useApiConfiguration();
-    const chemistryApi = new ChemistryApi(configuration);
+    const chemistryApi = useMemo(() => new ChemistryApi(configuration), [configuration]);
 
     return { chemistryApi };
 };
 
 const useChemistryTypeApi = () => {
     const configuration = useApiConfiguration();
-    const chemistryTypeApi = new ChemistryTypeApi(configuration);
+    const chemistryTypeApi = useMemo(() => new ChemistryTypeApi(configuration), [configuration]);
 
     return { chemistryTypeApi };
 };
 
 const usePrintApi = () => {
     const configuration = useApiConfiguration();
-    const printApi = new PrintApi(configuration);
+    const printApi = useMemo(() => new PrintApi(configuration), [configuration]);
 
     return { printApi };
 };
 
 const usePrintSessionApi = () => {
     const configuration = useApiConfiguration();
-    const printSessionApi = new PrintSessionApi(configuration);
+    const printSessionApi = useMemo(() => new PrintSessionApi(configuration), [configuration]);
 
     return { printSessionApi };
 };
