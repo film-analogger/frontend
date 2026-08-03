@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import ChemistryList from './ChemistryList';
 import type { ChemistryRead } from '~/api/client';
@@ -87,7 +87,9 @@ describe('ChemistryList', () => {
 
         fireEvent.click(screen.getByText('C-41 · 1'));
 
-        expect(screen.queryByText('D-76')).not.toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.queryByText('D-76')).not.toBeInTheDocument();
+        });
         expect(screen.getByText('Flexicolor')).toBeInTheDocument();
     });
 });

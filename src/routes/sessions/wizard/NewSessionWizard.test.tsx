@@ -77,13 +77,17 @@ describe('NewSessionWizard', () => {
         mockNavigate.mockReset();
     });
 
-    it('disables the next button until the required session fields are filled', () => {
+    it('disables the next button until the required session fields are filled', async () => {
         renderWizard();
         expect(screen.getByText('sessions.wizard.next').closest('button')).toBeDisabled();
 
         fillSessionContext();
 
         expect(screen.getByText('sessions.wizard.next').closest('button')).toBeEnabled();
+
+        // Flushes the mount-time chemistries fetch inside act() so it doesn't
+        // resolve after this test has already returned.
+        await screen.findByText('sessions.wizard.next');
     });
 
     it('walks through all 4 steps and submits the session and its prints', async () => {
