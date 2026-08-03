@@ -59,6 +59,7 @@ const ManufacturerDetail: React.FunctionComponent = () => {
     if (!loaded || !manufacturer) {
         return (
             <CircularProgress
+                aria-label={t('app.loading')}
                 enableTrackSlot
                 size="3rem"
             />

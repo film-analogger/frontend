@@ -47,7 +47,7 @@ const KeycloakProvider: React.FunctionComponent<KeycloakProviderProps> = ({ chil
                 justifyContent: 'center',
             }}
         >
-            <CircularProgress />
+            <CircularProgress aria-label={t('app.loading')} />
             <Typography variant="body2">{t('auth.loading')}</Typography>
         </Box>
     );

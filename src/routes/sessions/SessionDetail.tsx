@@ -64,6 +64,7 @@ const SessionDetail: React.FunctionComponent = () => {
     if (!loaded || !session) {
         return (
             <CircularProgress
+                aria-label={t('app.loading')}
                 enableTrackSlot
                 size="3rem"
             />

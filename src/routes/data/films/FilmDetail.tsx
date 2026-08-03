@@ -49,6 +49,7 @@ const FilmDetail: React.FunctionComponent = () => {
     if (!loaded || !film) {
         return (
             <CircularProgress
+                aria-label={t('app.loading')}
                 enableTrackSlot
                 size="3rem"
             />

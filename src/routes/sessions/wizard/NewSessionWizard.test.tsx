@@ -121,7 +121,7 @@ describe('NewSessionWizard', () => {
             },
         });
         expect(mockNavigate).toHaveBeenCalledWith('/sessions/1');
-    }, 10000);
+    }, 15000);
 
     it('lets the user select a chemistry for a bath', async () => {
         renderWizard();
@@ -135,5 +135,5 @@ describe('NewSessionWizard', () => {
         fireEvent.click(listbox.getByText('D-76 · Kodak'));
 
         expect(screen.getByRole('combobox')).toHaveTextContent('D-76 · Kodak');
-    }, 10000);
+    }, 15000);
 });

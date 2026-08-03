@@ -3,6 +3,7 @@
         "title": "Film Analogger",
         "description": "Une application de carnet de bord pour les appareils photo argentiques, le développement et les tirages photo.",
         "account": "Compte",
+        "loading": "Chargement…",
         "theme": {
             "light": "Clair",
             "dark": "Sombre",

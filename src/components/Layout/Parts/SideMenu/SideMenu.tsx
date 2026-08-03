@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import MuiDrawer, { drawerClasses } from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -20,7 +20,6 @@ import { drawerWidth } from '~/Theme/Constants/layout';
 import { useTranslation } from 'react-i18next';
 import { useNavCounts } from './useNavCounts';
 import { LabModeToggle } from './LabModeToggle';
-import { useAppearanceMode } from '~/Theme/useAppearanceMode';
 
 const Drawer = styled(MuiDrawer)({
     width: drawerWidth,
@@ -45,8 +44,8 @@ const SideMenu: React.FunctionComponent = () => {
     const { t } = useTranslation();
     const location = useLocation();
     const counts = useNavCounts();
-    const { current } = useAppearanceMode();
-    const activeColor = current === 'light' ? 'primary.dark' : 'primary.light';
+    const theme = useTheme();
+    const activeColor = theme.palette.mode === 'light' ? 'primary.dark' : 'primary.light';
 
     const isActive = (item: NavItem) => {
         if (!item.href) {
@@ -160,7 +159,6 @@ const SideMenu: React.FunctionComponent = () => {
                                             letterSpacing: '0.05em',
                                             textTransform: 'uppercase',
                                             color: 'text.secondary',
-                                            opacity: 0.75,
                                             whiteSpace: 'nowrap',
                                         }}
                                     >

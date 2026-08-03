@@ -81,7 +81,6 @@ const AppBar: React.FunctionComponent = () => {
                                     display: { xs: 'none', sm: 'block' },
                                     fontSize: '12.5px',
                                     color: 'text.secondary',
-                                    opacity: 0.8,
                                 }}
                             >
                                 {t(crumb.section)}

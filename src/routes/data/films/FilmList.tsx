@@ -76,6 +76,7 @@ const FilmList: React.FunctionComponent = () => {
                 <Typography color="error">{t('errors.api.loadingData')}</Typography>
             ) : !loaded ? (
                 <CircularProgress
+                    aria-label={t('app.loading')}
                     enableTrackSlot
                     size="3rem"
                 />

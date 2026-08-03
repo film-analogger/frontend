@@ -49,6 +49,7 @@ const ChemistryDetail: React.FunctionComponent = () => {
     if (!loaded || !chemistry) {
         return (
             <CircularProgress
+                aria-label={t('app.loading')}
                 enableTrackSlot
                 size="3rem"
             />

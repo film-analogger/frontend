@@ -179,6 +179,7 @@ const NewSessionWizard: React.FunctionComponent = () => {
                 {state.step === 1 ? (
                     !chemistriesLoaded ? (
                         <CircularProgress
+                            aria-label={t('app.loading')}
                             enableTrackSlot
                             size="2.5rem"
                         />

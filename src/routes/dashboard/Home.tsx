@@ -64,18 +64,6 @@ const Home: React.FunctionComponent = () => {
             });
     }, [printSessionApi, printApi, filmApi]);
 
-    if (error) {
-        return <Typography color="error">{t('errors.api.loadingData')}</Typography>;
-    }
-    if (!loaded) {
-        return (
-            <CircularProgress
-                enableTrackSlot
-                size="3rem"
-            />
-        );
-    }
-
     const recentSessions = [...sessions].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
 
     const baseSeconds = prints.flatMap((print) =>
@@ -111,196 +99,217 @@ const Home: React.FunctionComponent = () => {
                 </Button>
             </Stack>
 
-            <Grid
-                container
-                spacing={2}
-                sx={{ mb: 3 }}
-            >
-                <Grid size={{ xs: 12, sm: 4 }}>
-                    <Paper
-                        sx={{ p: 2 }}
-                        variant="outlined"
+            {error ? (
+                <Typography color="error">{t('errors.api.loadingData')}</Typography>
+            ) : !loaded ? (
+                <CircularProgress
+                    aria-label={t('app.loading')}
+                    enableTrackSlot
+                    size="3rem"
+                />
+            ) : (
+                <React.Fragment>
+                    <Grid
+                        container
+                        spacing={2}
+                        sx={{ mb: 3 }}
                     >
-                        <Stack
-                            direction="row"
-                            spacing={1}
-                            sx={{ alignItems: 'center', color: 'text.secondary', mb: 1 }}
-                        >
-                            <LocalPrintshopIcon fontSize="small" />
-                            <Typography variant="overline">{t('home.stats.sessions')}</Typography>
-                        </Stack>
-                        <Typography variant="h4">{sessions.length}</Typography>
-                    </Paper>
-                </Grid>
-                <Grid size={{ xs: 12, sm: 4 }}>
-                    <Paper
-                        sx={{ p: 2 }}
-                        variant="outlined"
-                    >
-                        <Stack
-                            direction="row"
-                            spacing={1}
-                            sx={{ alignItems: 'center', color: 'text.secondary', mb: 1 }}
-                        >
-                            <PhotoLibraryIcon fontSize="small" />
-                            <Typography variant="overline">{t('home.stats.prints')}</Typography>
-                        </Stack>
-                        <Typography variant="h4">{prints.length}</Typography>
-                    </Paper>
-                </Grid>
-                <Grid size={{ xs: 12, sm: 4 }}>
-                    <Paper
-                        sx={{ p: 2 }}
-                        variant="outlined"
-                    >
-                        <Stack
-                            direction="row"
-                            spacing={1}
-                            sx={{ alignItems: 'center', color: 'text.secondary', mb: 1 }}
-                        >
-                            <TimerIcon fontSize="small" />
-                            <Typography variant="overline">{t('home.stats.medianBase')}</Typography>
-                        </Stack>
-                        <Typography variant="h4">
-                            {medianBase === null
-                                ? '—'
-                                : t('home.stats.medianBaseValue', {
-                                      seconds: medianBase.toFixed(1),
-                                  })}
-                        </Typography>
-                    </Paper>
-                </Grid>
-            </Grid>
-
-            <Grid
-                container
-                spacing={2}
-            >
-                <Grid size={{ xs: 12, md: 7 }}>
-                    <Paper
-                        sx={{ overflow: 'hidden' }}
-                        variant="outlined"
-                    >
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 1,
-                                px: 2,
-                                py: 1.5,
-                                borderBottom: '1px solid',
-                                borderColor: 'divider',
-                            }}
-                        >
-                            <Typography
-                                sx={{ flex: 1, fontWeight: 600 }}
-                                variant="subtitle1"
-                            >
-                                {t('home.recentSessions')}
-                            </Typography>
-                            <Button
-                                component={RouterLink}
-                                size="small"
-                                to="/sessions"
-                            >
-                                {t('home.viewAllSessions')}
-                            </Button>
-                        </Box>
-                        {recentSessions.length === 0 ? (
-                            <Typography
-                                color="text.secondary"
+                        <Grid size={{ xs: 12, sm: 4 }}>
+                            <Paper
                                 sx={{ p: 2 }}
+                                variant="outlined"
                             >
-                                {t('home.noSessions')}
-                            </Typography>
-                        ) : (
-                            recentSessions.map((session) => (
+                                <Stack
+                                    direction="row"
+                                    spacing={1}
+                                    sx={{ alignItems: 'center', color: 'text.secondary', mb: 1 }}
+                                >
+                                    <LocalPrintshopIcon fontSize="small" />
+                                    <Typography variant="overline">
+                                        {t('home.stats.sessions')}
+                                    </Typography>
+                                </Stack>
+                                <Typography variant="h4">{sessions.length}</Typography>
+                            </Paper>
+                        </Grid>
+                        <Grid size={{ xs: 12, sm: 4 }}>
+                            <Paper
+                                sx={{ p: 2 }}
+                                variant="outlined"
+                            >
+                                <Stack
+                                    direction="row"
+                                    spacing={1}
+                                    sx={{ alignItems: 'center', color: 'text.secondary', mb: 1 }}
+                                >
+                                    <PhotoLibraryIcon fontSize="small" />
+                                    <Typography variant="overline">
+                                        {t('home.stats.prints')}
+                                    </Typography>
+                                </Stack>
+                                <Typography variant="h4">{prints.length}</Typography>
+                            </Paper>
+                        </Grid>
+                        <Grid size={{ xs: 12, sm: 4 }}>
+                            <Paper
+                                sx={{ p: 2 }}
+                                variant="outlined"
+                            >
+                                <Stack
+                                    direction="row"
+                                    spacing={1}
+                                    sx={{ alignItems: 'center', color: 'text.secondary', mb: 1 }}
+                                >
+                                    <TimerIcon fontSize="small" />
+                                    <Typography variant="overline">
+                                        {t('home.stats.medianBase')}
+                                    </Typography>
+                                </Stack>
+                                <Typography variant="h4">
+                                    {medianBase === null
+                                        ? '—'
+                                        : t('home.stats.medianBaseValue', {
+                                              seconds: medianBase.toFixed(1),
+                                          })}
+                                </Typography>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+
+                    <Grid
+                        container
+                        spacing={2}
+                    >
+                        <Grid size={{ xs: 12, md: 7 }}>
+                            <Paper
+                                sx={{ overflow: 'hidden' }}
+                                variant="outlined"
+                            >
                                 <Box
-                                    component={RouterLink}
-                                    key={session['@id']}
                                     sx={{
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: 2,
+                                        gap: 1,
                                         px: 2,
                                         py: 1.5,
-                                        borderTop: '1px solid',
+                                        borderBottom: '1px solid',
                                         borderColor: 'divider',
-                                        textDecoration: 'none',
-                                        color: 'inherit',
-                                        '&:hover': { backgroundColor: 'action.hover' },
                                     }}
-                                    to={`/sessions/${session.id ?? ''}`}
                                 >
-                                    <Box sx={{ flex: 1, minWidth: 0 }}>
-                                        <Typography sx={{ fontWeight: 600 }}>
-                                            {t('sessions.list.numberLabel', {
-                                                number: session.number,
-                                            })}
-                                        </Typography>
-                                        <Typography
-                                            color="text.secondary"
-                                            variant="caption"
+                                    <Typography
+                                        sx={{ flex: 1, fontWeight: 600 }}
+                                        variant="subtitle1"
+                                    >
+                                        {t('home.recentSessions')}
+                                    </Typography>
+                                    <Button
+                                        component={RouterLink}
+                                        size="small"
+                                        to="/sessions"
+                                    >
+                                        {t('home.viewAllSessions')}
+                                    </Button>
+                                </Box>
+                                {recentSessions.length === 0 ? (
+                                    <Typography
+                                        color="text.secondary"
+                                        sx={{ p: 2 }}
+                                    >
+                                        {t('home.noSessions')}
+                                    </Typography>
+                                ) : (
+                                    recentSessions.map((session) => (
+                                        <Box
+                                            component={RouterLink}
+                                            key={session['@id']}
+                                            sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: 2,
+                                                px: 2,
+                                                py: 1.5,
+                                                borderTop: '1px solid',
+                                                borderColor: 'divider',
+                                                textDecoration: 'none',
+                                                color: 'inherit',
+                                                '&:hover': { backgroundColor: 'action.hover' },
+                                            }}
+                                            to={`/sessions/${session.id ?? ''}`}
                                         >
-                                            {session.date} · {session.lab} · {session.enlarger}
-                                        </Typography>
-                                    </Box>
-                                    <ChevronRightIcon sx={{ opacity: 0.4 }} />
-                                </Box>
-                            ))
-                        )}
-                    </Paper>
-                </Grid>
+                                            <Box sx={{ flex: 1, minWidth: 0 }}>
+                                                <Typography sx={{ fontWeight: 600 }}>
+                                                    {t('sessions.list.numberLabel', {
+                                                        number: session.number,
+                                                    })}
+                                                </Typography>
+                                                <Typography
+                                                    color="text.secondary"
+                                                    variant="caption"
+                                                >
+                                                    {session.date} · {session.lab} ·{' '}
+                                                    {session.enlarger}
+                                                </Typography>
+                                            </Box>
+                                            <ChevronRightIcon sx={{ opacity: 0.4 }} />
+                                        </Box>
+                                    ))
+                                )}
+                            </Paper>
+                        </Grid>
 
-                <Grid size={{ xs: 12, md: 5 }}>
-                    <Paper
-                        sx={{ p: 2 }}
-                        variant="outlined"
-                    >
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
-                            <Typography
-                                sx={{ flex: 1, fontWeight: 600 }}
-                                variant="subtitle1"
+                        <Grid size={{ xs: 12, md: 5 }}>
+                            <Paper
+                                sx={{ p: 2 }}
+                                variant="outlined"
                             >
-                                {t('home.filmsPreview')}
-                            </Typography>
-                            <Button
-                                component={RouterLink}
-                                size="small"
-                                to="/data/films"
-                            >
-                                {t('home.viewAllFilms')}
-                            </Button>
-                        </Box>
-                        <Stack spacing={1.25}>
-                            {films.slice(0, 4).map((film) => (
                                 <Box
-                                    component={RouterLink}
-                                    key={film['@id']}
-                                    sx={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: 1.5,
-                                        p: 1,
-                                        borderRadius: 1.5,
-                                        border: '1px solid',
-                                        borderColor: 'divider',
-                                        textDecoration: 'none',
-                                        color: 'inherit',
-                                    }}
-                                    to={`/data/films/${film.id ?? ''}`}
+                                    sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}
                                 >
-                                    <FilmName
-                                        film={film}
-                                        sx={{ flex: 1, minWidth: 0 }}
-                                    />
-                                    <ProcessChip film={film} />
+                                    <Typography
+                                        sx={{ flex: 1, fontWeight: 600 }}
+                                        variant="subtitle1"
+                                    >
+                                        {t('home.filmsPreview')}
+                                    </Typography>
+                                    <Button
+                                        component={RouterLink}
+                                        size="small"
+                                        to="/data/films"
+                                    >
+                                        {t('home.viewAllFilms')}
+                                    </Button>
                                 </Box>
-                            ))}
-                        </Stack>
-                    </Paper>
-                </Grid>
-            </Grid>
+                                <Stack spacing={1.25}>
+                                    {films.slice(0, 4).map((film) => (
+                                        <Box
+                                            component={RouterLink}
+                                            key={film['@id']}
+                                            sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: 1.5,
+                                                p: 1,
+                                                borderRadius: 1.5,
+                                                border: '1px solid',
+                                                borderColor: 'divider',
+                                                textDecoration: 'none',
+                                                color: 'inherit',
+                                            }}
+                                            to={`/data/films/${film.id ?? ''}`}
+                                        >
+                                            <FilmName
+                                                film={film}
+                                                sx={{ flex: 1, minWidth: 0 }}
+                                            />
+                                            <ProcessChip film={film} />
+                                        </Box>
+                                    ))}
+                                </Stack>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </React.Fragment>
+            )}
         </Box>
     );
 };

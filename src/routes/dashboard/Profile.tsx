@@ -31,6 +31,7 @@ const Profile: React.FunctionComponent = () => {
                 <Typography color="error">{t('errors.api.loadingData')}</Typography>
             ) : !loaded || !user ? (
                 <CircularProgress
+                    aria-label={t('app.loading')}
                     enableTrackSlot
                     size="3rem"
                 />

@@ -3,6 +3,7 @@
         "title": "Film Analogger",
         "description": "A film camera logbook application for photo development and printing",
         "account": "Account",
+        "loading": "Loading…",
         "theme": {
             "light": "Light",
             "dark": "Dark",
