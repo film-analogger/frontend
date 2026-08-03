@@ -6,12 +6,12 @@ test.describe('500 error page', () => {
     test('500 error page', async ({ page }) => {
         await page.goto('/error/500');
 
-        await expect(page.getByText('500')).toBeVisible();
+        await expect(page.getByTestId('error-status-code')).toBeVisible();
     });
 
     test('500 error accessibility', async ({ page }) => {
         await page.goto('/error/500');
-        await expect(page.getByText('500')).toBeVisible();
+        await expect(page.getByTestId('error-status-code')).toBeVisible();
 
         const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
         expect(accessibilityScanResults.violations).toEqual([]);

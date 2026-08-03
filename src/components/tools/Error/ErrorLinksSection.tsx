@@ -21,7 +21,6 @@ const ErrorLinksSection: React.FunctionComponent<{
                         letterSpacing: '0.06em',
                         textTransform: 'uppercase',
                         color: 'text.secondary',
-                        opacity: 0.85,
                         mb: 1.25,
                     }}
                 >

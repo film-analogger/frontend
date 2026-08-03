@@ -49,6 +49,11 @@ const Error: React.FunctionComponent<ErrorProps> = ({
     const theme = useTheme();
     const accentColor = theme.palette[accent].main;
     const displayCode = code ?? String(statusCode);
+    // Outlined chip text sits directly on the page background, so it needs its
+    // own AA-contrast shade rather than the (button-oriented) `main` color:
+    // in light mode `main` alone can fall short (e.g. secondary at 4.04:1).
+    const kindChipColor =
+        theme.palette.mode === 'dark' ? theme.palette[accent].main : theme.palette[accent].dark;
 
     return (
         <Box data-testid="error-container">
@@ -82,12 +87,13 @@ const Error: React.FunctionComponent<ErrorProps> = ({
                                     fontWeight: 700,
                                     letterSpacing: '0.03em',
                                     textTransform: 'uppercase',
+                                    color: kindChipColor,
                                 }}
                                 variant="outlined"
                             />
                         ) : null}
                         <Typography
-                            component="h2"
+                            component="h1"
                             data-testid="error-title"
                             variant="h4"
                         >
