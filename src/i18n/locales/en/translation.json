@@ -222,22 +222,65 @@
             "loadingData" : "An error occurred while loading data. Please try again later."
         },
         "404": {
-            "title": "Page not found",
-            "detail": "The page you are looking for does not exist.",
+            "kind": "Not found",
+            "title": "This negative isn't on the contact sheet",
+            "detail": "The page you're looking for doesn't exist, or the session was deleted since you followed this link. Nothing is lost in your logbook.",
             "pageTitle": "404 - Page not found",
-            "metaDescription": "The page you are looking for does not exist."
+            "metaDescription": "The page you are looking for does not exist.",
+            "stripLabel": "no frame · exposure not found"
         },
         "500": {
-            "title": "Internal server error",
-            "detail": "An unexpected error occurred on the server.",
+            "kind": "Server error",
+            "title": "The developer is exhausted",
+            "detail": "The server couldn't process the request. This isn't caused by anything you entered: what you had saved is intact.",
             "pageTitle": "500 - Internal server error",
-            "metaDescription": "An unexpected error occurred on the server."
+            "metaDescription": "An unexpected error occurred on the server.",
+            "stripLabel": "processing interrupted · 500"
         },
         "403": {
-            "title": "Forbidden",
-            "detail": "You do not have permission to access this page.",
+            "kind": "Access denied",
+            "title": "The darkroom is locked",
+            "detail": "This session belongs to another member. Print logs stay private by default: only their owner can open them.",
             "pageTitle": "403 - Forbidden",
-            "metaDescription": "You do not have permission to access this page."
+            "metaDescription": "You do not have permission to access this page.",
+            "stripLabel": "restricted access · owner only",
+            "safety": "If you think this session is yours, check the signed-in account: Film Analogger never shows another member's logbook, even read-only."
+        },
+        "503": {
+            "kind": "Maintenance",
+            "title": "Maintenance session in progress",
+            "detail": "An update is being applied. The app will be back in a few minutes, with no data loss.",
+            "pageTitle": "503 - Under maintenance",
+            "metaDescription": "An update is currently being applied.",
+            "stripLabel": "scheduled maintenance · 503"
+        },
+        "offline": {
+            "kind": "Offline",
+            "title": "No network in the darkroom",
+            "detail": "The connection dropped. Check your network: the page will reload automatically as soon as it's back.",
+            "pageTitle": "Offline",
+            "metaDescription": "The network connection is unavailable.",
+            "stripLabel": "connection lost · waiting",
+            "safety": "Don't close this tab: the page reloads as soon as the connection returns."
+        },
+        "actions": {
+            "backToLog": "Back to the log",
+            "previousPage": "Previous page",
+            "login": "Log in",
+            "retry": "Try again",
+            "report": "Report the issue",
+            "reload": "Reload",
+            "retryConnection": "Retry connection"
+        },
+        "links": {
+            "tryInstead": "Or pick up from here",
+            "home": "Home",
+            "films": "Films",
+            "chemistries": "Chemistries",
+            "manufacturers": "Manufacturers",
+            "publicContent": "Public content",
+            "filmsRepository": "Films repository",
+            "chemistriesRepository": "Chemistries repository"
         }
     },
     "legal" : {

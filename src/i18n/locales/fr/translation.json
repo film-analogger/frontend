@@ -222,22 +222,65 @@
             "loadingData" : "Une erreur s'est produite lors du chargement des données. Veuillez réessayer plus tard."
         },
         "404": {
-            "title": "Page non trouvée",
-            "detail": "La page que vous recherchez n'existe pas.",
+            "kind": "Introuvable",
+            "title": "Ce négatif n'est pas dans la planche",
+            "detail": "La page demandée n'existe pas, ou la séance a été supprimée depuis le lien que tu as suivi. Rien n'est perdu côté carnet.",
             "pageTitle": "404 - Page non trouvée",
-            "metaDescription": "La page que vous recherchez n'existe pas."
+            "metaDescription": "La page que vous recherchez n'existe pas.",
+            "stripLabel": "aucune image · exposure not found"
         },
         "500": {
-            "title": "Erreur interne du serveur",
-            "detail": "Une erreur inattendue s'est produite sur le serveur.",
+            "kind": "Erreur serveur",
+            "title": "Le révélateur est épuisé",
+            "detail": "Le serveur n'a pas pu traiter la demande. Ce n'est pas ta saisie qui est en cause : ce que tu avais enregistré est intact.",
             "pageTitle": "500 - Erreur interne du serveur",
-            "metaDescription": "Une erreur inattendue s'est produite sur le serveur."
+            "metaDescription": "Une erreur inattendue s'est produite sur le serveur.",
+            "stripLabel": "traitement interrompu · 500"
         },
         "403": {
-            "title": "Accès refusé",
-            "detail": "Vous n'avez pas la permission d'accéder à cette page.",
+            "kind": "Accès refusé",
+            "title": "La chambre noire est fermée",
+            "detail": "Cette séance appartient à un autre membre. Les carnets de tirage restent privés par défaut : seul leur auteur peut les ouvrir.",
             "pageTitle": "403 - Accès refusé",
-            "metaDescription": "Vous n'avez pas la permission d'accéder à cette page."
+            "metaDescription": "Vous n'avez pas la permission d'accéder à cette page.",
+            "stripLabel": "accès restreint · owner only",
+            "safety": "Si tu penses que cette séance est la tienne, vérifie le compte connecté : Film Analogger n'affiche jamais le carnet d'un autre membre, même en lecture."
+        },
+        "503": {
+            "kind": "Maintenance",
+            "title": "Séance de maintenance en cours",
+            "detail": "Une mise à jour est en cours d'application. L'app revient dans quelques minutes, sans perte de données.",
+            "pageTitle": "503 - Maintenance en cours",
+            "metaDescription": "Une mise à jour est en cours d'application.",
+            "stripLabel": "maintenance planifiée · 503"
+        },
+        "offline": {
+            "kind": "Hors ligne",
+            "title": "Plus de réseau dans la chambre noire",
+            "detail": "La connexion est tombée. Vérifie ton réseau : la page se rechargera automatiquement dès qu'il sera à nouveau disponible.",
+            "pageTitle": "Hors ligne",
+            "metaDescription": "La connexion réseau est indisponible.",
+            "stripLabel": "connexion perdue · en attente",
+            "safety": "Ne ferme pas cet onglet : la page se recharge dès que la connexion revient."
+        },
+        "actions": {
+            "backToLog": "Retour au carnet",
+            "previousPage": "Page précédente",
+            "login": "Se connecter",
+            "retry": "Réessayer",
+            "report": "Signaler l'incident",
+            "reload": "Recharger",
+            "retryConnection": "Retenter la connexion"
+        },
+        "links": {
+            "tryInstead": "Ou reprendre par là",
+            "home": "Accueil",
+            "films": "Pellicules",
+            "chemistries": "Chimies",
+            "manufacturers": "Fabricants",
+            "publicContent": "Contenus publics",
+            "filmsRepository": "Référentiel pellicules",
+            "chemistriesRepository": "Référentiel chimies"
         }
     },
     "legal": {

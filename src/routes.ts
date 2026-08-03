@@ -32,6 +32,8 @@ export default [
                 route('404', './routes/errors/Error404/Error404.tsx'),
                 route('403', './routes/errors/Error403/Error403.tsx'),
                 route('500', './routes/errors/Error500/Error500.tsx'),
+                route('503', './routes/errors/Error503/Error503.tsx'),
+                route('offline', './routes/errors/ErrorOffline/ErrorOffline.tsx'),
             ]),
         ]),
     ]),
