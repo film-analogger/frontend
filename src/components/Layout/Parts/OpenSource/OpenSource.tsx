@@ -6,14 +6,14 @@ import { useTranslation } from 'react-i18next';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link, type SxProps } from '@mui/material';
 import type { Theme } from '@mui/material/styles';
-import { darken } from '@mui/material';
 
 const OpenSource: React.FunctionComponent = () => {
     const { t } = useTranslation();
 
     const subTextSx: NonNullable<SxProps<Theme>> = React.useCallback(
         (theme: Theme) => ({
-            color: darken(theme.palette.text.secondary, 0.1),
+            color: (theme.vars ?? theme).palette.text.secondary,
+            opacity: 0.85,
             fontWeight: 500,
             fontSize: '0.825rem',
         }),
@@ -22,7 +22,7 @@ const OpenSource: React.FunctionComponent = () => {
 
     return (
         <Card
-            sx={{ m: 1.5, flexShrink: 0 }}
+            sx={{ flexShrink: 0 }}
             variant="outlined"
         >
             <CardContent>

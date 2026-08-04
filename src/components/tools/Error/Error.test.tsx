@@ -1,25 +1,24 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import { MemoryRouter } from 'react-router';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ShieldIcon from '@mui/icons-material/Shield';
+import AppTheme from '~/Theme/Theme';
 import Error from './Error';
 
 vi.mock('react-i18next', () => ({
-    useTranslation: () => ({
-        t: (key: string) => {
-            const translations: Record<string, string> = {
-                'errors.404.title': 'Not Found',
-                'errors.404.pageTitle': 'Page Not Found',
-                'errors.404.metaDescription': 'The page you are looking for does not exist.',
-                'errors.404.detail': 'The page you are looking for does not exist.',
-                'errors.500.title': 'Internal Server Error',
-                'errors.500.detail': 'Internal Server Error Detail',
-                'errors.500.metaDescription': 'Internal Server Error Meta Description',
-                'errors.500.pageTitle': 'Internal Server Error Page Title',
-            };
-            return translations[key] ?? key;
-        },
-    }),
+    useTranslation: () => ({ t: (key: string) => key }),
 }));
+
+const renderWithProviders = (ui: React.ReactElement) =>
+    render(
+        <AppTheme>
+            <MemoryRouter>{ui}</MemoryRouter>
+        </AppTheme>,
+    );
 
 describe('Error component', () => {
     const defaultProps: React.ComponentProps<typeof Error> = {
@@ -29,49 +28,58 @@ describe('Error component', () => {
     };
 
     it('renders the error container', () => {
-        render(<Error {...defaultProps} />);
+        renderWithProviders(<Error {...defaultProps} />);
         expect(screen.getByTestId('error-container')).toBeInTheDocument();
     });
 
     it('renders the status code', () => {
-        render(<Error {...defaultProps} />);
+        renderWithProviders(<Error {...defaultProps} />);
         expect(screen.getByTestId('error-status-code')).toHaveTextContent('404');
     });
 
+    it('renders a display code override instead of the status code', () => {
+        renderWithProviders(
+            <Error
+                {...defaultProps}
+                code="OFF"
+                statusCode={0}
+            />,
+        );
+        expect(screen.getByTestId('error-status-code')).toHaveTextContent('OFF');
+    });
+
     it('renders the title', () => {
-        render(<Error {...defaultProps} />);
-        expect(screen.getByTestId('error-title')).toHaveTextContent('Not Found');
+        renderWithProviders(<Error {...defaultProps} />);
+        expect(screen.getByTestId('error-title')).toHaveTextContent('errors.404.title');
     });
 
     it('renders the page title', () => {
-        render(<Error {...defaultProps} />);
-        expect(document.querySelector('title')).toHaveTextContent('Page Not Found');
+        renderWithProviders(<Error {...defaultProps} />);
+        expect(document.querySelector('title')).toHaveTextContent('errors.404.pageTitle');
     });
 
     it('does not render detail when not provided', () => {
-        render(<Error {...defaultProps} />);
+        renderWithProviders(<Error {...defaultProps} />);
         expect(screen.queryByTestId('error-detail')).not.toBeInTheDocument();
     });
 
     it('renders detail when provided', () => {
-        render(
+        renderWithProviders(
             <Error
                 {...defaultProps}
                 detail="errors.404.detail"
             />,
         );
-        expect(screen.getByTestId('error-detail')).toHaveTextContent(
-            'The page you are looking for does not exist.',
-        );
+        expect(screen.getByTestId('error-detail')).toHaveTextContent('errors.404.detail');
     });
 
     it('does not render meta description when not provided', () => {
-        render(<Error {...defaultProps} />);
+        renderWithProviders(<Error {...defaultProps} />);
         expect(document.querySelector('meta[name="description"]')).not.toBeInTheDocument();
     });
 
     it('renders meta description when provided', () => {
-        render(
+        renderWithProviders(
             <Error
                 {...defaultProps}
                 metaDescription="errors.404.metaDescription"
@@ -79,59 +87,113 @@ describe('Error component', () => {
         );
         const metaTag = document.querySelector('meta[name="description"]');
         expect(metaTag).toBeInTheDocument();
-        expect(metaTag).toHaveAttribute('content', 'The page you are looking for does not exist.');
+        expect(metaTag).toHaveAttribute('content', 'errors.404.metaDescription');
     });
 
-    it('renders correctly with a 500 status code', () => {
-        render(
-            <Error
-                detail="errors.500.detail"
-                metaDescription="errors.500.metaDescription"
-                pageTitle="errors.500.pageTitle"
-                statusCode={500}
-                title="errors.500.title"
-            />,
-        );
-        expect(screen.getByTestId('error-status-code')).toHaveTextContent('500');
-        expect(screen.getByTestId('error-title')).toHaveTextContent('Internal Server Error');
-        expect(screen.getByTestId('error-detail')).toHaveTextContent(
-            'Internal Server Error Detail',
-        );
+    it('does not render the kind chip when not provided', () => {
+        renderWithProviders(<Error {...defaultProps} />);
+        expect(screen.queryByTestId('error-kind')).not.toBeInTheDocument();
     });
 
-    it('renders all optional props together', () => {
-        render(
+    it('renders the kind chip when provided', () => {
+        renderWithProviders(
             <Error
                 {...defaultProps}
-                detail="errors.404.detail"
-                metaDescription="errors.404.metaDescription"
+                icon={<HomeRoundedIcon />}
+                kind="errors.404.kind"
             />,
         );
-        expect(screen.getByTestId('error-detail')).toBeInTheDocument();
-        expect(document.querySelector('meta[name="description"]')).toBeInTheDocument();
-    });
-    it('renders status code with h1 variant and bold font weight', () => {
-        render(<Error {...defaultProps} />);
-        const statusCodeElement = screen.getByTestId('error-status-code');
-        expect(statusCodeElement.tagName).toBe('H1');
-        expect(statusCodeElement).toHaveStyle({ fontWeight: 700 });
+        expect(screen.getByTestId('error-kind')).toHaveTextContent('errors.404.kind');
     });
 
-    it('renders title with h3 variant and medium font weight', () => {
-        render(<Error {...defaultProps} />);
-        const titleElement = screen.getByTestId('error-title');
-        expect(titleElement.tagName.toLowerCase()).toBe('p');
-        expect(titleElement).toHaveStyle({ fontWeight: 500 });
+    it('does not render actions when primaryAction is not provided', () => {
+        renderWithProviders(<Error {...defaultProps} />);
+        expect(screen.queryByTestId('error-primary-action')).not.toBeInTheDocument();
     });
 
-    it('renders detail with subtitle1 variant', () => {
-        render(
+    it('renders a link-based primary action', () => {
+        renderWithProviders(
             <Error
                 {...defaultProps}
-                detail="errors.404.detail"
+                primaryAction={{
+                    labelKey: 'errors.actions.backToLog',
+                    icon: <LocalPrintshopIcon />,
+                    to: '/sessions',
+                }}
             />,
         );
-        const detailElement = screen.getByTestId('error-detail');
-        expect(detailElement.tagName.toLowerCase()).toBe('p');
+        const action = screen.getByTestId('error-primary-action');
+        expect(action).toHaveTextContent('errors.actions.backToLog');
+        expect(action).toHaveAttribute('href', '/sessions');
+    });
+
+    it('renders a callback-based secondary action', () => {
+        const onClick = vi.fn();
+        renderWithProviders(
+            <Error
+                {...defaultProps}
+                primaryAction={{
+                    labelKey: 'errors.actions.retry',
+                    icon: <ArrowBackIcon />,
+                    onClick,
+                }}
+                secondaryAction={{
+                    labelKey: 'errors.actions.previousPage',
+                    icon: <ArrowBackIcon />,
+                    onClick,
+                }}
+            />,
+        );
+        const secondary = screen.getByTestId('error-secondary-action');
+        expect(secondary).toHaveTextContent('errors.actions.previousPage');
+        secondary.click();
+        expect(onClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not render the links section when not provided', () => {
+        renderWithProviders(<Error {...defaultProps} />);
+        expect(screen.queryByTestId('error-links')).not.toBeInTheDocument();
+    });
+
+    it('renders quick escape links', () => {
+        renderWithProviders(
+            <Error
+                {...defaultProps}
+                links={[
+                    { labelKey: 'errors.links.home', icon: <HomeRoundedIcon />, to: '/' },
+                    {
+                        labelKey: 'errors.links.films',
+                        icon: <LocalPrintshopIcon />,
+                        to: '/data/films',
+                    },
+                ]}
+                linksLabel="errors.links.tryInstead"
+            />,
+        );
+        const section = screen.getByTestId('error-links');
+        expect(section).toHaveTextContent('errors.links.tryInstead');
+        expect(screen.getByRole('link', { name: /errors.links.home/ })).toHaveAttribute(
+            'href',
+            '/',
+        );
+        expect(screen.getByRole('link', { name: /errors.links.films/ })).toHaveAttribute(
+            'href',
+            '/data/films',
+        );
+    });
+
+    it('does not render the safety notice when not provided', () => {
+        renderWithProviders(<Error {...defaultProps} />);
+        expect(screen.queryByTestId('error-safety')).not.toBeInTheDocument();
+    });
+
+    it('renders the safety notice when provided', () => {
+        renderWithProviders(
+            <Error
+                {...defaultProps}
+                safety={{ icon: <ShieldIcon />, messageKey: 'errors.403.safety' }}
+            />,
+        );
+        expect(screen.getByTestId('error-safety')).toHaveTextContent('errors.403.safety');
     });
 });

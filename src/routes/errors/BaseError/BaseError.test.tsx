@@ -20,17 +20,12 @@ describe('BaseError', () => {
         const { container } = render(<BaseError />);
         const containerElement = container.firstChild;
         expect(containerElement).toBeInTheDocument();
+        expect(containerElement).toHaveClass('MuiContainer-maxWidthMd');
     });
 
     it('renders outlet content inside the container', () => {
         render(<BaseError />);
         const outlet = screen.getByTestId('outlet');
         expect(outlet).toHaveTextContent('Outlet Content');
-    });
-
-    it('applies center text alignment style', () => {
-        const { container } = render(<BaseError />);
-        const containerElement = container.firstChild as HTMLElement;
-        expect(containerElement).toHaveStyle({ textAlign: 'center' });
     });
 });

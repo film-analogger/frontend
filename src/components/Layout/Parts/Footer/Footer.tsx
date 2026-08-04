@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box, Container, Typography, Link } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { drawerWidth } from '~/Theme/Constants/layout';
+import { drawerWidth, footerHeight } from '~/Theme/Constants/layout';
 
 const Footer: React.FunctionComponent = () => {
     const { t } = useTranslation();
@@ -20,6 +20,7 @@ const Footer: React.FunctionComponent = () => {
         <Box
             component="footer"
             sx={{
+                height: footerHeight,
                 position: 'absolute',
                 bottom: 0,
                 width: '100%',
@@ -44,14 +45,14 @@ const Footer: React.FunctionComponent = () => {
                     <Box>
                         <Typography
                             color="text.secondary"
-                            fontWeight={600}
+                            sx={{ fontWeight: 600 }}
                             variant="body1"
                         >
                             {t('components.footer.copyright', { year: currentYear })}
                         </Typography>
                         <Typography
                             color="text.secondary"
-                            fontWeight={600}
+                            sx={{ fontWeight: 600 }}
                             variant="caption"
                         >
                             {t('components.footer.subtitle')}
@@ -61,10 +62,9 @@ const Footer: React.FunctionComponent = () => {
                         {footerEntries.map(({ title, link }) => (
                             <Link
                                 color="inherit"
-                                fontSize="0.825rem"
-                                fontWeight={600}
                                 href={link}
                                 key={title}
+                                sx={{ fontSize: '0.825rem', fontWeight: 600 }}
                                 underline="none"
                                 variant="caption"
                             >

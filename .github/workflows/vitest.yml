@@ -4,6 +4,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+    types: [ opened, synchronize, reopened, edited ]
 permissions:
   checks: write
   contents: read
@@ -18,7 +19,7 @@ jobs:
       with:
         node-version: lts/*
     - name: Install dependencies
-      run: npm install -g yarn && yarn set version berry && yarn install --immutable
+      run: corepack enable && yarn install --immutable
     - name: Run Vitest tests
       run: yarn test:coverage
 

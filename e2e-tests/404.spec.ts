@@ -6,7 +6,7 @@ test.describe('404 error page', () => {
     test('not found navigate redirects to 404', async ({ page }) => {
         await page.goto('/pouet');
 
-        await page.waitForURL('http://localhost:3000/error/404');
+        await page.waitForURL('**/error/404');
         await expect(page.getByText('404')).toBeVisible();
     });
 

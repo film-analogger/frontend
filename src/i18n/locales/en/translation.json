@@ -2,9 +2,12 @@
     "app": {
         "title": "Film Analogger",
         "description": "A film camera logbook application for photo development and printing",
+        "account": "Account",
+        "loading": "Loading…",
         "theme": {
             "light": "Light",
             "dark": "Dark",
+            "lab": "Darkroom mode",
             "system": "System"
         },
         "language": {
@@ -14,36 +17,399 @@
     },
     "home": {
         "title": "Home",
-        "welcome": "Welcome to Film Analogger!"
+        "welcome": "Welcome to Film Analogger!",
+        "newSession": "New print session",
+        "stats": {
+            "sessions": "Sessions",
+            "prints": "Prints",
+            "medianBase": "Median base time",
+            "medianBaseValue": "{{seconds}}s"
+        },
+        "recentSessions": "Recent sessions",
+        "viewAllSessions": "View all",
+        "noSessions": "No print session yet.",
+        "filmsPreview": "Films",
+        "viewAllFilms": "Reference"
+    },
+    "films": {
+        "list": {
+            "title": "Films",
+            "count": "{{count}} film",
+            "count_other": "{{count}} films"
+        },
+        "detail": {
+            "title": "Film detail",
+            "specsTitle": "Characteristics",
+            "specs": {
+                "process": "Process",
+                "emulsionType": "Emulsion type",
+                "sensibility": "Sensibility",
+                "inversible": "Inversible",
+                "manufacturer": "Manufacturer",
+                "yes": "yes",
+                "no": "no"
+            },
+            "compatibleChemistries": "Compatible chemistries",
+            "compatibleChemistriesHint": "Same process ({{process}})",
+            "noCompatibleChemistries": "No chemistry catalogued for this process yet.",
+            "dilutionsHint": "Recommended dilution highlighted; others remain available.",
+            "officialDoc": "Official documentation",
+            "startTracking": "Start a negative tracking",
+            "notebook": {
+                "title": "In your logbook",
+                "empty": "No print recorded for this film yet."
+            }
+        }
+    },
+    "sessions": {
+        "list": {
+            "title": "Print sessions",
+            "count": "{{count}} session",
+            "count_other": "{{count}} sessions",
+            "numberLabel": "Session #{{number}}",
+            "temperature": "{{temperature}} °C",
+            "printsCount": "{{count}} print",
+            "printsCount_other": "{{count}} prints",
+            "chronological": "chronological order",
+            "allYears": "All",
+            "newSession": "New session"
+        },
+        "detail": {
+            "title": "Print session",
+            "export": "Export",
+            "chemicalChain": "Chemical chain",
+            "chemicalChainHint": "Effective dilutions computed from the linked chemistry.",
+            "noChemicalBaths": "No chemical bath recorded for this session.",
+            "overridden": "forced dilution",
+            "bathDuration": "{{seconds}}s",
+            "baseSecondsValue": "{{seconds}}s",
+            "wash": "Wash",
+            "prints": "Prints ({{count}})",
+            "printsHint": "Effective time = base × 2^(offset in stops)",
+            "noPrints": "No print recorded for this session yet.",
+            "printNumber": "Print {{number}}",
+            "negative": "Negative {{negative}}",
+            "copies": "{{count}} copy",
+            "copies_other": "{{count}} copies",
+            "noExposures": "No exposure recorded for this print yet.",
+            "exposureKind": {
+                "base": "Base",
+                "burn": "Burn",
+                "dodge": "Dodge"
+            },
+            "negativeFraming": "Negative & framing",
+            "specs": {
+                "filmFormat": "Film format",
+                "condensers": "Condensers",
+                "contactSheetRef": "Contact sheet"
+            },
+            "columns": {
+                "step": "Step",
+                "base": "Base",
+                "offset": "Offset",
+                "effective": "Effective",
+                "observation": "Observation"
+            },
+            "sizeLabel": "{{width}}×{{height}} cm",
+            "gradeLabel": "grade {{grade}}",
+            "gradeNoFilter": "no filter",
+            "recipe": "{{count}} cumulated exposure",
+            "recipe_other": "{{count}} cumulated exposures",
+            "notes": "Session notes"
+        },
+        "wizard": {
+            "title": "New print session",
+            "subtitle": "Context, chemical chain, prints and exposures, then review.",
+            "steps": {
+                "context": "Session",
+                "chemicals": "Chemical chain",
+                "prints": "Prints & exposures",
+                "review": "Review"
+            },
+            "fields": {
+                "date": "Date",
+                "number": "Session number",
+                "lab": "Lab",
+                "enlarger": "Enlarger",
+                "temperature": "Temperature (°C)",
+                "wash": "Wash",
+                "chemistry": "Chemistry",
+                "dilutionOverride": "Dilution override",
+                "durationSeconds": "Duration (s)",
+                "exposureKind": "Kind",
+                "baseSeconds": "Base (s)",
+                "stopNumerator": "Stop numerator",
+                "stopDenominator": "Stop denominator",
+                "grade": "Grade",
+                "observation": "Observation",
+                "negativeNumber": "Negative",
+                "negativeFormat": "Negative format",
+                "focalLength": "Focal length",
+                "copies": "Copies",
+                "photoPaper": "Photo paper",
+                "columnHeightCm": "Column height (cm)",
+                "borderCm": "Border (cm)",
+                "printNotes": "Print notes",
+                "sessionNotes": "Session notes"
+            },
+            "focalLengthOption": "{{focal}} mm",
+            "removeBath": "Remove bath",
+            "addBath": "Add a bath",
+            "printTitle": "Print {{number}}",
+            "removePrint": "Remove print",
+            "exposures": "Exposures",
+            "addExposure": "Add an exposure",
+            "removeExposure": "Remove exposure",
+            "effectivePreview": "{{seconds}}s",
+            "back": "Back",
+            "next": "Next step",
+            "submit": "Close session",
+            "submitting": "Saving…",
+            "review": {
+                "session": "Session",
+                "enlarger": "Enlarger",
+                "baths": "Chemical baths",
+                "bathsCount": "{{count}} bath",
+                "bathsCount_other": "{{count}} baths",
+                "prints": "Prints",
+                "printsCount": "{{count}} print",
+                "printsCount_other": "{{count}} prints",
+                "exposures": "Exposures",
+                "exposuresCount": "{{count}} exposure",
+                "exposuresCount_other": "{{count}} exposures"
+            }
+        }
+    },
+    "negatifs": {
+        "list": {
+            "title": "Negatives",
+            "count": "{{count}} negative",
+            "count_other": "{{count}} negatives",
+            "chronological": "chronological order",
+            "allYears": "All",
+            "newNegative": "Log a negative",
+            "empty": "No negatives logged yet.",
+            "noArchive": "—",
+            "stepsCount": "{{count}} step",
+            "stepsCount_other": "{{count}} steps"
+        },
+        "detail": {
+            "title": "Negative",
+            "archiving": "Physical archiving",
+            "developedOn": "Developed on",
+            "steps": "Steps",
+            "totalDuration": "Total duration",
+            "rating": "Rating",
+            "ratingValue": "{{rating}} / 5",
+            "nominal": "nominal {{iso}}",
+            "timeline": "Development timeline",
+            "totalLabel": "total {{duration}}",
+            "noSteps": "No development steps recorded for this negative.",
+            "unknownChemistry": "Chemistry",
+            "developmentNotes": "Development notes",
+            "shooting": "Shooting",
+            "camera": "Camera",
+            "shotAt": "Shot at",
+            "isoShotAt": "ISO exposed at",
+            "temperatureValue": "{{temperature}}°C",
+            "binder": "Binder",
+            "sheet": "Sheet",
+            "noArchiving": "Not archived yet."
+        },
+        "wizard": {
+            "title": "Log a development",
+            "subtitle": "Shooting info, development steps and finishing, then review.",
+            "steps": {
+                "context": "Shooting",
+                "steps": "Development steps",
+                "finish": "After drying",
+                "review": "Review"
+            },
+            "fields": {
+                "film": "Film",
+                "camera": "Camera",
+                "noCamera": "No camera",
+                "shotYear": "Year",
+                "shotMonth": "Month",
+                "shotDay": "Day",
+                "isoShotAt": "ISO exposed at",
+                "isoShotAtHint": "Can differ from the film's nominal ISO when pushed or pulled",
+                "process": "Process",
+                "developedAt": "Development date",
+                "binderId": "Binder",
+                "binderIdHint": "One binder per film format",
+                "contactSheetNumber": "Contact sheet number",
+                "shootingNotes": "Shooting notes",
+                "chemistry": "Chemistry",
+                "noChemistry": "No chemistry (water only)",
+                "chemistryParts": "Chemistry parts",
+                "waterParts": "Water parts",
+                "temperature": "Temperature (°C)",
+                "durationSeconds": "Duration (s)",
+                "agitationNote": "Agitation",
+                "stepNumber": "#",
+                "rating": "Development rating",
+                "tags": "Tags",
+                "developmentNotes": "Development notes"
+            },
+            "addStep": "Add a step",
+            "removeStep": "Remove the step",
+            "noTags": "No tags available yet.",
+            "back": "Back",
+            "next": "Next step",
+            "submit": "Log the development",
+            "submitting": "Saving…",
+            "review": {
+                "film": "Film & camera",
+                "developedAt": "Developed on",
+                "process": "Process",
+                "steps": "Steps",
+                "stepsCount": "{{count}} step",
+                "stepsCount_other": "{{count}} steps",
+                "totalDuration": "Total duration",
+                "totalDurationValue": "{{seconds}}s",
+                "rating": "Rating",
+                "ratingValue": "{{rating}} / 5"
+            }
+        }
+    },
+    "manufacturers": {
+        "list": {
+            "title": "Manufacturers",
+            "count": "{{count}} manufacturer",
+            "count_other": "{{count}} manufacturers",
+            "films": "films",
+            "chemistries": "chemistries"
+        },
+        "detail": {
+            "title": "Manufacturer detail",
+            "films": "Films ({{count}})",
+            "chemistries": "Chemistries ({{count}})",
+            "noFilms": "No film catalogued for this manufacturer yet.",
+            "noChemistries": "No chemistry catalogued for this manufacturer yet."
+        }
+    },
+    "chemistries": {
+        "list": {
+            "title": "Chemistries",
+            "count": "{{count}} product",
+            "count_other": "{{count}} products",
+            "columns": {
+                "product": "Product",
+                "manufacturer": "Manufacturer",
+                "process": "Process",
+                "type": "Type",
+                "dilutions": "Dilutions"
+            },
+            "filters": {
+                "title": "Filters"
+            }
+        },
+        "detail": {
+            "title": "Chemistry detail",
+            "officialDoc": "Official documentation",
+            "dilutions": "Dilutions",
+            "noDilutions": "No dilution catalogued for this chemistry yet.",
+            "official": "official",
+            "chemistryParts": "{{count}} part of chemistry",
+            "chemistryParts_other": "{{count}} parts of chemistry",
+            "waterParts": "{{count}} part of water",
+            "waterParts_other": "{{count}} parts of water"
+        }
     },
     "dashboard": {
         "title": "Dashboard"
     },
     "settings": {
-        "title": "Settings"
-    },
-    "errors" : {
-        "404": {
-            "title": "Page not found",
-            "detail": "The page you are looking for does not exist.",
-            "pageTitle": "404 - Page not found",
-            "metaDescription": "The page you are looking for does not exist."
-        },
-        "500": {
-            "title": "Internal server error",
-            "detail": "An unexpected error occurred on the server.",
-            "pageTitle": "500 - Internal server error",
-            "metaDescription": "An unexpected error occurred on the server."
-        },
-        "403": {
-            "title": "Forbidden",
-            "detail": "You do not have permission to access this page.",
-            "pageTitle": "403 - Forbidden",
-            "metaDescription": "You do not have permission to access this page."
+        "title": "Settings",
+        "labDefaults": {
+            "title": "Darkroom defaults",
+            "stopNotation": "Stop notation",
+            "stopNotationHelp": "Fractions (⅓) or decimals (0.33)",
+            "stopNotationFraction": "Fractions",
+            "stopNotationDecimal": "Decimals",
+            "defaultLab": "Default lab",
+            "defaultLabHelp": "Pre-filled when creating a new session",
+            "defaultEnlarger": "Default enlarger",
+            "defaultEnlargerHelp": "Pre-filled when creating a new session"
         }
     },
-    "legal" : {
-        "contact" : {
+    "profile": {
+        "title": "Profile",
+        "email": "Email",
+        "website": "Website",
+        "description": "About",
+        "memberSince": "Member since {{date}}",
+        "appearance": "Appearance"
+    },
+    "errors": {
+        "api": {
+            "loadingData": "An error occurred while loading data. Please try again later."
+        },
+        "404": {
+            "kind": "Not found",
+            "title": "This negative isn't on the contact sheet",
+            "detail": "The page you're looking for doesn't exist, or the session was deleted since you followed this link. Nothing is lost in your logbook.",
+            "pageTitle": "404 - Page not found",
+            "metaDescription": "The page you are looking for does not exist.",
+            "stripLabel": "no frame · exposure not found"
+        },
+        "500": {
+            "kind": "Server error",
+            "title": "The developer is exhausted",
+            "detail": "The server couldn't process the request. This isn't caused by anything you entered: what you had saved is intact.",
+            "pageTitle": "500 - Internal server error",
+            "metaDescription": "An unexpected error occurred on the server.",
+            "stripLabel": "processing interrupted · 500"
+        },
+        "403": {
+            "kind": "Access denied",
+            "title": "The darkroom is locked",
+            "detail": "This session belongs to another member. Print logs stay private by default: only their owner can open them.",
+            "pageTitle": "403 - Forbidden",
+            "metaDescription": "You do not have permission to access this page.",
+            "stripLabel": "restricted access · owner only",
+            "safety": "If you think this session is yours, check the signed-in account: Film Analogger never shows another member's logbook, even read-only."
+        },
+        "503": {
+            "kind": "Maintenance",
+            "title": "Maintenance session in progress",
+            "detail": "An update is being applied. The app will be back in a few minutes, with no data loss.",
+            "pageTitle": "503 - Under maintenance",
+            "metaDescription": "An update is currently being applied.",
+            "stripLabel": "scheduled maintenance · 503"
+        },
+        "offline": {
+            "kind": "Offline",
+            "title": "No network in the darkroom",
+            "detail": "The connection dropped. Check your network: the page will reload automatically as soon as it's back.",
+            "pageTitle": "Offline",
+            "metaDescription": "The network connection is unavailable.",
+            "stripLabel": "connection lost · waiting",
+            "safety": "Don't close this tab: the page reloads as soon as the connection returns."
+        },
+        "actions": {
+            "backToLog": "Back to the log",
+            "previousPage": "Previous page",
+            "login": "Log in",
+            "retry": "Try again",
+            "report": "Report the issue",
+            "reload": "Reload",
+            "retryConnection": "Retry connection"
+        },
+        "links": {
+            "tryInstead": "Or pick up from here",
+            "home": "Home",
+            "films": "Films",
+            "chemistries": "Chemistries",
+            "manufacturers": "Manufacturers",
+            "publicContent": "Public content",
+            "filmsRepository": "Films repository",
+            "chemistriesRepository": "Chemistries repository"
+        }
+    },
+    "legal": {
+        "contact": {
             "title": "Contact us",
             "description": "TODO"
         },
@@ -64,6 +430,10 @@
             "description": "TODO"
         }
     },
+    "auth": {
+        "loading": "Signing in...",
+        "logout": "Logout"
+    },
     "components": {
         "footer": {
             "copyright": "© {{year}} Film Analogger. All rights reserved.",
@@ -80,15 +450,38 @@
         },
         "applogo": {
             "logoLight": "Film Analogger light logo",
-            "logoDark": "Film Analogger dark logo"
+            "logoDark": "Film Analogger dark logo",
+            "logoLab": "Film Analogger darkroom logo"
+        },
+        "filmCard": {
+            "iso": "ISO {{iso}}",
+            "slide": "Slide",
+            "details": "Details"
         },
         "sidemenu": {
+            "group": {
+                "logbook": "Logbook",
+                "reference": "Reference"
+            },
             "home": "Home",
-            "filmLogSheet": "Film Log Sheet",
-            "developmentCharts": "Development Charts",
-            "printLogSheet": "Print Log Sheet",
+            "sessions": "Print sessions",
+            "filmLogSheet": "Negatives",
+            "developmentCharts": "Development",
             "films": "Films",
-            "photoPaper": "Photo Paper"
+            "chemistries": "Chemistries",
+            "manufacturers": "Manufacturers",
+            "photoPaper": "Photo paper",
+            "soon": "Soon",
+            "labMode": "Darkroom mode",
+            "labModeOn": "Active · inactinic lighting",
+            "labModeOff": "Red contrast, larger controls"
+        },
+        "usermenu": {
+            "profile": "Profile"
+        },
+        "header": {
+            "search": "Search",
+            "searchPlaceholder": "Film, chemistry…"
         }
     }
 }

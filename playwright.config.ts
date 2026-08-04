@@ -29,7 +29,7 @@ export default defineConfig({
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
         /* Base URL to use in actions like `await page.goto('')`. */
-        baseURL: 'http://localhost:3000',
+        baseURL: 'http://localhost:3100',
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: 'on-first-retry',
@@ -70,7 +70,13 @@ export default defineConfig({
 
     /* Run your local dev server before starting the tests */
     webServer: {
-        command: 'yarn run dev',
+        /* Dedicated port so this never collides with a dev server already running on 3000. */
+        command: 'yarn run dev --port 3100 --strictPort',
+        /* Without this Playwright does not wait for the server to be ready. */
+        url: 'http://localhost:3100',
         reuseExistingServer: !process.env.CI,
+        timeout: 120 * 1000,
+        /* Stands in for the Keycloak server. See src/keycloak/e2eKeycloak.ts */
+        env: { VITE_E2E_AUTH: 'true' },
     },
 });

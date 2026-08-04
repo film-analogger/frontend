@@ -1,26 +1,20 @@
 /* eslint-disable react/no-multi-comp */
 
-/* eslint-disable react-refresh/only-export-components */
-import {
-    isRouteErrorResponse,
-    Links,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
-} from 'react-router';
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts } from 'react-router';
 
-import { CacheProvider } from '@emotion/react';
+// import { CacheProvider } from '@emotion/react';
 
 import React from 'react';
 
 import 'src/i18n/i18n';
 
+import './root.css';
 import type { Route } from './+types/root';
-import createEmotionCache from './createCache';
+// import createEmotionCache from './createCache';
 import AppTheme from './Theme';
-import { Box } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import KeycloakProvider from './keycloak/KeycloakProvider';
 
 export const links: Route.LinksFunction = () => [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -32,6 +26,15 @@ export const links: Route.LinksFunction = () => [
     {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
+    },
+    {
+        rel: 'stylesheet',
+
+        href: 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css',
+        integrity:
+            'sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==',
+        crossOrigin: 'anonymous',
+        referrerPolicy: 'no-referrer',
     },
 ];
 
@@ -58,35 +61,24 @@ export const Layout = ({ children }: { readonly children: React.ReactNode }) => 
                 <Links />
             </head>
             <body>
+                <CssBaseline />
                 {children}
-                <ScrollRestoration />
                 <Scripts />
             </body>
         </html>
     );
 };
 
-const cache = createEmotionCache();
+// const cache = createEmotionCache();
 
 const App: React.FunctionComponent = () => {
-    if (typeof window !== 'undefined') {
-        return (
-            <React.StrictMode>
-                <CacheProvider value={cache}>
-                    <AppTheme>
-                        <Outlet />
-                    </AppTheme>
-                </CacheProvider>
-            </React.StrictMode>
-        );
-    }
     return (
         <React.StrictMode>
-            <CacheProvider value={cache}>
-                <AppTheme>
+            <AppTheme>
+                <KeycloakProvider>
                     <Outlet />
-                </AppTheme>
-            </CacheProvider>
+                </KeycloakProvider>
+            </AppTheme>
         </React.StrictMode>
     );
 };

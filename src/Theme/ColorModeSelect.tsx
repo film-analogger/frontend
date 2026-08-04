@@ -1,22 +1,22 @@
 import React from 'react';
-import { useColorScheme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { type SelectProps } from '@mui/material/Select';
 import { useTranslation } from 'react-i18next';
+import { useAppearanceMode, type AppearanceMode } from '~/Theme/useAppearanceMode';
 
 const ColorModeSelect: React.FunctionComponent<SelectProps> = (props) => {
-    const { mode, setMode } = useColorScheme();
+    const { current, setAppearance } = useAppearanceMode();
 
     const { t } = useTranslation();
 
     const changeMode = React.useCallback<NonNullable<SelectProps['onChange']>>(
         (event) => {
-            setMode(event.target.value as 'light' | 'dark' | 'system');
+            setAppearance(event.target.value as AppearanceMode);
         },
-        [setMode],
+        [setAppearance],
     );
 
-    if (!mode) {
+    if (!current) {
         return null;
     }
 
@@ -28,12 +28,13 @@ const ColorModeSelect: React.FunctionComponent<SelectProps> = (props) => {
                 } as React.HTMLAttributes<HTMLDivElement>
             }
             onChange={changeMode}
-            value={mode}
+            value={current}
             {...props}
         >
             <MenuItem value="system"> {t('app.theme.system')}</MenuItem>
             <MenuItem value="light">{t('app.theme.light')}</MenuItem>
             <MenuItem value="dark">{t('app.theme.dark')}</MenuItem>
+            <MenuItem value="lab">{t('app.theme.lab')}</MenuItem>
         </Select>
     );
 };

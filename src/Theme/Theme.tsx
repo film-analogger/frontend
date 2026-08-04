@@ -33,20 +33,22 @@ const AppTheme: React.FunctionComponent<AppThemeProps> = ({ children }) => {
         <ThemeProvider theme={theme}>
             <CssBaseline enableColorScheme />
             <GlobalStyles
-                styles={{
-                    '*, *::before, *::after': {
-                        transition:
-                            'background-color 400ms ease, color 200ms ease, border-color 200ms ease',
-                    },
-                    body: {
-                        transition:
-                            'background-color 400ms ease, color 200ms ease, border-color 200ms ease',
-                    },
-                    '@media (prefers-reduced-motion: reduce)': {
-                        '*, *::before, *::after': { transition: 'none' },
-                        body: { transition: 'none' },
-                    },
-                }}
+                styles={
+                    {
+                        // '*, *::before, *::after': {
+                        //     transition:
+                        //         'background-color 400ms ease, color 200ms ease, border-color 200ms ease',
+                        // },
+                        // body: {
+                        //     transition:
+                        //         'background-color 400ms ease, color 200ms ease, border-color 200ms ease',
+                        // },
+                        // '@media (prefers-reduced-motion: reduce)': {
+                        //     '*, *::before, *::after': { transition: 'none' },
+                        //     body: { transition: 'none' },
+                        // },
+                    }
+                }
             />
             {children}
         </ThemeProvider>
