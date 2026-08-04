@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import SessionList from './SessionList';
-import type { PrintSessionRead } from '~/api/client';
+import type { PrintRead, PrintSessionRead } from '~/api/client';
 
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
@@ -22,7 +22,21 @@ const session: PrintSessionRead = {
     temperatureCelsius: 20,
 };
 
+const print: PrintRead = {
+    '@id': '/prints/1',
+    '@type': 'Print',
+    id: '1',
+    session: {
+        '@id': '/print_sessions/1',
+        '@type': 'PrintSession',
+        createdAt: null,
+        updatedAt: null,
+    },
+    number: 1,
+};
+
 const mockApiPrintSessionsGetCollection = vi.fn();
+const mockApiPrintsGetCollection = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
@@ -32,6 +46,7 @@ vi.mock('~/api/client', async () => {
                 apiPrintSessionsGetCollection: mockApiPrintSessionsGetCollection,
             },
         }),
+        usePrintApi: () => ({ printApi: { apiPrintsGetCollection: mockApiPrintsGetCollection } }),
     };
 });
 
@@ -45,6 +60,8 @@ const renderSessionList = () =>
 describe('SessionList', () => {
     beforeEach(() => {
         mockApiPrintSessionsGetCollection.mockReset();
+        mockApiPrintsGetCollection.mockReset();
+        mockApiPrintsGetCollection.mockResolvedValue({ data: { 'hydra:member': [] } });
     });
 
     it('shows a loading indicator while sessions are being fetched', () => {
@@ -68,6 +85,16 @@ describe('SessionList', () => {
             await screen.findByText('sessions.list.numberLabel:{"number":14}'),
         ).toBeInTheDocument();
         expect(screen.getByText(/Atelier Grenelle/)).toBeInTheDocument();
+    });
+
+    it('counts prints for a session from the unfiltered prints collection', async () => {
+        mockApiPrintSessionsGetCollection.mockResolvedValue({
+            data: { 'hydra:member': [session] },
+        });
+        mockApiPrintsGetCollection.mockResolvedValue({ data: { 'hydra:member': [print] } });
+        renderSessionList();
+        const matches = await screen.findAllByText('sessions.list.printsCount:{"count":1}');
+        expect(matches.length).toBeGreaterThan(0);
     });
 
     it('shows a placeholder when there is no session', async () => {

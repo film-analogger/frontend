@@ -7,6 +7,7 @@ vi.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key: string, opts?: Record<string, unknown>) =>
             opts ? `${key}:${JSON.stringify(opts)}` : key,
+        i18n: { language: 'en' },
     }),
 }));
 
@@ -69,6 +70,7 @@ const print: PrintRead = {
 
 const mockApiPrintSessionsIdGet = vi.fn();
 const mockApiPrintsGetCollection = vi.fn();
+const mockApiChemistriesGetCollection = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
@@ -77,6 +79,9 @@ vi.mock('~/api/client', async () => {
             printSessionApi: { apiPrintSessionsIdGet: mockApiPrintSessionsIdGet },
         }),
         usePrintApi: () => ({ printApi: { apiPrintsGetCollection: mockApiPrintsGetCollection } }),
+        useChemistryApi: () => ({
+            chemistryApi: { apiChemistriesGetCollection: mockApiChemistriesGetCollection },
+        }),
     };
 });
 
@@ -96,6 +101,8 @@ describe('SessionDetail', () => {
     beforeEach(() => {
         mockApiPrintSessionsIdGet.mockReset();
         mockApiPrintsGetCollection.mockReset();
+        mockApiChemistriesGetCollection.mockReset();
+        mockApiChemistriesGetCollection.mockResolvedValue({ data: { 'hydra:member': [] } });
     });
 
     it('shows a loading indicator while the session is being fetched', () => {
@@ -125,6 +132,39 @@ describe('SessionDetail', () => {
         expect(
             screen.getByText('Paper a bit tired at the end of the session.'),
         ).toBeInTheDocument();
+    });
+
+    it('resolves the bath chemistry name from the chemistries collection', async () => {
+        mockApiPrintSessionsIdGet.mockResolvedValue({ data: session });
+        mockApiPrintsGetCollection.mockResolvedValue({ data: { 'hydra:member': [] } });
+        mockApiChemistriesGetCollection.mockResolvedValue({
+            data: {
+                'hydra:member': [
+                    {
+                        '@id': '/chemistries/1',
+                        '@type': 'chemistry',
+                        name: 'D-76',
+                        process: 'B&W',
+                        chemistryType: {
+                            '@id': '/chemistry_types/1',
+                            '@type': 'chemistry_type',
+                            typeCode: 'DEV-FILM',
+                            typeLabel: 'Révélateur film',
+                        },
+                        manufacturer: {
+                            '@id': '/manufacturers/1',
+                            '@type': 'manufacturer',
+                            name: 'Kodak',
+                        },
+                    },
+                ],
+            },
+        });
+
+        renderSessionDetail();
+
+        expect(await screen.findByText('D-76')).toBeInTheDocument();
+        expect(screen.getByText('Révélateur film')).toBeInTheDocument();
     });
 
     it('calls the prints collection filtered by the session IRI', async () => {

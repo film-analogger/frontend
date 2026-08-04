@@ -1,4 +1,9 @@
-import { effectiveSeconds, formatSeconds, formatStopOffset } from './exposureMath';
+import {
+    effectiveSeconds,
+    formatSeconds,
+    formatStopOffset,
+    printTotalSeconds,
+} from './exposureMath';
 
 describe('effectiveSeconds', () => {
     it('returns the base time when there is no offset', () => {
@@ -43,5 +48,29 @@ describe('formatSeconds', () => {
 
     it('accepts a custom decimal count', () => {
         expect(formatSeconds(15.14159, 3)).toBe('15.142');
+    });
+});
+
+describe('printTotalSeconds', () => {
+    it('sums the base and burn exposures', () => {
+        expect(
+            printTotalSeconds([
+                { kind: 'base', effectiveSeconds: 20 },
+                { kind: 'burn', effectiveSeconds: 5 },
+            ]),
+        ).toBe(25);
+    });
+
+    it('excludes dodge exposures, which withhold light rather than add time', () => {
+        expect(
+            printTotalSeconds([
+                { kind: 'base', effectiveSeconds: 20 },
+                { kind: 'dodge', effectiveSeconds: 8 },
+            ]),
+        ).toBe(20);
+    });
+
+    it('treats missing effective seconds as zero', () => {
+        expect(printTotalSeconds([{ kind: 'base' }])).toBe(0);
     });
 });

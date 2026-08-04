@@ -67,18 +67,26 @@
             "count": "{{count}} séance",
             "count_other": "{{count}} séances",
             "numberLabel": "Séance n°{{number}}",
-            "temperature": "{{temperature}} °C"
+            "temperature": "{{temperature}} °C",
+            "printsCount": "{{count}} tirage",
+            "printsCount_other": "{{count}} tirages",
+            "chronological": "classement chronologique",
+            "allYears": "Tout",
+            "newSession": "Nouvelle séance"
         },
         "detail": {
             "title": "Séance de tirage",
+            "export": "Exporter",
             "chemicalChain": "Chaîne chimique",
-            "chemicalChainHint": "Le nom de la chimie référencée n'est pas encore exposé par l'API pour ce bain — seuls la durée et la dilution sont affichés.",
+            "chemicalChainHint": "Dilutions effectives calculées depuis la chimie liée.",
             "noChemicalBaths": "Aucun bain chimique enregistré pour cette séance.",
             "bathOrder": "Bain {{order}}",
-            "overridden": "forcée",
+            "overridden": "dilution forcée",
             "bathDuration": "{{seconds}}s",
             "baseSecondsValue": "{{seconds}}s",
+            "wash": "Rinçage",
             "prints": "Tirages ({{count}})",
+            "printsHint": "Temps effectif = base × 2^(offset en stops)",
             "noPrints": "Aucun tirage enregistré pour cette séance pour le moment.",
             "printNumber": "Tirage {{number}}",
             "negative": "Négatif {{negative}}",
@@ -90,6 +98,24 @@
                 "burn": "Brûlage",
                 "dodge": "Masquage"
             },
+            "negativeFraming": "Négatif & cadrage",
+            "specs": {
+                "filmFormat": "Format pellicule",
+                "condensers": "Condenseurs",
+                "contactSheetRef": "Planche contact"
+            },
+            "columns": {
+                "step": "Étape",
+                "base": "Base",
+                "offset": "Offset",
+                "effective": "Effectif",
+                "observation": "Observation"
+            },
+            "sizeLabel": "{{width}}×{{height}} cm",
+            "gradeLabel": "grade {{grade}}",
+            "gradeNoFilter": "sans filtre",
+            "recipe": "{{count}} exposition cumulée",
+            "recipe_other": "{{count}} expositions cumulées",
             "notes": "Notes de séance"
         },
         "wizard": {

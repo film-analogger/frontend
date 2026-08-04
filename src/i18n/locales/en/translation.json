@@ -67,18 +67,26 @@
             "count": "{{count}} session",
             "count_other": "{{count}} sessions",
             "numberLabel": "Session #{{number}}",
-            "temperature": "{{temperature}} °C"
+            "temperature": "{{temperature}} °C",
+            "printsCount": "{{count}} print",
+            "printsCount_other": "{{count}} prints",
+            "chronological": "chronological order",
+            "allYears": "All",
+            "newSession": "New session"
         },
         "detail": {
             "title": "Print session",
+            "export": "Export",
             "chemicalChain": "Chemical chain",
-            "chemicalChainHint": "The catalogued chemistry name isn't exposed by the API for this bath yet — only duration and dilution are shown.",
+            "chemicalChainHint": "Effective dilutions computed from the linked chemistry.",
             "noChemicalBaths": "No chemical bath recorded for this session.",
             "bathOrder": "Bath {{order}}",
-            "overridden": "overridden",
+            "overridden": "forced dilution",
             "bathDuration": "{{seconds}}s",
             "baseSecondsValue": "{{seconds}}s",
+            "wash": "Wash",
             "prints": "Prints ({{count}})",
+            "printsHint": "Effective time = base × 2^(offset in stops)",
             "noPrints": "No print recorded for this session yet.",
             "printNumber": "Print {{number}}",
             "negative": "Negative {{negative}}",
@@ -90,6 +98,24 @@
                 "burn": "Burn",
                 "dodge": "Dodge"
             },
+            "negativeFraming": "Negative & framing",
+            "specs": {
+                "filmFormat": "Film format",
+                "condensers": "Condensers",
+                "contactSheetRef": "Contact sheet"
+            },
+            "columns": {
+                "step": "Step",
+                "base": "Base",
+                "offset": "Offset",
+                "effective": "Effective",
+                "observation": "Observation"
+            },
+            "sizeLabel": "{{width}}×{{height}} cm",
+            "gradeLabel": "grade {{grade}}",
+            "gradeNoFilter": "no filter",
+            "recipe": "{{count}} cumulated exposure",
+            "recipe_other": "{{count}} cumulated exposures",
             "notes": "Session notes"
         },
         "wizard": {

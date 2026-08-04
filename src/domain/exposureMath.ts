@@ -27,3 +27,15 @@ export const formatStopOffset = (
 };
 
 export const formatSeconds = (seconds: number, decimals = 1): string => seconds.toFixed(decimals);
+
+/**
+ * Total time under the enlarger for a print: the base exposure plus any burns
+ * (which add extra time) — dodges only withhold light during the base
+ * exposure, so they don't extend the total.
+ */
+export const printTotalSeconds = (
+    exposures: readonly { kind: string; effectiveSeconds?: number }[],
+): number =>
+    exposures
+        .filter((exposure) => exposure.kind === 'base' || exposure.kind === 'burn')
+        .reduce((total, exposure) => total + (exposure.effectiveSeconds ?? 0), 0);
