@@ -22,7 +22,14 @@ const makeFilm = (overrides: Partial<FilmRead>): FilmRead => ({
     description: '',
     process: 'C-41',
     sensibility: 400,
-    manufacturer: { '@id': '/manufacturers/1', '@type': 'manufacturer', id: '1', name: 'Kodak' },
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        id: '1',
+        name: 'Kodak',
+        status: 'official',
+    },
+    status: 'official',
     ...overrides,
 });
 

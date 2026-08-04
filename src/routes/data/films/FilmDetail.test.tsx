@@ -20,7 +20,14 @@ const film: FilmRead = {
     sensibility: 400,
     emulsionType: 'Color negative',
     inversible: false,
-    manufacturer: { '@id': '/manufacturers/1', '@type': 'manufacturer', id: '1', name: 'Kodak' },
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        id: '1',
+        name: 'Kodak',
+        status: 'official',
+    },
+    status: 'official',
 };
 
 const chemistry: ChemistryRead = {
@@ -34,8 +41,15 @@ const chemistry: ChemistryRead = {
         '@type': 'chemistryType',
         typeCode: 'DEV',
         typeLabel: 'Developer',
+        status: 'official',
     },
-    manufacturer: { '@id': '/manufacturers/1', '@type': 'manufacturer', name: 'Kodak' },
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        name: 'Kodak',
+        status: 'official',
+    },
+    status: 'official',
 };
 
 const mockApiFilmsIdGet = vi.fn();

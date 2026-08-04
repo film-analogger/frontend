@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import SessionDetail from './SessionDetail';
-import type { PrintRead, PrintSessionRead } from '~/api/client';
+import type { PrintSessionDetailRead } from '~/api/client';
 
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
@@ -15,14 +15,25 @@ vi.mock('~/domain/preferences', () => ({
     getStopNotation: () => 'fraction',
 }));
 
-const session: PrintSessionRead = {
+const session: PrintSessionDetailRead = {
     '@id': '/print_sessions/1',
     '@type': 'PrintSession',
     id: '1',
     date: '2026-07-18',
     lab: 'Atelier Grenelle',
     number: 14,
-    enlarger: 'Durst M670',
+    enlarger: {
+        '@id': '/enlargers/1',
+        '@type': 'enlarger',
+        name: 'Durst M670',
+        manufacturer: {
+            '@id': '/manufacturers/1',
+            '@type': 'manufacturer',
+            name: 'Durst',
+            status: 'official',
+        },
+        status: 'official',
+    },
     temperatureCelsius: 20,
     notes: 'Paper a bit tired at the end of the session.',
     chemicalBaths: [
@@ -30,57 +41,94 @@ const session: PrintSessionRead = {
             chemistry: {
                 '@id': '/chemistries/1',
                 '@type': 'chemistry',
-                createdAt: null,
-                updatedAt: null,
+                name: 'D-76',
+                process: 'B&W',
+                chemistryType: {
+                    '@id': '/chemistry_types/1',
+                    '@type': 'chemistry_type',
+                    typeCode: 'DEV-FILM',
+                    typeLabel: 'Révélateur film',
+                    status: 'official',
+                },
+                manufacturer: {
+                    '@id': '/manufacturers/2',
+                    '@type': 'manufacturer',
+                    name: 'Kodak',
+                    status: 'official',
+                },
+                status: 'official',
             },
             dilutionOverride: null,
             durationSeconds: 90,
             effectiveDilution: '1+9',
         },
     ],
-};
-
-const print: PrintRead = {
-    '@id': '/prints/1',
-    '@type': 'Print',
-    id: '1',
-    session: {
-        '@id': '/print_sessions/1',
-        '@type': 'PrintSession',
-        createdAt: null,
-        updatedAt: null,
-    },
-    number: 1,
-    negativeNumber: '12A',
-    copies: 2,
-    exposures: [
+    prints: [
         {
+            '@id': '/prints/1',
+            '@type': 'Print',
             id: '1',
-            order: 1,
-            kind: 'base',
-            baseSeconds: 12,
-            grade: '2.5',
-            stopOffsetNumerator: 0,
-            stopOffsetDenominator: 1,
-            effectiveSeconds: 12,
-            observation: 'Good overall density.',
+            session: {
+                '@id': '/print_sessions/1',
+                '@type': 'PrintSession',
+                date: '2026-07-18',
+                lab: 'Atelier Grenelle',
+                number: 14,
+                enlarger: {
+                    '@id': '/enlargers/1',
+                    '@type': 'enlarger',
+                    name: 'Durst M670',
+                    manufacturer: {
+                        '@id': '/manufacturers/1',
+                        '@type': 'manufacturer',
+                        name: 'Durst',
+                        status: 'official',
+                    },
+                    status: 'official',
+                },
+                temperatureCelsius: 20,
+            },
+            number: 1,
+            negativeNumber: '12A',
+            copies: 2,
+            photoPaper: {
+                '@id': '/photo_papers/1',
+                '@type': 'photoPaper',
+                name: 'Multigrade RC',
+                manufacturer: {
+                    '@id': '/manufacturers/3',
+                    '@type': 'manufacturer',
+                    name: 'Ilford',
+                    status: 'official',
+                },
+                paperBase: 'rc',
+                paperSurface: 'glossy',
+                status: 'official',
+            },
+            exposures: [
+                {
+                    id: '1',
+                    order: 1,
+                    kind: 'base',
+                    baseSeconds: 12,
+                    grade: '2.5',
+                    stopOffsetNumerator: 0,
+                    stopOffsetDenominator: 1,
+                    effectiveSeconds: 12,
+                    observation: 'Good overall density.',
+                },
+            ],
         },
     ],
 };
 
 const mockApiPrintSessionsIdGet = vi.fn();
-const mockApiPrintsGetCollection = vi.fn();
-const mockApiChemistriesGetCollection = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
         ...actual,
         usePrintSessionApi: () => ({
             printSessionApi: { apiPrintSessionsIdGet: mockApiPrintSessionsIdGet },
-        }),
-        usePrintApi: () => ({ printApi: { apiPrintsGetCollection: mockApiPrintsGetCollection } }),
-        useChemistryApi: () => ({
-            chemistryApi: { apiChemistriesGetCollection: mockApiChemistriesGetCollection },
         }),
     };
 });
@@ -100,9 +148,6 @@ const renderSessionDetail = () =>
 describe('SessionDetail', () => {
     beforeEach(() => {
         mockApiPrintSessionsIdGet.mockReset();
-        mockApiPrintsGetCollection.mockReset();
-        mockApiChemistriesGetCollection.mockReset();
-        mockApiChemistriesGetCollection.mockResolvedValue({ data: { 'hydra:member': [] } });
     });
 
     it('shows a loading indicator while the session is being fetched', () => {
@@ -117,15 +162,17 @@ describe('SessionDetail', () => {
         expect(await screen.findByText('errors.api.loadingData')).toBeInTheDocument();
     });
 
-    it('renders the chemical bath dilution and print exposures', async () => {
+    it('renders the enlarger, chemical bath and print exposures from the nested session payload', async () => {
         mockApiPrintSessionsIdGet.mockResolvedValue({ data: session });
-        mockApiPrintsGetCollection.mockResolvedValue({ data: { 'hydra:member': [print] } });
 
         renderSessionDetail();
 
         expect(
             await screen.findByText('sessions.list.numberLabel:{"number":14}'),
         ).toBeInTheDocument();
+        expect(screen.getByText('Durst M670')).toBeInTheDocument();
+        expect(screen.getByText('D-76')).toBeInTheDocument();
+        expect(screen.getByText('Révélateur film')).toBeInTheDocument();
         expect(screen.getByText('1+9')).toBeInTheDocument();
         expect(screen.getByText('sessions.detail.negative:{"negative":"12A"}')).toBeInTheDocument();
         expect(screen.getByText('Good overall density.')).toBeInTheDocument();
@@ -134,48 +181,12 @@ describe('SessionDetail', () => {
         ).toBeInTheDocument();
     });
 
-    it('resolves the bath chemistry name from the chemistries collection', async () => {
+    it('fetches the session by id from the route param', async () => {
         mockApiPrintSessionsIdGet.mockResolvedValue({ data: session });
-        mockApiPrintsGetCollection.mockResolvedValue({ data: { 'hydra:member': [] } });
-        mockApiChemistriesGetCollection.mockResolvedValue({
-            data: {
-                'hydra:member': [
-                    {
-                        '@id': '/chemistries/1',
-                        '@type': 'chemistry',
-                        name: 'D-76',
-                        process: 'B&W',
-                        chemistryType: {
-                            '@id': '/chemistry_types/1',
-                            '@type': 'chemistry_type',
-                            typeCode: 'DEV-FILM',
-                            typeLabel: 'Révélateur film',
-                        },
-                        manufacturer: {
-                            '@id': '/manufacturers/1',
-                            '@type': 'manufacturer',
-                            name: 'Kodak',
-                        },
-                    },
-                ],
-            },
-        });
-
-        renderSessionDetail();
-
-        expect(await screen.findByText('D-76')).toBeInTheDocument();
-        expect(screen.getByText('Révélateur film')).toBeInTheDocument();
-    });
-
-    it('calls the prints collection filtered by the session IRI', async () => {
-        mockApiPrintSessionsIdGet.mockResolvedValue({ data: session });
-        mockApiPrintsGetCollection.mockResolvedValue({ data: { 'hydra:member': [] } });
 
         renderSessionDetail();
 
         await screen.findByText('sessions.list.numberLabel:{"number":14}');
-        expect(mockApiPrintsGetCollection).toHaveBeenCalledWith({
-            session: '/print_sessions/1',
-        });
+        expect(mockApiPrintSessionsIdGet).toHaveBeenCalledWith({ id: '1' });
     });
 });

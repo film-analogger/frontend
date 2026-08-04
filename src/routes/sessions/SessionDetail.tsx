@@ -12,15 +12,7 @@ import { Box, Button, Chip, CircularProgress, Stack, Typography } from '@mui/mat
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
-import {
-    useChemistryApi,
-    usePrintApi,
-    usePrintSessionApi,
-    type ChemistryRead,
-    type ExposureRead,
-    type PrintRead,
-    type PrintSessionRead,
-} from '~/api/client';
+import { usePrintSessionApi, type PrintSessionDetailRead } from '~/api/client';
 import { formatStopOffset, printTotalSeconds } from '~/domain/exposureMath';
 import { getProcessStyle } from '~/domain/processColors';
 import { getStopNotation } from '~/domain/preferences';
@@ -30,45 +22,37 @@ export const handle: RouteCrumbHandle = {
     crumb: { section: 'sessions.list.title', title: 'sessions.detail.title' },
 };
 
+type SessionExposure = NonNullable<
+    NonNullable<PrintSessionDetailRead['prints']>[number]['exposures']
+>[number];
+
 const capitalize = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
 
 const SessionDetail: React.FunctionComponent = () => {
     const { t, i18n } = useTranslation();
     const { sessionId } = useParams<{ sessionId: string }>();
     const { printSessionApi } = usePrintSessionApi();
-    const { printApi } = usePrintApi();
-    const { chemistryApi } = useChemistryApi();
 
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState(false);
-    const [session, setSession] = React.useState<PrintSessionRead | null>(null);
-    const [prints, setPrints] = React.useState<PrintRead[]>([]);
-    const [chemistries, setChemistries] = React.useState<ChemistryRead[]>([]);
+    const [session, setSession] = React.useState<PrintSessionDetailRead | null>(null);
     const [collapsedPrints, setCollapsedPrints] = React.useState<Set<string>>(new Set());
 
     React.useEffect(() => {
         if (!sessionId) {
             return;
         }
-        Promise.all([
-            printSessionApi.apiPrintSessionsIdGet({ id: sessionId }),
-            chemistryApi.apiChemistriesGetCollection(),
-        ])
-            .then(([sessionRes, chemistriesRes]) =>
-                printApi
-                    .apiPrintsGetCollection({ session: sessionRes.data['@id'] })
-                    .then((printsRes) => {
-                        setSession(sessionRes.data);
-                        setChemistries(chemistriesRes.data['hydra:member']);
-                        setPrints(printsRes.data['hydra:member']);
-                        setLoaded(true);
-                    }),
-            )
+        printSessionApi
+            .apiPrintSessionsIdGet({ id: sessionId })
+            .then((sessionRes) => {
+                setSession(sessionRes.data);
+                setLoaded(true);
+            })
             .catch((err: unknown) => {
                 console.error('Error fetching print session:', err);
                 setError(err);
             });
-    }, [sessionId, printSessionApi, printApi, chemistryApi]);
+    }, [sessionId, printSessionApi]);
 
     if (error) {
         return <Typography color="error">{t('errors.api.loadingData')}</Typography>;
@@ -84,7 +68,7 @@ const SessionDetail: React.FunctionComponent = () => {
     }
 
     const notation = getStopNotation();
-    const chemistryById = new Map(chemistries.map((chemistry) => [chemistry['@id'], chemistry]));
+    const prints = session.prints ?? [];
     const dateFormatter = new Intl.DateTimeFormat(i18n.language, {
         year: 'numeric',
         month: 'long',
@@ -151,7 +135,7 @@ const SessionDetail: React.FunctionComponent = () => {
                             sx={{ alignItems: 'center', gap: 0.75 }}
                         >
                             <SettingsInputComponentIcon sx={{ fontSize: 16 }} />
-                            <Typography variant="body2">{session.enlarger}</Typography>
+                            <Typography variant="body2">{session.enlarger.name}</Typography>
                         </Stack>
                         <Stack
                             direction="row"
@@ -212,10 +196,8 @@ const SessionDetail: React.FunctionComponent = () => {
                         sx={{ alignItems: 'stretch', flexWrap: 'wrap', gap: 1.25 }}
                     >
                         {(session.chemicalBaths ?? []).map((bath, index) => {
-                            const chemistry = chemistryById.get(bath.chemistry['@id']);
-                            const processColor = chemistry
-                                ? getProcessStyle(chemistry.process).color
-                                : undefined;
+                            const chemistry = bath.chemistry;
+                            const processColor = getProcessStyle(chemistry.process).color;
                             return (
                                 <Box
                                     key={`${String(index)}-${bath.effectiveDilution ?? ''}`}
@@ -241,7 +223,7 @@ const SessionDetail: React.FunctionComponent = () => {
                                                 width: 22,
                                                 height: 22,
                                                 borderRadius: '7px',
-                                                backgroundColor: processColor ?? 'action.selected',
+                                                backgroundColor: processColor,
                                                 color: '#fff',
                                                 display: 'flex',
                                                 alignItems: 'center',
@@ -261,15 +243,11 @@ const SessionDetail: React.FunctionComponent = () => {
                                                 textTransform: 'uppercase',
                                             }}
                                         >
-                                            {chemistry?.chemistryType.typeLabel ??
-                                                t('sessions.detail.bathOrder', {
-                                                    order: index + 1,
-                                                })}
+                                            {chemistry.chemistryType.typeLabel}
                                         </Typography>
                                     </Stack>
                                     <Typography sx={{ fontSize: '13.5px', fontWeight: 600 }}>
-                                        {chemistry?.name ??
-                                            t('sessions.detail.bathOrder', { order: index + 1 })}
+                                        {chemistry.name}
                                     </Typography>
                                     <Stack
                                         direction="row"
@@ -386,11 +364,12 @@ const SessionDetail: React.FunctionComponent = () => {
                             1,
                             ...exposures.map((exposure) => exposure.effectiveSeconds ?? 0),
                         );
+                        const photoPaper = print.photoPaper;
                         const paperLabel = [
-                            print.paperBrand ? capitalize(print.paperBrand) : null,
-                            print.paperModel,
-                            print.paperBase ? print.paperBase.toUpperCase() : null,
-                            print.paperSurface ? capitalize(print.paperSurface) : null,
+                            photoPaper.manufacturer.name,
+                            photoPaper.name,
+                            photoPaper.paperBase.toUpperCase(),
+                            capitalize(photoPaper.paperSurface),
                         ]
                             .filter(Boolean)
                             .join(' · ');
@@ -742,7 +721,7 @@ const SessionDetail: React.FunctionComponent = () => {
                                                             </Typography>
                                                         ))}
                                                     </Box>
-                                                    {exposures.map((exposure: ExposureRead) => (
+                                                    {exposures.map((exposure: SessionExposure) => (
                                                         <Box
                                                             key={`${String(exposure.order)}-${exposure.kind}`}
                                                             sx={{

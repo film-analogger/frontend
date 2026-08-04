@@ -23,12 +23,19 @@ const chemistry: ChemistryRead = {
         '@type': 'chemistryType',
         typeCode: 'DEV-FILM',
         typeLabel: 'Film developer',
+        status: 'official',
     },
-    manufacturer: { '@id': '/manufacturers/1', '@type': 'manufacturer', name: 'Kodak' },
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        name: 'Kodak',
+        status: 'official',
+    },
     dilutions: [
         { chemistryParts: 1, waterParts: 0, official: true, label: 'stock' },
         { chemistryParts: 1, waterParts: 1, official: false, label: '1+1' },
     ],
+    status: 'official',
 };
 
 const mockApiChemistriesIdGet = vi.fn();

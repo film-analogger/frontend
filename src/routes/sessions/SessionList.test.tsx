@@ -1,7 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import SessionList from './SessionList';
-import type { PrintRead, PrintSessionRead } from '~/api/client';
+import type { EnlargerRead, PrintRead, PrintSessionRead } from '~/api/client';
+
+const enlarger: EnlargerRead = {
+    '@id': '/enlargers/1',
+    '@type': 'enlarger',
+    id: '1',
+    name: 'Durst M670',
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        name: 'Durst',
+        status: 'official',
+    },
+    status: 'official',
+};
 
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
@@ -18,7 +32,7 @@ const session: PrintSessionRead = {
     date: '2026-07-18',
     lab: 'Atelier Grenelle',
     number: 14,
-    enlarger: 'Durst M670',
+    enlarger: { '@id': '/enlargers/1', '@type': 'enlarger', createdAt: null, updatedAt: null },
     temperatureCelsius: 20,
 };
 
@@ -33,10 +47,17 @@ const print: PrintRead = {
         updatedAt: null,
     },
     number: 1,
+    photoPaper: {
+        '@id': '/photo_papers/1',
+        '@type': 'photoPaper',
+        createdAt: null,
+        updatedAt: null,
+    },
 };
 
 const mockApiPrintSessionsGetCollection = vi.fn();
 const mockApiPrintsGetCollection = vi.fn();
+const mockApiEnlargersIdGet = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
@@ -47,6 +68,9 @@ vi.mock('~/api/client', async () => {
             },
         }),
         usePrintApi: () => ({ printApi: { apiPrintsGetCollection: mockApiPrintsGetCollection } }),
+        useEnlargerApi: () => ({
+            enlargerApi: { apiEnlargersIdGet: mockApiEnlargersIdGet },
+        }),
     };
 });
 
@@ -62,6 +86,7 @@ describe('SessionList', () => {
         mockApiPrintSessionsGetCollection.mockReset();
         mockApiPrintsGetCollection.mockReset();
         mockApiPrintsGetCollection.mockResolvedValue({ data: { 'hydra:member': [] } });
+        mockApiEnlargersIdGet.mockReset().mockResolvedValue({ data: enlarger });
     });
 
     it('shows a loading indicator while sessions are being fetched', () => {

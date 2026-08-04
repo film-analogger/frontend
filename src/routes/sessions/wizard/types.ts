@@ -3,9 +3,6 @@ import type {
     ExposureWritePrintKindEnum,
     PrintWritePrintFocalLengthEnum,
     PrintWritePrintNegativeFormatEnum,
-    PrintWritePrintPaperBaseEnum,
-    PrintWritePrintPaperBrandEnum,
-    PrintWritePrintPaperSurfaceEnum,
 } from '~/api/filmAnaloggerApi';
 import { getDefaultEnlarger, getDefaultLab } from '~/domain/preferences';
 
@@ -32,10 +29,7 @@ export interface WizardPrint {
     key: string;
     negativeNumber: string;
     filmFormat: string;
-    paperBrand: PrintWritePrintPaperBrandEnum | '';
-    paperModel: string;
-    paperBase: PrintWritePrintPaperBaseEnum | '';
-    paperSurface: PrintWritePrintPaperSurfaceEnum | '';
+    photoPaperId: string;
     negativeFormat: PrintWritePrintNegativeFormatEnum | '';
     focalLength: PrintWritePrintFocalLengthEnum | '';
     columnHeightCm: string;
@@ -50,7 +44,7 @@ export interface WizardState {
     date: string;
     number: string;
     lab: string;
-    enlarger: string;
+    enlargerId: string;
     temperatureCelsius: string;
     wash: string;
     notes: string;
@@ -80,10 +74,7 @@ export const createPrint = (): WizardPrint => ({
     key: nextKey(),
     negativeNumber: '',
     filmFormat: '',
-    paperBrand: '',
-    paperModel: '',
-    paperBase: '',
-    paperSurface: '',
+    photoPaperId: '',
     negativeFormat: '',
     focalLength: '',
     columnHeightCm: '',
@@ -105,7 +96,7 @@ export const createInitialState = (): WizardState => ({
     date: new Date().toISOString().slice(0, 10),
     number: '',
     lab: getDefaultLab(),
-    enlarger: getDefaultEnlarger(),
+    enlargerId: getDefaultEnlarger(),
     temperatureCelsius: '20',
     wash: '',
     notes: '',

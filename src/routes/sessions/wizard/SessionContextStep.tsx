@@ -1,12 +1,14 @@
-import { Grid, TextField } from '@mui/material';
+import { Grid, MenuItem, TextField } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import type { EnlargerRead } from '~/api/client';
 import type { WizardState } from './types';
 
 export const SessionContextStep: React.FunctionComponent<{
     readonly state: WizardState;
+    readonly enlargers: EnlargerRead[];
     readonly onChange: (patch: Partial<WizardState>) => void;
-}> = ({ state, onChange }) => {
+}> = ({ state, enlargers, onChange }) => {
     const { t } = useTranslation();
 
     return (
@@ -52,10 +54,20 @@ export const SessionContextStep: React.FunctionComponent<{
                     fullWidth
                     label={t('sessions.wizard.fields.enlarger')}
                     onChange={(e) => {
-                        onChange({ enlarger: e.target.value });
+                        onChange({ enlargerId: e.target.value });
                     }}
-                    value={state.enlarger}
-                />
+                    select
+                    value={state.enlargerId}
+                >
+                    {enlargers.map((enlarger) => (
+                        <MenuItem
+                            key={enlarger.id}
+                            value={enlarger.id}
+                        >
+                            {enlarger.name} · {enlarger.manufacturer.name}
+                        </MenuItem>
+                    ))}
+                </TextField>
             </Grid>
             <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField

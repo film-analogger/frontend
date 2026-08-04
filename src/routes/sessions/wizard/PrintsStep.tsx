@@ -2,13 +2,15 @@ import AddIcon from '@mui/icons-material/Add';
 import { Button, Stack } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import type { PhotoPaperRead } from '~/api/client';
 import { PrintCard } from './PrintCard';
 import { createPrint, type WizardPrint } from './types';
 
 export const PrintsStep: React.FunctionComponent<{
     readonly prints: WizardPrint[];
+    readonly photoPapers: PhotoPaperRead[];
     readonly onChange: (prints: WizardPrint[]) => void;
-}> = ({ prints, onChange }) => {
+}> = ({ prints, photoPapers, onChange }) => {
     const { t } = useTranslation();
 
     return (
@@ -23,6 +25,7 @@ export const PrintsStep: React.FunctionComponent<{
                     onRemove={() => {
                         onChange(prints.filter((p) => p.key !== print.key));
                     }}
+                    photoPapers={photoPapers}
                     print={print}
                     removable={prints.length > 1}
                 />

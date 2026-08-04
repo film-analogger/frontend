@@ -22,9 +22,16 @@ const makeChemistry = (overrides: Partial<ChemistryRead>): ChemistryRead => ({
         '@type': 'chemistryType',
         typeCode: 'DEV',
         typeLabel: 'Developer',
+        status: 'official',
     },
-    manufacturer: { '@id': '/manufacturers/1', '@type': 'manufacturer', name: 'Kodak' },
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        name: 'Kodak',
+        status: 'official',
+    },
     dilutions: [{ chemistryParts: 1, waterParts: 1, official: true, label: '1+1' }],
+    status: 'official',
     ...overrides,
 });
 
@@ -107,6 +114,7 @@ describe('ChemistryList', () => {
                             '@type': 'chemistryType',
                             typeCode: 'DEV',
                             typeLabel: 'Developer',
+                            status: 'official',
                         },
                     }),
                     makeChemistry({
@@ -117,6 +125,7 @@ describe('ChemistryList', () => {
                             '@type': 'chemistryType',
                             typeCode: 'FIX',
                             typeLabel: 'Fixer',
+                            status: 'official',
                         },
                     }),
                 ],
@@ -146,6 +155,7 @@ describe('ChemistryList', () => {
                             '@type': 'chemistryType',
                             typeCode: 'DEV',
                             typeLabel: 'Developer',
+                            status: 'official',
                         },
                     }),
                     makeChemistry({
@@ -157,6 +167,7 @@ describe('ChemistryList', () => {
                             '@type': 'chemistryType',
                             typeCode: 'FIX',
                             typeLabel: 'Fixer',
+                            status: 'official',
                         },
                     }),
                     makeChemistry({
@@ -168,6 +179,7 @@ describe('ChemistryList', () => {
                             '@type': 'chemistryType',
                             typeCode: 'DEV',
                             typeLabel: 'Developer',
+                            status: 'official',
                         },
                     }),
                 ],

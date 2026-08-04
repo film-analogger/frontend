@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import NewSessionWizard from './NewSessionWizard';
-import type { ChemistryRead } from '~/api/client';
+import type { ChemistryRead, EnlargerRead, PhotoPaperRead } from '~/api/client';
 
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
@@ -27,13 +27,52 @@ const chemistry: ChemistryRead = {
         '@type': 'chemistryType',
         typeCode: 'DEV',
         typeLabel: 'Developer',
+        status: 'official',
     },
-    manufacturer: { '@id': '/manufacturers/1', '@type': 'manufacturer', name: 'Kodak' },
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        name: 'Kodak',
+        status: 'official',
+    },
+    status: 'official',
+};
+
+const enlarger: EnlargerRead = {
+    '@id': '/enlargers/1',
+    '@type': 'enlarger',
+    id: '1',
+    name: 'Durst M670',
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        name: 'Durst',
+        status: 'official',
+    },
+    status: 'official',
+};
+
+const photoPaper: PhotoPaperRead = {
+    '@id': '/photo_papers/1',
+    '@type': 'photoPaper',
+    id: '1',
+    name: 'Multigrade RC',
+    manufacturer: {
+        '@id': '/manufacturers/2',
+        '@type': 'manufacturer',
+        name: 'Ilford',
+        status: 'official',
+    },
+    paperBase: 'rc',
+    paperSurface: 'glossy',
+    status: 'official',
 };
 
 const mockApiChemistriesGetCollection = vi.fn();
 const mockApiPrintSessionsPost = vi.fn();
 const mockApiPrintsPost = vi.fn();
+const mockApiEnlargersGetCollection = vi.fn();
+const mockApiPhotoPapersGetCollection = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
@@ -45,6 +84,12 @@ vi.mock('~/api/client', async () => {
             printSessionApi: { apiPrintSessionsPost: mockApiPrintSessionsPost },
         }),
         usePrintApi: () => ({ printApi: { apiPrintsPost: mockApiPrintsPost } }),
+        useEnlargerApi: () => ({
+            enlargerApi: { apiEnlargersGetCollection: mockApiEnlargersGetCollection },
+        }),
+        usePhotoPaperApi: () => ({
+            photoPaperApi: { apiPhotoPapersGetCollection: mockApiPhotoPapersGetCollection },
+        }),
     };
 });
 
@@ -55,16 +100,15 @@ const renderWizard = () =>
         </MemoryRouter>,
     );
 
-const fillSessionContext = () => {
-    fireEvent.change(screen.getByLabelText('sessions.wizard.fields.number'), {
+const fillSessionContext = async () => {
+    fireEvent.change(await screen.findByLabelText('sessions.wizard.fields.number'), {
         target: { value: '14' },
     });
     fireEvent.change(screen.getByLabelText('sessions.wizard.fields.lab'), {
         target: { value: 'Atelier Grenelle' },
     });
-    fireEvent.change(screen.getByLabelText('sessions.wizard.fields.enlarger'), {
-        target: { value: 'Durst M670' },
-    });
+    fireEvent.mouseDown(screen.getByLabelText('sessions.wizard.fields.enlarger'));
+    fireEvent.click(within(screen.getByRole('listbox')).getByText('Durst M670 · Durst'));
 };
 
 describe('NewSessionWizard', () => {
@@ -75,20 +119,26 @@ describe('NewSessionWizard', () => {
         mockApiPrintSessionsPost.mockReset();
         mockApiPrintsPost.mockReset();
         mockNavigate.mockReset();
+        mockApiEnlargersGetCollection.mockReset().mockResolvedValue({
+            data: { 'hydra:member': [enlarger] },
+        });
+        mockApiPhotoPapersGetCollection.mockReset().mockResolvedValue({
+            data: { 'hydra:member': [photoPaper] },
+        });
     });
 
     it('disables the next button until the required session fields are filled', async () => {
         renderWizard();
         expect(screen.getByText('sessions.wizard.next').closest('button')).toBeDisabled();
 
-        fillSessionContext();
+        await fillSessionContext();
 
         expect(screen.getByText('sessions.wizard.next').closest('button')).toBeEnabled();
 
         // Flushes the mount-time chemistries fetch inside act() so it doesn't
         // resolve after this test has already returned.
         await screen.findByText('sessions.wizard.next');
-    });
+    }, 15000);
 
     it('walks through all 4 steps and submits the session and its prints', async () => {
         mockApiPrintSessionsPost.mockResolvedValue({
@@ -98,13 +148,15 @@ describe('NewSessionWizard', () => {
 
         renderWizard();
 
-        fillSessionContext();
+        await fillSessionContext();
         fireEvent.click(screen.getByText('sessions.wizard.next'));
 
         expect(await screen.findByRole('combobox')).toBeInTheDocument();
         fireEvent.click(screen.getByText('sessions.wizard.next'));
 
         expect(screen.getByText('sessions.wizard.printTitle:{"number":1}')).toBeInTheDocument();
+        fireEvent.mouseDown(screen.getByLabelText('sessions.wizard.fields.photoPaper'));
+        fireEvent.click(within(screen.getByRole('listbox')).getByText('Multigrade RC · Ilford'));
         fireEvent.click(screen.getByText('sessions.wizard.next'));
 
         expect(screen.getByLabelText('sessions.wizard.fields.sessionNotes')).toBeInTheDocument();
@@ -114,7 +166,7 @@ describe('NewSessionWizard', () => {
         expect(mockApiPrintSessionsPost.mock.calls[0]?.[0]).toMatchObject({
             printSessionWritePrintSession: {
                 lab: 'Atelier Grenelle',
-                enlarger: 'Durst M670',
+                enlarger: '/enlargers/1',
                 number: 14,
             },
         });
@@ -122,6 +174,7 @@ describe('NewSessionWizard', () => {
             printWritePrint: {
                 session: '/print_sessions/1',
                 number: 1,
+                photoPaper: '/photo_papers/1',
             },
         });
         expect(mockNavigate).toHaveBeenCalledWith('/sessions/1');
@@ -130,7 +183,7 @@ describe('NewSessionWizard', () => {
     it('lets the user select a chemistry for a bath', async () => {
         renderWizard();
 
-        fillSessionContext();
+        await fillSessionContext();
         fireEvent.click(screen.getByText('sessions.wizard.next'));
 
         const select = await screen.findByLabelText('sessions.wizard.fields.chemistry');

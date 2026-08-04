@@ -5,11 +5,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
 import {
+    useEnlargerApi,
     usePrintApi,
     usePrintSessionApi,
+    type EnlargerRead,
     type PrintRead,
     type PrintSessionRead,
 } from '~/api/client';
+import { idFromIri } from '~/domain/iri';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
 
 export const handle: RouteCrumbHandle = {
@@ -23,11 +26,13 @@ const SessionList: React.FunctionComponent = () => {
     const { t, i18n } = useTranslation();
     const { printSessionApi } = usePrintSessionApi();
     const { printApi } = usePrintApi();
+    const { enlargerApi } = useEnlargerApi();
 
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState(false);
     const [sessions, setSessions] = React.useState<PrintSessionRead[]>([]);
     const [prints, setPrints] = React.useState<PrintRead[]>([]);
+    const [enlargers, setEnlargers] = React.useState<EnlargerRead[]>([]);
     const [yearFilter, setYearFilter] = React.useState<string | null>(null);
 
     React.useEffect(() => {
@@ -37,18 +42,26 @@ const SessionList: React.FunctionComponent = () => {
         ])
             .then(([sessionsRes, printsRes]) => {
                 const fetched = sessionsRes.data['hydra:member'];
-                setSessions(fetched);
-                setPrints(printsRes.data['hydra:member']);
-                setYearFilter(
-                    (current) => current ?? (fetched[0] ? yearOf(fetched[0].date) : null),
+                const enlargerIds = Array.from(
+                    new Set(fetched.map((session) => idFromIri(session.enlarger['@id']))),
                 );
-                setLoaded(true);
+                return Promise.all(
+                    enlargerIds.map((id) => enlargerApi.apiEnlargersIdGet({ id })),
+                ).then((enlargerResList) => {
+                    setSessions(fetched);
+                    setPrints(printsRes.data['hydra:member']);
+                    setEnlargers(enlargerResList.map((res) => res.data));
+                    setYearFilter(
+                        (current) => current ?? (fetched[0] ? yearOf(fetched[0].date) : null),
+                    );
+                    setLoaded(true);
+                });
             })
             .catch((err: unknown) => {
                 console.error('Error fetching print sessions:', err);
                 setError(err);
             });
-    }, [printSessionApi, printApi]);
+    }, [printSessionApi, printApi, enlargerApi]);
 
     if (error) {
         return <Typography color="error">{t('errors.api.loadingData')}</Typography>;
@@ -63,6 +76,7 @@ const SessionList: React.FunctionComponent = () => {
         );
     }
 
+    const enlargerById = new Map(enlargers.map((enlarger) => [enlarger['@id'], enlarger]));
     const printCountBySessionId = new Map<string, number>();
     prints.forEach((print) => {
         const key = print.session['@id'];
@@ -336,7 +350,8 @@ const SessionList: React.FunctionComponent = () => {
                                                     color="text.secondary"
                                                     sx={{ fontSize: '11.5px' }}
                                                 >
-                                                    {session.enlarger}
+                                                    {enlargerById.get(session.enlarger['@id'])
+                                                        ?.name ?? '—'}
                                                 </Typography>
                                             </Box>
                                             <ChevronRightIcon sx={{ opacity: 0.4 }} />

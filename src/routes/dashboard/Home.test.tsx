@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import Home from './Home';
-import type { FilmRead, PrintRead, PrintSessionRead } from '~/api/client';
+import type { EnlargerRead, FilmRead, PrintRead, PrintSessionRead } from '~/api/client';
 
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
@@ -10,6 +10,20 @@ vi.mock('react-i18next', () => ({
     }),
 }));
 
+const enlarger: EnlargerRead = {
+    '@id': '/enlargers/1',
+    '@type': 'enlarger',
+    id: '1',
+    name: 'Durst M670',
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        name: 'Durst',
+        status: 'official',
+    },
+    status: 'official',
+};
+
 const session: PrintSessionRead = {
     '@id': '/print_sessions/1',
     '@type': 'PrintSession',
@@ -17,7 +31,7 @@ const session: PrintSessionRead = {
     date: '2026-07-18',
     lab: 'Atelier Grenelle',
     number: 14,
-    enlarger: 'Durst M670',
+    enlarger: { '@id': '/enlargers/1', '@type': 'enlarger', createdAt: null, updatedAt: null },
     temperatureCelsius: 20,
 };
 
@@ -32,6 +46,12 @@ const print: PrintRead = {
         updatedAt: null,
     },
     number: 1,
+    photoPaper: {
+        '@id': '/photo_papers/1',
+        '@type': 'photoPaper',
+        createdAt: null,
+        updatedAt: null,
+    },
     exposures: [
         {
             id: '1',
@@ -51,12 +71,20 @@ const film: FilmRead = {
     description: '',
     process: 'C-41',
     sensibility: 400,
-    manufacturer: { '@id': '/manufacturers/1', '@type': 'manufacturer', id: '1', name: 'Kodak' },
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        id: '1',
+        name: 'Kodak',
+        status: 'official',
+    },
+    status: 'official',
 };
 
 const mockApiPrintSessionsGetCollection = vi.fn();
 const mockApiPrintsGetCollection = vi.fn();
 const mockApiFilmsGetCollection = vi.fn();
+const mockApiEnlargersIdGet = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
@@ -68,6 +96,9 @@ vi.mock('~/api/client', async () => {
         }),
         usePrintApi: () => ({ printApi: { apiPrintsGetCollection: mockApiPrintsGetCollection } }),
         useFilmApi: () => ({ filmApi: { apiFilmsGetCollection: mockApiFilmsGetCollection } }),
+        useEnlargerApi: () => ({
+            enlargerApi: { apiEnlargersIdGet: mockApiEnlargersIdGet },
+        }),
     };
 });
 
@@ -83,6 +114,7 @@ describe('Home', () => {
         mockApiPrintSessionsGetCollection.mockReset();
         mockApiPrintsGetCollection.mockReset();
         mockApiFilmsGetCollection.mockReset();
+        mockApiEnlargersIdGet.mockReset().mockResolvedValue({ data: enlarger });
     });
 
     it('shows a loading indicator while the dashboard data is being fetched', () => {

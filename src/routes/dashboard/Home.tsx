@@ -8,15 +8,18 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
 import {
+    useEnlargerApi,
     useFilmApi,
     usePrintApi,
     usePrintSessionApi,
+    type EnlargerRead,
     type FilmRead,
     type PrintRead,
     type PrintSessionRead,
 } from '~/api/client';
 import { FilmName } from '~/components/Widgets/FilmName/FilmName';
 import { ProcessChip } from '~/components/Widgets/ProcessChip/ProcessChip';
+import { idFromIri } from '~/domain/iri';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
 
 export const handle: RouteCrumbHandle = {
@@ -39,12 +42,14 @@ const Home: React.FunctionComponent = () => {
     const { printSessionApi } = usePrintSessionApi();
     const { printApi } = usePrintApi();
     const { filmApi } = useFilmApi();
+    const { enlargerApi } = useEnlargerApi();
 
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState(false);
     const [sessions, setSessions] = React.useState<PrintSessionRead[]>([]);
     const [prints, setPrints] = React.useState<PrintRead[]>([]);
     const [films, setFilms] = React.useState<FilmRead[]>([]);
+    const [enlargers, setEnlargers] = React.useState<EnlargerRead[]>([]);
 
     React.useEffect(() => {
         Promise.all([
@@ -53,17 +58,27 @@ const Home: React.FunctionComponent = () => {
             filmApi.apiFilmsGetCollection(),
         ])
             .then(([sessionRes, printRes, filmRes]) => {
-                setSessions(sessionRes.data['hydra:member']);
-                setPrints(printRes.data['hydra:member']);
-                setFilms(filmRes.data['hydra:member']);
-                setLoaded(true);
+                const sessions = sessionRes.data['hydra:member'];
+                const enlargerIds = Array.from(
+                    new Set(sessions.map((session) => idFromIri(session.enlarger['@id']))),
+                );
+                return Promise.all(
+                    enlargerIds.map((id) => enlargerApi.apiEnlargersIdGet({ id })),
+                ).then((enlargerResList) => {
+                    setSessions(sessions);
+                    setPrints(printRes.data['hydra:member']);
+                    setFilms(filmRes.data['hydra:member']);
+                    setEnlargers(enlargerResList.map((res) => res.data));
+                    setLoaded(true);
+                });
             })
             .catch((err: unknown) => {
                 console.error('Error fetching dashboard data:', err);
                 setError(err);
             });
-    }, [printSessionApi, printApi, filmApi]);
+    }, [printSessionApi, printApi, filmApi, enlargerApi]);
 
+    const enlargerById = new Map(enlargers.map((enlarger) => [enlarger['@id'], enlarger]));
     const recentSessions = [...sessions].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
 
     const baseSeconds = prints.flatMap((print) =>
@@ -247,7 +262,8 @@ const Home: React.FunctionComponent = () => {
                                                     variant="caption"
                                                 >
                                                     {session.date} · {session.lab} ·{' '}
-                                                    {session.enlarger}
+                                                    {enlargerById.get(session.enlarger['@id'])
+                                                        ?.name ?? '—'}
                                                 </Typography>
                                             </Box>
                                             <ChevronRightIcon sx={{ opacity: 0.4 }} />

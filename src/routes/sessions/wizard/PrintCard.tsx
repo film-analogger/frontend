@@ -17,32 +17,22 @@ import { useTranslation } from 'react-i18next';
 import type {
     PrintWritePrintFocalLengthEnum,
     PrintWritePrintNegativeFormatEnum,
-    PrintWritePrintPaperBaseEnum,
-    PrintWritePrintPaperBrandEnum,
-    PrintWritePrintPaperSurfaceEnum,
 } from '~/api/filmAnaloggerApi';
+import type { PhotoPaperRead } from '~/api/client';
 import { ExposureRow } from './ExposureRow';
 import { createExposure, type WizardPrint } from './types';
 
 const negativeFormats: PrintWritePrintNegativeFormatEnum[] = ['24x36', '6x45', '6x6', '6x7', '6x9'];
 const focalLengths: PrintWritePrintFocalLengthEnum[] = [50, 75, 80, 90, 100, 105];
-const paperBrands: PrintWritePrintPaperBrandEnum[] = ['ilford', 'foma', 'bergger', 'other'];
-const paperBases: PrintWritePrintPaperBaseEnum[] = ['rc', 'fb'];
-const paperSurfaces: PrintWritePrintPaperSurfaceEnum[] = [
-    'glossy',
-    'satin',
-    'pearl',
-    'matt',
-    'other',
-];
 
 export const PrintCard: React.FunctionComponent<{
     readonly index: number;
     readonly print: WizardPrint;
+    readonly photoPapers: PhotoPaperRead[];
     readonly onChange: (patch: Partial<WizardPrint>) => void;
     readonly onRemove: () => void;
     readonly removable: boolean;
-}> = ({ index, print, onChange, onRemove, removable }) => {
+}> = ({ index, print, photoPapers, onChange, onRemove, removable }) => {
     const { t } = useTranslation();
 
     const updateExposure = (key: string, patch: Partial<WizardPrint['exposures'][number]>) => {
@@ -149,76 +139,22 @@ export const PrintCard: React.FunctionComponent<{
                         value={print.copies}
                     />
                 </Grid>
-                <Grid size={{ xs: 6, sm: 3 }}>
+                <Grid size={{ xs: 12, sm: 6 }}>
                     <TextField
                         fullWidth
-                        label={t('sessions.wizard.fields.paperBrand')}
+                        label={t('sessions.wizard.fields.photoPaper')}
                         onChange={(e) => {
-                            onChange({
-                                paperBrand: e.target.value as PrintWritePrintPaperBrandEnum,
-                            });
+                            onChange({ photoPaperId: e.target.value });
                         }}
                         select
-                        value={print.paperBrand}
+                        value={print.photoPaperId}
                     >
-                        {paperBrands.map((brand) => (
+                        {photoPapers.map((photoPaper) => (
                             <MenuItem
-                                key={brand}
-                                value={brand}
+                                key={photoPaper.id}
+                                value={photoPaper.id}
                             >
-                                {brand}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </Grid>
-                <Grid size={{ xs: 6, sm: 3 }}>
-                    <TextField
-                        fullWidth
-                        label={t('sessions.wizard.fields.paperModel')}
-                        onChange={(e) => {
-                            onChange({ paperModel: e.target.value });
-                        }}
-                        value={print.paperModel}
-                    />
-                </Grid>
-                <Grid size={{ xs: 6, sm: 3 }}>
-                    <TextField
-                        fullWidth
-                        label={t('sessions.wizard.fields.paperBase')}
-                        onChange={(e) => {
-                            onChange({ paperBase: e.target.value as PrintWritePrintPaperBaseEnum });
-                        }}
-                        select
-                        value={print.paperBase}
-                    >
-                        {paperBases.map((base) => (
-                            <MenuItem
-                                key={base}
-                                value={base}
-                            >
-                                {base}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </Grid>
-                <Grid size={{ xs: 6, sm: 3 }}>
-                    <TextField
-                        fullWidth
-                        label={t('sessions.wizard.fields.paperSurface')}
-                        onChange={(e) => {
-                            onChange({
-                                paperSurface: e.target.value as PrintWritePrintPaperSurfaceEnum,
-                            });
-                        }}
-                        select
-                        value={print.paperSurface}
-                    >
-                        {paperSurfaces.map((surface) => (
-                            <MenuItem
-                                key={surface}
-                                value={surface}
-                            >
-                                {surface}
+                                {photoPaper.name} · {photoPaper.manufacturer.name}
                             </MenuItem>
                         ))}
                     </TextField>

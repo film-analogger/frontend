@@ -1,19 +1,23 @@
 import { Grid, Paper, Stack, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import type { EnlargerRead } from '~/api/client';
 import type { WizardState } from './types';
 
 export const ReviewStep: React.FunctionComponent<{
     readonly state: WizardState;
+    readonly enlargers: EnlargerRead[];
     readonly onChange: (patch: Partial<WizardState>) => void;
-}> = ({ state, onChange }) => {
+}> = ({ state, enlargers, onChange }) => {
     const { t } = useTranslation();
 
     const totalExposures = state.prints.reduce((sum, p) => sum + p.exposures.length, 0);
+    const enlargerName =
+        enlargers.find((enlarger) => enlarger.id === state.enlargerId)?.name ?? '—';
 
     const rows: { k: string; v: string }[] = [
         { k: t('sessions.wizard.review.session'), v: `${state.date} · ${state.lab}` },
-        { k: t('sessions.wizard.review.enlarger'), v: state.enlarger || '—' },
+        { k: t('sessions.wizard.review.enlarger'), v: enlargerName },
         {
             k: t('sessions.wizard.review.baths'),
             v: t('sessions.wizard.review.bathsCount', { count: state.baths.length }),

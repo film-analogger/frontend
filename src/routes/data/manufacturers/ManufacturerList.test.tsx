@@ -15,12 +15,14 @@ const kodak: ManufacturerRead = {
     '@type': 'manufacturer',
     id: '1',
     name: 'Kodak',
+    status: 'official',
 };
 const ilford: ManufacturerRead = {
     '@id': '/manufacturers/2',
     '@type': 'manufacturer',
     id: '2',
     name: 'Ilford',
+    status: 'official',
 };
 
 const film: FilmRead = {
@@ -31,7 +33,14 @@ const film: FilmRead = {
     description: '',
     process: 'C-41',
     sensibility: 400,
-    manufacturer: { '@id': '/manufacturers/1', '@type': 'manufacturer', id: '1', name: 'Kodak' },
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        id: '1',
+        name: 'Kodak',
+        status: 'official',
+    },
+    status: 'official',
 };
 
 const chemistry: ChemistryRead = {
@@ -45,8 +54,15 @@ const chemistry: ChemistryRead = {
         '@type': 'chemistryType',
         typeCode: 'DEV',
         typeLabel: 'Developer',
+        status: 'official',
     },
-    manufacturer: { '@id': '/manufacturers/1', '@type': 'manufacturer', name: 'Kodak' },
+    manufacturer: {
+        '@id': '/manufacturers/1',
+        '@type': 'manufacturer',
+        name: 'Kodak',
+        status: 'official',
+    },
+    status: 'official',
 };
 
 const mockApiManufacturersGetCollection = vi.fn();

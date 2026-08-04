@@ -11,7 +11,16 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import { useChemistryApi, usePrintApi, usePrintSessionApi, type ChemistryRead } from '~/api/client';
+import {
+    useChemistryApi,
+    useEnlargerApi,
+    usePhotoPaperApi,
+    usePrintApi,
+    usePrintSessionApi,
+    type ChemistryRead,
+    type EnlargerRead,
+    type PhotoPaperRead,
+} from '~/api/client';
 import type { PrintSessionWritePrintSession, PrintWritePrint } from '~/api/filmAnaloggerApi';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
 import { SessionContextStep } from './SessionContextStep';
@@ -32,10 +41,15 @@ const NewSessionWizard: React.FunctionComponent = () => {
     const { chemistryApi } = useChemistryApi();
     const { printSessionApi } = usePrintSessionApi();
     const { printApi } = usePrintApi();
+    const { photoPaperApi } = usePhotoPaperApi();
+    const { enlargerApi } = useEnlargerApi();
 
     const [state, setState] = React.useState<WizardState>(createInitialState);
     const [chemistries, setChemistries] = React.useState<ChemistryRead[]>([]);
     const [chemistriesLoaded, setChemistriesLoaded] = React.useState(false);
+    const [photoPapers, setPhotoPapers] = React.useState<PhotoPaperRead[]>([]);
+    const [enlargers, setEnlargers] = React.useState<EnlargerRead[]>([]);
+    const [catalogsLoaded, setCatalogsLoaded] = React.useState(false);
     const [submitting, setSubmitting] = React.useState(false);
     const [submitError, setSubmitError] = React.useState<unknown>(null);
 
@@ -51,6 +65,21 @@ const NewSessionWizard: React.FunctionComponent = () => {
             });
     }, [chemistryApi]);
 
+    React.useEffect(() => {
+        Promise.all([
+            photoPaperApi.apiPhotoPapersGetCollection(),
+            enlargerApi.apiEnlargersGetCollection(),
+        ])
+            .then(([photoPapersRes, enlargersRes]) => {
+                setPhotoPapers(photoPapersRes.data['hydra:member']);
+                setEnlargers(enlargersRes.data['hydra:member']);
+                setCatalogsLoaded(true);
+            })
+            .catch((err: unknown) => {
+                console.error('Error fetching photo papers and enlargers:', err);
+            });
+    }, [photoPaperApi, enlargerApi]);
+
     const patch = (p: Partial<WizardState>) => {
         setState((s) => ({ ...s, ...p }));
     };
@@ -61,8 +90,11 @@ const NewSessionWizard: React.FunctionComponent = () => {
                 state.date !== '' &&
                 state.number !== '' &&
                 state.lab !== '' &&
-                state.enlarger !== ''
+                state.enlargerId !== ''
             );
+        }
+        if (state.step === 2) {
+            return state.prints.every((print) => print.photoPaperId !== '');
         }
         return true;
     };
@@ -71,11 +103,12 @@ const NewSessionWizard: React.FunctionComponent = () => {
         setSubmitting(true);
         setSubmitError(null);
         try {
+            const enlarger = enlargers.find((e) => e.id === state.enlargerId);
             const sessionPayload: PrintSessionWritePrintSession = {
                 date: state.date,
                 lab: state.lab,
                 number: Number(state.number),
-                enlarger: state.enlarger,
+                enlarger: enlarger?.['@id'] ?? '',
                 temperatureCelsius: Number(state.temperatureCelsius) || 0,
                 chemicalBaths: state.baths
                     .filter((bath) => bath.chemistryId)
@@ -102,16 +135,14 @@ const NewSessionWizard: React.FunctionComponent = () => {
                 if (!print) {
                     continue;
                 }
+                const photoPaper = photoPapers.find((p) => p.id === print.photoPaperId);
                 const printPayload: PrintWritePrint = {
                     session: sessionIri,
                     number: index + 1,
                     negativeNumber: print.negativeNumber || undefined,
                     negativeFormat: print.negativeFormat || undefined,
                     focalLength: print.focalLength || undefined,
-                    paperBrand: print.paperBrand || undefined,
-                    paperModel: print.paperModel || undefined,
-                    paperBase: print.paperBase || undefined,
-                    paperSurface: print.paperSurface || undefined,
+                    photoPaper: photoPaper?.['@id'] ?? '',
                     columnHeightCm: print.columnHeightCm ? Number(print.columnHeightCm) : undefined,
                     borderCm: print.borderCm ? Number(print.borderCm) : undefined,
                     copies: print.copies ? Number(print.copies) : undefined,
@@ -171,10 +202,19 @@ const NewSessionWizard: React.FunctionComponent = () => {
                 variant="outlined"
             >
                 {state.step === 0 ? (
-                    <SessionContextStep
-                        onChange={patch}
-                        state={state}
-                    />
+                    !catalogsLoaded ? (
+                        <CircularProgress
+                            aria-label={t('app.loading')}
+                            enableTrackSlot
+                            size="2.5rem"
+                        />
+                    ) : (
+                        <SessionContextStep
+                            enlargers={enlargers}
+                            onChange={patch}
+                            state={state}
+                        />
+                    )
                 ) : null}
                 {state.step === 1 ? (
                     !chemistriesLoaded ? (
@@ -194,15 +234,25 @@ const NewSessionWizard: React.FunctionComponent = () => {
                     )
                 ) : null}
                 {state.step === 2 ? (
-                    <PrintsStep
-                        onChange={(prints) => {
-                            patch({ prints });
-                        }}
-                        prints={state.prints}
-                    />
+                    !catalogsLoaded ? (
+                        <CircularProgress
+                            aria-label={t('app.loading')}
+                            enableTrackSlot
+                            size="2.5rem"
+                        />
+                    ) : (
+                        <PrintsStep
+                            onChange={(prints) => {
+                                patch({ prints });
+                            }}
+                            photoPapers={photoPapers}
+                            prints={state.prints}
+                        />
+                    )
                 ) : null}
                 {state.step === 3 ? (
                     <ReviewStep
+                        enlargers={enlargers}
                         onChange={patch}
                         state={state}
                     />

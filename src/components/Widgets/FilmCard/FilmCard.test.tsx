@@ -36,7 +36,9 @@ const baseFilm: FilmRead = {
         '@type': 'manufacturer',
         id: '1',
         name: 'Kodak',
+        status: 'official',
     },
+    status: 'official',
 };
 
 describe('FilmCard', () => {
