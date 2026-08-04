@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **developmentNotes** | **string** |  | [optional] [default to undefined]
 **rating** | **number** |  | [optional] [default to undefined]
 **tags** | [**Array&lt;TagReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead&gt;**](TagReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
+**binderId** | **string** |  | [optional] [default to undefined]
+**contactSheetNumber** | **number** |  | [optional] [default to undefined]
 **createdBy** | **string** |  | [optional] [default to undefined]
 **updatedBy** | **string** |  | [optional] [default to undefined]
 **createdAt** | **string** |  | [optional] [default to undefined]
@@ -41,6 +43,8 @@ const instance: DevelopmentLogReadDevelopmentLogTimestampableBlameableReadReadFi
     developmentNotes,
     rating,
     tags,
+    binderId,
+    contactSheetNumber,
     createdBy,
     updatedBy,
     createdAt,

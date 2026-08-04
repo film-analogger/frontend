@@ -1514,6 +1514,8 @@ export interface DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRea
     'developmentNotes'?: string | null;
     'rating'?: number | null;
     'tags'?: Array<TagJsonldReadDevelopmentLogTimestampableBlameableRead>;
+    'binderId'?: string | null;
+    'contactSheetNumber'?: number | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -1551,6 +1553,8 @@ export interface DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRea
     'developmentNotes'?: string | null;
     'rating'?: number | null;
     'tags'?: Array<TagJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead>;
+    'binderId'?: string | null;
+    'contactSheetNumber'?: number | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -1585,6 +1589,8 @@ export interface DevelopmentLogReadDevelopmentLogTimestampableBlameableRead {
     'developmentNotes'?: string | null;
     'rating'?: number | null;
     'tags'?: Array<TagReadDevelopmentLogTimestampableBlameableRead>;
+    'binderId'?: string | null;
+    'contactSheetNumber'?: number | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -1619,6 +1625,8 @@ export interface DevelopmentLogReadDevelopmentLogTimestampableBlameableReadReadF
     'developmentNotes'?: string | null;
     'rating'?: number | null;
     'tags'?: Array<TagReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead>;
+    'binderId'?: string | null;
+    'contactSheetNumber'?: number | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -1652,6 +1660,8 @@ export interface DevelopmentLogWriteDevelopmentLog {
     'developmentNotes'?: string | null;
     'rating'?: number | null;
     'tags'?: Array<string>;
+    'binderId'?: string | null;
+    'contactSheetNumber'?: number | null;
 }
 
 export const DevelopmentLogWriteDevelopmentLogProcessEnum = {
@@ -1677,6 +1687,8 @@ export interface DevelopmentLogWriteDevelopmentLogJsonMergePatch {
     'developmentNotes'?: string | null;
     'rating'?: number | null;
     'tags'?: Array<string>;
+    'binderId'?: string | null;
+    'contactSheetNumber'?: number | null;
 }
 
 export const DevelopmentLogWriteDevelopmentLogJsonMergePatchProcessEnum = {

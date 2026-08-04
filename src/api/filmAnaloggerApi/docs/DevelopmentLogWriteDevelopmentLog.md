@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **developmentNotes** | **string** |  | [optional] [default to undefined]
 **rating** | **number** |  | [optional] [default to undefined]
 **tags** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**binderId** | **string** |  | [optional] [default to undefined]
+**contactSheetNumber** | **number** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -34,6 +36,8 @@ const instance: DevelopmentLogWriteDevelopmentLog = {
     developmentNotes,
     rating,
     tags,
+    binderId,
+    contactSheetNumber,
 };
 ```
 
