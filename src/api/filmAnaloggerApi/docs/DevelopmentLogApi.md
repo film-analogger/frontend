@@ -128,7 +128,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiDevelopmentLogsIdGet**
-> DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead apiDevelopmentLogsIdGet()
+> DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead apiDevelopmentLogsIdGet()
 
 Retrieves a DevelopmentLog resource.
 
@@ -165,7 +165,7 @@ const { status, data } = await apiInstance.apiDevelopmentLogsIdGet(
 
 ### Return type
 
-**DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead**
+**DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead**
 
 ### Authorization
 

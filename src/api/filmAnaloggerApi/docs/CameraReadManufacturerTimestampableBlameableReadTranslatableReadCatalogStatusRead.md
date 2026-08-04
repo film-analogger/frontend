@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**translations** | **Array&lt;string | null&gt;** | array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into | [optional] [default to undefined]
+**isTranslated** | **boolean** |  | [optional] [default to false]
 **createdBy** | **string** |  | [optional] [default to undefined]
 **updatedBy** | **string** |  | [optional] [default to undefined]
 **createdAt** | **string** |  | [optional] [default to undefined]
 **updatedAt** | **string** |  | [optional] [default to undefined]
-**translations** | **Array&lt;string | null&gt;** | array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into | [optional] [default to undefined]
-**isTranslated** | **boolean** |  | [optional] [default to false]
 **status** | **string** |  | [default to StatusEnum_Personal]
 
 ## Example
@@ -19,12 +19,12 @@ Name | Type | Description | Notes
 import { CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead } from './api';
 
 const instance: CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead = {
+    translations,
+    isTranslated,
     createdBy,
     updatedBy,
     createdAt,
     updatedAt,
-    translations,
-    isTranslated,
     status,
 };
 ```

@@ -5,6 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  | [optional] [readonly] [default to undefined]
+**name** | **string** |  | [default to undefined]
+**primaryColor** | **string** |  | [optional] [default to undefined]
+**secondaryColor** | **string** |  | [optional] [default to undefined]
+**tertiaryColor** | **string** |  | [optional] [default to undefined]
 **createdBy** | **string** |  | [optional] [default to undefined]
 **updatedBy** | **string** |  | [optional] [default to undefined]
 **createdAt** | **string** |  | [optional] [default to undefined]
@@ -19,6 +24,11 @@ Name | Type | Description | Notes
 import { ManufacturerMultipartReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead } from './api';
 
 const instance: ManufacturerMultipartReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead = {
+    id,
+    name,
+    primaryColor,
+    secondaryColor,
+    tertiaryColor,
     createdBy,
     updatedBy,
     createdAt,

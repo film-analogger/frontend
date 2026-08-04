@@ -190,6 +190,15 @@ export interface ApproximateDateJsonldReadDevelopmentLogTimestampableBlameableRe
      */
     'label'?: string;
 }
+export interface ApproximateDateJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'year': number;
+    'month'?: number | null;
+    'day'?: number | null;
+    /**
+     * Human-readable label matching the known precision: \"2024\", \"2024-03\" or \"2024-03-12\".
+     */
+    'label'?: string;
+}
 export interface ApproximateDateMultipartReadDevelopmentLogTimestampableBlameableRead {
     'year': number;
     'month'?: number | null;
@@ -199,7 +208,25 @@ export interface ApproximateDateMultipartReadDevelopmentLogTimestampableBlameabl
      */
     'label'?: string;
 }
+export interface ApproximateDateMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'year': number;
+    'month'?: number | null;
+    'day'?: number | null;
+    /**
+     * Human-readable label matching the known precision: \"2024\", \"2024-03\" or \"2024-03-12\".
+     */
+    'label'?: string;
+}
 export interface ApproximateDateReadDevelopmentLogTimestampableBlameableRead {
+    'year': number;
+    'month'?: number | null;
+    'day'?: number | null;
+    /**
+     * Human-readable label matching the known precision: \"2024\", \"2024-03\" or \"2024-03-12\".
+     */
+    'label'?: string;
+}
+export interface ApproximateDateReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
     'year': number;
     'month'?: number | null;
     'day'?: number | null;
@@ -262,19 +289,59 @@ export interface CameraJsonldReadDevelopmentLogTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+export interface CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'filmFormat'?: CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum | null;
+    'description'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum = {
+    _135: '135',
+    _120: '120',
+    _4x5: '4x5',
+    _8x10: '8x10',
+    Instant: 'instant',
+    Other: 'other'
+} as const;
+
+export type CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum = typeof CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum[keyof typeof CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum];
+export const CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -293,16 +360,53 @@ export interface CameraMultipartReadDevelopmentLogTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface CameraMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
+export interface CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'filmFormat'?: CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum | null;
+    'description'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum = {
+    _135: '135',
+    _120: '120',
+    _4x5: '4x5',
+    _8x10: '8x10',
+    Instant: 'instant',
+    Other: 'other'
+} as const;
+
+export type CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum = typeof CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum[keyof typeof CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum];
+export const CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof CameraMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface CameraMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': CameraMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -358,16 +462,53 @@ export interface CameraReadDevelopmentLogTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
+export interface CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'filmFormat'?: CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum | null;
+    'description'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum = {
+    _135: '135',
+    _120: '120',
+    _4x5: '4x5',
+    _8x10: '8x10',
+    Instant: 'instant',
+    Other: 'other'
+} as const;
+
+export type CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum = typeof CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum[keyof typeof CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadFilmFormatEnum];
+export const CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -456,6 +597,15 @@ export interface ChemicalBathJsonldReadPrintSessionReadPrintSessionItemTimestamp
      */
     'effectiveDilution'?: string | null;
 }
+export interface ChemicalBathJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'chemistry': ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'dilutionOverride'?: string | null;
+    'durationSeconds'?: number | null;
+    /**
+     * The dilution actually used for this bath: the explicit override if set, otherwise the catalogued Chemistry\'s official dilution (falling back to its first dilution if none is flagged official).
+     */
+    'effectiveDilution'?: string | null;
+}
 export interface ChemicalBathJsonldReadPrintSessionTimestampableBlameableRead {
     'chemistry': ChemistryJsonldReadPrintSessionTimestampableBlameableRead;
     'dilutionOverride'?: string | null;
@@ -474,6 +624,15 @@ export interface ChemicalBathMultipartReadPrintSessionReadPrintSessionItemTimest
      */
     'effectiveDilution'?: string | null;
 }
+export interface ChemicalBathMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'chemistry': ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'dilutionOverride'?: string | null;
+    'durationSeconds'?: number | null;
+    /**
+     * The dilution actually used for this bath: the explicit override if set, otherwise the catalogued Chemistry\'s official dilution (falling back to its first dilution if none is flagged official).
+     */
+    'effectiveDilution'?: string | null;
+}
 export interface ChemicalBathMultipartReadPrintSessionTimestampableBlameableRead {
     'chemistry': ChemistryMultipartReadPrintSessionTimestampableBlameableRead;
     'dilutionOverride'?: string | null;
@@ -485,6 +644,15 @@ export interface ChemicalBathMultipartReadPrintSessionTimestampableBlameableRead
 }
 export interface ChemicalBathReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
     'chemistry': ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableRead;
+    'dilutionOverride'?: string | null;
+    'durationSeconds'?: number | null;
+    /**
+     * The dilution actually used for this bath: the explicit override if set, otherwise the catalogued Chemistry\'s official dilution (falling back to its first dilution if none is flagged official).
+     */
+    'effectiveDilution'?: string | null;
+}
+export interface ChemicalBathReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'chemistry': ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
     'dilutionOverride'?: string | null;
     'durationSeconds'?: number | null;
     /**
@@ -558,19 +726,44 @@ export interface ChemistryJsonldReadDevelopmentLogTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+export interface ChemistryJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': ChemistryJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -592,6 +785,49 @@ export interface ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampabl
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'process': ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum;
+    'chemistryType': ChemistryTypeJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'manufacturer': ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'description'?: string | null;
+    'dilutions'?: Array<DilutionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'officialDocumentationUrl'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum = typeof ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum[keyof typeof ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum];
+export const ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface ChemistryJsonldReadPrintSessionTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -607,16 +843,38 @@ export interface ChemistryMultipartReadDevelopmentLogTimestampableBlameableRead 
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
+export interface ChemistryMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': ChemistryMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -635,6 +893,46 @@ export interface ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestamp
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'process': ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum;
+    'chemistryType': ChemistryTypeMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'manufacturer': ManufacturerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'description'?: string | null;
+    'dilutions'?: Array<DilutionMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'officialDocumentationUrl'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum = typeof ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum[keyof typeof ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum];
+export const ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface ChemistryMultipartReadPrintSessionTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
@@ -687,16 +985,38 @@ export interface ChemistryReadDevelopmentLogTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
+export interface ChemistryReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': ChemistryReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -715,6 +1035,46 @@ export interface ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlame
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'process': ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum;
+    'chemistryType': ChemistryTypeReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'manufacturer': ManufacturerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'description'?: string | null;
+    'dilutions'?: Array<DilutionReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'officialDocumentationUrl'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum = typeof ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum[keyof typeof ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadProcessEnum];
+export const ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface ChemistryReadPrintSessionTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
@@ -788,6 +1148,34 @@ export const ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBl
 
 export type ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
 
+export interface ChemistryTypeJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'typeCode': string;
+    'typeLabel': string;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': ChemistryTypeJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryTypeJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryTypeJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
     'typeCode': string;
@@ -812,6 +1200,31 @@ export const ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBla
 } as const;
 
 export type ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryTypeMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'typeCode': string;
+    'typeLabel': string;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': ChemistryTypeMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryTypeMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryTypeMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
 
 export interface ChemistryTypeReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
@@ -873,6 +1286,31 @@ export const ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameabl
 } as const;
 
 export type ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryTypeReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'typeCode': string;
+    'typeLabel': string;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': ChemistryTypeReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryTypeReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryTypeReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
 
 export interface ChemistryTypeWriteChemistryCatalogStatusWrite {
     'status': ChemistryTypeWriteChemistryCatalogStatusWriteStatusEnum;
@@ -1097,6 +1535,43 @@ export const DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadPro
 
 export type DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadProcessEnum = typeof DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadProcessEnum[keyof typeof DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadProcessEnum];
 
+export interface DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'film': FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'camera'?: CameraJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'shotAt': ApproximateDateJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'isoShotAt': number;
+    'shootingNotes'?: string | null;
+    'process': DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum;
+    'developedAt': string;
+    'steps'?: Array<DevelopmentStepJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead>;
+    'developmentNotes'?: string | null;
+    'rating'?: number | null;
+    'tags'?: Array<TagJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * Exposure index relative to the film\'s nominal sensibility, in stops (e.g. +1.0 = pushed one stop).
+     */
+    'pushPullStops'?: number;
+}
+
+export const DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum = typeof DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum[keyof typeof DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum];
+
 export interface DevelopmentLogReadDevelopmentLogTimestampableBlameableRead {
     'id'?: string;
     'film': FilmReadDevelopmentLogTimestampableBlameableRead;
@@ -1130,6 +1605,40 @@ export const DevelopmentLogReadDevelopmentLogTimestampableBlameableReadProcessEn
 } as const;
 
 export type DevelopmentLogReadDevelopmentLogTimestampableBlameableReadProcessEnum = typeof DevelopmentLogReadDevelopmentLogTimestampableBlameableReadProcessEnum[keyof typeof DevelopmentLogReadDevelopmentLogTimestampableBlameableReadProcessEnum];
+
+export interface DevelopmentLogReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'film': FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'camera'?: CameraReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'shotAt': ApproximateDateReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'isoShotAt': number;
+    'shootingNotes'?: string | null;
+    'process': DevelopmentLogReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum;
+    'developedAt': string;
+    'steps'?: Array<DevelopmentStepReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead>;
+    'developmentNotes'?: string | null;
+    'rating'?: number | null;
+    'tags'?: Array<TagReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * Exposure index relative to the film\'s nominal sensibility, in stops (e.g. +1.0 = pushed one stop).
+     */
+    'pushPullStops'?: number;
+}
+
+export const DevelopmentLogReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type DevelopmentLogReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum = typeof DevelopmentLogReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum[keyof typeof DevelopmentLogReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum];
 
 export interface DevelopmentLogWriteDevelopmentLog {
     'film': string;
@@ -1189,6 +1698,14 @@ export interface DevelopmentStepJsonldReadDevelopmentLogTimestampableBlameableRe
     'durationSeconds': number;
     'agitationNote'?: string | null;
 }
+export interface DevelopmentStepJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'chemistry'?: ChemistryJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'chemistryParts'?: number | null;
+    'waterParts'?: number | null;
+    'temperature': number;
+    'durationSeconds': number;
+    'agitationNote'?: string | null;
+}
 export interface DevelopmentStepMultipartReadDevelopmentLogTimestampableBlameableRead {
     'chemistry'?: ChemistryMultipartReadDevelopmentLogTimestampableBlameableRead;
     'chemistryParts'?: number | null;
@@ -1197,8 +1714,24 @@ export interface DevelopmentStepMultipartReadDevelopmentLogTimestampableBlameabl
     'durationSeconds': number;
     'agitationNote'?: string | null;
 }
+export interface DevelopmentStepMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'chemistry'?: ChemistryMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    'chemistryParts'?: number | null;
+    'waterParts'?: number | null;
+    'temperature': number;
+    'durationSeconds': number;
+    'agitationNote'?: string | null;
+}
 export interface DevelopmentStepReadDevelopmentLogTimestampableBlameableRead {
     'chemistry'?: ChemistryReadDevelopmentLogTimestampableBlameableRead;
+    'chemistryParts'?: number | null;
+    'waterParts'?: number | null;
+    'temperature': number;
+    'durationSeconds': number;
+    'agitationNote'?: string | null;
+}
+export interface DevelopmentStepReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'chemistry'?: ChemistryReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
     'chemistryParts'?: number | null;
     'waterParts'?: number | null;
     'temperature': number;
@@ -1222,6 +1755,15 @@ export interface DilutionJsonldReadChemistryTranslatableReadTimestampableBlameab
      */
     'label'?: string;
 }
+export interface DilutionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'chemistryParts': number;
+    'waterParts': number;
+    'official'?: boolean;
+    /**
+     * Returns the human-readable label: \"stock\" when undiluted, or e.g. \"1+1\", \"1+2\".
+     */
+    'label'?: string;
+}
 export interface DilutionMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'chemistryParts': number;
     'waterParts': number;
@@ -1231,7 +1773,25 @@ export interface DilutionMultipartReadChemistryTranslatableReadTimestampableBlam
      */
     'label'?: string;
 }
+export interface DilutionMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'chemistryParts': number;
+    'waterParts': number;
+    'official'?: boolean;
+    /**
+     * Returns the human-readable label: \"stock\" when undiluted, or e.g. \"1+1\", \"1+2\".
+     */
+    'label'?: string;
+}
 export interface DilutionReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'chemistryParts': number;
+    'waterParts': number;
+    'official'?: boolean;
+    /**
+     * Returns the human-readable label: \"stock\" when undiluted, or e.g. \"1+1\", \"1+2\".
+     */
+    'label'?: string;
+}
+export interface DilutionReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
     'chemistryParts': number;
     'waterParts': number;
     'official'?: boolean;
@@ -1286,15 +1846,15 @@ export interface EnlargerJsonldReadManufacturerTimestampableBlameableReadTransla
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': EnlargerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -1316,6 +1876,43 @@ export interface EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampable
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'lightSource'?: EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum = {
+    Condenser: 'condenser',
+    Diffusor: 'diffusor',
+    ColorHead: 'color_head'
+} as const;
+
+export type EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum = typeof EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum[keyof typeof EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum];
+export const EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface EnlargerJsonldReadPrintSessionTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -1326,15 +1923,15 @@ export interface EnlargerJsonldReadPrintSessionTimestampableBlameableRead {
     'updatedAt'?: string | null;
 }
 export interface EnlargerMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': EnlargerMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -1353,6 +1950,40 @@ export interface EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampa
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'lightSource'?: EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum = {
+    Condenser: 'condenser',
+    Diffusor: 'diffusor',
+    ColorHead: 'color_head'
+} as const;
+
+export type EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum = typeof EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum[keyof typeof EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum];
+export const EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface EnlargerMultipartReadPrintSessionTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
@@ -1394,15 +2025,15 @@ export const EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatal
 export type EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
 
 export interface EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -1421,6 +2052,40 @@ export interface EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlamea
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'lightSource'?: EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum = {
+    Condenser: 'condenser',
+    Diffusor: 'diffusor',
+    ColorHead: 'color_head'
+} as const;
+
+export type EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum = typeof EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum[keyof typeof EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadLightSourceEnum];
+export const EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface EnlargerReadPrintSessionTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
@@ -1514,6 +2179,47 @@ export interface ErrorJsonld {
     'type'?: string;
     'description'?: string | null;
 }
+export interface ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'order': number;
+    'kind': ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum;
+    'baseSeconds': number;
+    'stopOffsetNumerator'?: number;
+    'stopOffsetDenominator'?: number;
+    'grade': ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum;
+    'aperture'?: string | null;
+    'observation'?: string | null;
+    /**
+     * f-stop printing: adjustments are made in fractions of a stop applied to the base time, not on the lens aperture. E.g. \"32s + 1/3\" (baseSeconds=32, stopOffsetNumerator=1, stopOffsetDenominator=3) gives 32 x 2^(1/3) =~ 40.3s.
+     */
+    'effectiveSeconds'?: number;
+}
+
+export const ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum = {
+    Base: 'base',
+    Burn: 'burn',
+    Dodge: 'dodge'
+} as const;
+
+export type ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum = typeof ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum[keyof typeof ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum];
+export const ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum = {
+    NoFilter: 'no_filter',
+    _00: '00',
+    _0: '0',
+    _05: '0.5',
+    _1: '1',
+    _15: '1.5',
+    _2: '2',
+    _25: '2.5',
+    _3: '3',
+    _35: '3.5',
+    _4: '4',
+    _45: '4.5',
+    _5: '5'
+} as const;
+
+export type ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum = typeof ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum[keyof typeof ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum];
+
 export interface ExposureJsonldReadPrintTimestampableBlameableRead {
     'id'?: string;
     'order': number;
@@ -1555,6 +2261,47 @@ export const ExposureJsonldReadPrintTimestampableBlameableReadGradeEnum = {
 
 export type ExposureJsonldReadPrintTimestampableBlameableReadGradeEnum = typeof ExposureJsonldReadPrintTimestampableBlameableReadGradeEnum[keyof typeof ExposureJsonldReadPrintTimestampableBlameableReadGradeEnum];
 
+export interface ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'order': number;
+    'kind': ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum;
+    'baseSeconds': number;
+    'stopOffsetNumerator'?: number;
+    'stopOffsetDenominator'?: number;
+    'grade': ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum;
+    'aperture'?: string | null;
+    'observation'?: string | null;
+    /**
+     * f-stop printing: adjustments are made in fractions of a stop applied to the base time, not on the lens aperture. E.g. \"32s + 1/3\" (baseSeconds=32, stopOffsetNumerator=1, stopOffsetDenominator=3) gives 32 x 2^(1/3) =~ 40.3s.
+     */
+    'effectiveSeconds'?: number;
+}
+
+export const ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum = {
+    Base: 'base',
+    Burn: 'burn',
+    Dodge: 'dodge'
+} as const;
+
+export type ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum = typeof ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum[keyof typeof ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum];
+export const ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum = {
+    NoFilter: 'no_filter',
+    _00: '00',
+    _0: '0',
+    _05: '0.5',
+    _1: '1',
+    _15: '1.5',
+    _2: '2',
+    _25: '2.5',
+    _3: '3',
+    _35: '3.5',
+    _4: '4',
+    _45: '4.5',
+    _5: '5'
+} as const;
+
+export type ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum = typeof ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum[keyof typeof ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum];
+
 export interface ExposureMultipartReadPrintTimestampableBlameableRead {
     'id'?: string;
     'order': number;
@@ -1595,6 +2342,47 @@ export const ExposureMultipartReadPrintTimestampableBlameableReadGradeEnum = {
 } as const;
 
 export type ExposureMultipartReadPrintTimestampableBlameableReadGradeEnum = typeof ExposureMultipartReadPrintTimestampableBlameableReadGradeEnum[keyof typeof ExposureMultipartReadPrintTimestampableBlameableReadGradeEnum];
+
+export interface ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'order': number;
+    'kind': ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum;
+    'baseSeconds': number;
+    'stopOffsetNumerator'?: number;
+    'stopOffsetDenominator'?: number;
+    'grade': ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum;
+    'aperture'?: string | null;
+    'observation'?: string | null;
+    /**
+     * f-stop printing: adjustments are made in fractions of a stop applied to the base time, not on the lens aperture. E.g. \"32s + 1/3\" (baseSeconds=32, stopOffsetNumerator=1, stopOffsetDenominator=3) gives 32 x 2^(1/3) =~ 40.3s.
+     */
+    'effectiveSeconds'?: number;
+}
+
+export const ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum = {
+    Base: 'base',
+    Burn: 'burn',
+    Dodge: 'dodge'
+} as const;
+
+export type ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum = typeof ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum[keyof typeof ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadKindEnum];
+export const ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum = {
+    NoFilter: 'no_filter',
+    _00: '00',
+    _0: '0',
+    _05: '0.5',
+    _1: '1',
+    _15: '1.5',
+    _2: '2',
+    _25: '2.5',
+    _3: '3',
+    _35: '3.5',
+    _4: '4',
+    _45: '4.5',
+    _5: '5'
+} as const;
+
+export type ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum = typeof ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum[keyof typeof ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadGradeEnum];
 
 export interface ExposureReadPrintTimestampableBlameableRead {
     'id'?: string;
@@ -1682,6 +2470,53 @@ export interface FilmJsonldReadDevelopmentLogTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'description': string;
+    'process': FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum;
+    'emulsionType'?: string | null;
+    'inversible'?: boolean | null;
+    'officialDocumentationUrl'?: string | null;
+    'sensibility': number;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
+    'manufacturer': ManufacturerJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum = typeof FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum[keyof typeof FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum];
+export const FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof FilmJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -1733,15 +2568,15 @@ export interface FilmJsonldReadManufacturerTimestampableBlameableReadTranslatabl
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -1760,16 +2595,60 @@ export interface FilmMultipartReadDevelopmentLogTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface FilmMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
+export interface FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'description': string;
+    'process': FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum;
+    'emulsionType'?: string | null;
+    'inversible'?: boolean | null;
+    'officialDocumentationUrl'?: string | null;
+    'sensibility': number;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
+    'manufacturer': ManufacturerMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum = typeof FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum[keyof typeof FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum];
+export const FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof FilmMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface FilmMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': FilmMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -1788,6 +2667,50 @@ export interface FilmReadDevelopmentLogTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'description': string;
+    'process': FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum;
+    'emulsionType'?: string | null;
+    'inversible'?: boolean | null;
+    'officialDocumentationUrl'?: string | null;
+    'sensibility': number;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
+    'manufacturer': ManufacturerReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum = typeof FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum[keyof typeof FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadProcessEnum];
+export const FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof FilmReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
     'name': string;
@@ -1833,15 +2756,15 @@ export const FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatus
 export type FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
 
 export interface FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -1991,6 +2914,11 @@ export interface ManufacturerJsonldReadCameraTranslatableReadTimestampableBlamea
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -2041,10 +2969,45 @@ export const ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameab
 
 export type ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
 
+export interface ManufacturerJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof ManufacturerJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface ManufacturerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -2136,6 +3099,11 @@ export interface ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBl
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -2157,7 +3125,42 @@ export const ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlamea
 
 export type ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
 
+export interface ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface ManufacturerMultipartReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -2205,7 +3208,39 @@ export const ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlam
 
 export type ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
 
+export interface ManufacturerMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof ManufacturerMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface ManufacturerMultipartReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -2255,6 +3290,11 @@ export const ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameable
 export type ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
 
 export interface ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -2276,7 +3316,39 @@ export const ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBla
 
 export type ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
 
+export interface ManufacturerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof ManufacturerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface ManufacturerReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -2324,7 +3396,39 @@ export const ManufacturerReadChemistryTranslatableReadTimestampableBlameableRead
 
 export type ManufacturerReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
 
+export interface ManufacturerReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface ManufacturerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -2407,6 +3511,11 @@ export const ManufacturerReadManufacturerTimestampableBlameableReadTranslatableR
 export type ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
 
 export interface ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -2427,6 +3536,33 @@ export const ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableRea
 } as const;
 
 export type ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'primaryColor'?: string | null;
+    'secondaryColor'?: string | null;
+    'tertiaryColor'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
 
 export interface ManufacturerWriteCameraCatalogStatusWrite {
     'status': ManufacturerWriteCameraCatalogStatusWriteStatusEnum;
@@ -2565,15 +3701,15 @@ export interface PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTrans
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -2634,6 +3770,54 @@ export const PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameabl
 
 export type PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
 
+export interface PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'paperBase': PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum;
+    'paperSurface': PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum;
+    'paperSurfaceOther'?: string | null;
+    'variableContrast'?: boolean | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum = typeof PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum[keyof typeof PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum];
+export const PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum = typeof PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum[keyof typeof PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum];
+export const PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface PhotoPaperJsonldReadPrintTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -2644,15 +3828,15 @@ export interface PhotoPaperJsonldReadPrintTimestampableBlameableRead {
     'updatedAt'?: string | null;
 }
 export interface PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -2665,6 +3849,51 @@ export const PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTransl
 
 export type PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
 
+export interface PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'paperBase': PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum;
+    'paperSurface': PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum;
+    'paperSurfaceOther'?: string | null;
+    'variableContrast'?: boolean | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum = typeof PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum[keyof typeof PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum];
+export const PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum = typeof PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum[keyof typeof PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum];
+export const PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface PhotoPaperMultipartReadPrintTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
@@ -2672,15 +3901,15 @@ export interface PhotoPaperMultipartReadPrintTimestampableBlameableRead {
     'updatedAt'?: string | null;
 }
 export interface PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     'status': PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
 
@@ -2737,6 +3966,51 @@ export const PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadC
 } as const;
 
 export type PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'paperBase': PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum;
+    'paperSurface': PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum;
+    'paperSurfaceOther'?: string | null;
+    'variableContrast'?: boolean | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum = typeof PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum[keyof typeof PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperBaseEnum];
+export const PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum = typeof PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum[keyof typeof PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadPaperSurfaceEnum];
+export const PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum = typeof PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadStatusEnum];
 
 export interface PhotoPaperReadPrintTimestampableBlameableRead {
     'createdBy'?: string;
@@ -2836,6 +4110,55 @@ export interface PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBla
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'session': PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'number': number;
+    'filmFormat'?: string | null;
+    'contactSheetRef'?: string | null;
+    'negativeNumber'?: string | null;
+    'negativeFormat'?: PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum | null;
+    'focalLength'?: PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum | null;
+    'condensers'?: Array<string>;
+    'columnHeightCm'?: number | null;
+    'paperWidthCm'?: number | null;
+    'paperHeightCm'?: number | null;
+    'borderCm'?: number | null;
+    'copies'?: number | null;
+    'photoPaper': PhotoPaperJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'preFlashSeconds'?: number | null;
+    'exposures'?: Array<ExposureJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'maskingNotes'?: string | null;
+    'notes'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+
+export const PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum = {
+    _24x36: '24x36',
+    _6x45: '6x45',
+    _6x6: '6x6',
+    _6x7: '6x7',
+    _6x9: '6x9'
+} as const;
+
+export type PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum = typeof PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum[keyof typeof PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum];
+export const PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum = {
+    NUMBER_50: 50,
+    NUMBER_75: 75,
+    NUMBER_80: 80,
+    NUMBER_90: 90,
+    NUMBER_100: 100,
+    NUMBER_105: 105
+} as const;
+
+export type PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum = typeof PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum[keyof typeof PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum];
+
 export interface PrintJsonldReadPrintTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -2891,12 +4214,104 @@ export interface PrintMultipartReadPrintSessionReadPrintSessionItemTimestampable
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'session': PrintSessionMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'number': number;
+    'filmFormat'?: string | null;
+    'contactSheetRef'?: string | null;
+    'negativeNumber'?: string | null;
+    'negativeFormat'?: PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum | null;
+    'focalLength'?: PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum | null;
+    'condensers'?: Array<string>;
+    'columnHeightCm'?: number | null;
+    'paperWidthCm'?: number | null;
+    'paperHeightCm'?: number | null;
+    'borderCm'?: number | null;
+    'copies'?: number | null;
+    'photoPaper': PhotoPaperMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'preFlashSeconds'?: number | null;
+    'exposures'?: Array<ExposureMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'maskingNotes'?: string | null;
+    'notes'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+
+export const PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum = {
+    _24x36: '24x36',
+    _6x45: '6x45',
+    _6x6: '6x6',
+    _6x7: '6x7',
+    _6x9: '6x9'
+} as const;
+
+export type PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum = typeof PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum[keyof typeof PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum];
+export const PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum = {
+    NUMBER_50: 50,
+    NUMBER_75: 75,
+    NUMBER_80: 80,
+    NUMBER_90: 90,
+    NUMBER_100: 100,
+    NUMBER_105: 105
+} as const;
+
+export type PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum = typeof PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum[keyof typeof PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum];
+
 export interface PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'session': PrintSessionReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'number': number;
+    'filmFormat'?: string | null;
+    'contactSheetRef'?: string | null;
+    'negativeNumber'?: string | null;
+    'negativeFormat'?: PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum | null;
+    'focalLength'?: PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum | null;
+    'condensers'?: Array<string>;
+    'columnHeightCm'?: number | null;
+    'paperWidthCm'?: number | null;
+    'paperHeightCm'?: number | null;
+    'borderCm'?: number | null;
+    'copies'?: number | null;
+    'photoPaper': PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'preFlashSeconds'?: number | null;
+    'exposures'?: Array<ExposureReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'maskingNotes'?: string | null;
+    'notes'?: string | null;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+
+export const PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum = {
+    _24x36: '24x36',
+    _6x45: '6x45',
+    _6x6: '6x6',
+    _6x7: '6x7',
+    _6x9: '6x9'
+} as const;
+
+export type PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum = typeof PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum[keyof typeof PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadNegativeFormatEnum];
+export const PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum = {
+    NUMBER_50: 50,
+    NUMBER_75: 75,
+    NUMBER_80: 80,
+    NUMBER_90: 90,
+    NUMBER_100: 100,
+    NUMBER_105: 105
+} as const;
+
+export type PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum = typeof PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum[keyof typeof PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusReadFocalLengthEnum];
+
 export interface PrintReadPrintTimestampableBlameableRead {
     'id'?: string;
     'session': PrintSessionReadPrintTimestampableBlameableRead;
@@ -2962,6 +4377,25 @@ export interface PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestamp
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'date': string;
+    'lab': string;
+    'number': number;
+    'enlarger': EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'temperatureCelsius': number;
+    'chemicalBaths'?: Array<ChemicalBathJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'wash'?: string | null;
+    'notes'?: string | null;
+    'prints'?: Array<PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
 export interface PrintSessionJsonldReadPrintSessionTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -2989,6 +4423,22 @@ export interface PrintSessionJsonldReadPrintTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface PrintSessionMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'date': string;
+    'lab': string;
+    'number': number;
+    'enlarger': EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'temperatureCelsius': number;
+    'chemicalBaths'?: Array<ChemicalBathMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'wash'?: string | null;
+    'notes'?: string | null;
+    'prints'?: Array<PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
 export interface PrintSessionMultipartReadPrintTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
@@ -3006,6 +4456,22 @@ export interface PrintSessionReadPrintSessionReadPrintSessionItemTimestampableBl
     'wash'?: string | null;
     'notes'?: string | null;
     'prints'?: Array<PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PrintSessionReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'date': string;
+    'lab': string;
+    'number': number;
+    'enlarger': EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead;
+    'temperatureCelsius': number;
+    'chemicalBaths'?: Array<ChemicalBathReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
+    'wash'?: string | null;
+    'notes'?: string | null;
+    'prints'?: Array<PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -3143,6 +4609,35 @@ export interface TagJsonldReadDevelopmentLogTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface TagJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'description'?: string | null;
+    'primaryColor'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': TagJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const TagJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type TagJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof TagJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof TagJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -3178,12 +4673,64 @@ export interface TagMultipartReadDevelopmentLogTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface TagMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'description'?: string | null;
+    'primaryColor'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': TagMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const TagMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type TagMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof TagMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof TagMultipartReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface TagReadDevelopmentLogTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface TagReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'description'?: string | null;
+    'primaryColor'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': TagReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const TagReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type TagReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum = typeof TagReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum[keyof typeof TagReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusReadStatusEnum];
+
 export interface TagReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
     'name': string;
@@ -5736,7 +7283,7 @@ export const DevelopmentLogApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDevelopmentLogsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead>> {
+        async apiDevelopmentLogsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevelopmentLogsIdGet(id, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DevelopmentLogApi.apiDevelopmentLogsIdGet']?.[localVarOperationServerIndex]?.url;
@@ -5809,7 +7356,7 @@ export const DevelopmentLogApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDevelopmentLogsIdGet(requestParameters: DevelopmentLogApiApiDevelopmentLogsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead> {
+        apiDevelopmentLogsIdGet(requestParameters: DevelopmentLogApiApiDevelopmentLogsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead> {
             return localVarFp.apiDevelopmentLogsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9429,7 +10976,7 @@ export const PrintSessionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintSessionsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead>> {
+        async apiPrintSessionsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsIdGet(id, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PrintSessionApi.apiPrintSessionsIdGet']?.[localVarOperationServerIndex]?.url;
@@ -9502,7 +11049,7 @@ export const PrintSessionApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintSessionsIdGet(requestParameters: PrintSessionApiApiPrintSessionsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead> {
+        apiPrintSessionsIdGet(requestParameters: PrintSessionApiApiPrintSessionsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead> {
             return localVarFp.apiPrintSessionsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**

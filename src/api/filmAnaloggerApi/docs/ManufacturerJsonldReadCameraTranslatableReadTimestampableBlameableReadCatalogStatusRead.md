@@ -8,6 +8,11 @@ Name | Type | Description | Notes
 **context** | [**HydraItemBaseSchemaContext**](HydraItemBaseSchemaContext.md) |  | [optional] [default to undefined]
 **id** | **string** |  | [default to undefined]
 **type** | **string** |  | [default to undefined]
+**id** | **string** |  | [optional] [readonly] [default to undefined]
+**name** | **string** |  | [default to undefined]
+**primaryColor** | **string** |  | [optional] [default to undefined]
+**secondaryColor** | **string** |  | [optional] [default to undefined]
+**tertiaryColor** | **string** |  | [optional] [default to undefined]
 **createdBy** | **string** |  | [optional] [default to undefined]
 **updatedBy** | **string** |  | [optional] [default to undefined]
 **createdAt** | **string** |  | [optional] [default to undefined]
@@ -25,6 +30,11 @@ const instance: ManufacturerJsonldReadCameraTranslatableReadTimestampableBlameab
     context,
     id,
     type,
+    id,
+    name,
+    primaryColor,
+    secondaryColor,
+    tertiaryColor,
     createdBy,
     updatedBy,
     createdAt,

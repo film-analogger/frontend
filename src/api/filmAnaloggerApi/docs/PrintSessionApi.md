@@ -142,7 +142,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiPrintSessionsIdGet**
-> PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead apiPrintSessionsIdGet()
+> PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead apiPrintSessionsIdGet()
 
 Retrieves a PrintSession resource.
 
@@ -179,7 +179,7 @@ const { status, data } = await apiInstance.apiPrintSessionsIdGet(
 
 ### Return type
 
-**PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead**
+**PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead**
 
 ### Authorization
 
