@@ -5,6 +5,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import type React from 'react';
 import OpenSource from '../OpenSource/OpenSource';
 import { Chip, Stack, Typography } from '@mui/material';
+import { chipClasses } from '@mui/material/Chip';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
 import GradientIcon from '@mui/icons-material/Gradient';
@@ -228,11 +229,15 @@ const SideMenu: React.FunctionComponent = () => {
                                                         label={t('components.sidemenu.soon')}
                                                         size="small"
                                                         sx={{
-                                                            height: 18,
-                                                            fontSize: '9px',
-                                                            fontWeight: 700,
-                                                            letterSpacing: '0.03em',
-                                                            textTransform: 'uppercase',
+                                                            height: 'auto',
+                                                            opacity: 0.8,
+                                                            [`& .${chipClasses.label}`]: {
+                                                                padding: '2px 6px',
+                                                                fontSize: '9.5px',
+                                                                fontWeight: 700,
+                                                                letterSpacing: '0.6px',
+                                                                textTransform: 'uppercase',
+                                                            },
                                                         }}
                                                         variant="outlined"
                                                     />
@@ -259,7 +264,9 @@ const SideMenu: React.FunctionComponent = () => {
                     <Box sx={{ p: 1.5, pt: 0 }}>
                         <LabModeToggle />
                     </Box>
-                    <OpenSource />
+                    <Box sx={{ px: 1.5, pb: 1.5 }}>
+                        <OpenSource />
+                    </Box>
                 </Box>
             </Drawer>
         </Box>

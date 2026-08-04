@@ -123,7 +123,11 @@ const FilmList: React.FunctionComponent = () => {
                             >
                                 <Box
                                     component={RouterLink}
-                                    sx={{ display: 'block', textDecoration: 'none' }}
+                                    sx={{
+                                        display: 'block',
+                                        height: '100%',
+                                        textDecoration: 'none',
+                                    }}
                                     to={`/data/films/${film.id ?? ''}`}
                                 >
                                     <FilmCard film={film} />

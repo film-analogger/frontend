@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Paper, Stack, Typography } from '@mui/material';
+import { Box, CircularProgress, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
@@ -10,7 +10,7 @@ import {
     type FilmRead,
     type ManufacturerRead,
 } from '~/api/client';
-import { getProcessStyle } from '~/domain/processColors';
+import { ManufacturerCard } from '~/components/Widgets/ManufacturerCard/ManufacturerCard';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
 
 export const handle: RouteCrumbHandle = {
@@ -102,90 +102,18 @@ const ManufacturerList: React.FunctionComponent = () => {
                             key={manufacturer['@id']}
                             size={{ xs: 12, sm: 6, md: 4 }}
                         >
-                            <Paper
+                            <Box
                                 component={RouterLink}
-                                sx={{
-                                    display: 'block',
-                                    textDecoration: 'none',
-                                    color: 'inherit',
-                                    overflow: 'hidden',
-                                }}
+                                sx={{ display: 'block', height: '100%', textDecoration: 'none' }}
                                 to={`/data/manufacturers/${manufacturer.id ?? ''}`}
-                                variant="outlined"
                             >
-                                <Box
-                                    sx={{
-                                        height: 56,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        px: 2,
-                                        backgroundColor: manufacturer.primaryColor ?? undefined,
-                                        color: manufacturer.secondaryColor ?? undefined,
-                                        fontWeight: 700,
-                                    }}
-                                >
-                                    {manufacturer.name}
-                                </Box>
-                                <Box sx={{ p: 2 }}>
-                                    <Stack
-                                        direction="row"
-                                        spacing={3}
-                                    >
-                                        <Box>
-                                            <Typography
-                                                sx={{ fontWeight: 600 }}
-                                                variant="h6"
-                                            >
-                                                {manufFilms.length}
-                                            </Typography>
-                                            <Typography
-                                                color="text.secondary"
-                                                variant="caption"
-                                            >
-                                                {t('manufacturers.list.films')}
-                                            </Typography>
-                                        </Box>
-                                        <Box>
-                                            <Typography
-                                                sx={{ fontWeight: 600 }}
-                                                variant="h6"
-                                            >
-                                                {manufChemistries.length}
-                                            </Typography>
-                                            <Typography
-                                                color="text.secondary"
-                                                variant="caption"
-                                            >
-                                                {t('manufacturers.list.chemistries')}
-                                            </Typography>
-                                        </Box>
-                                    </Stack>
-                                    {processes.length > 0 ? (
-                                        <Stack
-                                            direction="row"
-                                            spacing={0.5}
-                                            sx={{ flexWrap: 'wrap', gap: 0.5, mt: 1.5 }}
-                                        >
-                                            {processes.map((process) => (
-                                                <Box
-                                                    key={process}
-                                                    sx={{
-                                                        px: 0.75,
-                                                        borderRadius: 0.75,
-                                                        fontSize: '0.7rem',
-                                                        fontWeight: 700,
-                                                        backgroundColor:
-                                                            getProcessStyle(process).color,
-                                                        color: getProcessStyle(process).fg,
-                                                    }}
-                                                >
-                                                    {process}
-                                                </Box>
-                                            ))}
-                                        </Stack>
-                                    ) : null}
-                                </Box>
-                            </Paper>
+                                <ManufacturerCard
+                                    chemistriesCount={manufChemistries.length}
+                                    filmsCount={manufFilms.length}
+                                    manufacturer={manufacturer}
+                                    processes={processes}
+                                />
+                            </Box>
                         </Grid>
                     );
                 })}

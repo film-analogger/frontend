@@ -106,4 +106,15 @@ describe('FilmCard', () => {
         expect(screen.getByTestId('iso-chip')).toBeInTheDocument();
         expect(screen.getByText('components.filmCard.slide')).toBeInTheDocument();
     });
+
+    it('renders the emulsion type in the footer', () => {
+        const filmWithEmulsion: FilmRead = { ...baseFilm, emulsionType: 'C-41 negative' };
+        render(<FilmCard film={filmWithEmulsion} />);
+        expect(screen.getByText('C-41 negative')).toBeInTheDocument();
+    });
+
+    it('renders the details link label in the footer', () => {
+        render(<FilmCard film={baseFilm} />);
+        expect(screen.getByText('components.filmCard.details')).toBeInTheDocument();
+    });
 });

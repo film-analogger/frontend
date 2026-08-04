@@ -33,7 +33,7 @@ describe('FilmName', () => {
         expect(manufacturerEl).toHaveStyle({ backgroundColor: '#FFD700', color: '#000000' });
     });
 
-    it('applies manufacturer tertiaryColor as border', () => {
+    it('does not render a tertiary strip on the manufacturer band even when manufacturer tertiaryColor is set', () => {
         const film = {
             ...baseFilm,
             manufacturer: {
@@ -42,17 +42,9 @@ describe('FilmName', () => {
             },
         };
         render(<FilmName film={film} />);
-        const manufacturerEl = screen.getByText('Kodak');
-        expect(manufacturerEl).toHaveStyle({
+        expect(screen.getByText('Kodak')).not.toHaveStyle({
             borderLeftStyle: 'solid',
-            borderLeftColor: 'rgb(255, 0, 0)',
         });
-    });
-
-    it('does not apply border when manufacturer tertiaryColor is not set', () => {
-        render(<FilmName film={baseFilm} />);
-        const manufacturerEl = screen.getByText('Kodak');
-        expect(manufacturerEl).not.toHaveStyle({ borderLeftStyle: 'solid' });
     });
 
     it('applies film primaryColor as backgroundColor', () => {
@@ -66,20 +58,18 @@ describe('FilmName', () => {
         expect(filmEl).toHaveStyle({ backgroundColor: '#0000FF', color: '#FFFFFF' });
     });
 
-    it('applies film tertiaryColor as border on film name', () => {
+    it('renders a tertiary strip with film tertiaryColor next to the film name', () => {
         const film = {
             ...baseFilm,
             tertiaryColor: '#00FF00',
         };
         render(<FilmName film={film} />);
-        const filmEl = screen.getByText('Portra 400');
-        expect(filmEl).toHaveStyle({
-            borderLeftStyle: 'solid',
-            borderLeftColor: 'rgb(0, 255, 0)',
+        expect(screen.getByTestId('film-name-tertiary-strip')).toHaveStyle({
+            backgroundColor: 'rgb(0, 255, 0)',
         });
     });
 
-    it('falls back to manufacturer tertiaryColor for film border when film tertiaryColor is not set', () => {
+    it('falls back to manufacturer tertiaryColor for the strip when film tertiaryColor is not set', () => {
         const film = {
             ...baseFilm,
             manufacturer: {
@@ -88,20 +78,17 @@ describe('FilmName', () => {
             },
         };
         render(<FilmName film={film} />);
-        const filmEl = screen.getByText('Portra 400');
-        expect(filmEl).toHaveStyle({
-            borderLeftStyle: 'solid',
-            borderLeftColor: 'rgb(255, 0, 0)',
+        expect(screen.getByTestId('film-name-tertiary-strip')).toHaveStyle({
+            backgroundColor: 'rgb(255, 0, 0)',
         });
     });
 
-    it('does not apply border to film name when neither film nor manufacturer tertiaryColor is set', () => {
+    it('does not render a tertiary strip when neither film nor manufacturer tertiaryColor is set', () => {
         render(<FilmName film={baseFilm} />);
-        const filmEl = screen.getByText('Portra 400');
-        expect(filmEl).not.toHaveStyle({ borderLeftStyle: 'solid' });
+        expect(screen.queryByTestId('film-name-tertiary-strip')).not.toBeInTheDocument();
     });
 
-    it('prefers film tertiaryColor over manufacturer tertiaryColor for film border', () => {
+    it('prefers film tertiaryColor over manufacturer tertiaryColor for the strip', () => {
         const film = {
             ...baseFilm,
             tertiaryColor: '#00FF00',
@@ -111,10 +98,8 @@ describe('FilmName', () => {
             },
         };
         render(<FilmName film={film} />);
-        const filmEl = screen.getByText('Portra 400');
-        expect(filmEl).toHaveStyle({
-            borderLeftStyle: 'solid',
-            borderLeftColor: 'rgb(0, 255, 0)',
+        expect(screen.getByTestId('film-name-tertiary-strip')).toHaveStyle({
+            backgroundColor: 'rgb(0, 255, 0)',
         });
     });
 

@@ -16,44 +16,63 @@ export const FilmName: React.FunctionComponent<{
     };
     readonly sx?: SxProps<Theme>;
 }> = ({ film, sx = {} }) => {
+    const tertiaryColor = film.tertiaryColor ?? film.manufacturer.tertiaryColor;
+
     return (
         <Box sx={sx}>
-            <Typography
-                component="div"
+            <Box
                 sx={{
-                    fontWeight: 'bold',
-                    paddingLeft: '15px',
-                    borderRadius: '10px 10px 0 0',
-                    backgroundColor: film.manufacturer.primaryColor,
-                    color: film.manufacturer.secondaryColor,
-                    border: film.manufacturer.tertiaryColor
-                        ? `2px solid ${film.manufacturer.tertiaryColor}`
-                        : undefined,
-                    borderBottom: 'none',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '2px',
+                    borderRadius: '6px',
+                    overflow: 'hidden',
+                    border: '1px solid',
+                    borderColor: 'divider',
                 }}
-                variant="subtitle1"
             >
-                {film.manufacturer.name}
-            </Typography>
-            <Typography
-                component="div"
-                sx={{
-                    fontWeight: 'bold',
-                    paddingLeft: '15px',
-                    borderRadius: '0 0 10px 10px',
-                    backgroundColor: film.primaryColor,
-                    color: film.secondaryColor,
-                    border: film.tertiaryColor
-                        ? `2px solid ${film.tertiaryColor}`
-                        : film.manufacturer.tertiaryColor
-                          ? `2px solid ${film.manufacturer.tertiaryColor}`
-                          : undefined,
-                    borderTop: 'none',
-                }}
-                variant="subtitle1"
-            >
-                {film.name}
-            </Typography>
+                <Typography
+                    component="div"
+                    sx={{
+                        fontWeight: 'bold',
+                        paddingX: '13px',
+                        paddingY: '9px',
+                        backgroundColor: film.manufacturer.primaryColor,
+                        color: film.manufacturer.secondaryColor,
+                    }}
+                    variant="subtitle1"
+                >
+                    {film.manufacturer.name}
+                </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'stretch' }}>
+                    <Typography
+                        component="div"
+                        sx={{
+                            flex: 1,
+                            fontWeight: 'bold',
+                            paddingX: '13px',
+                            paddingY: '9px',
+                            backgroundColor: film.primaryColor,
+                            color: film.secondaryColor,
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                        }}
+                        variant="subtitle1"
+                    >
+                        {film.name}
+                    </Typography>
+                    {tertiaryColor ? (
+                        <Box
+                            data-testid="film-name-tertiary-strip"
+                            sx={{
+                                flex: '0 0 12px',
+                                backgroundColor: tertiaryColor,
+                            }}
+                        />
+                    ) : null}
+                </Box>
+            </Box>
         </Box>
     );
 };

@@ -51,7 +51,14 @@
             },
             "compatibleChemistries": "Compatible chemistries",
             "compatibleChemistriesHint": "Same process ({{process}})",
-            "noCompatibleChemistries": "No chemistry catalogued for this process yet."
+            "noCompatibleChemistries": "No chemistry catalogued for this process yet.",
+            "dilutionsHint": "Recommended dilution highlighted; others remain available.",
+            "officialDoc": "Official documentation",
+            "startTracking": "Start a negative tracking",
+            "notebook": {
+                "title": "In your logbook",
+                "empty": "No print recorded for this film yet."
+            }
         }
     },
     "sessions": {
@@ -178,6 +185,9 @@
                 "process": "Process",
                 "type": "Type",
                 "dilutions": "Dilutions"
+            },
+            "filters": {
+                "title": "Filters"
             }
         },
         "detail": {
@@ -330,7 +340,8 @@
         },
         "filmCard": {
             "iso": "ISO {{iso}}",
-            "slide": "Slide"
+            "slide": "Slide",
+            "details": "Details"
         },
         "sidemenu": {
             "group": {

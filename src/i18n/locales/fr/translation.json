@@ -51,7 +51,14 @@
             },
             "compatibleChemistries": "Chimies compatibles",
             "compatibleChemistriesHint": "Même procédé ({{process}})",
-            "noCompatibleChemistries": "Aucune chimie référencée pour ce procédé pour le moment."
+            "noCompatibleChemistries": "Aucune chimie référencée pour ce procédé pour le moment.",
+            "dilutionsHint": "Dilution recommandée mise en avant ; les autres restent accessibles.",
+            "officialDoc": "Documentation officielle",
+            "startTracking": "Démarrer un suivi de négatif",
+            "notebook": {
+                "title": "Dans mon carnet",
+                "empty": "Aucun tirage enregistré pour cette pellicule pour le moment."
+            }
         }
     },
     "sessions": {
@@ -178,6 +185,9 @@
                 "process": "Procédé",
                 "type": "Type",
                 "dilutions": "Dilutions"
+            },
+            "filters": {
+                "title": "Filtres"
             }
         },
         "detail": {
@@ -330,7 +340,8 @@
         },
         "filmCard": {
             "iso": "ISO {{iso}}",
-            "slide": "Inversible"
+            "slide": "Inversible",
+            "details": "Fiche"
         },
         "sidemenu": {
             "group": {

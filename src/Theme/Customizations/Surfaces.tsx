@@ -1,5 +1,5 @@
-import { type Theme, type Components, darken, lighten } from '@mui/material/styles';
-import { gray, primary, secondary } from '../themePrimitives';
+import { type Theme, type Components } from '@mui/material/styles';
+import { gray } from '../themePrimitives';
 
 export const surfacesCustomizations: Components<Theme> = {
     MuiAccordion: {
@@ -61,13 +61,10 @@ export const surfacesCustomizations: Components<Theme> = {
                     padding: 16,
                     gap: 16,
                     transition: 'all 100ms ease',
-                    backgroundColor: lighten(secondary[100], 0.4),
+                    backgroundColor: (theme.vars ?? theme).palette.background.paper,
                     borderRadius: (theme.vars ?? theme).shape.borderRadius,
                     border: `1px solid ${(theme.vars ?? theme).palette.divider}`,
                     boxShadow: 'none',
-                    ...theme.applyStyles('dark', {
-                        backgroundColor: darken(primary[900], 0.3),
-                    }),
                     variants: [
                         {
                             props: {

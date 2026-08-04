@@ -1,4 +1,7 @@
-import { Box, CircularProgress, Grid, Link, Paper, Stack, Typography } from '@mui/material';
+import CameraRollIcon from '@mui/icons-material/CameraRoll';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import ScienceIcon from '@mui/icons-material/Science';
+import { Box, CircularProgress, Link, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useParams } from 'react-router';
@@ -10,13 +13,17 @@ import {
     type FilmRead,
     type ManufacturerRead,
 } from '~/api/client';
-import { FilmName } from '~/components/Widgets/FilmName/FilmName';
-import { ProcessChip } from '~/components/Widgets/ProcessChip/ProcessChip';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { FilmName } from '~/components/Widgets/FilmName/FilmName';
+import { IsoChip } from '~/components/Widgets/IsoChip/IsoChip';
+import { ProcessChip } from '~/components/Widgets/ProcessChip/ProcessChip';
+import { getProcessStyle } from '~/domain/processColors';
 
 export const handle: RouteCrumbHandle = {
     crumb: { section: 'manufacturers.list.title', title: 'manufacturers.detail.title' },
 };
+
+const swatchSx = { width: 34, height: 34, borderRadius: '8px' };
 
 const ManufacturerDetail: React.FunctionComponent = () => {
     const { t } = useTranslation();
@@ -71,140 +78,258 @@ const ManufacturerDetail: React.FunctionComponent = () => {
     const manufChemistries = chemistries.filter(
         (chemistry) => chemistry.manufacturer.name === manufacturer.name,
     );
+    const hasSwatches = Boolean(
+        manufacturer.primaryColor ?? manufacturer.secondaryColor ?? manufacturer.tertiaryColor,
+    );
 
     return (
         <Box>
-            <Paper
+            <Box
                 sx={{
-                    p: 3,
-                    mb: 3,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 2,
-                    flexWrap: 'wrap',
-                    backgroundColor: manufacturer.primaryColor ?? undefined,
-                    color: manufacturer.secondaryColor ?? undefined,
+                    mb: '18px',
+                    overflow: 'hidden',
+                    borderRadius: '18px',
+                    border: '1px solid',
+                    borderColor: 'divider',
                 }}
-                variant="outlined"
             >
-                <Typography
-                    sx={{ flex: 1, fontWeight: 700 }}
-                    variant="h4"
+                <Box
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                        gap: '18px',
+                        p: '24px 26px',
+                        backgroundColor: manufacturer.primaryColor ?? 'primary.main',
+                        color: manufacturer.secondaryColor ?? 'primary.contrastText',
+                    }}
                 >
-                    {manufacturer.name}
-                </Typography>
-                {manufacturer.website ? (
-                    <Link
-                        color="inherit"
-                        href={
-                            manufacturer.website.startsWith('http')
-                                ? manufacturer.website
-                                : `https://${manufacturer.website}`
-                        }
-                        rel="noopener noreferrer"
-                        target="_blank"
+                    <Typography
+                        component="h1"
+                        sx={{ flex: 1, fontSize: '34px', fontWeight: 700 }}
                     >
-                        {manufacturer.website}
-                    </Link>
-                ) : null}
-            </Paper>
-
-            <Grid
-                container
-                spacing={2}
-            >
-                <Grid size={{ xs: 12, md: 7 }}>
-                    <Paper
-                        sx={{ p: 2.5 }}
-                        variant="outlined"
-                    >
-                        <Typography
-                            sx={{ mb: 1.5 }}
-                            variant="subtitle2"
+                        {manufacturer.name}
+                    </Typography>
+                    {hasSwatches ? (
+                        <Box sx={{ display: 'flex', gap: '6px' }}>
+                            {manufacturer.primaryColor ? (
+                                <Box
+                                    sx={{ ...swatchSx, backgroundColor: manufacturer.primaryColor }}
+                                />
+                            ) : null}
+                            {manufacturer.secondaryColor ? (
+                                <Box
+                                    sx={{
+                                        ...swatchSx,
+                                        backgroundColor: manufacturer.secondaryColor,
+                                    }}
+                                />
+                            ) : null}
+                            {manufacturer.tertiaryColor ? (
+                                <Box
+                                    sx={{
+                                        ...swatchSx,
+                                        backgroundColor: manufacturer.tertiaryColor,
+                                    }}
+                                />
+                            ) : null}
+                        </Box>
+                    ) : null}
+                    {manufacturer.website ? (
+                        <Link
+                            color="inherit"
+                            href={
+                                manufacturer.website.startsWith('http')
+                                    ? manufacturer.website
+                                    : `https://${manufacturer.website}`
+                            }
+                            rel="noopener noreferrer"
+                            sx={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: 0.5,
+                                fontWeight: 700,
+                            }}
+                            target="_blank"
                         >
+                            {manufacturer.website}
+                            <OpenInNewIcon
+                                aria-hidden
+                                fontSize="inherit"
+                            />
+                        </Link>
+                    ) : null}
+                </Box>
+            </Box>
+
+            <Box
+                sx={{
+                    display: 'grid',
+                    gap: 2,
+                    gridTemplateColumns: { xs: '1fr', md: '1.2fr 1fr' },
+                }}
+            >
+                <Box
+                    sx={{
+                        p: '18px',
+                        borderRadius: '15px',
+                        border: '1px solid',
+                        borderColor: 'divider',
+                        backgroundColor: 'background.paper',
+                    }}
+                >
+                    <Stack
+                        direction="row"
+                        spacing={1}
+                        sx={{ alignItems: 'center', mb: 1.5 }}
+                    >
+                        <CameraRollIcon color="primary" />
+                        <Typography variant="subtitle2">
                             {t('manufacturers.detail.films', { count: manufFilms.length })}
                         </Typography>
-                        {manufFilms.length === 0 ? (
-                            <Typography color="text.secondary">
-                                {t('manufacturers.detail.noFilms')}
-                            </Typography>
-                        ) : (
-                            <Grid
-                                container
-                                spacing={1.5}
-                            >
-                                {manufFilms.map((film) => (
-                                    <Grid
-                                        key={film['@id']}
-                                        size={{ xs: 12, sm: 6 }}
-                                    >
-                                        <Box
-                                            component={RouterLink}
-                                            sx={{ display: 'block', textDecoration: 'none' }}
-                                            to={`/data/films/${film.id ?? ''}`}
-                                        >
-                                            <FilmName film={film} />
-                                        </Box>
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        )}
-                    </Paper>
-                </Grid>
-
-                <Grid size={{ xs: 12, md: 5 }}>
-                    <Paper
-                        sx={{ p: 2.5 }}
-                        variant="outlined"
-                    >
-                        <Typography
-                            sx={{ mb: 1.5 }}
-                            variant="subtitle2"
+                    </Stack>
+                    {manufFilms.length === 0 ? (
+                        <Typography color="text.secondary">
+                            {t('manufacturers.detail.noFilms')}
+                        </Typography>
+                    ) : (
+                        <Box
+                            sx={{
+                                display: 'grid',
+                                gap: '12px',
+                                gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))',
+                            }}
                         >
+                            {manufFilms.map((film) => (
+                                <Box
+                                    component={RouterLink}
+                                    key={film['@id']}
+                                    sx={{
+                                        p: '11px',
+                                        borderRadius: '12px',
+                                        border: '1px solid',
+                                        borderColor: 'divider',
+                                        backgroundColor: 'background.default',
+                                        textDecoration: 'none',
+                                        color: 'inherit',
+                                        display: 'block',
+                                        '&:hover': { borderColor: 'primary.main' },
+                                    }}
+                                    to={`/data/films/${film.id ?? ''}`}
+                                >
+                                    <FilmName
+                                        film={film}
+                                        sx={{ mb: 1 }}
+                                    />
+                                    <Stack
+                                        direction="row"
+                                        spacing={1}
+                                    >
+                                        <ProcessChip film={film} />
+                                        <IsoChip film={film} />
+                                    </Stack>
+                                </Box>
+                            ))}
+                        </Box>
+                    )}
+                </Box>
+
+                <Box
+                    sx={{
+                        p: '18px',
+                        borderRadius: '15px',
+                        border: '1px solid',
+                        borderColor: 'divider',
+                        backgroundColor: 'background.paper',
+                    }}
+                >
+                    <Stack
+                        direction="row"
+                        spacing={1}
+                        sx={{ alignItems: 'center', mb: 1.5 }}
+                    >
+                        <ScienceIcon color="secondary" />
+                        <Typography variant="subtitle2">
                             {t('manufacturers.detail.chemistries', {
                                 count: manufChemistries.length,
                             })}
                         </Typography>
-                        {manufChemistries.length === 0 ? (
-                            <Typography color="text.secondary">
-                                {t('manufacturers.detail.noChemistries')}
-                            </Typography>
-                        ) : (
-                            <Stack spacing={1}>
-                                {manufChemistries.map((chemistry) => (
-                                    <Paper
+                    </Stack>
+                    {manufChemistries.length === 0 ? (
+                        <Typography color="text.secondary">
+                            {t('manufacturers.detail.noChemistries')}
+                        </Typography>
+                    ) : (
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                            {manufChemistries.map((chemistry) => {
+                                const style = getProcessStyle(chemistry.process);
+                                // The API doesn't expose a single "official label" for a chemistry
+                                // as a whole, only per-dilution `official` flags. We surface the
+                                // official dilution's label as a badge when one exists, and fall
+                                // back to the existing ProcessChip otherwise.
+                                const officialDilution = (chemistry.dilutions ?? []).find(
+                                    (dilution) => dilution.official,
+                                );
+                                return (
+                                    <Box
                                         component={RouterLink}
                                         key={chemistry['@id']}
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
-                                            gap: 1.5,
-                                            p: 1.5,
+                                            gap: '11px',
+                                            p: '10px 11px',
+                                            borderRadius: '11px',
+                                            border: '1px solid',
+                                            borderColor: 'divider',
+                                            backgroundColor: 'background.default',
                                             textDecoration: 'none',
                                             color: 'inherit',
+                                            '&:hover': { borderColor: 'primary.main' },
                                         }}
                                         to={`/data/chemistries/${chemistry.id ?? ''}`}
-                                        variant="outlined"
                                     >
-                                        <Box sx={{ flex: 1 }}>
+                                        <Box
+                                            sx={{
+                                                width: '4px',
+                                                alignSelf: 'stretch',
+                                                borderRadius: '3px',
+                                                backgroundColor: style.color,
+                                            }}
+                                        />
+                                        <Box sx={{ flex: 1, minWidth: 0 }}>
                                             <Typography sx={{ fontWeight: 600 }}>
                                                 {chemistry.name}
                                             </Typography>
                                             <Typography
-                                                color="text.secondary"
+                                                sx={{ color: 'text.secondary' }}
                                                 variant="caption"
                                             >
                                                 {chemistry.chemistryType.typeLabel}
                                             </Typography>
                                         </Box>
-                                        <ProcessChip film={chemistry} />
-                                    </Paper>
-                                ))}
-                            </Stack>
-                        )}
-                    </Paper>
-                </Grid>
-            </Grid>
+                                        {officialDilution ? (
+                                            <Box
+                                                sx={{
+                                                    borderRadius: '7px',
+                                                    p: '3px 8px',
+                                                    fontFamily: 'monospace',
+                                                    backgroundColor: 'primary.main',
+                                                    color: 'primary.contrastText',
+                                                }}
+                                            >
+                                                {officialDilution.label}
+                                            </Box>
+                                        ) : (
+                                            <ProcessChip film={chemistry} />
+                                        )}
+                                    </Box>
+                                );
+                            })}
+                        </Box>
+                    )}
+                </Box>
+            </Box>
         </Box>
     );
 };

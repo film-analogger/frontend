@@ -71,6 +71,8 @@ describe('ChemistryList', () => {
         expect(await screen.findByText('D-76')).toBeInTheDocument();
         expect(screen.getByText('Kodak')).toBeInTheDocument();
         expect(screen.getByText('1+1')).toBeInTheDocument();
+        // "Developer" appears both as the type filter pill and the row's type cell.
+        expect(screen.getAllByText('Developer').length).toBeGreaterThan(0);
     });
 
     it('filters chemistries by process when a filter chip is clicked', async () => {
@@ -85,11 +87,102 @@ describe('ChemistryList', () => {
         renderChemistryList();
         expect(await screen.findByText('D-76')).toBeInTheDocument();
 
-        fireEvent.click(screen.getByText('C-41 · 1'));
+        fireEvent.click(screen.getByRole('button', { name: 'C-41' }));
 
         await waitFor(() => {
             expect(screen.queryByText('D-76')).not.toBeInTheDocument();
         });
         expect(screen.getByText('Flexicolor')).toBeInTheDocument();
+    });
+
+    it('filters chemistries by chemistry type when a filter chip is clicked', async () => {
+        mockApiChemistriesGetCollection.mockResolvedValue({
+            data: {
+                'hydra:member': [
+                    makeChemistry({
+                        id: '1',
+                        name: 'D-76',
+                        chemistryType: {
+                            '@id': '/chemistry_types/1',
+                            '@type': 'chemistryType',
+                            typeCode: 'DEV',
+                            typeLabel: 'Developer',
+                        },
+                    }),
+                    makeChemistry({
+                        id: '2',
+                        name: 'Rapid Fixer',
+                        chemistryType: {
+                            '@id': '/chemistry_types/2',
+                            '@type': 'chemistryType',
+                            typeCode: 'FIX',
+                            typeLabel: 'Fixer',
+                        },
+                    }),
+                ],
+            },
+        });
+        renderChemistryList();
+        expect(await screen.findByText('D-76')).toBeInTheDocument();
+
+        fireEvent.click(screen.getByRole('button', { name: 'Fixer' }));
+
+        await waitFor(() => {
+            expect(screen.queryByText('D-76')).not.toBeInTheDocument();
+        });
+        expect(screen.getByText('Rapid Fixer')).toBeInTheDocument();
+    });
+
+    it('combines process and type filters with an AND logic', async () => {
+        mockApiChemistriesGetCollection.mockResolvedValue({
+            data: {
+                'hydra:member': [
+                    makeChemistry({
+                        id: '1',
+                        name: 'D-76',
+                        process: 'B&W',
+                        chemistryType: {
+                            '@id': '/chemistry_types/1',
+                            '@type': 'chemistryType',
+                            typeCode: 'DEV',
+                            typeLabel: 'Developer',
+                        },
+                    }),
+                    makeChemistry({
+                        id: '2',
+                        name: 'Rapid Fixer',
+                        process: 'B&W',
+                        chemistryType: {
+                            '@id': '/chemistry_types/2',
+                            '@type': 'chemistryType',
+                            typeCode: 'FIX',
+                            typeLabel: 'Fixer',
+                        },
+                    }),
+                    makeChemistry({
+                        id: '3',
+                        name: 'Flexicolor',
+                        process: 'C-41',
+                        chemistryType: {
+                            '@id': '/chemistry_types/1',
+                            '@type': 'chemistryType',
+                            typeCode: 'DEV',
+                            typeLabel: 'Developer',
+                        },
+                    }),
+                ],
+            },
+        });
+        renderChemistryList();
+        expect(await screen.findByText('D-76')).toBeInTheDocument();
+
+        fireEvent.click(screen.getByRole('button', { name: 'B&W' }));
+        fireEvent.click(screen.getByRole('button', { name: 'Developer' }));
+
+        await waitFor(() => {
+            expect(screen.queryByText('Rapid Fixer')).not.toBeInTheDocument();
+        });
+        expect(screen.queryByText('Flexicolor')).not.toBeInTheDocument();
+        expect(screen.getByText('D-76')).toBeInTheDocument();
     });
 });
