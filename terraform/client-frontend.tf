@@ -13,10 +13,20 @@ resource "keycloak_openid_client" "client-frontend" {
 
     valid_redirect_uris = [
         "http://localhost:3000*",
+        "http://localhost:3001*",
+        "http://localhost:3002*",
+        "http://localhost:3003*",
+        "http://localhost:3004*",
+        "http://localhost:3005*",
     ]
 
     web_origins = [
         "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:3002",
+        "http://localhost:3003",
+        "http://localhost:3004",
+        "http://localhost:3005",
     ]
 
     root_url = "http://localhost:3000"
