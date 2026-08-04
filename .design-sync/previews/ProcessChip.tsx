@@ -11,5 +11,6 @@ export const AllProcesses = () => (
         <ProcessChip film={{ process: 'B&W' }} />
         <ProcessChip film={{ process: 'ECN-2' }} />
         <ProcessChip film={{ process: 'RA4' }} />
+        <ProcessChip film={{ process: 'B&W Print' }} />
     </Stack>
 );

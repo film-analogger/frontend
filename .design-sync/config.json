@@ -23,23 +23,27 @@
   "extraEntries": ["react-router"],
   "provider": {
     "component": "AppTheme",
-    "inner": { "component": "MemoryRouter" }
+    "inner": {
+      "component": "MemoryRouter",
+      "inner": { "component": "MockKeycloakProvider" }
+    }
   },
   "overrides": {
     "SideMenu": { "cardMode": "single", "viewport": "960x700" },
     "Footer": { "cardMode": "column" },
-    "IsoChip": { "cardMode": "column" }
+    "IsoChip": { "cardMode": "column" },
+    "Error": { "cardMode": "column" }
   },
   "dtsPropsFor": {
     "AppLogo": "width?: string; height?: string;",
-    "FilmCard": "film: { id?: string; name: string; inversible?: boolean; description?: string; process: 'C-41' | 'E-6' | 'B&W' | 'ECN-2' | 'RA4' | (string & {}); sensibility: number; primaryColor?: string | null; secondaryColor?: string | null; tertiaryColor?: string | null; manufacturer: { name: string; primaryColor?: string | null; secondaryColor?: string | null; tertiaryColor?: string | null; }; };",
+    "FilmCard": "film: { id?: string; name: string; inversible?: boolean; description?: string; process: 'C-41' | 'E-6' | 'B&W' | 'ECN-2' | 'RA4' | 'B&W Print' | (string & {}); sensibility: number; primaryColor?: string | null; secondaryColor?: string | null; tertiaryColor?: string | null; manufacturer: { name: string; primaryColor?: string | null; secondaryColor?: string | null; tertiaryColor?: string | null; }; };",
     "FilmName": "film: { name: string; primaryColor?: string | null; secondaryColor?: string | null; tertiaryColor?: string | null; manufacturer: { name: string; primaryColor?: string | null; secondaryColor?: string | null; tertiaryColor?: string | null; }; }; sx?: object;",
     "IsoChip": "film: { sensibility: number };",
-    "ProcessChip": "film: { process: 'C-41' | 'E-6' | 'B&W' | 'ECN-2' | 'RA4' | (string & {}) };",
+    "ProcessChip": "film: { process: 'C-41' | 'E-6' | 'B&W' | 'ECN-2' | 'RA4' | 'B&W Print' | (string & {}) };",
     "Footer": "",
     "OpenSource": "",
     "SideMenu": "",
-    "Error": "statusCode: number; title: string; detail?: string; pageTitle: string; metaDescription?: string;",
+    "Error": "statusCode: number; title: string; detail?: string; pageTitle: string; metaDescription?: string; code?: string; kind?: string; icon?: React.ReactNode; stripLabel?: string; accent?: 'primary' | 'secondary'; primaryAction?: { labelKey: string; icon: React.ReactNode; to?: string; onClick?: () => void; }; secondaryAction?: { labelKey: string; icon: React.ReactNode; to?: string; onClick?: () => void; }; linksLabel?: string; links?: readonly { labelKey: string; icon: React.ReactNode; to: string; }[]; safety?: { icon: React.ReactNode; messageKey: string; };",
     "IconComponent": "className?: string; style?: React.CSSProperties; sx?: object;",
     "LinkBehavior": "href: string; children?: React.ReactNode; className?: string; style?: React.CSSProperties;"
   }

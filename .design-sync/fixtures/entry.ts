@@ -23,3 +23,5 @@ export { default as IconComponent } from '~/Theme/Components/IconComponent';
 export { default as LinkBehavior } from '~/Theme/Components/LinkBehavior';
 // Provider only — not a cataloged component, so it's not in componentSrcMap.
 export { default as AppTheme } from '~/Theme/Theme';
+// Provider only (preview fixture) — see mockKeycloak.tsx for why SideMenu needs this.
+export { MockKeycloakProvider } from './mockKeycloak';
