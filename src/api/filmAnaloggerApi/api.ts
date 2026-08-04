@@ -44,40 +44,76 @@ export interface ApiAppUsersGetCollection403ResponseException {
     'code'?: number;
 }
 /**
- * Chemistry.jsonld-read-chemistry_translatable-read_timestampable-blameable-read collection.
+ * Camera.jsonld-read-camera_translatable-read_timestampable-blameable-read_catalog-status-read collection.
+ */
+export interface ApiCamerasGetCollection200Response {
+    'hydra:totalItems'?: number;
+    'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
+    'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
+    'hydra:member': Array<CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead>;
+}
+/**
+ * Chemistry.jsonld-read-chemistry_translatable-read_timestampable-blameable-read_catalog-status-read collection.
  */
 export interface ApiChemistriesGetCollection200Response {
     'hydra:totalItems'?: number;
     'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
     'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
-    'hydra:member': Array<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead>;
+    'hydra:member': Array<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead>;
 }
 /**
- * ChemistryType.jsonld-read-chemistry-type_translatable-read_timestampable-blameable-read collection.
+ * ChemistryType.jsonld-read-chemistry-type_translatable-read_timestampable-blameable-read_catalog-status-read collection.
  */
 export interface ApiChemistryTypesGetCollection200Response {
     'hydra:totalItems'?: number;
     'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
     'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
-    'hydra:member': Array<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead>;
+    'hydra:member': Array<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead>;
 }
 /**
- * Film.jsonld-read-film_translatable-read_timestampable-blameable-read collection.
+ * DevelopmentLog.jsonld-read-development-log_timestampable-blameable-read collection.
+ */
+export interface ApiDevelopmentLogsGetCollection200Response {
+    'hydra:totalItems'?: number;
+    'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
+    'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
+    'hydra:member': Array<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead>;
+}
+/**
+ * Enlarger.jsonld-read-enlarger_translatable-read_timestampable-blameable-read_catalog-status-read collection.
+ */
+export interface ApiEnlargersGetCollection200Response {
+    'hydra:totalItems'?: number;
+    'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
+    'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
+    'hydra:member': Array<EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead>;
+}
+/**
+ * Film.jsonld-read-film_translatable-read_timestampable-blameable-read_catalog-status-read collection.
  */
 export interface ApiFilmsGetCollection200Response {
     'hydra:totalItems'?: number;
     'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
     'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
-    'hydra:member': Array<FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead>;
+    'hydra:member': Array<FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead>;
 }
 /**
- * Manufacturer.jsonld-read-manufacturer_timestampable-blameable-read_translatable-read collection.
+ * Manufacturer.jsonld-read-manufacturer_timestampable-blameable-read_translatable-read_catalog-status-read collection.
  */
 export interface ApiManufacturersGetCollection200Response {
     'hydra:totalItems'?: number;
     'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
     'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
-    'hydra:member': Array<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead>;
+    'hydra:member': Array<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
+}
+/**
+ * PhotoPaper.jsonld-read-photo-paper_translatable-read_timestampable-blameable-read_catalog-status-read collection.
+ */
+export interface ApiPhotoPapersGetCollection200Response {
+    'hydra:totalItems'?: number;
+    'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
+    'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
+    'hydra:member': Array<PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead>;
 }
 /**
  * PrintSession.jsonld-read-print-session_timestampable-blameable-read collection.
@@ -96,6 +132,15 @@ export interface ApiPrintSessionsIdprintsGetCollection200Response {
     'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
     'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
     'hydra:member': Array<PrintJsonldReadPrintTimestampableBlameableRead>;
+}
+/**
+ * Tag.jsonld-read-tag_translatable-read_timestampable-blameable-read_catalog-status-read collection.
+ */
+export interface ApiTagsGetCollection200Response {
+    'hydra:totalItems'?: number;
+    'hydra:search'?: HydraCollectionBaseSchemaNoPaginationHydraSearch;
+    'hydra:view'?: HydraCollectionBaseSchemaAllOfHydraView;
+    'hydra:member': Array<TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead>;
 }
 export interface AppUserJsonldReadAppUserTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
@@ -136,6 +181,281 @@ export interface AppUserWriteAppUserJsonMergePatch {
     'website'?: string | null;
     'description'?: string | null;
 }
+export interface ApproximateDateJsonldReadDevelopmentLogTimestampableBlameableRead {
+    'year': number;
+    'month'?: number | null;
+    'day'?: number | null;
+    /**
+     * Human-readable label matching the known precision: \"2024\", \"2024-03\" or \"2024-03-12\".
+     */
+    'label'?: string;
+}
+export interface ApproximateDateMultipartReadDevelopmentLogTimestampableBlameableRead {
+    'year': number;
+    'month'?: number | null;
+    'day'?: number | null;
+    /**
+     * Human-readable label matching the known precision: \"2024\", \"2024-03\" or \"2024-03-12\".
+     */
+    'label'?: string;
+}
+export interface ApproximateDateReadDevelopmentLogTimestampableBlameableRead {
+    'year': number;
+    'month'?: number | null;
+    'day'?: number | null;
+    /**
+     * Human-readable label matching the known precision: \"2024\", \"2024-03\" or \"2024-03-12\".
+     */
+    'label'?: string;
+}
+export interface ApproximateDateWriteDevelopmentLog {
+    'year': number;
+    'month'?: number | null;
+    'day'?: number | null;
+}
+export interface CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+    'filmFormat'?: CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadFilmFormatEnum | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadFilmFormatEnum = {
+    _135: '135',
+    _120: '120',
+    _4x5: '4x5',
+    _8x10: '8x10',
+    Instant: 'instant',
+    Other: 'other'
+} as const;
+
+export type CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadFilmFormatEnum = typeof CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadFilmFormatEnum[keyof typeof CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadFilmFormatEnum];
+export const CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface CameraJsonldReadDevelopmentLogTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface CameraMultipartReadDevelopmentLogTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface CameraMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': CameraMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const CameraMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof CameraMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof CameraMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+    'filmFormat'?: CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadFilmFormatEnum | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadFilmFormatEnum = {
+    _135: '135',
+    _120: '120',
+    _4x5: '4x5',
+    _8x10: '8x10',
+    Instant: 'instant',
+    Other: 'other'
+} as const;
+
+export type CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadFilmFormatEnum = typeof CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadFilmFormatEnum[keyof typeof CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadFilmFormatEnum];
+export const CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof CameraReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface CameraReadDevelopmentLogTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface CameraWriteCameraCatalogStatusWrite {
+    'name': string;
+    'manufacturer': ManufacturerWriteCameraCatalogStatusWrite;
+    'filmFormat'?: CameraWriteCameraCatalogStatusWriteFilmFormatEnum | null;
+    'description'?: string | null;
+    'status': CameraWriteCameraCatalogStatusWriteStatusEnum;
+}
+
+export const CameraWriteCameraCatalogStatusWriteFilmFormatEnum = {
+    _135: '135',
+    _120: '120',
+    _4x5: '4x5',
+    _8x10: '8x10',
+    Instant: 'instant',
+    Other: 'other'
+} as const;
+
+export type CameraWriteCameraCatalogStatusWriteFilmFormatEnum = typeof CameraWriteCameraCatalogStatusWriteFilmFormatEnum[keyof typeof CameraWriteCameraCatalogStatusWriteFilmFormatEnum];
+export const CameraWriteCameraCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraWriteCameraCatalogStatusWriteStatusEnum = typeof CameraWriteCameraCatalogStatusWriteStatusEnum[keyof typeof CameraWriteCameraCatalogStatusWriteStatusEnum];
+
+export interface CameraWriteCameraCatalogStatusWriteJsonMergePatch {
+    'name'?: string;
+    'manufacturer'?: ManufacturerWriteCameraCatalogStatusWrite;
+    'filmFormat'?: CameraWriteCameraCatalogStatusWriteJsonMergePatchFilmFormatEnum | null;
+    'description'?: string | null;
+    'status'?: CameraWriteCameraCatalogStatusWriteJsonMergePatchStatusEnum;
+}
+
+export const CameraWriteCameraCatalogStatusWriteJsonMergePatchFilmFormatEnum = {
+    _135: '135',
+    _120: '120',
+    _4x5: '4x5',
+    _8x10: '8x10',
+    Instant: 'instant',
+    Other: 'other'
+} as const;
+
+export type CameraWriteCameraCatalogStatusWriteJsonMergePatchFilmFormatEnum = typeof CameraWriteCameraCatalogStatusWriteJsonMergePatchFilmFormatEnum[keyof typeof CameraWriteCameraCatalogStatusWriteJsonMergePatchFilmFormatEnum];
+export const CameraWriteCameraCatalogStatusWriteJsonMergePatchStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraWriteCameraCatalogStatusWriteJsonMergePatchStatusEnum = typeof CameraWriteCameraCatalogStatusWriteJsonMergePatchStatusEnum[keyof typeof CameraWriteCameraCatalogStatusWriteJsonMergePatchStatusEnum];
+
+export interface CameraWriteManufacturerCatalogStatusWrite {
+    'status': CameraWriteManufacturerCatalogStatusWriteStatusEnum;
+}
+
+export const CameraWriteManufacturerCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type CameraWriteManufacturerCatalogStatusWriteStatusEnum = typeof CameraWriteManufacturerCatalogStatusWriteStatusEnum[keyof typeof CameraWriteManufacturerCatalogStatusWriteStatusEnum];
+
+export interface ChemicalBathJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
+    'chemistry': ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead;
+    'dilutionOverride'?: string | null;
+    'durationSeconds'?: number | null;
+    /**
+     * The dilution actually used for this bath: the explicit override if set, otherwise the catalogued Chemistry\'s official dilution (falling back to its first dilution if none is flagged official).
+     */
+    'effectiveDilution'?: string | null;
+}
 export interface ChemicalBathJsonldReadPrintSessionTimestampableBlameableRead {
     'chemistry': ChemistryJsonldReadPrintSessionTimestampableBlameableRead;
     'dilutionOverride'?: string | null;
@@ -145,8 +465,26 @@ export interface ChemicalBathJsonldReadPrintSessionTimestampableBlameableRead {
      */
     'effectiveDilution'?: string | null;
 }
+export interface ChemicalBathMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
+    'chemistry': ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableRead;
+    'dilutionOverride'?: string | null;
+    'durationSeconds'?: number | null;
+    /**
+     * The dilution actually used for this bath: the explicit override if set, otherwise the catalogued Chemistry\'s official dilution (falling back to its first dilution if none is flagged official).
+     */
+    'effectiveDilution'?: string | null;
+}
 export interface ChemicalBathMultipartReadPrintSessionTimestampableBlameableRead {
     'chemistry': ChemistryMultipartReadPrintSessionTimestampableBlameableRead;
+    'dilutionOverride'?: string | null;
+    'durationSeconds'?: number | null;
+    /**
+     * The dilution actually used for this bath: the explicit override if set, otherwise the catalogued Chemistry\'s official dilution (falling back to its first dilution if none is flagged official).
+     */
+    'effectiveDilution'?: string | null;
+}
+export interface ChemicalBathReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
+    'chemistry': ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableRead;
     'dilutionOverride'?: string | null;
     'durationSeconds'?: number | null;
     /**
@@ -168,17 +506,17 @@ export interface ChemicalBathWritePrintSession {
     'dilutionOverride'?: string | null;
     'durationSeconds'?: number | null;
 }
-export interface ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead {
+export interface ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
     'id'?: string;
     'name': string;
-    'process': ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum;
-    'chemistryType': ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableRead;
-    'manufacturer': ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableRead;
+    'process': ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum;
+    'chemistryType': ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+    'manufacturer': ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead;
     'description'?: string | null;
-    'dilutions'?: Array<DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableRead>;
+    'dilutions'?: Array<DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead>;
     'officialDocumentationUrl'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
@@ -189,9 +527,10 @@ export interface ChemistryJsonldReadChemistryTranslatableReadTimestampableBlamea
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
+    'status': ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
 
-export const ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum = {
+export const ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -200,17 +539,54 @@ export const ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableR
     BwPrint: 'B&W Print'
 } as const;
 
-export type ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum = typeof ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum];
+export type ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = typeof ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum[keyof typeof ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum];
+export const ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
 
-export interface ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableRead {
+export type ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryJsonldReadDevelopmentLogTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -225,12 +601,35 @@ export interface ChemistryJsonldReadPrintSessionTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableRead {
+export interface ChemistryMultipartReadDevelopmentLogTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -242,14 +641,14 @@ export interface ChemistryMultipartReadPrintSessionTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface ChemistryReadChemistryTranslatableReadTimestampableBlameableRead {
+export interface ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
     'name': string;
-    'process': ChemistryReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum;
-    'chemistryType': ChemistryTypeReadChemistryTranslatableReadTimestampableBlameableRead;
-    'manufacturer': ManufacturerReadChemistryTranslatableReadTimestampableBlameableRead;
+    'process': ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum;
+    'chemistryType': ChemistryTypeReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+    'manufacturer': ManufacturerReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead;
     'description'?: string | null;
-    'dilutions'?: Array<DilutionReadChemistryTranslatableReadTimestampableBlameableRead>;
+    'dilutions'?: Array<DilutionReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead>;
     'officialDocumentationUrl'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
@@ -260,9 +659,10 @@ export interface ChemistryReadChemistryTranslatableReadTimestampableBlameableRea
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
+    'status': ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
 
-export const ChemistryReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum = {
+export const ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -271,14 +671,45 @@ export const ChemistryReadChemistryTranslatableReadTimestampableBlameableReadPro
     BwPrint: 'B&W Print'
 } as const;
 
-export type ChemistryReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum = typeof ChemistryReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof ChemistryReadChemistryTranslatableReadTimestampableBlameableReadProcessEnum];
+export type ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = typeof ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum[keyof typeof ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum];
+export const ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
 
-export interface ChemistryReadManufacturerTimestampableBlameableReadTranslatableRead {
+export type ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryReadDevelopmentLogTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -290,7 +721,7 @@ export interface ChemistryReadPrintSessionTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableRead {
+export interface ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
@@ -306,13 +737,24 @@ export interface ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBl
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
+    'status': ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
-export interface ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead {
+
+export const ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
     'id'?: string;
-    'process': ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum;
+    'process': ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum;
     'typeCode': string;
     'typeLabel': string;
     /**
@@ -324,9 +766,10 @@ export interface ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampab
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
+    'status': ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
 
-export const ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum = {
+export const ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -335,9 +778,17 @@ export const ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBl
     BwPrint: 'B&W Print'
 } as const;
 
-export type ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum = typeof ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum];
+export type ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = typeof ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum[keyof typeof ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum];
+export const ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
 
-export interface ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableRead {
+export type ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
     'typeCode': string;
     'typeLabel': string;
@@ -350,8 +801,19 @@ export interface ChemistryTypeMultipartReadChemistryTranslatableReadTimestampabl
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
+    'status': ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
-export interface ChemistryTypeReadChemistryTranslatableReadTimestampableBlameableRead {
+
+export const ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryTypeReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
     'typeCode': string;
     'typeLabel': string;
@@ -364,10 +826,21 @@ export interface ChemistryTypeReadChemistryTranslatableReadTimestampableBlameabl
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
+    'status': ChemistryTypeReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
-export interface ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableRead {
+
+export const ChemistryTypeReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryTypeReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
-    'process': ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum;
+    'process': ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum;
     'typeCode': string;
     'typeLabel': string;
     /**
@@ -379,9 +852,10 @@ export interface ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlam
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
+    'status': ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
 
-export const ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum = {
+export const ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -390,15 +864,37 @@ export const ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameabl
     BwPrint: 'B&W Print'
 } as const;
 
-export type ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum = typeof ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadProcessEnum];
+export type ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = typeof ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum[keyof typeof ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum];
+export const ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
 
-export interface ChemistryTypeWriteChemistryType {
-    'process': ChemistryTypeWriteChemistryTypeProcessEnum;
+export type ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ChemistryTypeReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ChemistryTypeWriteChemistryCatalogStatusWrite {
+    'status': ChemistryTypeWriteChemistryCatalogStatusWriteStatusEnum;
+}
+
+export const ChemistryTypeWriteChemistryCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryTypeWriteChemistryCatalogStatusWriteStatusEnum = typeof ChemistryTypeWriteChemistryCatalogStatusWriteStatusEnum[keyof typeof ChemistryTypeWriteChemistryCatalogStatusWriteStatusEnum];
+
+export interface ChemistryTypeWriteChemistryTypeCatalogStatusWrite {
+    'process': ChemistryTypeWriteChemistryTypeCatalogStatusWriteProcessEnum;
     'typeCode': string;
     'typeLabel': string;
+    'status': ChemistryTypeWriteChemistryTypeCatalogStatusWriteStatusEnum;
 }
 
-export const ChemistryTypeWriteChemistryTypeProcessEnum = {
+export const ChemistryTypeWriteChemistryTypeCatalogStatusWriteProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -407,15 +903,24 @@ export const ChemistryTypeWriteChemistryTypeProcessEnum = {
     BwPrint: 'B&W Print'
 } as const;
 
-export type ChemistryTypeWriteChemistryTypeProcessEnum = typeof ChemistryTypeWriteChemistryTypeProcessEnum[keyof typeof ChemistryTypeWriteChemistryTypeProcessEnum];
+export type ChemistryTypeWriteChemistryTypeCatalogStatusWriteProcessEnum = typeof ChemistryTypeWriteChemistryTypeCatalogStatusWriteProcessEnum[keyof typeof ChemistryTypeWriteChemistryTypeCatalogStatusWriteProcessEnum];
+export const ChemistryTypeWriteChemistryTypeCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
 
-export interface ChemistryTypeWriteChemistryTypeJsonMergePatch {
-    'process'?: ChemistryTypeWriteChemistryTypeJsonMergePatchProcessEnum;
+export type ChemistryTypeWriteChemistryTypeCatalogStatusWriteStatusEnum = typeof ChemistryTypeWriteChemistryTypeCatalogStatusWriteStatusEnum[keyof typeof ChemistryTypeWriteChemistryTypeCatalogStatusWriteStatusEnum];
+
+export interface ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch {
+    'process'?: ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatchProcessEnum;
     'typeCode'?: string;
     'typeLabel'?: string;
+    'status'?: ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatchStatusEnum;
 }
 
-export const ChemistryTypeWriteChemistryTypeJsonMergePatchProcessEnum = {
+export const ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatchProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -424,19 +929,28 @@ export const ChemistryTypeWriteChemistryTypeJsonMergePatchProcessEnum = {
     BwPrint: 'B&W Print'
 } as const;
 
-export type ChemistryTypeWriteChemistryTypeJsonMergePatchProcessEnum = typeof ChemistryTypeWriteChemistryTypeJsonMergePatchProcessEnum[keyof typeof ChemistryTypeWriteChemistryTypeJsonMergePatchProcessEnum];
+export type ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatchProcessEnum = typeof ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatchProcessEnum[keyof typeof ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatchProcessEnum];
+export const ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatchStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
 
-export interface ChemistryWriteChemistry {
+export type ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatchStatusEnum = typeof ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatchStatusEnum[keyof typeof ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatchStatusEnum];
+
+export interface ChemistryWriteChemistryCatalogStatusWrite {
     'name': string;
-    'process': ChemistryWriteChemistryProcessEnum;
-    'chemistryType': string;
-    'manufacturer': string;
+    'process': ChemistryWriteChemistryCatalogStatusWriteProcessEnum;
+    'chemistryType': ChemistryTypeWriteChemistryCatalogStatusWrite;
+    'manufacturer': ManufacturerWriteChemistryCatalogStatusWrite;
     'description'?: string | null;
-    'dilutions'?: Array<DilutionWriteChemistry>;
+    'dilutions'?: Array<DilutionWriteChemistryCatalogStatusWrite>;
     'officialDocumentationUrl'?: string | null;
+    'status': ChemistryWriteChemistryCatalogStatusWriteStatusEnum;
 }
 
-export const ChemistryWriteChemistryProcessEnum = {
+export const ChemistryWriteChemistryCatalogStatusWriteProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -445,19 +959,28 @@ export const ChemistryWriteChemistryProcessEnum = {
     BwPrint: 'B&W Print'
 } as const;
 
-export type ChemistryWriteChemistryProcessEnum = typeof ChemistryWriteChemistryProcessEnum[keyof typeof ChemistryWriteChemistryProcessEnum];
+export type ChemistryWriteChemistryCatalogStatusWriteProcessEnum = typeof ChemistryWriteChemistryCatalogStatusWriteProcessEnum[keyof typeof ChemistryWriteChemistryCatalogStatusWriteProcessEnum];
+export const ChemistryWriteChemistryCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
 
-export interface ChemistryWriteChemistryJsonMergePatch {
+export type ChemistryWriteChemistryCatalogStatusWriteStatusEnum = typeof ChemistryWriteChemistryCatalogStatusWriteStatusEnum[keyof typeof ChemistryWriteChemistryCatalogStatusWriteStatusEnum];
+
+export interface ChemistryWriteChemistryCatalogStatusWriteJsonMergePatch {
     'name'?: string;
-    'process'?: ChemistryWriteChemistryJsonMergePatchProcessEnum;
-    'chemistryType'?: string;
-    'manufacturer'?: string;
+    'process'?: ChemistryWriteChemistryCatalogStatusWriteJsonMergePatchProcessEnum;
+    'chemistryType'?: ChemistryTypeWriteChemistryCatalogStatusWrite;
+    'manufacturer'?: ManufacturerWriteChemistryCatalogStatusWrite;
     'description'?: string | null;
-    'dilutions'?: Array<DilutionWriteChemistry>;
+    'dilutions'?: Array<DilutionWriteChemistryCatalogStatusWrite>;
     'officialDocumentationUrl'?: string | null;
+    'status'?: ChemistryWriteChemistryCatalogStatusWriteJsonMergePatchStatusEnum;
 }
 
-export const ChemistryWriteChemistryJsonMergePatchProcessEnum = {
+export const ChemistryWriteChemistryCatalogStatusWriteJsonMergePatchProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -466,7 +989,28 @@ export const ChemistryWriteChemistryJsonMergePatchProcessEnum = {
     BwPrint: 'B&W Print'
 } as const;
 
-export type ChemistryWriteChemistryJsonMergePatchProcessEnum = typeof ChemistryWriteChemistryJsonMergePatchProcessEnum[keyof typeof ChemistryWriteChemistryJsonMergePatchProcessEnum];
+export type ChemistryWriteChemistryCatalogStatusWriteJsonMergePatchProcessEnum = typeof ChemistryWriteChemistryCatalogStatusWriteJsonMergePatchProcessEnum[keyof typeof ChemistryWriteChemistryCatalogStatusWriteJsonMergePatchProcessEnum];
+export const ChemistryWriteChemistryCatalogStatusWriteJsonMergePatchStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryWriteChemistryCatalogStatusWriteJsonMergePatchStatusEnum = typeof ChemistryWriteChemistryCatalogStatusWriteJsonMergePatchStatusEnum[keyof typeof ChemistryWriteChemistryCatalogStatusWriteJsonMergePatchStatusEnum];
+
+export interface ChemistryWriteManufacturerCatalogStatusWrite {
+    'status': ChemistryWriteManufacturerCatalogStatusWriteStatusEnum;
+}
+
+export const ChemistryWriteManufacturerCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ChemistryWriteManufacturerCatalogStatusWriteStatusEnum = typeof ChemistryWriteManufacturerCatalogStatusWriteStatusEnum[keyof typeof ChemistryWriteManufacturerCatalogStatusWriteStatusEnum];
 
 /**
  * Unprocessable entity
@@ -516,7 +1060,160 @@ export interface ConstraintViolationViolationsInner {
      */
     'payload'?: { [key: string]: any; };
 }
-export interface DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableRead {
+export interface DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'film': FilmJsonldReadDevelopmentLogTimestampableBlameableRead;
+    'camera'?: CameraJsonldReadDevelopmentLogTimestampableBlameableRead;
+    'shotAt': ApproximateDateJsonldReadDevelopmentLogTimestampableBlameableRead;
+    'isoShotAt': number;
+    'shootingNotes'?: string | null;
+    'process': DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadProcessEnum;
+    'developedAt': string;
+    'steps'?: Array<DevelopmentStepJsonldReadDevelopmentLogTimestampableBlameableRead>;
+    'developmentNotes'?: string | null;
+    'rating'?: number | null;
+    'tags'?: Array<TagJsonldReadDevelopmentLogTimestampableBlameableRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * Exposure index relative to the film\'s nominal sensibility, in stops (e.g. +1.0 = pushed one stop).
+     */
+    'pushPullStops'?: number;
+}
+
+export const DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadProcessEnum = typeof DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadProcessEnum[keyof typeof DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadProcessEnum];
+
+export interface DevelopmentLogReadDevelopmentLogTimestampableBlameableRead {
+    'id'?: string;
+    'film': FilmReadDevelopmentLogTimestampableBlameableRead;
+    'camera'?: CameraReadDevelopmentLogTimestampableBlameableRead;
+    'shotAt': ApproximateDateReadDevelopmentLogTimestampableBlameableRead;
+    'isoShotAt': number;
+    'shootingNotes'?: string | null;
+    'process': DevelopmentLogReadDevelopmentLogTimestampableBlameableReadProcessEnum;
+    'developedAt': string;
+    'steps'?: Array<DevelopmentStepReadDevelopmentLogTimestampableBlameableRead>;
+    'developmentNotes'?: string | null;
+    'rating'?: number | null;
+    'tags'?: Array<TagReadDevelopmentLogTimestampableBlameableRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * Exposure index relative to the film\'s nominal sensibility, in stops (e.g. +1.0 = pushed one stop).
+     */
+    'pushPullStops'?: number;
+}
+
+export const DevelopmentLogReadDevelopmentLogTimestampableBlameableReadProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type DevelopmentLogReadDevelopmentLogTimestampableBlameableReadProcessEnum = typeof DevelopmentLogReadDevelopmentLogTimestampableBlameableReadProcessEnum[keyof typeof DevelopmentLogReadDevelopmentLogTimestampableBlameableReadProcessEnum];
+
+export interface DevelopmentLogWriteDevelopmentLog {
+    'film': string;
+    'camera'?: string;
+    'shotAt': ApproximateDateWriteDevelopmentLog;
+    'isoShotAt': number;
+    'shootingNotes'?: string | null;
+    'process': DevelopmentLogWriteDevelopmentLogProcessEnum;
+    'developedAt': string;
+    'steps'?: Array<DevelopmentStepWriteDevelopmentLog>;
+    'developmentNotes'?: string | null;
+    'rating'?: number | null;
+    'tags'?: Array<string>;
+}
+
+export const DevelopmentLogWriteDevelopmentLogProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type DevelopmentLogWriteDevelopmentLogProcessEnum = typeof DevelopmentLogWriteDevelopmentLogProcessEnum[keyof typeof DevelopmentLogWriteDevelopmentLogProcessEnum];
+
+export interface DevelopmentLogWriteDevelopmentLogJsonMergePatch {
+    'film'?: string;
+    'camera'?: string;
+    'shotAt'?: ApproximateDateWriteDevelopmentLog;
+    'isoShotAt'?: number;
+    'shootingNotes'?: string | null;
+    'process'?: DevelopmentLogWriteDevelopmentLogJsonMergePatchProcessEnum;
+    'developedAt'?: string;
+    'steps'?: Array<DevelopmentStepWriteDevelopmentLog>;
+    'developmentNotes'?: string | null;
+    'rating'?: number | null;
+    'tags'?: Array<string>;
+}
+
+export const DevelopmentLogWriteDevelopmentLogJsonMergePatchProcessEnum = {
+    C41: 'C-41',
+    E6: 'E-6',
+    Bw: 'B&W',
+    Ecn2: 'ECN-2',
+    Ra4: 'RA4',
+    BwPrint: 'B&W Print'
+} as const;
+
+export type DevelopmentLogWriteDevelopmentLogJsonMergePatchProcessEnum = typeof DevelopmentLogWriteDevelopmentLogJsonMergePatchProcessEnum[keyof typeof DevelopmentLogWriteDevelopmentLogJsonMergePatchProcessEnum];
+
+export interface DevelopmentStepJsonldReadDevelopmentLogTimestampableBlameableRead {
+    'chemistry'?: ChemistryJsonldReadDevelopmentLogTimestampableBlameableRead;
+    'chemistryParts'?: number | null;
+    'waterParts'?: number | null;
+    'temperature': number;
+    'durationSeconds': number;
+    'agitationNote'?: string | null;
+}
+export interface DevelopmentStepMultipartReadDevelopmentLogTimestampableBlameableRead {
+    'chemistry'?: ChemistryMultipartReadDevelopmentLogTimestampableBlameableRead;
+    'chemistryParts'?: number | null;
+    'waterParts'?: number | null;
+    'temperature': number;
+    'durationSeconds': number;
+    'agitationNote'?: string | null;
+}
+export interface DevelopmentStepReadDevelopmentLogTimestampableBlameableRead {
+    'chemistry'?: ChemistryReadDevelopmentLogTimestampableBlameableRead;
+    'chemistryParts'?: number | null;
+    'waterParts'?: number | null;
+    'temperature': number;
+    'durationSeconds': number;
+    'agitationNote'?: string | null;
+}
+export interface DevelopmentStepWriteDevelopmentLog {
+    'chemistry'?: string;
+    'chemistryParts'?: number | null;
+    'waterParts'?: number | null;
+    'temperature': number;
+    'durationSeconds': number;
+    'agitationNote'?: string | null;
+}
+export interface DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'chemistryParts': number;
     'waterParts': number;
     'official'?: boolean;
@@ -525,7 +1222,7 @@ export interface DilutionJsonldReadChemistryTranslatableReadTimestampableBlameab
      */
     'label'?: string;
 }
-export interface DilutionMultipartReadChemistryTranslatableReadTimestampableBlameableRead {
+export interface DilutionMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'chemistryParts': number;
     'waterParts': number;
     'official'?: boolean;
@@ -534,7 +1231,7 @@ export interface DilutionMultipartReadChemistryTranslatableReadTimestampableBlam
      */
     'label'?: string;
 }
-export interface DilutionReadChemistryTranslatableReadTimestampableBlameableRead {
+export interface DilutionReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'chemistryParts': number;
     'waterParts': number;
     'official'?: boolean;
@@ -543,11 +1240,254 @@ export interface DilutionReadChemistryTranslatableReadTimestampableBlameableRead
      */
     'label'?: string;
 }
-export interface DilutionWriteChemistry {
+export interface DilutionWriteChemistryCatalogStatusWrite {
     'chemistryParts': number;
     'waterParts': number;
     'official'?: boolean;
 }
+export interface EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+    'lightSource'?: EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadLightSourceEnum | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadLightSourceEnum = {
+    Condenser: 'condenser',
+    Diffusor: 'diffusor',
+    ColorHead: 'color_head'
+} as const;
+
+export type EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadLightSourceEnum = typeof EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadLightSourceEnum[keyof typeof EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadLightSourceEnum];
+export const EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface EnlargerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': EnlargerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const EnlargerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof EnlargerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof EnlargerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface EnlargerJsonldReadPrintSessionTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface EnlargerMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': EnlargerMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const EnlargerMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof EnlargerMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof EnlargerMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface EnlargerMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface EnlargerMultipartReadPrintSessionTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+    'lightSource'?: EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadLightSourceEnum | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadLightSourceEnum = {
+    Condenser: 'condenser',
+    Diffusor: 'diffusor',
+    ColorHead: 'color_head'
+} as const;
+
+export type EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadLightSourceEnum = typeof EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadLightSourceEnum[keyof typeof EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadLightSourceEnum];
+export const EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof EnlargerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface EnlargerReadPrintSessionTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface EnlargerWriteEnlargerCatalogStatusWrite {
+    'name': string;
+    'manufacturer': ManufacturerWriteEnlargerCatalogStatusWrite;
+    'lightSource'?: EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum | null;
+    'description'?: string | null;
+    'status': EnlargerWriteEnlargerCatalogStatusWriteStatusEnum;
+}
+
+export const EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum = {
+    Condenser: 'condenser',
+    Diffusor: 'diffusor',
+    ColorHead: 'color_head'
+} as const;
+
+export type EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum = typeof EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum[keyof typeof EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum];
+export const EnlargerWriteEnlargerCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerWriteEnlargerCatalogStatusWriteStatusEnum = typeof EnlargerWriteEnlargerCatalogStatusWriteStatusEnum[keyof typeof EnlargerWriteEnlargerCatalogStatusWriteStatusEnum];
+
+export interface EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatch {
+    'name'?: string;
+    'manufacturer'?: ManufacturerWriteEnlargerCatalogStatusWrite;
+    'lightSource'?: EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatchLightSourceEnum | null;
+    'description'?: string | null;
+    'status'?: EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatchStatusEnum;
+}
+
+export const EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatchLightSourceEnum = {
+    Condenser: 'condenser',
+    Diffusor: 'diffusor',
+    ColorHead: 'color_head'
+} as const;
+
+export type EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatchLightSourceEnum = typeof EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatchLightSourceEnum[keyof typeof EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatchLightSourceEnum];
+export const EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatchStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatchStatusEnum = typeof EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatchStatusEnum[keyof typeof EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatchStatusEnum];
+
+export interface EnlargerWriteManufacturerCatalogStatusWrite {
+    'status': EnlargerWriteManufacturerCatalogStatusWriteStatusEnum;
+}
+
+export const EnlargerWriteManufacturerCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type EnlargerWriteManufacturerCatalogStatusWriteStatusEnum = typeof EnlargerWriteManufacturerCatalogStatusWriteStatusEnum[keyof typeof EnlargerWriteManufacturerCatalogStatusWriteStatusEnum];
+
 /**
  * A representation of common errors.
  */
@@ -733,14 +1673,23 @@ export const ExposureWritePrintGradeEnum = {
 
 export type ExposureWritePrintGradeEnum = typeof ExposureWritePrintGradeEnum[keyof typeof ExposureWritePrintGradeEnum];
 
-export interface FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead {
+export interface FilmJsonldReadDevelopmentLogTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
     'id'?: string;
     'name': string;
     'description': string;
-    'process': FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadProcessEnum;
+    'process': FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum;
     'emulsionType'?: string | null;
     'inversible'?: boolean | null;
     'officialDocumentationUrl'?: string | null;
@@ -748,7 +1697,7 @@ export interface FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead {
     'primaryColor'?: string | null;
     'secondaryColor'?: string | null;
     'tertiaryColor'?: string | null;
-    'manufacturer': ManufacturerJsonldReadFilmTranslatableReadTimestampableBlameableRead;
+    'manufacturer': ManufacturerJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
@@ -758,9 +1707,10 @@ export interface FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead {
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
+    'status': FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
 
-export const FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadProcessEnum = {
+export const FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -769,38 +1719,80 @@ export const FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadProcess
     BwPrint: 'B&W Print'
 } as const;
 
-export type FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadProcessEnum = typeof FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadProcessEnum];
+export type FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = typeof FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum[keyof typeof FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum];
+export const FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
 
-export interface FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableRead {
+export type FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface FilmMultipartReadDevelopmentLogTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface FilmMultipartReadManufacturerTimestampableBlameableReadTranslatableRead {
+export interface FilmMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': FilmMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const FilmMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type FilmMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof FilmMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof FilmMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface FilmReadDevelopmentLogTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface FilmReadFilmTranslatableReadTimestampableBlameableRead {
+export interface FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
     'name': string;
     'description': string;
-    'process': FilmReadFilmTranslatableReadTimestampableBlameableReadProcessEnum;
+    'process': FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum;
     'emulsionType'?: string | null;
     'inversible'?: boolean | null;
     'officialDocumentationUrl'?: string | null;
@@ -808,7 +1800,7 @@ export interface FilmReadFilmTranslatableReadTimestampableBlameableRead {
     'primaryColor'?: string | null;
     'secondaryColor'?: string | null;
     'tertiaryColor'?: string | null;
-    'manufacturer': ManufacturerReadFilmTranslatableReadTimestampableBlameableRead;
+    'manufacturer': ManufacturerReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
@@ -818,9 +1810,10 @@ export interface FilmReadFilmTranslatableReadTimestampableBlameableRead {
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
+    'status': FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
 
-export const FilmReadFilmTranslatableReadTimestampableBlameableReadProcessEnum = {
+export const FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -829,23 +1822,42 @@ export const FilmReadFilmTranslatableReadTimestampableBlameableReadProcessEnum =
     BwPrint: 'B&W Print'
 } as const;
 
-export type FilmReadFilmTranslatableReadTimestampableBlameableReadProcessEnum = typeof FilmReadFilmTranslatableReadTimestampableBlameableReadProcessEnum[keyof typeof FilmReadFilmTranslatableReadTimestampableBlameableReadProcessEnum];
+export type FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum = typeof FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum[keyof typeof FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadProcessEnum];
+export const FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
 
-export interface FilmReadManufacturerTimestampableBlameableReadTranslatableRead {
+export type FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof FilmReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
     /**
      * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
-    'createdBy'?: string;
-    'updatedBy'?: string;
-    'createdAt'?: string | null;
-    'updatedAt'?: string | null;
+    'status': FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
-export interface FilmWriteFilm {
+
+export const FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface FilmWriteFilmCatalogStatusWrite {
     'name': string;
     'description': string;
-    'process': FilmWriteFilmProcessEnum;
+    'process': FilmWriteFilmCatalogStatusWriteProcessEnum;
     'emulsionType'?: string | null;
     'inversible'?: boolean | null;
     'officialDocumentationUrl'?: string | null;
@@ -853,10 +1865,11 @@ export interface FilmWriteFilm {
     'primaryColor'?: string | null;
     'secondaryColor'?: string | null;
     'tertiaryColor'?: string | null;
-    'manufacturer': string;
+    'manufacturer': ManufacturerWriteFilmCatalogStatusWrite;
+    'status': FilmWriteFilmCatalogStatusWriteStatusEnum;
 }
 
-export const FilmWriteFilmProcessEnum = {
+export const FilmWriteFilmCatalogStatusWriteProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -865,12 +1878,20 @@ export const FilmWriteFilmProcessEnum = {
     BwPrint: 'B&W Print'
 } as const;
 
-export type FilmWriteFilmProcessEnum = typeof FilmWriteFilmProcessEnum[keyof typeof FilmWriteFilmProcessEnum];
+export type FilmWriteFilmCatalogStatusWriteProcessEnum = typeof FilmWriteFilmCatalogStatusWriteProcessEnum[keyof typeof FilmWriteFilmCatalogStatusWriteProcessEnum];
+export const FilmWriteFilmCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
 
-export interface FilmWriteFilmJsonMergePatch {
+export type FilmWriteFilmCatalogStatusWriteStatusEnum = typeof FilmWriteFilmCatalogStatusWriteStatusEnum[keyof typeof FilmWriteFilmCatalogStatusWriteStatusEnum];
+
+export interface FilmWriteFilmCatalogStatusWriteJsonMergePatch {
     'name'?: string;
     'description'?: string;
-    'process'?: FilmWriteFilmJsonMergePatchProcessEnum;
+    'process'?: FilmWriteFilmCatalogStatusWriteJsonMergePatchProcessEnum;
     'emulsionType'?: string | null;
     'inversible'?: boolean | null;
     'officialDocumentationUrl'?: string | null;
@@ -878,10 +1899,11 @@ export interface FilmWriteFilmJsonMergePatch {
     'primaryColor'?: string | null;
     'secondaryColor'?: string | null;
     'tertiaryColor'?: string | null;
-    'manufacturer'?: string;
+    'manufacturer'?: ManufacturerWriteFilmCatalogStatusWrite;
+    'status'?: FilmWriteFilmCatalogStatusWriteJsonMergePatchStatusEnum;
 }
 
-export const FilmWriteFilmJsonMergePatchProcessEnum = {
+export const FilmWriteFilmCatalogStatusWriteJsonMergePatchProcessEnum = {
     C41: 'C-41',
     E6: 'E-6',
     Bw: 'B&W',
@@ -890,7 +1912,28 @@ export const FilmWriteFilmJsonMergePatchProcessEnum = {
     BwPrint: 'B&W Print'
 } as const;
 
-export type FilmWriteFilmJsonMergePatchProcessEnum = typeof FilmWriteFilmJsonMergePatchProcessEnum[keyof typeof FilmWriteFilmJsonMergePatchProcessEnum];
+export type FilmWriteFilmCatalogStatusWriteJsonMergePatchProcessEnum = typeof FilmWriteFilmCatalogStatusWriteJsonMergePatchProcessEnum[keyof typeof FilmWriteFilmCatalogStatusWriteJsonMergePatchProcessEnum];
+export const FilmWriteFilmCatalogStatusWriteJsonMergePatchStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type FilmWriteFilmCatalogStatusWriteJsonMergePatchStatusEnum = typeof FilmWriteFilmCatalogStatusWriteJsonMergePatchStatusEnum[keyof typeof FilmWriteFilmCatalogStatusWriteJsonMergePatchStatusEnum];
+
+export interface FilmWriteManufacturerCatalogStatusWrite {
+    'status': FilmWriteManufacturerCatalogStatusWriteStatusEnum;
+}
+
+export const FilmWriteManufacturerCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type FilmWriteManufacturerCatalogStatusWriteStatusEnum = typeof FilmWriteManufacturerCatalogStatusWriteStatusEnum[keyof typeof FilmWriteManufacturerCatalogStatusWriteStatusEnum];
 
 export interface HydraCollectionBaseSchema {
     'hydra:totalItems'?: number;
@@ -944,7 +1987,32 @@ export const HydraItemBaseSchemaContextOneOfHydraEnum = {
 
 export type HydraItemBaseSchemaContextOneOfHydraEnum = typeof HydraItemBaseSchemaContextOneOfHydraEnum[keyof typeof HydraItemBaseSchemaContextOneOfHydraEnum];
 
-export interface ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableRead {
+export interface ManufacturerJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
@@ -961,8 +2029,44 @@ export interface ManufacturerJsonldReadChemistryTranslatableReadTimestampableBla
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
-export interface ManufacturerJsonldReadFilmTranslatableReadTimestampableBlameableRead {
+
+export const ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
@@ -980,15 +2084,29 @@ export interface ManufacturerJsonldReadFilmTranslatableReadTimestampableBlameabl
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ManufacturerJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
-export interface ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead {
+
+export const ManufacturerJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
     'id'?: string;
     'name': string;
-    'films'?: Array<FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableRead>;
-    'chemistries'?: Array<ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableRead>;
+    'films'?: Array<FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
+    'chemistries'?: Array<ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
+    'cameras'?: Array<CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
+    'enlargers'?: Array<EnlargerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
+    'photoPapers'?: Array<PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
     'primaryColor'?: string | null;
     'secondaryColor'?: string | null;
     'tertiaryColor'?: string | null;
@@ -1002,8 +2120,66 @@ export interface ManufacturerJsonldReadManufacturerTimestampableBlameableReadTra
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
-export interface ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlameableRead {
+
+export const ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerMultipartReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerMultipartReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerMultipartReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerMultipartReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerMultipartReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerMultipartReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'name': string;
     'primaryColor'?: string | null;
     'secondaryColor'?: string | null;
@@ -1017,8 +2193,41 @@ export interface ManufacturerMultipartReadChemistryTranslatableReadTimestampable
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
-export interface ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameableRead {
+
+export const ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerMultipartReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerMultipartReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerMultipartReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerMultipartReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerMultipartReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerMultipartReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerMultipartReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
     'name': string;
     'primaryColor'?: string | null;
@@ -1033,8 +2242,63 @@ export interface ManufacturerMultipartReadFilmTranslatableReadTimestampableBlame
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
-export interface ManufacturerReadChemistryTranslatableReadTimestampableBlameableRead {
+
+export const ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerMultipartReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerMultipartReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'name': string;
     'primaryColor'?: string | null;
     'secondaryColor'?: string | null;
@@ -1048,8 +2312,41 @@ export interface ManufacturerReadChemistryTranslatableReadTimestampableBlameable
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ManufacturerReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
-export interface ManufacturerReadFilmTranslatableReadTimestampableBlameableRead {
+
+export const ManufacturerReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead {
     'id'?: string;
     'name': string;
     'primaryColor'?: string | null;
@@ -1064,12 +2361,26 @@ export interface ManufacturerReadFilmTranslatableReadTimestampableBlameableRead 
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ManufacturerReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
 }
-export interface ManufacturerReadManufacturerTimestampableBlameableReadTranslatableRead {
+
+export const ManufacturerReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
     'id'?: string;
     'name': string;
-    'films'?: Array<FilmReadManufacturerTimestampableBlameableReadTranslatableRead>;
-    'chemistries'?: Array<ChemistryReadManufacturerTimestampableBlameableReadTranslatableRead>;
+    'films'?: Array<FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
+    'chemistries'?: Array<ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
+    'cameras'?: Array<CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
+    'enlargers'?: Array<EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
+    'photoPapers'?: Array<PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>;
     'primaryColor'?: string | null;
     'secondaryColor'?: string | null;
     'tertiaryColor'?: string | null;
@@ -1083,25 +2394,151 @@ export interface ManufacturerReadManufacturerTimestampableBlameableReadTranslata
      */
     'translations'?: Array<string | null>;
     'isTranslated'?: boolean;
+    'status': ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
 }
-export interface ManufacturerWriteManufacturer {
+
+export const ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface ManufacturerWriteCameraCatalogStatusWrite {
+    'status': ManufacturerWriteCameraCatalogStatusWriteStatusEnum;
+}
+
+export const ManufacturerWriteCameraCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerWriteCameraCatalogStatusWriteStatusEnum = typeof ManufacturerWriteCameraCatalogStatusWriteStatusEnum[keyof typeof ManufacturerWriteCameraCatalogStatusWriteStatusEnum];
+
+export interface ManufacturerWriteChemistryCatalogStatusWrite {
+    'status': ManufacturerWriteChemistryCatalogStatusWriteStatusEnum;
+}
+
+export const ManufacturerWriteChemistryCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerWriteChemistryCatalogStatusWriteStatusEnum = typeof ManufacturerWriteChemistryCatalogStatusWriteStatusEnum[keyof typeof ManufacturerWriteChemistryCatalogStatusWriteStatusEnum];
+
+export interface ManufacturerWriteEnlargerCatalogStatusWrite {
+    'status': ManufacturerWriteEnlargerCatalogStatusWriteStatusEnum;
+}
+
+export const ManufacturerWriteEnlargerCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerWriteEnlargerCatalogStatusWriteStatusEnum = typeof ManufacturerWriteEnlargerCatalogStatusWriteStatusEnum[keyof typeof ManufacturerWriteEnlargerCatalogStatusWriteStatusEnum];
+
+export interface ManufacturerWriteFilmCatalogStatusWrite {
+    'status': ManufacturerWriteFilmCatalogStatusWriteStatusEnum;
+}
+
+export const ManufacturerWriteFilmCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerWriteFilmCatalogStatusWriteStatusEnum = typeof ManufacturerWriteFilmCatalogStatusWriteStatusEnum[keyof typeof ManufacturerWriteFilmCatalogStatusWriteStatusEnum];
+
+export interface ManufacturerWriteManufacturerCatalogStatusWrite {
     'name': string;
-    'films'?: Array<string>;
-    'chemistries'?: Array<string>;
+    'films'?: Array<FilmWriteManufacturerCatalogStatusWrite>;
+    'chemistries'?: Array<ChemistryWriteManufacturerCatalogStatusWrite>;
+    'cameras'?: Array<CameraWriteManufacturerCatalogStatusWrite>;
+    'enlargers'?: Array<EnlargerWriteManufacturerCatalogStatusWrite>;
+    'photoPapers'?: Array<PhotoPaperWriteManufacturerCatalogStatusWrite>;
     'primaryColor'?: string | null;
     'secondaryColor'?: string | null;
     'tertiaryColor'?: string | null;
     'website'?: string | null;
+    'status': ManufacturerWriteManufacturerCatalogStatusWriteStatusEnum;
 }
-export interface ManufacturerWriteManufacturerJsonMergePatch {
+
+export const ManufacturerWriteManufacturerCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerWriteManufacturerCatalogStatusWriteStatusEnum = typeof ManufacturerWriteManufacturerCatalogStatusWriteStatusEnum[keyof typeof ManufacturerWriteManufacturerCatalogStatusWriteStatusEnum];
+
+export interface ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch {
     'name'?: string;
-    'films'?: Array<string>;
-    'chemistries'?: Array<string>;
+    'films'?: Array<FilmWriteManufacturerCatalogStatusWrite>;
+    'chemistries'?: Array<ChemistryWriteManufacturerCatalogStatusWrite>;
+    'cameras'?: Array<CameraWriteManufacturerCatalogStatusWrite>;
+    'enlargers'?: Array<EnlargerWriteManufacturerCatalogStatusWrite>;
+    'photoPapers'?: Array<PhotoPaperWriteManufacturerCatalogStatusWrite>;
     'primaryColor'?: string | null;
     'secondaryColor'?: string | null;
     'tertiaryColor'?: string | null;
     'website'?: string | null;
+    'status'?: ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatchStatusEnum;
 }
+
+export const ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatchStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatchStatusEnum = typeof ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatchStatusEnum[keyof typeof ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatchStatusEnum];
+
+export interface ManufacturerWritePhotoPaperCatalogStatusWrite {
+    'status': ManufacturerWritePhotoPaperCatalogStatusWriteStatusEnum;
+}
+
+export const ManufacturerWritePhotoPaperCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type ManufacturerWritePhotoPaperCatalogStatusWriteStatusEnum = typeof ManufacturerWritePhotoPaperCatalogStatusWriteStatusEnum[keyof typeof ManufacturerWritePhotoPaperCatalogStatusWriteStatusEnum];
+
 /**
  * A representation of common errors.
  */
@@ -1124,7 +2561,273 @@ export interface ModelError {
      */
     'type'?: string;
 }
-export interface PrintJsonldReadPrintSessionTimestampableBlameableRead {
+export interface PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+    'paperBase': PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperBaseEnum;
+    'paperSurface': PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperSurfaceEnum;
+    'paperSurfaceOther'?: string | null;
+    'variableContrast'?: boolean | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperBaseEnum = typeof PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperBaseEnum[keyof typeof PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperBaseEnum];
+export const PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperSurfaceEnum = typeof PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperSurfaceEnum[keyof typeof PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperSurfaceEnum];
+export const PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface PhotoPaperJsonldReadPrintTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperMultipartReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface PhotoPaperMultipartReadPrintTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'status': PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum;
+}
+
+export const PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum = typeof PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusReadStatusEnum];
+
+export interface PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'manufacturer': ManufacturerReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+    'paperBase': PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperBaseEnum;
+    'paperSurface': PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperSurfaceEnum;
+    'paperSurfaceOther'?: string | null;
+    'variableContrast'?: boolean | null;
+    'description'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperBaseEnum = typeof PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperBaseEnum[keyof typeof PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperBaseEnum];
+export const PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperSurfaceEnum = typeof PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperSurfaceEnum[keyof typeof PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadPaperSurfaceEnum];
+export const PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof PhotoPaperReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface PhotoPaperReadPrintTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface PhotoPaperWriteManufacturerCatalogStatusWrite {
+    'status': PhotoPaperWriteManufacturerCatalogStatusWriteStatusEnum;
+}
+
+export const PhotoPaperWriteManufacturerCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperWriteManufacturerCatalogStatusWriteStatusEnum = typeof PhotoPaperWriteManufacturerCatalogStatusWriteStatusEnum[keyof typeof PhotoPaperWriteManufacturerCatalogStatusWriteStatusEnum];
+
+export interface PhotoPaperWritePhotoPaperCatalogStatusWrite {
+    'name': string;
+    'manufacturer': ManufacturerWritePhotoPaperCatalogStatusWrite;
+    'paperBase': PhotoPaperWritePhotoPaperCatalogStatusWritePaperBaseEnum;
+    'paperSurface': PhotoPaperWritePhotoPaperCatalogStatusWritePaperSurfaceEnum;
+    'paperSurfaceOther'?: string | null;
+    'variableContrast'?: boolean | null;
+    'description'?: string | null;
+    'status': PhotoPaperWritePhotoPaperCatalogStatusWriteStatusEnum;
+}
+
+export const PhotoPaperWritePhotoPaperCatalogStatusWritePaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PhotoPaperWritePhotoPaperCatalogStatusWritePaperBaseEnum = typeof PhotoPaperWritePhotoPaperCatalogStatusWritePaperBaseEnum[keyof typeof PhotoPaperWritePhotoPaperCatalogStatusWritePaperBaseEnum];
+export const PhotoPaperWritePhotoPaperCatalogStatusWritePaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PhotoPaperWritePhotoPaperCatalogStatusWritePaperSurfaceEnum = typeof PhotoPaperWritePhotoPaperCatalogStatusWritePaperSurfaceEnum[keyof typeof PhotoPaperWritePhotoPaperCatalogStatusWritePaperSurfaceEnum];
+export const PhotoPaperWritePhotoPaperCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperWritePhotoPaperCatalogStatusWriteStatusEnum = typeof PhotoPaperWritePhotoPaperCatalogStatusWriteStatusEnum[keyof typeof PhotoPaperWritePhotoPaperCatalogStatusWriteStatusEnum];
+
+export interface PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch {
+    'name'?: string;
+    'manufacturer'?: ManufacturerWritePhotoPaperCatalogStatusWrite;
+    'paperBase'?: PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchPaperBaseEnum;
+    'paperSurface'?: PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchPaperSurfaceEnum;
+    'paperSurfaceOther'?: string | null;
+    'variableContrast'?: boolean | null;
+    'description'?: string | null;
+    'status'?: PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchStatusEnum;
+}
+
+export const PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchPaperBaseEnum = {
+    Rc: 'rc',
+    Fb: 'fb'
+} as const;
+
+export type PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchPaperBaseEnum = typeof PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchPaperBaseEnum[keyof typeof PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchPaperBaseEnum];
+export const PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchPaperSurfaceEnum = {
+    Glossy: 'glossy',
+    Satin: 'satin',
+    Pearl: 'pearl',
+    Matt: 'matt',
+    Other: 'other'
+} as const;
+
+export type PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchPaperSurfaceEnum = typeof PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchPaperSurfaceEnum[keyof typeof PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchPaperSurfaceEnum];
+export const PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchStatusEnum = typeof PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchStatusEnum[keyof typeof PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatchStatusEnum];
+
+export interface PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
     '@type': string;
@@ -1151,12 +2854,7 @@ export interface PrintJsonldReadPrintTimestampableBlameableRead {
     'paperHeightCm'?: number | null;
     'borderCm'?: number | null;
     'copies'?: number | null;
-    'paperBrand'?: PrintJsonldReadPrintTimestampableBlameableReadPaperBrandEnum | null;
-    'paperBrandOther'?: string | null;
-    'paperModel'?: string | null;
-    'paperBase'?: PrintJsonldReadPrintTimestampableBlameableReadPaperBaseEnum | null;
-    'paperSurface'?: PrintJsonldReadPrintTimestampableBlameableReadPaperSurfaceEnum | null;
-    'paperSurfaceOther'?: string | null;
+    'photoPaper': PhotoPaperJsonldReadPrintTimestampableBlameableRead;
     'preFlashSeconds'?: number | null;
     'exposures'?: Array<ExposureJsonldReadPrintTimestampableBlameableRead>;
     'maskingNotes'?: string | null;
@@ -1186,37 +2884,14 @@ export const PrintJsonldReadPrintTimestampableBlameableReadFocalLengthEnum = {
 } as const;
 
 export type PrintJsonldReadPrintTimestampableBlameableReadFocalLengthEnum = typeof PrintJsonldReadPrintTimestampableBlameableReadFocalLengthEnum[keyof typeof PrintJsonldReadPrintTimestampableBlameableReadFocalLengthEnum];
-export const PrintJsonldReadPrintTimestampableBlameableReadPaperBrandEnum = {
-    Ilford: 'ilford',
-    Foma: 'foma',
-    Bergger: 'bergger',
-    Other: 'other'
-} as const;
 
-export type PrintJsonldReadPrintTimestampableBlameableReadPaperBrandEnum = typeof PrintJsonldReadPrintTimestampableBlameableReadPaperBrandEnum[keyof typeof PrintJsonldReadPrintTimestampableBlameableReadPaperBrandEnum];
-export const PrintJsonldReadPrintTimestampableBlameableReadPaperBaseEnum = {
-    Rc: 'rc',
-    Fb: 'fb'
-} as const;
-
-export type PrintJsonldReadPrintTimestampableBlameableReadPaperBaseEnum = typeof PrintJsonldReadPrintTimestampableBlameableReadPaperBaseEnum[keyof typeof PrintJsonldReadPrintTimestampableBlameableReadPaperBaseEnum];
-export const PrintJsonldReadPrintTimestampableBlameableReadPaperSurfaceEnum = {
-    Glossy: 'glossy',
-    Satin: 'satin',
-    Pearl: 'pearl',
-    Matt: 'matt',
-    Other: 'other'
-} as const;
-
-export type PrintJsonldReadPrintTimestampableBlameableReadPaperSurfaceEnum = typeof PrintJsonldReadPrintTimestampableBlameableReadPaperSurfaceEnum[keyof typeof PrintJsonldReadPrintTimestampableBlameableReadPaperSurfaceEnum];
-
-export interface PrintMultipartReadPrintSessionTimestampableBlameableRead {
+export interface PrintMultipartReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
-export interface PrintReadPrintSessionTimestampableBlameableRead {
+export interface PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -1237,12 +2912,7 @@ export interface PrintReadPrintTimestampableBlameableRead {
     'paperHeightCm'?: number | null;
     'borderCm'?: number | null;
     'copies'?: number | null;
-    'paperBrand'?: PrintReadPrintTimestampableBlameableReadPaperBrandEnum | null;
-    'paperBrandOther'?: string | null;
-    'paperModel'?: string | null;
-    'paperBase'?: PrintReadPrintTimestampableBlameableReadPaperBaseEnum | null;
-    'paperSurface'?: PrintReadPrintTimestampableBlameableReadPaperSurfaceEnum | null;
-    'paperSurfaceOther'?: string | null;
+    'photoPaper': PhotoPaperReadPrintTimestampableBlameableRead;
     'preFlashSeconds'?: number | null;
     'exposures'?: Array<ExposureReadPrintTimestampableBlameableRead>;
     'maskingNotes'?: string | null;
@@ -1272,30 +2942,26 @@ export const PrintReadPrintTimestampableBlameableReadFocalLengthEnum = {
 } as const;
 
 export type PrintReadPrintTimestampableBlameableReadFocalLengthEnum = typeof PrintReadPrintTimestampableBlameableReadFocalLengthEnum[keyof typeof PrintReadPrintTimestampableBlameableReadFocalLengthEnum];
-export const PrintReadPrintTimestampableBlameableReadPaperBrandEnum = {
-    Ilford: 'ilford',
-    Foma: 'foma',
-    Bergger: 'bergger',
-    Other: 'other'
-} as const;
 
-export type PrintReadPrintTimestampableBlameableReadPaperBrandEnum = typeof PrintReadPrintTimestampableBlameableReadPaperBrandEnum[keyof typeof PrintReadPrintTimestampableBlameableReadPaperBrandEnum];
-export const PrintReadPrintTimestampableBlameableReadPaperBaseEnum = {
-    Rc: 'rc',
-    Fb: 'fb'
-} as const;
-
-export type PrintReadPrintTimestampableBlameableReadPaperBaseEnum = typeof PrintReadPrintTimestampableBlameableReadPaperBaseEnum[keyof typeof PrintReadPrintTimestampableBlameableReadPaperBaseEnum];
-export const PrintReadPrintTimestampableBlameableReadPaperSurfaceEnum = {
-    Glossy: 'glossy',
-    Satin: 'satin',
-    Pearl: 'pearl',
-    Matt: 'matt',
-    Other: 'other'
-} as const;
-
-export type PrintReadPrintTimestampableBlameableReadPaperSurfaceEnum = typeof PrintReadPrintTimestampableBlameableReadPaperSurfaceEnum[keyof typeof PrintReadPrintTimestampableBlameableReadPaperSurfaceEnum];
-
+export interface PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'date': string;
+    'lab': string;
+    'number': number;
+    'enlarger': EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead;
+    'temperatureCelsius': number;
+    'chemicalBaths'?: Array<ChemicalBathJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead>;
+    'wash'?: string | null;
+    'notes'?: string | null;
+    'prints'?: Array<PrintJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
 export interface PrintSessionJsonldReadPrintSessionTimestampableBlameableRead {
     '@context'?: HydraItemBaseSchemaContext;
     '@id': string;
@@ -1304,12 +2970,11 @@ export interface PrintSessionJsonldReadPrintSessionTimestampableBlameableRead {
     'date': string;
     'lab': string;
     'number': number;
-    'enlarger': string;
+    'enlarger': EnlargerJsonldReadPrintSessionTimestampableBlameableRead;
     'temperatureCelsius': number;
     'chemicalBaths'?: Array<ChemicalBathJsonldReadPrintSessionTimestampableBlameableRead>;
     'wash'?: string | null;
     'notes'?: string | null;
-    'prints'?: Array<PrintJsonldReadPrintSessionTimestampableBlameableRead>;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -1330,17 +2995,32 @@ export interface PrintSessionMultipartReadPrintTimestampableBlameableRead {
     'createdAt'?: string | null;
     'updatedAt'?: string | null;
 }
+export interface PrintSessionReadPrintSessionReadPrintSessionItemTimestampableBlameableRead {
+    'id'?: string;
+    'date': string;
+    'lab': string;
+    'number': number;
+    'enlarger': EnlargerReadPrintSessionReadPrintSessionItemTimestampableBlameableRead;
+    'temperatureCelsius': number;
+    'chemicalBaths'?: Array<ChemicalBathReadPrintSessionReadPrintSessionItemTimestampableBlameableRead>;
+    'wash'?: string | null;
+    'notes'?: string | null;
+    'prints'?: Array<PrintReadPrintSessionReadPrintSessionItemTimestampableBlameableRead>;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
 export interface PrintSessionReadPrintSessionTimestampableBlameableRead {
     'id'?: string;
     'date': string;
     'lab': string;
     'number': number;
-    'enlarger': string;
+    'enlarger': EnlargerReadPrintSessionTimestampableBlameableRead;
     'temperatureCelsius': number;
     'chemicalBaths'?: Array<ChemicalBathReadPrintSessionTimestampableBlameableRead>;
     'wash'?: string | null;
     'notes'?: string | null;
-    'prints'?: Array<PrintReadPrintSessionTimestampableBlameableRead>;
     'createdBy'?: string;
     'updatedBy'?: string;
     'createdAt'?: string | null;
@@ -1386,12 +3066,7 @@ export interface PrintWritePrint {
     'paperHeightCm'?: number | null;
     'borderCm'?: number | null;
     'copies'?: number | null;
-    'paperBrand'?: PrintWritePrintPaperBrandEnum | null;
-    'paperBrandOther'?: string | null;
-    'paperModel'?: string | null;
-    'paperBase'?: PrintWritePrintPaperBaseEnum | null;
-    'paperSurface'?: PrintWritePrintPaperSurfaceEnum | null;
-    'paperSurfaceOther'?: string | null;
+    'photoPaper': string;
     'preFlashSeconds'?: number | null;
     'exposures'?: Array<ExposureWritePrint>;
     'maskingNotes'?: string | null;
@@ -1417,29 +3092,6 @@ export const PrintWritePrintFocalLengthEnum = {
 } as const;
 
 export type PrintWritePrintFocalLengthEnum = typeof PrintWritePrintFocalLengthEnum[keyof typeof PrintWritePrintFocalLengthEnum];
-export const PrintWritePrintPaperBrandEnum = {
-    Ilford: 'ilford',
-    Foma: 'foma',
-    Bergger: 'bergger',
-    Other: 'other'
-} as const;
-
-export type PrintWritePrintPaperBrandEnum = typeof PrintWritePrintPaperBrandEnum[keyof typeof PrintWritePrintPaperBrandEnum];
-export const PrintWritePrintPaperBaseEnum = {
-    Rc: 'rc',
-    Fb: 'fb'
-} as const;
-
-export type PrintWritePrintPaperBaseEnum = typeof PrintWritePrintPaperBaseEnum[keyof typeof PrintWritePrintPaperBaseEnum];
-export const PrintWritePrintPaperSurfaceEnum = {
-    Glossy: 'glossy',
-    Satin: 'satin',
-    Pearl: 'pearl',
-    Matt: 'matt',
-    Other: 'other'
-} as const;
-
-export type PrintWritePrintPaperSurfaceEnum = typeof PrintWritePrintPaperSurfaceEnum[keyof typeof PrintWritePrintPaperSurfaceEnum];
 
 export interface PrintWritePrintJsonMergePatch {
     'session'?: string;
@@ -1455,12 +3107,7 @@ export interface PrintWritePrintJsonMergePatch {
     'paperHeightCm'?: number | null;
     'borderCm'?: number | null;
     'copies'?: number | null;
-    'paperBrand'?: PrintWritePrintJsonMergePatchPaperBrandEnum | null;
-    'paperBrandOther'?: string | null;
-    'paperModel'?: string | null;
-    'paperBase'?: PrintWritePrintJsonMergePatchPaperBaseEnum | null;
-    'paperSurface'?: PrintWritePrintJsonMergePatchPaperSurfaceEnum | null;
-    'paperSurfaceOther'?: string | null;
+    'photoPaper'?: string;
     'preFlashSeconds'?: number | null;
     'exposures'?: Array<ExposureWritePrint>;
     'maskingNotes'?: string | null;
@@ -1486,29 +3133,114 @@ export const PrintWritePrintJsonMergePatchFocalLengthEnum = {
 } as const;
 
 export type PrintWritePrintJsonMergePatchFocalLengthEnum = typeof PrintWritePrintJsonMergePatchFocalLengthEnum[keyof typeof PrintWritePrintJsonMergePatchFocalLengthEnum];
-export const PrintWritePrintJsonMergePatchPaperBrandEnum = {
-    Ilford: 'ilford',
-    Foma: 'foma',
-    Bergger: 'bergger',
-    Other: 'other'
+
+export interface TagJsonldReadDevelopmentLogTimestampableBlameableRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    '@context'?: HydraItemBaseSchemaContext;
+    '@id': string;
+    '@type': string;
+    'id'?: string;
+    'name': string;
+    'description'?: string | null;
+    'primaryColor'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
 } as const;
 
-export type PrintWritePrintJsonMergePatchPaperBrandEnum = typeof PrintWritePrintJsonMergePatchPaperBrandEnum[keyof typeof PrintWritePrintJsonMergePatchPaperBrandEnum];
-export const PrintWritePrintJsonMergePatchPaperBaseEnum = {
-    Rc: 'rc',
-    Fb: 'fb'
+export type TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface TagMultipartReadDevelopmentLogTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface TagReadDevelopmentLogTimestampableBlameableRead {
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+}
+export interface TagReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead {
+    'id'?: string;
+    'name': string;
+    'description'?: string | null;
+    'primaryColor'?: string | null;
+    /**
+     * array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into
+     */
+    'translations'?: Array<string | null>;
+    'isTranslated'?: boolean;
+    'createdBy'?: string;
+    'updatedBy'?: string;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'status': TagReadTagTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum;
+}
+
+export const TagReadTagTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
 } as const;
 
-export type PrintWritePrintJsonMergePatchPaperBaseEnum = typeof PrintWritePrintJsonMergePatchPaperBaseEnum[keyof typeof PrintWritePrintJsonMergePatchPaperBaseEnum];
-export const PrintWritePrintJsonMergePatchPaperSurfaceEnum = {
-    Glossy: 'glossy',
-    Satin: 'satin',
-    Pearl: 'pearl',
-    Matt: 'matt',
-    Other: 'other'
+export type TagReadTagTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum = typeof TagReadTagTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum[keyof typeof TagReadTagTranslatableReadTimestampableBlameableReadCatalogStatusReadStatusEnum];
+
+export interface TagWriteTagCatalogStatusWrite {
+    'name': string;
+    'description'?: string | null;
+    'primaryColor'?: string | null;
+    'status': TagWriteTagCatalogStatusWriteStatusEnum;
+}
+
+export const TagWriteTagCatalogStatusWriteStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
 } as const;
 
-export type PrintWritePrintJsonMergePatchPaperSurfaceEnum = typeof PrintWritePrintJsonMergePatchPaperSurfaceEnum[keyof typeof PrintWritePrintJsonMergePatchPaperSurfaceEnum];
+export type TagWriteTagCatalogStatusWriteStatusEnum = typeof TagWriteTagCatalogStatusWriteStatusEnum[keyof typeof TagWriteTagCatalogStatusWriteStatusEnum];
+
+export interface TagWriteTagCatalogStatusWriteJsonMergePatch {
+    'name'?: string;
+    'description'?: string | null;
+    'primaryColor'?: string | null;
+    'status'?: TagWriteTagCatalogStatusWriteJsonMergePatchStatusEnum;
+}
+
+export const TagWriteTagCatalogStatusWriteJsonMergePatchStatusEnum = {
+    Personal: 'personal',
+    Pending: 'pending',
+    Official: 'official',
+    Rejected: 'rejected'
+} as const;
+
+export type TagWriteTagCatalogStatusWriteJsonMergePatchStatusEnum = typeof TagWriteTagCatalogStatusWriteJsonMergePatchStatusEnum[keyof typeof TagWriteTagCatalogStatusWriteJsonMergePatchStatusEnum];
 
 
 /**
@@ -1981,6 +3713,584 @@ export class AppUserApi extends BaseAPI {
 
 
 /**
+ * CameraApi - axios parameter creator
+ */
+export const CameraApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieves the collection of Camera resources.
+         * @summary Retrieves the collection of Camera resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCamerasGetCollection: async (page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/cameras`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (status2) {
+                localVarQueryParameter['status[]'] = status2;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes the Camera resource.
+         * @summary Removes the Camera resource.
+         * @param {string} id Camera identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCamerasIdDelete: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiCamerasIdDelete', 'id', id)
+            const localVarPath = `/cameras/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/problem+json,application/json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a Camera resource.
+         * @summary Retrieves a Camera resource.
+         * @param {string} id Camera identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCamerasIdGet: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiCamerasIdGet', 'id', id)
+            const localVarPath = `/cameras/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates the Camera resource.
+         * @summary Updates the Camera resource.
+         * @param {string} id Camera identifier
+         * @param {CameraWriteCameraCatalogStatusWriteJsonMergePatch} cameraWriteCameraCatalogStatusWriteJsonMergePatch The updated Camera resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCamerasIdPatch: async (id: string, cameraWriteCameraCatalogStatusWriteJsonMergePatch: CameraWriteCameraCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiCamerasIdPatch', 'id', id)
+            // verify required parameter 'cameraWriteCameraCatalogStatusWriteJsonMergePatch' is not null or undefined
+            assertParamExists('apiCamerasIdPatch', 'cameraWriteCameraCatalogStatusWriteJsonMergePatch', cameraWriteCameraCatalogStatusWriteJsonMergePatch)
+            const localVarPath = `/cameras/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/merge-patch+json';
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(cameraWriteCameraCatalogStatusWriteJsonMergePatch, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a Camera resource.
+         * @summary Creates a Camera resource.
+         * @param {CameraWriteCameraCatalogStatusWrite} cameraWriteCameraCatalogStatusWrite The new Camera resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCamerasPost: async (cameraWriteCameraCatalogStatusWrite: CameraWriteCameraCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'cameraWriteCameraCatalogStatusWrite' is not null or undefined
+            assertParamExists('apiCamerasPost', 'cameraWriteCameraCatalogStatusWrite', cameraWriteCameraCatalogStatusWrite)
+            const localVarPath = `/cameras`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/ld+json';
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(cameraWriteCameraCatalogStatusWrite, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CameraApi - functional programming interface
+ */
+export const CameraApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CameraApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Retrieves the collection of Camera resources.
+         * @summary Retrieves the collection of Camera resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiCamerasGetCollection(page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiCamerasGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiCamerasGetCollection(page, status, status2, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CameraApi.apiCamerasGetCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Removes the Camera resource.
+         * @summary Removes the Camera resource.
+         * @param {string} id Camera identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiCamerasIdDelete(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiCamerasIdDelete(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CameraApi.apiCamerasIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a Camera resource.
+         * @summary Retrieves a Camera resource.
+         * @param {string} id Camera identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiCamerasIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiCamerasIdGet(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CameraApi.apiCamerasIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Updates the Camera resource.
+         * @summary Updates the Camera resource.
+         * @param {string} id Camera identifier
+         * @param {CameraWriteCameraCatalogStatusWriteJsonMergePatch} cameraWriteCameraCatalogStatusWriteJsonMergePatch The updated Camera resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiCamerasIdPatch(id: string, cameraWriteCameraCatalogStatusWriteJsonMergePatch: CameraWriteCameraCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiCamerasIdPatch(id, cameraWriteCameraCatalogStatusWriteJsonMergePatch, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CameraApi.apiCamerasIdPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Creates a Camera resource.
+         * @summary Creates a Camera resource.
+         * @param {CameraWriteCameraCatalogStatusWrite} cameraWriteCameraCatalogStatusWrite The new Camera resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiCamerasPost(cameraWriteCameraCatalogStatusWrite: CameraWriteCameraCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiCamerasPost(cameraWriteCameraCatalogStatusWrite, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CameraApi.apiCamerasPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * CameraApi - factory interface
+ */
+export const CameraApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CameraApiFp(configuration)
+    return {
+        /**
+         * Retrieves the collection of Camera resources.
+         * @summary Retrieves the collection of Camera resources.
+         * @param {CameraApiApiCamerasGetCollectionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCamerasGetCollection(requestParameters: CameraApiApiCamerasGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiCamerasGetCollection200Response> {
+            return localVarFp.apiCamerasGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes the Camera resource.
+         * @summary Removes the Camera resource.
+         * @param {CameraApiApiCamerasIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCamerasIdDelete(requestParameters: CameraApiApiCamerasIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiCamerasIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a Camera resource.
+         * @summary Retrieves a Camera resource.
+         * @param {CameraApiApiCamerasIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCamerasIdGet(requestParameters: CameraApiApiCamerasIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiCamerasIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates the Camera resource.
+         * @summary Updates the Camera resource.
+         * @param {CameraApiApiCamerasIdPatchRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCamerasIdPatch(requestParameters: CameraApiApiCamerasIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiCamerasIdPatch(requestParameters.id, requestParameters.cameraWriteCameraCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a Camera resource.
+         * @summary Creates a Camera resource.
+         * @param {CameraApiApiCamerasPostRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiCamerasPost(requestParameters: CameraApiApiCamerasPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiCamerasPost(requestParameters.cameraWriteCameraCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for apiCamerasGetCollection operation in CameraApi.
+ */
+export interface CameraApiApiCamerasGetCollectionRequest {
+    /**
+     * The collection page number
+     */
+    readonly page?: number
+
+    /**
+     * 
+     */
+    readonly status?: string
+
+    /**
+     * 
+     */
+    readonly status2?: Array<string>
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiCamerasIdDelete operation in CameraApi.
+ */
+export interface CameraApiApiCamerasIdDeleteRequest {
+    /**
+     * Camera identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiCamerasIdGet operation in CameraApi.
+ */
+export interface CameraApiApiCamerasIdGetRequest {
+    /**
+     * Camera identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiCamerasIdPatch operation in CameraApi.
+ */
+export interface CameraApiApiCamerasIdPatchRequest {
+    /**
+     * Camera identifier
+     */
+    readonly id: string
+
+    /**
+     * The updated Camera resource
+     */
+    readonly cameraWriteCameraCatalogStatusWriteJsonMergePatch: CameraWriteCameraCatalogStatusWriteJsonMergePatch
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiCamerasPost operation in CameraApi.
+ */
+export interface CameraApiApiCamerasPostRequest {
+    /**
+     * The new Camera resource
+     */
+    readonly cameraWriteCameraCatalogStatusWrite: CameraWriteCameraCatalogStatusWrite
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * CameraApi - object-oriented interface
+ */
+export class CameraApi extends BaseAPI {
+    /**
+     * Retrieves the collection of Camera resources.
+     * @summary Retrieves the collection of Camera resources.
+     * @param {CameraApiApiCamerasGetCollectionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiCamerasGetCollection(requestParameters: CameraApiApiCamerasGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
+        return CameraApiFp(this.configuration).apiCamerasGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes the Camera resource.
+     * @summary Removes the Camera resource.
+     * @param {CameraApiApiCamerasIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiCamerasIdDelete(requestParameters: CameraApiApiCamerasIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return CameraApiFp(this.configuration).apiCamerasIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a Camera resource.
+     * @summary Retrieves a Camera resource.
+     * @param {CameraApiApiCamerasIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiCamerasIdGet(requestParameters: CameraApiApiCamerasIdGetRequest, options?: RawAxiosRequestConfig) {
+        return CameraApiFp(this.configuration).apiCamerasIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates the Camera resource.
+     * @summary Updates the Camera resource.
+     * @param {CameraApiApiCamerasIdPatchRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiCamerasIdPatch(requestParameters: CameraApiApiCamerasIdPatchRequest, options?: RawAxiosRequestConfig) {
+        return CameraApiFp(this.configuration).apiCamerasIdPatch(requestParameters.id, requestParameters.cameraWriteCameraCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates a Camera resource.
+     * @summary Creates a Camera resource.
+     * @param {CameraApiApiCamerasPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiCamerasPost(requestParameters: CameraApiApiCamerasPostRequest, options?: RawAxiosRequestConfig) {
+        return CameraApiFp(this.configuration).apiCamerasPost(requestParameters.cameraWriteCameraCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
  * ChemistryApi - axios parameter creator
  */
 export const ChemistryApiAxiosParamCreator = function (configuration?: Configuration) {
@@ -1989,12 +4299,14 @@ export const ChemistryApiAxiosParamCreator = function (configuration?: Configura
          * Retrieves the collection of Chemistry resources.
          * @summary Retrieves the collection of Chemistry resources.
          * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistriesGetCollection: async (page?: number, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiChemistriesGetCollection: async (page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/chemistries`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2013,6 +4325,14 @@ export const ChemistryApiAxiosParamCreator = function (configuration?: Configura
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (status2) {
+                localVarQueryParameter['status[]'] = status2;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data';
@@ -2128,17 +4448,17 @@ export const ChemistryApiAxiosParamCreator = function (configuration?: Configura
          * Updates the Chemistry resource.
          * @summary Updates the Chemistry resource.
          * @param {string} id Chemistry identifier
-         * @param {ChemistryWriteChemistryJsonMergePatch} chemistryWriteChemistryJsonMergePatch The updated Chemistry resource
+         * @param {ChemistryWriteChemistryCatalogStatusWriteJsonMergePatch} chemistryWriteChemistryCatalogStatusWriteJsonMergePatch The updated Chemistry resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistriesIdPatch: async (id: string, chemistryWriteChemistryJsonMergePatch: ChemistryWriteChemistryJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiChemistriesIdPatch: async (id: string, chemistryWriteChemistryCatalogStatusWriteJsonMergePatch: ChemistryWriteChemistryCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('apiChemistriesIdPatch', 'id', id)
-            // verify required parameter 'chemistryWriteChemistryJsonMergePatch' is not null or undefined
-            assertParamExists('apiChemistriesIdPatch', 'chemistryWriteChemistryJsonMergePatch', chemistryWriteChemistryJsonMergePatch)
+            // verify required parameter 'chemistryWriteChemistryCatalogStatusWriteJsonMergePatch' is not null or undefined
+            assertParamExists('apiChemistriesIdPatch', 'chemistryWriteChemistryCatalogStatusWriteJsonMergePatch', chemistryWriteChemistryCatalogStatusWriteJsonMergePatch)
             const localVarPath = `/chemistries/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2168,7 +4488,7 @@ export const ChemistryApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(chemistryWriteChemistryJsonMergePatch, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(chemistryWriteChemistryCatalogStatusWriteJsonMergePatch, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2178,15 +4498,15 @@ export const ChemistryApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Creates a Chemistry resource.
          * @summary Creates a Chemistry resource.
-         * @param {ChemistryWriteChemistry} chemistryWriteChemistry The new Chemistry resource
+         * @param {ChemistryWriteChemistryCatalogStatusWrite} chemistryWriteChemistryCatalogStatusWrite The new Chemistry resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistriesPost: async (chemistryWriteChemistry: ChemistryWriteChemistry, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'chemistryWriteChemistry' is not null or undefined
-            assertParamExists('apiChemistriesPost', 'chemistryWriteChemistry', chemistryWriteChemistry)
+        apiChemistriesPost: async (chemistryWriteChemistryCatalogStatusWrite: ChemistryWriteChemistryCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'chemistryWriteChemistryCatalogStatusWrite' is not null or undefined
+            assertParamExists('apiChemistriesPost', 'chemistryWriteChemistryCatalogStatusWrite', chemistryWriteChemistryCatalogStatusWrite)
             const localVarPath = `/chemistries`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2215,7 +4535,7 @@ export const ChemistryApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(chemistryWriteChemistry, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(chemistryWriteChemistryCatalogStatusWrite, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2235,13 +4555,15 @@ export const ChemistryApiFp = function(configuration?: Configuration) {
          * Retrieves the collection of Chemistry resources.
          * @summary Retrieves the collection of Chemistry resources.
          * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiChemistriesGetCollection(page?: number, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiChemistriesGetCollection200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistriesGetCollection(page, xLOCALE, acceptLanguage, options);
+        async apiChemistriesGetCollection(page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiChemistriesGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistriesGetCollection(page, status, status2, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChemistryApi.apiChemistriesGetCollection']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2270,7 +4592,7 @@ export const ChemistryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiChemistriesIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead>> {
+        async apiChemistriesIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistriesIdGet(id, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChemistryApi.apiChemistriesIdGet']?.[localVarOperationServerIndex]?.url;
@@ -2280,14 +4602,14 @@ export const ChemistryApiFp = function(configuration?: Configuration) {
          * Updates the Chemistry resource.
          * @summary Updates the Chemistry resource.
          * @param {string} id Chemistry identifier
-         * @param {ChemistryWriteChemistryJsonMergePatch} chemistryWriteChemistryJsonMergePatch The updated Chemistry resource
+         * @param {ChemistryWriteChemistryCatalogStatusWriteJsonMergePatch} chemistryWriteChemistryCatalogStatusWriteJsonMergePatch The updated Chemistry resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiChemistriesIdPatch(id: string, chemistryWriteChemistryJsonMergePatch: ChemistryWriteChemistryJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistriesIdPatch(id, chemistryWriteChemistryJsonMergePatch, xLOCALE, acceptLanguage, options);
+        async apiChemistriesIdPatch(id: string, chemistryWriteChemistryCatalogStatusWriteJsonMergePatch: ChemistryWriteChemistryCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistriesIdPatch(id, chemistryWriteChemistryCatalogStatusWriteJsonMergePatch, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChemistryApi.apiChemistriesIdPatch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2295,14 +4617,14 @@ export const ChemistryApiFp = function(configuration?: Configuration) {
         /**
          * Creates a Chemistry resource.
          * @summary Creates a Chemistry resource.
-         * @param {ChemistryWriteChemistry} chemistryWriteChemistry The new Chemistry resource
+         * @param {ChemistryWriteChemistryCatalogStatusWrite} chemistryWriteChemistryCatalogStatusWrite The new Chemistry resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiChemistriesPost(chemistryWriteChemistry: ChemistryWriteChemistry, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistriesPost(chemistryWriteChemistry, xLOCALE, acceptLanguage, options);
+        async apiChemistriesPost(chemistryWriteChemistryCatalogStatusWrite: ChemistryWriteChemistryCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistriesPost(chemistryWriteChemistryCatalogStatusWrite, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChemistryApi.apiChemistriesPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2324,7 +4646,7 @@ export const ChemistryApiFactory = function (configuration?: Configuration, base
          * @throws {RequiredError}
          */
         apiChemistriesGetCollection(requestParameters: ChemistryApiApiChemistriesGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiChemistriesGetCollection200Response> {
-            return localVarFp.apiChemistriesGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+            return localVarFp.apiChemistriesGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Removes the Chemistry resource.
@@ -2343,7 +4665,7 @@ export const ChemistryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistriesIdGet(requestParameters: ChemistryApiApiChemistriesIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead> {
+        apiChemistriesIdGet(requestParameters: ChemistryApiApiChemistriesIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
             return localVarFp.apiChemistriesIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2353,8 +4675,8 @@ export const ChemistryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistriesIdPatch(requestParameters: ChemistryApiApiChemistriesIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead> {
-            return localVarFp.apiChemistriesIdPatch(requestParameters.id, requestParameters.chemistryWriteChemistryJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        apiChemistriesIdPatch(requestParameters: ChemistryApiApiChemistriesIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiChemistriesIdPatch(requestParameters.id, requestParameters.chemistryWriteChemistryCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a Chemistry resource.
@@ -2363,8 +4685,8 @@ export const ChemistryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistriesPost(requestParameters: ChemistryApiApiChemistriesPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead> {
-            return localVarFp.apiChemistriesPost(requestParameters.chemistryWriteChemistry, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        apiChemistriesPost(requestParameters: ChemistryApiApiChemistriesPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiChemistriesPost(requestParameters.chemistryWriteChemistryCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2377,6 +4699,16 @@ export interface ChemistryApiApiChemistriesGetCollectionRequest {
      * The collection page number
      */
     readonly page?: number
+
+    /**
+     * 
+     */
+    readonly status?: string
+
+    /**
+     * 
+     */
+    readonly status2?: Array<string>
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -2441,7 +4773,7 @@ export interface ChemistryApiApiChemistriesIdPatchRequest {
     /**
      * The updated Chemistry resource
      */
-    readonly chemistryWriteChemistryJsonMergePatch: ChemistryWriteChemistryJsonMergePatch
+    readonly chemistryWriteChemistryCatalogStatusWriteJsonMergePatch: ChemistryWriteChemistryCatalogStatusWriteJsonMergePatch
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -2461,7 +4793,7 @@ export interface ChemistryApiApiChemistriesPostRequest {
     /**
      * The new Chemistry resource
      */
-    readonly chemistryWriteChemistry: ChemistryWriteChemistry
+    readonly chemistryWriteChemistryCatalogStatusWrite: ChemistryWriteChemistryCatalogStatusWrite
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -2486,7 +4818,7 @@ export class ChemistryApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiChemistriesGetCollection(requestParameters: ChemistryApiApiChemistriesGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
-        return ChemistryApiFp(this.configuration).apiChemistriesGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return ChemistryApiFp(this.configuration).apiChemistriesGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2519,7 +4851,7 @@ export class ChemistryApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiChemistriesIdPatch(requestParameters: ChemistryApiApiChemistriesIdPatchRequest, options?: RawAxiosRequestConfig) {
-        return ChemistryApiFp(this.configuration).apiChemistriesIdPatch(requestParameters.id, requestParameters.chemistryWriteChemistryJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return ChemistryApiFp(this.configuration).apiChemistriesIdPatch(requestParameters.id, requestParameters.chemistryWriteChemistryCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2530,7 +4862,7 @@ export class ChemistryApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiChemistriesPost(requestParameters: ChemistryApiApiChemistriesPostRequest, options?: RawAxiosRequestConfig) {
-        return ChemistryApiFp(this.configuration).apiChemistriesPost(requestParameters.chemistryWriteChemistry, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return ChemistryApiFp(this.configuration).apiChemistriesPost(requestParameters.chemistryWriteChemistryCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -2545,12 +4877,14 @@ export const ChemistryTypeApiAxiosParamCreator = function (configuration?: Confi
          * Retrieves the collection of ChemistryType resources.
          * @summary Retrieves the collection of ChemistryType resources.
          * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistryTypesGetCollection: async (page?: number, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiChemistryTypesGetCollection: async (page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/chemistry_types`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2569,6 +4903,14 @@ export const ChemistryTypeApiAxiosParamCreator = function (configuration?: Confi
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (status2) {
+                localVarQueryParameter['status[]'] = status2;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data';
@@ -2684,17 +5026,17 @@ export const ChemistryTypeApiAxiosParamCreator = function (configuration?: Confi
          * Updates the ChemistryType resource.
          * @summary Updates the ChemistryType resource.
          * @param {string} id ChemistryType identifier
-         * @param {ChemistryTypeWriteChemistryTypeJsonMergePatch} chemistryTypeWriteChemistryTypeJsonMergePatch The updated ChemistryType resource
+         * @param {ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch} chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch The updated ChemistryType resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistryTypesIdPatch: async (id: string, chemistryTypeWriteChemistryTypeJsonMergePatch: ChemistryTypeWriteChemistryTypeJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiChemistryTypesIdPatch: async (id: string, chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch: ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('apiChemistryTypesIdPatch', 'id', id)
-            // verify required parameter 'chemistryTypeWriteChemistryTypeJsonMergePatch' is not null or undefined
-            assertParamExists('apiChemistryTypesIdPatch', 'chemistryTypeWriteChemistryTypeJsonMergePatch', chemistryTypeWriteChemistryTypeJsonMergePatch)
+            // verify required parameter 'chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch' is not null or undefined
+            assertParamExists('apiChemistryTypesIdPatch', 'chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch', chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch)
             const localVarPath = `/chemistry_types/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2724,7 +5066,7 @@ export const ChemistryTypeApiAxiosParamCreator = function (configuration?: Confi
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(chemistryTypeWriteChemistryTypeJsonMergePatch, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2734,15 +5076,15 @@ export const ChemistryTypeApiAxiosParamCreator = function (configuration?: Confi
         /**
          * Creates a ChemistryType resource.
          * @summary Creates a ChemistryType resource.
-         * @param {ChemistryTypeWriteChemistryType} chemistryTypeWriteChemistryType The new ChemistryType resource
+         * @param {ChemistryTypeWriteChemistryTypeCatalogStatusWrite} chemistryTypeWriteChemistryTypeCatalogStatusWrite The new ChemistryType resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistryTypesPost: async (chemistryTypeWriteChemistryType: ChemistryTypeWriteChemistryType, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'chemistryTypeWriteChemistryType' is not null or undefined
-            assertParamExists('apiChemistryTypesPost', 'chemistryTypeWriteChemistryType', chemistryTypeWriteChemistryType)
+        apiChemistryTypesPost: async (chemistryTypeWriteChemistryTypeCatalogStatusWrite: ChemistryTypeWriteChemistryTypeCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'chemistryTypeWriteChemistryTypeCatalogStatusWrite' is not null or undefined
+            assertParamExists('apiChemistryTypesPost', 'chemistryTypeWriteChemistryTypeCatalogStatusWrite', chemistryTypeWriteChemistryTypeCatalogStatusWrite)
             const localVarPath = `/chemistry_types`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2771,7 +5113,7 @@ export const ChemistryTypeApiAxiosParamCreator = function (configuration?: Confi
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(chemistryTypeWriteChemistryType, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(chemistryTypeWriteChemistryTypeCatalogStatusWrite, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2791,13 +5133,15 @@ export const ChemistryTypeApiFp = function(configuration?: Configuration) {
          * Retrieves the collection of ChemistryType resources.
          * @summary Retrieves the collection of ChemistryType resources.
          * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiChemistryTypesGetCollection(page?: number, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiChemistryTypesGetCollection200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistryTypesGetCollection(page, xLOCALE, acceptLanguage, options);
+        async apiChemistryTypesGetCollection(page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiChemistryTypesGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistryTypesGetCollection(page, status, status2, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChemistryTypeApi.apiChemistryTypesGetCollection']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2826,7 +5170,7 @@ export const ChemistryTypeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiChemistryTypesIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead>> {
+        async apiChemistryTypesIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistryTypesIdGet(id, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChemistryTypeApi.apiChemistryTypesIdGet']?.[localVarOperationServerIndex]?.url;
@@ -2836,14 +5180,14 @@ export const ChemistryTypeApiFp = function(configuration?: Configuration) {
          * Updates the ChemistryType resource.
          * @summary Updates the ChemistryType resource.
          * @param {string} id ChemistryType identifier
-         * @param {ChemistryTypeWriteChemistryTypeJsonMergePatch} chemistryTypeWriteChemistryTypeJsonMergePatch The updated ChemistryType resource
+         * @param {ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch} chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch The updated ChemistryType resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiChemistryTypesIdPatch(id: string, chemistryTypeWriteChemistryTypeJsonMergePatch: ChemistryTypeWriteChemistryTypeJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistryTypesIdPatch(id, chemistryTypeWriteChemistryTypeJsonMergePatch, xLOCALE, acceptLanguage, options);
+        async apiChemistryTypesIdPatch(id: string, chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch: ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistryTypesIdPatch(id, chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChemistryTypeApi.apiChemistryTypesIdPatch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2851,14 +5195,14 @@ export const ChemistryTypeApiFp = function(configuration?: Configuration) {
         /**
          * Creates a ChemistryType resource.
          * @summary Creates a ChemistryType resource.
-         * @param {ChemistryTypeWriteChemistryType} chemistryTypeWriteChemistryType The new ChemistryType resource
+         * @param {ChemistryTypeWriteChemistryTypeCatalogStatusWrite} chemistryTypeWriteChemistryTypeCatalogStatusWrite The new ChemistryType resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiChemistryTypesPost(chemistryTypeWriteChemistryType: ChemistryTypeWriteChemistryType, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistryTypesPost(chemistryTypeWriteChemistryType, xLOCALE, acceptLanguage, options);
+        async apiChemistryTypesPost(chemistryTypeWriteChemistryTypeCatalogStatusWrite: ChemistryTypeWriteChemistryTypeCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiChemistryTypesPost(chemistryTypeWriteChemistryTypeCatalogStatusWrite, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChemistryTypeApi.apiChemistryTypesPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2880,7 +5224,7 @@ export const ChemistryTypeApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         apiChemistryTypesGetCollection(requestParameters: ChemistryTypeApiApiChemistryTypesGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiChemistryTypesGetCollection200Response> {
-            return localVarFp.apiChemistryTypesGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+            return localVarFp.apiChemistryTypesGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Removes the ChemistryType resource.
@@ -2899,7 +5243,7 @@ export const ChemistryTypeApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistryTypesIdGet(requestParameters: ChemistryTypeApiApiChemistryTypesIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead> {
+        apiChemistryTypesIdGet(requestParameters: ChemistryTypeApiApiChemistryTypesIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
             return localVarFp.apiChemistryTypesIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2909,8 +5253,8 @@ export const ChemistryTypeApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistryTypesIdPatch(requestParameters: ChemistryTypeApiApiChemistryTypesIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead> {
-            return localVarFp.apiChemistryTypesIdPatch(requestParameters.id, requestParameters.chemistryTypeWriteChemistryTypeJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        apiChemistryTypesIdPatch(requestParameters: ChemistryTypeApiApiChemistryTypesIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiChemistryTypesIdPatch(requestParameters.id, requestParameters.chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a ChemistryType resource.
@@ -2919,8 +5263,8 @@ export const ChemistryTypeApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiChemistryTypesPost(requestParameters: ChemistryTypeApiApiChemistryTypesPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead> {
-            return localVarFp.apiChemistryTypesPost(requestParameters.chemistryTypeWriteChemistryType, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        apiChemistryTypesPost(requestParameters: ChemistryTypeApiApiChemistryTypesPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiChemistryTypesPost(requestParameters.chemistryTypeWriteChemistryTypeCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2933,6 +5277,16 @@ export interface ChemistryTypeApiApiChemistryTypesGetCollectionRequest {
      * The collection page number
      */
     readonly page?: number
+
+    /**
+     * 
+     */
+    readonly status?: string
+
+    /**
+     * 
+     */
+    readonly status2?: Array<string>
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -2997,7 +5351,7 @@ export interface ChemistryTypeApiApiChemistryTypesIdPatchRequest {
     /**
      * The updated ChemistryType resource
      */
-    readonly chemistryTypeWriteChemistryTypeJsonMergePatch: ChemistryTypeWriteChemistryTypeJsonMergePatch
+    readonly chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch: ChemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -3017,7 +5371,7 @@ export interface ChemistryTypeApiApiChemistryTypesPostRequest {
     /**
      * The new ChemistryType resource
      */
-    readonly chemistryTypeWriteChemistryType: ChemistryTypeWriteChemistryType
+    readonly chemistryTypeWriteChemistryTypeCatalogStatusWrite: ChemistryTypeWriteChemistryTypeCatalogStatusWrite
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -3042,7 +5396,7 @@ export class ChemistryTypeApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiChemistryTypesGetCollection(requestParameters: ChemistryTypeApiApiChemistryTypesGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
-        return ChemistryTypeApiFp(this.configuration).apiChemistryTypesGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return ChemistryTypeApiFp(this.configuration).apiChemistryTypesGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3075,7 +5429,7 @@ export class ChemistryTypeApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiChemistryTypesIdPatch(requestParameters: ChemistryTypeApiApiChemistryTypesIdPatchRequest, options?: RawAxiosRequestConfig) {
-        return ChemistryTypeApiFp(this.configuration).apiChemistryTypesIdPatch(requestParameters.id, requestParameters.chemistryTypeWriteChemistryTypeJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return ChemistryTypeApiFp(this.configuration).apiChemistryTypesIdPatch(requestParameters.id, requestParameters.chemistryTypeWriteChemistryTypeCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3086,7 +5440,1141 @@ export class ChemistryTypeApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiChemistryTypesPost(requestParameters: ChemistryTypeApiApiChemistryTypesPostRequest, options?: RawAxiosRequestConfig) {
-        return ChemistryTypeApiFp(this.configuration).apiChemistryTypesPost(requestParameters.chemistryTypeWriteChemistryType, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return ChemistryTypeApiFp(this.configuration).apiChemistryTypesPost(requestParameters.chemistryTypeWriteChemistryTypeCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * DevelopmentLogApi - axios parameter creator
+ */
+export const DevelopmentLogApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieves the collection of DevelopmentLog resources.
+         * @summary Retrieves the collection of DevelopmentLog resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevelopmentLogsGetCollection: async (page?: number, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/development_logs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes the DevelopmentLog resource.
+         * @summary Removes the DevelopmentLog resource.
+         * @param {string} id DevelopmentLog identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevelopmentLogsIdDelete: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiDevelopmentLogsIdDelete', 'id', id)
+            const localVarPath = `/development_logs/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/problem+json,application/json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a DevelopmentLog resource.
+         * @summary Retrieves a DevelopmentLog resource.
+         * @param {string} id DevelopmentLog identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevelopmentLogsIdGet: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiDevelopmentLogsIdGet', 'id', id)
+            const localVarPath = `/development_logs/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates the DevelopmentLog resource.
+         * @summary Updates the DevelopmentLog resource.
+         * @param {string} id DevelopmentLog identifier
+         * @param {DevelopmentLogWriteDevelopmentLogJsonMergePatch} developmentLogWriteDevelopmentLogJsonMergePatch The updated DevelopmentLog resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevelopmentLogsIdPatch: async (id: string, developmentLogWriteDevelopmentLogJsonMergePatch: DevelopmentLogWriteDevelopmentLogJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiDevelopmentLogsIdPatch', 'id', id)
+            // verify required parameter 'developmentLogWriteDevelopmentLogJsonMergePatch' is not null or undefined
+            assertParamExists('apiDevelopmentLogsIdPatch', 'developmentLogWriteDevelopmentLogJsonMergePatch', developmentLogWriteDevelopmentLogJsonMergePatch)
+            const localVarPath = `/development_logs/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/merge-patch+json';
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(developmentLogWriteDevelopmentLogJsonMergePatch, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a DevelopmentLog resource.
+         * @summary Creates a DevelopmentLog resource.
+         * @param {DevelopmentLogWriteDevelopmentLog} developmentLogWriteDevelopmentLog The new DevelopmentLog resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevelopmentLogsPost: async (developmentLogWriteDevelopmentLog: DevelopmentLogWriteDevelopmentLog, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'developmentLogWriteDevelopmentLog' is not null or undefined
+            assertParamExists('apiDevelopmentLogsPost', 'developmentLogWriteDevelopmentLog', developmentLogWriteDevelopmentLog)
+            const localVarPath = `/development_logs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/ld+json';
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(developmentLogWriteDevelopmentLog, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DevelopmentLogApi - functional programming interface
+ */
+export const DevelopmentLogApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = DevelopmentLogApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Retrieves the collection of DevelopmentLog resources.
+         * @summary Retrieves the collection of DevelopmentLog resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiDevelopmentLogsGetCollection(page?: number, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiDevelopmentLogsGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevelopmentLogsGetCollection(page, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DevelopmentLogApi.apiDevelopmentLogsGetCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Removes the DevelopmentLog resource.
+         * @summary Removes the DevelopmentLog resource.
+         * @param {string} id DevelopmentLog identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiDevelopmentLogsIdDelete(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevelopmentLogsIdDelete(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DevelopmentLogApi.apiDevelopmentLogsIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a DevelopmentLog resource.
+         * @summary Retrieves a DevelopmentLog resource.
+         * @param {string} id DevelopmentLog identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiDevelopmentLogsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevelopmentLogsIdGet(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DevelopmentLogApi.apiDevelopmentLogsIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Updates the DevelopmentLog resource.
+         * @summary Updates the DevelopmentLog resource.
+         * @param {string} id DevelopmentLog identifier
+         * @param {DevelopmentLogWriteDevelopmentLogJsonMergePatch} developmentLogWriteDevelopmentLogJsonMergePatch The updated DevelopmentLog resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiDevelopmentLogsIdPatch(id: string, developmentLogWriteDevelopmentLogJsonMergePatch: DevelopmentLogWriteDevelopmentLogJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevelopmentLogsIdPatch(id, developmentLogWriteDevelopmentLogJsonMergePatch, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DevelopmentLogApi.apiDevelopmentLogsIdPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Creates a DevelopmentLog resource.
+         * @summary Creates a DevelopmentLog resource.
+         * @param {DevelopmentLogWriteDevelopmentLog} developmentLogWriteDevelopmentLog The new DevelopmentLog resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiDevelopmentLogsPost(developmentLogWriteDevelopmentLog: DevelopmentLogWriteDevelopmentLog, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevelopmentLogsPost(developmentLogWriteDevelopmentLog, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DevelopmentLogApi.apiDevelopmentLogsPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * DevelopmentLogApi - factory interface
+ */
+export const DevelopmentLogApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = DevelopmentLogApiFp(configuration)
+    return {
+        /**
+         * Retrieves the collection of DevelopmentLog resources.
+         * @summary Retrieves the collection of DevelopmentLog resources.
+         * @param {DevelopmentLogApiApiDevelopmentLogsGetCollectionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevelopmentLogsGetCollection(requestParameters: DevelopmentLogApiApiDevelopmentLogsGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiDevelopmentLogsGetCollection200Response> {
+            return localVarFp.apiDevelopmentLogsGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes the DevelopmentLog resource.
+         * @summary Removes the DevelopmentLog resource.
+         * @param {DevelopmentLogApiApiDevelopmentLogsIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevelopmentLogsIdDelete(requestParameters: DevelopmentLogApiApiDevelopmentLogsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiDevelopmentLogsIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a DevelopmentLog resource.
+         * @summary Retrieves a DevelopmentLog resource.
+         * @param {DevelopmentLogApiApiDevelopmentLogsIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevelopmentLogsIdGet(requestParameters: DevelopmentLogApiApiDevelopmentLogsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead> {
+            return localVarFp.apiDevelopmentLogsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates the DevelopmentLog resource.
+         * @summary Updates the DevelopmentLog resource.
+         * @param {DevelopmentLogApiApiDevelopmentLogsIdPatchRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevelopmentLogsIdPatch(requestParameters: DevelopmentLogApiApiDevelopmentLogsIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead> {
+            return localVarFp.apiDevelopmentLogsIdPatch(requestParameters.id, requestParameters.developmentLogWriteDevelopmentLogJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a DevelopmentLog resource.
+         * @summary Creates a DevelopmentLog resource.
+         * @param {DevelopmentLogApiApiDevelopmentLogsPostRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevelopmentLogsPost(requestParameters: DevelopmentLogApiApiDevelopmentLogsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead> {
+            return localVarFp.apiDevelopmentLogsPost(requestParameters.developmentLogWriteDevelopmentLog, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for apiDevelopmentLogsGetCollection operation in DevelopmentLogApi.
+ */
+export interface DevelopmentLogApiApiDevelopmentLogsGetCollectionRequest {
+    /**
+     * The collection page number
+     */
+    readonly page?: number
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiDevelopmentLogsIdDelete operation in DevelopmentLogApi.
+ */
+export interface DevelopmentLogApiApiDevelopmentLogsIdDeleteRequest {
+    /**
+     * DevelopmentLog identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiDevelopmentLogsIdGet operation in DevelopmentLogApi.
+ */
+export interface DevelopmentLogApiApiDevelopmentLogsIdGetRequest {
+    /**
+     * DevelopmentLog identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiDevelopmentLogsIdPatch operation in DevelopmentLogApi.
+ */
+export interface DevelopmentLogApiApiDevelopmentLogsIdPatchRequest {
+    /**
+     * DevelopmentLog identifier
+     */
+    readonly id: string
+
+    /**
+     * The updated DevelopmentLog resource
+     */
+    readonly developmentLogWriteDevelopmentLogJsonMergePatch: DevelopmentLogWriteDevelopmentLogJsonMergePatch
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiDevelopmentLogsPost operation in DevelopmentLogApi.
+ */
+export interface DevelopmentLogApiApiDevelopmentLogsPostRequest {
+    /**
+     * The new DevelopmentLog resource
+     */
+    readonly developmentLogWriteDevelopmentLog: DevelopmentLogWriteDevelopmentLog
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * DevelopmentLogApi - object-oriented interface
+ */
+export class DevelopmentLogApi extends BaseAPI {
+    /**
+     * Retrieves the collection of DevelopmentLog resources.
+     * @summary Retrieves the collection of DevelopmentLog resources.
+     * @param {DevelopmentLogApiApiDevelopmentLogsGetCollectionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiDevelopmentLogsGetCollection(requestParameters: DevelopmentLogApiApiDevelopmentLogsGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
+        return DevelopmentLogApiFp(this.configuration).apiDevelopmentLogsGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes the DevelopmentLog resource.
+     * @summary Removes the DevelopmentLog resource.
+     * @param {DevelopmentLogApiApiDevelopmentLogsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiDevelopmentLogsIdDelete(requestParameters: DevelopmentLogApiApiDevelopmentLogsIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return DevelopmentLogApiFp(this.configuration).apiDevelopmentLogsIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a DevelopmentLog resource.
+     * @summary Retrieves a DevelopmentLog resource.
+     * @param {DevelopmentLogApiApiDevelopmentLogsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiDevelopmentLogsIdGet(requestParameters: DevelopmentLogApiApiDevelopmentLogsIdGetRequest, options?: RawAxiosRequestConfig) {
+        return DevelopmentLogApiFp(this.configuration).apiDevelopmentLogsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates the DevelopmentLog resource.
+     * @summary Updates the DevelopmentLog resource.
+     * @param {DevelopmentLogApiApiDevelopmentLogsIdPatchRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiDevelopmentLogsIdPatch(requestParameters: DevelopmentLogApiApiDevelopmentLogsIdPatchRequest, options?: RawAxiosRequestConfig) {
+        return DevelopmentLogApiFp(this.configuration).apiDevelopmentLogsIdPatch(requestParameters.id, requestParameters.developmentLogWriteDevelopmentLogJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates a DevelopmentLog resource.
+     * @summary Creates a DevelopmentLog resource.
+     * @param {DevelopmentLogApiApiDevelopmentLogsPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiDevelopmentLogsPost(requestParameters: DevelopmentLogApiApiDevelopmentLogsPostRequest, options?: RawAxiosRequestConfig) {
+        return DevelopmentLogApiFp(this.configuration).apiDevelopmentLogsPost(requestParameters.developmentLogWriteDevelopmentLog, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * EnlargerApi - axios parameter creator
+ */
+export const EnlargerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieves the collection of Enlarger resources.
+         * @summary Retrieves the collection of Enlarger resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiEnlargersGetCollection: async (page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/enlargers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (status2) {
+                localVarQueryParameter['status[]'] = status2;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes the Enlarger resource.
+         * @summary Removes the Enlarger resource.
+         * @param {string} id Enlarger identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiEnlargersIdDelete: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiEnlargersIdDelete', 'id', id)
+            const localVarPath = `/enlargers/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a Enlarger resource.
+         * @summary Retrieves a Enlarger resource.
+         * @param {string} id Enlarger identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiEnlargersIdGet: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiEnlargersIdGet', 'id', id)
+            const localVarPath = `/enlargers/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates the Enlarger resource.
+         * @summary Updates the Enlarger resource.
+         * @param {string} id Enlarger identifier
+         * @param {EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatch} enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch The updated Enlarger resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiEnlargersIdPatch: async (id: string, enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch: EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiEnlargersIdPatch', 'id', id)
+            // verify required parameter 'enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch' is not null or undefined
+            assertParamExists('apiEnlargersIdPatch', 'enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch', enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch)
+            const localVarPath = `/enlargers/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/merge-patch+json';
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a Enlarger resource.
+         * @summary Creates a Enlarger resource.
+         * @param {EnlargerWriteEnlargerCatalogStatusWrite} enlargerWriteEnlargerCatalogStatusWrite The new Enlarger resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiEnlargersPost: async (enlargerWriteEnlargerCatalogStatusWrite: EnlargerWriteEnlargerCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'enlargerWriteEnlargerCatalogStatusWrite' is not null or undefined
+            assertParamExists('apiEnlargersPost', 'enlargerWriteEnlargerCatalogStatusWrite', enlargerWriteEnlargerCatalogStatusWrite)
+            const localVarPath = `/enlargers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/ld+json';
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(enlargerWriteEnlargerCatalogStatusWrite, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * EnlargerApi - functional programming interface
+ */
+export const EnlargerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = EnlargerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Retrieves the collection of Enlarger resources.
+         * @summary Retrieves the collection of Enlarger resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiEnlargersGetCollection(page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiEnlargersGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiEnlargersGetCollection(page, status, status2, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnlargerApi.apiEnlargersGetCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Removes the Enlarger resource.
+         * @summary Removes the Enlarger resource.
+         * @param {string} id Enlarger identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiEnlargersIdDelete(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiEnlargersIdDelete(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnlargerApi.apiEnlargersIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a Enlarger resource.
+         * @summary Retrieves a Enlarger resource.
+         * @param {string} id Enlarger identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiEnlargersIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiEnlargersIdGet(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnlargerApi.apiEnlargersIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Updates the Enlarger resource.
+         * @summary Updates the Enlarger resource.
+         * @param {string} id Enlarger identifier
+         * @param {EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatch} enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch The updated Enlarger resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiEnlargersIdPatch(id: string, enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch: EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiEnlargersIdPatch(id, enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnlargerApi.apiEnlargersIdPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Creates a Enlarger resource.
+         * @summary Creates a Enlarger resource.
+         * @param {EnlargerWriteEnlargerCatalogStatusWrite} enlargerWriteEnlargerCatalogStatusWrite The new Enlarger resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiEnlargersPost(enlargerWriteEnlargerCatalogStatusWrite: EnlargerWriteEnlargerCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiEnlargersPost(enlargerWriteEnlargerCatalogStatusWrite, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EnlargerApi.apiEnlargersPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * EnlargerApi - factory interface
+ */
+export const EnlargerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = EnlargerApiFp(configuration)
+    return {
+        /**
+         * Retrieves the collection of Enlarger resources.
+         * @summary Retrieves the collection of Enlarger resources.
+         * @param {EnlargerApiApiEnlargersGetCollectionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiEnlargersGetCollection(requestParameters: EnlargerApiApiEnlargersGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiEnlargersGetCollection200Response> {
+            return localVarFp.apiEnlargersGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes the Enlarger resource.
+         * @summary Removes the Enlarger resource.
+         * @param {EnlargerApiApiEnlargersIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiEnlargersIdDelete(requestParameters: EnlargerApiApiEnlargersIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiEnlargersIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a Enlarger resource.
+         * @summary Retrieves a Enlarger resource.
+         * @param {EnlargerApiApiEnlargersIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiEnlargersIdGet(requestParameters: EnlargerApiApiEnlargersIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiEnlargersIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates the Enlarger resource.
+         * @summary Updates the Enlarger resource.
+         * @param {EnlargerApiApiEnlargersIdPatchRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiEnlargersIdPatch(requestParameters: EnlargerApiApiEnlargersIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiEnlargersIdPatch(requestParameters.id, requestParameters.enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a Enlarger resource.
+         * @summary Creates a Enlarger resource.
+         * @param {EnlargerApiApiEnlargersPostRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiEnlargersPost(requestParameters: EnlargerApiApiEnlargersPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiEnlargersPost(requestParameters.enlargerWriteEnlargerCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for apiEnlargersGetCollection operation in EnlargerApi.
+ */
+export interface EnlargerApiApiEnlargersGetCollectionRequest {
+    /**
+     * The collection page number
+     */
+    readonly page?: number
+
+    /**
+     * 
+     */
+    readonly status?: string
+
+    /**
+     * 
+     */
+    readonly status2?: Array<string>
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiEnlargersIdDelete operation in EnlargerApi.
+ */
+export interface EnlargerApiApiEnlargersIdDeleteRequest {
+    /**
+     * Enlarger identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiEnlargersIdGet operation in EnlargerApi.
+ */
+export interface EnlargerApiApiEnlargersIdGetRequest {
+    /**
+     * Enlarger identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiEnlargersIdPatch operation in EnlargerApi.
+ */
+export interface EnlargerApiApiEnlargersIdPatchRequest {
+    /**
+     * Enlarger identifier
+     */
+    readonly id: string
+
+    /**
+     * The updated Enlarger resource
+     */
+    readonly enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch: EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatch
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiEnlargersPost operation in EnlargerApi.
+ */
+export interface EnlargerApiApiEnlargersPostRequest {
+    /**
+     * The new Enlarger resource
+     */
+    readonly enlargerWriteEnlargerCatalogStatusWrite: EnlargerWriteEnlargerCatalogStatusWrite
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * EnlargerApi - object-oriented interface
+ */
+export class EnlargerApi extends BaseAPI {
+    /**
+     * Retrieves the collection of Enlarger resources.
+     * @summary Retrieves the collection of Enlarger resources.
+     * @param {EnlargerApiApiEnlargersGetCollectionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiEnlargersGetCollection(requestParameters: EnlargerApiApiEnlargersGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
+        return EnlargerApiFp(this.configuration).apiEnlargersGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes the Enlarger resource.
+     * @summary Removes the Enlarger resource.
+     * @param {EnlargerApiApiEnlargersIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiEnlargersIdDelete(requestParameters: EnlargerApiApiEnlargersIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return EnlargerApiFp(this.configuration).apiEnlargersIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a Enlarger resource.
+     * @summary Retrieves a Enlarger resource.
+     * @param {EnlargerApiApiEnlargersIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiEnlargersIdGet(requestParameters: EnlargerApiApiEnlargersIdGetRequest, options?: RawAxiosRequestConfig) {
+        return EnlargerApiFp(this.configuration).apiEnlargersIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates the Enlarger resource.
+     * @summary Updates the Enlarger resource.
+     * @param {EnlargerApiApiEnlargersIdPatchRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiEnlargersIdPatch(requestParameters: EnlargerApiApiEnlargersIdPatchRequest, options?: RawAxiosRequestConfig) {
+        return EnlargerApiFp(this.configuration).apiEnlargersIdPatch(requestParameters.id, requestParameters.enlargerWriteEnlargerCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates a Enlarger resource.
+     * @summary Creates a Enlarger resource.
+     * @param {EnlargerApiApiEnlargersPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiEnlargersPost(requestParameters: EnlargerApiApiEnlargersPostRequest, options?: RawAxiosRequestConfig) {
+        return EnlargerApiFp(this.configuration).apiEnlargersPost(requestParameters.enlargerWriteEnlargerCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3101,12 +6589,14 @@ export const FilmApiAxiosParamCreator = function (configuration?: Configuration)
          * Retrieves the collection of Film resources.
          * @summary Retrieves the collection of Film resources.
          * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFilmsGetCollection: async (page?: number, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiFilmsGetCollection: async (page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/films`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3125,6 +6615,14 @@ export const FilmApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (status2) {
+                localVarQueryParameter['status[]'] = status2;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data';
@@ -3240,17 +6738,17 @@ export const FilmApiAxiosParamCreator = function (configuration?: Configuration)
          * Updates the Film resource.
          * @summary Updates the Film resource.
          * @param {string} id Film identifier
-         * @param {FilmWriteFilmJsonMergePatch} filmWriteFilmJsonMergePatch The updated Film resource
+         * @param {FilmWriteFilmCatalogStatusWriteJsonMergePatch} filmWriteFilmCatalogStatusWriteJsonMergePatch The updated Film resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFilmsIdPatch: async (id: string, filmWriteFilmJsonMergePatch: FilmWriteFilmJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiFilmsIdPatch: async (id: string, filmWriteFilmCatalogStatusWriteJsonMergePatch: FilmWriteFilmCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('apiFilmsIdPatch', 'id', id)
-            // verify required parameter 'filmWriteFilmJsonMergePatch' is not null or undefined
-            assertParamExists('apiFilmsIdPatch', 'filmWriteFilmJsonMergePatch', filmWriteFilmJsonMergePatch)
+            // verify required parameter 'filmWriteFilmCatalogStatusWriteJsonMergePatch' is not null or undefined
+            assertParamExists('apiFilmsIdPatch', 'filmWriteFilmCatalogStatusWriteJsonMergePatch', filmWriteFilmCatalogStatusWriteJsonMergePatch)
             const localVarPath = `/films/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3280,7 +6778,7 @@ export const FilmApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(filmWriteFilmJsonMergePatch, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(filmWriteFilmCatalogStatusWriteJsonMergePatch, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3290,15 +6788,15 @@ export const FilmApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Creates a Film resource.
          * @summary Creates a Film resource.
-         * @param {FilmWriteFilm} filmWriteFilm The new Film resource
+         * @param {FilmWriteFilmCatalogStatusWrite} filmWriteFilmCatalogStatusWrite The new Film resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFilmsPost: async (filmWriteFilm: FilmWriteFilm, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'filmWriteFilm' is not null or undefined
-            assertParamExists('apiFilmsPost', 'filmWriteFilm', filmWriteFilm)
+        apiFilmsPost: async (filmWriteFilmCatalogStatusWrite: FilmWriteFilmCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'filmWriteFilmCatalogStatusWrite' is not null or undefined
+            assertParamExists('apiFilmsPost', 'filmWriteFilmCatalogStatusWrite', filmWriteFilmCatalogStatusWrite)
             const localVarPath = `/films`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3327,7 +6825,7 @@ export const FilmApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(filmWriteFilm, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(filmWriteFilmCatalogStatusWrite, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3347,13 +6845,15 @@ export const FilmApiFp = function(configuration?: Configuration) {
          * Retrieves the collection of Film resources.
          * @summary Retrieves the collection of Film resources.
          * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFilmsGetCollection(page?: number, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiFilmsGetCollection200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFilmsGetCollection(page, xLOCALE, acceptLanguage, options);
+        async apiFilmsGetCollection(page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiFilmsGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFilmsGetCollection(page, status, status2, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FilmApi.apiFilmsGetCollection']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3382,7 +6882,7 @@ export const FilmApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFilmsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead>> {
+        async apiFilmsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiFilmsIdGet(id, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FilmApi.apiFilmsIdGet']?.[localVarOperationServerIndex]?.url;
@@ -3392,14 +6892,14 @@ export const FilmApiFp = function(configuration?: Configuration) {
          * Updates the Film resource.
          * @summary Updates the Film resource.
          * @param {string} id Film identifier
-         * @param {FilmWriteFilmJsonMergePatch} filmWriteFilmJsonMergePatch The updated Film resource
+         * @param {FilmWriteFilmCatalogStatusWriteJsonMergePatch} filmWriteFilmCatalogStatusWriteJsonMergePatch The updated Film resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFilmsIdPatch(id: string, filmWriteFilmJsonMergePatch: FilmWriteFilmJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFilmsIdPatch(id, filmWriteFilmJsonMergePatch, xLOCALE, acceptLanguage, options);
+        async apiFilmsIdPatch(id: string, filmWriteFilmCatalogStatusWriteJsonMergePatch: FilmWriteFilmCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFilmsIdPatch(id, filmWriteFilmCatalogStatusWriteJsonMergePatch, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FilmApi.apiFilmsIdPatch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3407,14 +6907,14 @@ export const FilmApiFp = function(configuration?: Configuration) {
         /**
          * Creates a Film resource.
          * @summary Creates a Film resource.
-         * @param {FilmWriteFilm} filmWriteFilm The new Film resource
+         * @param {FilmWriteFilmCatalogStatusWrite} filmWriteFilmCatalogStatusWrite The new Film resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiFilmsPost(filmWriteFilm: FilmWriteFilm, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFilmsPost(filmWriteFilm, xLOCALE, acceptLanguage, options);
+        async apiFilmsPost(filmWriteFilmCatalogStatusWrite: FilmWriteFilmCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiFilmsPost(filmWriteFilmCatalogStatusWrite, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FilmApi.apiFilmsPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3436,7 +6936,7 @@ export const FilmApiFactory = function (configuration?: Configuration, basePath?
          * @throws {RequiredError}
          */
         apiFilmsGetCollection(requestParameters: FilmApiApiFilmsGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiFilmsGetCollection200Response> {
-            return localVarFp.apiFilmsGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+            return localVarFp.apiFilmsGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Removes the Film resource.
@@ -3455,7 +6955,7 @@ export const FilmApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFilmsIdGet(requestParameters: FilmApiApiFilmsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead> {
+        apiFilmsIdGet(requestParameters: FilmApiApiFilmsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
             return localVarFp.apiFilmsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3465,8 +6965,8 @@ export const FilmApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFilmsIdPatch(requestParameters: FilmApiApiFilmsIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead> {
-            return localVarFp.apiFilmsIdPatch(requestParameters.id, requestParameters.filmWriteFilmJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        apiFilmsIdPatch(requestParameters: FilmApiApiFilmsIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiFilmsIdPatch(requestParameters.id, requestParameters.filmWriteFilmCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a Film resource.
@@ -3475,8 +6975,8 @@ export const FilmApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiFilmsPost(requestParameters: FilmApiApiFilmsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead> {
-            return localVarFp.apiFilmsPost(requestParameters.filmWriteFilm, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        apiFilmsPost(requestParameters: FilmApiApiFilmsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiFilmsPost(requestParameters.filmWriteFilmCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3489,6 +6989,16 @@ export interface FilmApiApiFilmsGetCollectionRequest {
      * The collection page number
      */
     readonly page?: number
+
+    /**
+     * 
+     */
+    readonly status?: string
+
+    /**
+     * 
+     */
+    readonly status2?: Array<string>
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -3553,7 +7063,7 @@ export interface FilmApiApiFilmsIdPatchRequest {
     /**
      * The updated Film resource
      */
-    readonly filmWriteFilmJsonMergePatch: FilmWriteFilmJsonMergePatch
+    readonly filmWriteFilmCatalogStatusWriteJsonMergePatch: FilmWriteFilmCatalogStatusWriteJsonMergePatch
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -3573,7 +7083,7 @@ export interface FilmApiApiFilmsPostRequest {
     /**
      * The new Film resource
      */
-    readonly filmWriteFilm: FilmWriteFilm
+    readonly filmWriteFilmCatalogStatusWrite: FilmWriteFilmCatalogStatusWrite
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -3598,7 +7108,7 @@ export class FilmApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiFilmsGetCollection(requestParameters: FilmApiApiFilmsGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
-        return FilmApiFp(this.configuration).apiFilmsGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return FilmApiFp(this.configuration).apiFilmsGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3631,7 +7141,7 @@ export class FilmApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiFilmsIdPatch(requestParameters: FilmApiApiFilmsIdPatchRequest, options?: RawAxiosRequestConfig) {
-        return FilmApiFp(this.configuration).apiFilmsIdPatch(requestParameters.id, requestParameters.filmWriteFilmJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return FilmApiFp(this.configuration).apiFilmsIdPatch(requestParameters.id, requestParameters.filmWriteFilmCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3642,7 +7152,7 @@ export class FilmApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiFilmsPost(requestParameters: FilmApiApiFilmsPostRequest, options?: RawAxiosRequestConfig) {
-        return FilmApiFp(this.configuration).apiFilmsPost(requestParameters.filmWriteFilm, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return FilmApiFp(this.configuration).apiFilmsPost(requestParameters.filmWriteFilmCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3657,12 +7167,14 @@ export const ManufacturerApiAxiosParamCreator = function (configuration?: Config
          * Retrieves the collection of Manufacturer resources.
          * @summary Retrieves the collection of Manufacturer resources.
          * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiManufacturersGetCollection: async (page?: number, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiManufacturersGetCollection: async (page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/manufacturers`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3681,6 +7193,14 @@ export const ManufacturerApiAxiosParamCreator = function (configuration?: Config
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (status2) {
+                localVarQueryParameter['status[]'] = status2;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data';
@@ -3796,17 +7316,17 @@ export const ManufacturerApiAxiosParamCreator = function (configuration?: Config
          * Updates the Manufacturer resource.
          * @summary Updates the Manufacturer resource.
          * @param {string} id Manufacturer identifier
-         * @param {ManufacturerWriteManufacturerJsonMergePatch} manufacturerWriteManufacturerJsonMergePatch The updated Manufacturer resource
+         * @param {ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch} manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch The updated Manufacturer resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiManufacturersIdPatch: async (id: string, manufacturerWriteManufacturerJsonMergePatch: ManufacturerWriteManufacturerJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiManufacturersIdPatch: async (id: string, manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch: ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('apiManufacturersIdPatch', 'id', id)
-            // verify required parameter 'manufacturerWriteManufacturerJsonMergePatch' is not null or undefined
-            assertParamExists('apiManufacturersIdPatch', 'manufacturerWriteManufacturerJsonMergePatch', manufacturerWriteManufacturerJsonMergePatch)
+            // verify required parameter 'manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch' is not null or undefined
+            assertParamExists('apiManufacturersIdPatch', 'manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch', manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch)
             const localVarPath = `/manufacturers/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3836,7 +7356,7 @@ export const ManufacturerApiAxiosParamCreator = function (configuration?: Config
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(manufacturerWriteManufacturerJsonMergePatch, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3846,15 +7366,15 @@ export const ManufacturerApiAxiosParamCreator = function (configuration?: Config
         /**
          * Creates a Manufacturer resource.
          * @summary Creates a Manufacturer resource.
-         * @param {ManufacturerWriteManufacturer} manufacturerWriteManufacturer The new Manufacturer resource
+         * @param {ManufacturerWriteManufacturerCatalogStatusWrite} manufacturerWriteManufacturerCatalogStatusWrite The new Manufacturer resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiManufacturersPost: async (manufacturerWriteManufacturer: ManufacturerWriteManufacturer, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'manufacturerWriteManufacturer' is not null or undefined
-            assertParamExists('apiManufacturersPost', 'manufacturerWriteManufacturer', manufacturerWriteManufacturer)
+        apiManufacturersPost: async (manufacturerWriteManufacturerCatalogStatusWrite: ManufacturerWriteManufacturerCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'manufacturerWriteManufacturerCatalogStatusWrite' is not null or undefined
+            assertParamExists('apiManufacturersPost', 'manufacturerWriteManufacturerCatalogStatusWrite', manufacturerWriteManufacturerCatalogStatusWrite)
             const localVarPath = `/manufacturers`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3883,7 +7403,7 @@ export const ManufacturerApiAxiosParamCreator = function (configuration?: Config
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(manufacturerWriteManufacturer, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(manufacturerWriteManufacturerCatalogStatusWrite, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3903,13 +7423,15 @@ export const ManufacturerApiFp = function(configuration?: Configuration) {
          * Retrieves the collection of Manufacturer resources.
          * @summary Retrieves the collection of Manufacturer resources.
          * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiManufacturersGetCollection(page?: number, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiManufacturersGetCollection200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiManufacturersGetCollection(page, xLOCALE, acceptLanguage, options);
+        async apiManufacturersGetCollection(page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiManufacturersGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiManufacturersGetCollection(page, status, status2, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ManufacturerApi.apiManufacturersGetCollection']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3938,7 +7460,7 @@ export const ManufacturerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiManufacturersIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead>> {
+        async apiManufacturersIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiManufacturersIdGet(id, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ManufacturerApi.apiManufacturersIdGet']?.[localVarOperationServerIndex]?.url;
@@ -3948,14 +7470,14 @@ export const ManufacturerApiFp = function(configuration?: Configuration) {
          * Updates the Manufacturer resource.
          * @summary Updates the Manufacturer resource.
          * @param {string} id Manufacturer identifier
-         * @param {ManufacturerWriteManufacturerJsonMergePatch} manufacturerWriteManufacturerJsonMergePatch The updated Manufacturer resource
+         * @param {ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch} manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch The updated Manufacturer resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiManufacturersIdPatch(id: string, manufacturerWriteManufacturerJsonMergePatch: ManufacturerWriteManufacturerJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiManufacturersIdPatch(id, manufacturerWriteManufacturerJsonMergePatch, xLOCALE, acceptLanguage, options);
+        async apiManufacturersIdPatch(id: string, manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch: ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiManufacturersIdPatch(id, manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ManufacturerApi.apiManufacturersIdPatch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3963,14 +7485,14 @@ export const ManufacturerApiFp = function(configuration?: Configuration) {
         /**
          * Creates a Manufacturer resource.
          * @summary Creates a Manufacturer resource.
-         * @param {ManufacturerWriteManufacturer} manufacturerWriteManufacturer The new Manufacturer resource
+         * @param {ManufacturerWriteManufacturerCatalogStatusWrite} manufacturerWriteManufacturerCatalogStatusWrite The new Manufacturer resource
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiManufacturersPost(manufacturerWriteManufacturer: ManufacturerWriteManufacturer, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiManufacturersPost(manufacturerWriteManufacturer, xLOCALE, acceptLanguage, options);
+        async apiManufacturersPost(manufacturerWriteManufacturerCatalogStatusWrite: ManufacturerWriteManufacturerCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiManufacturersPost(manufacturerWriteManufacturerCatalogStatusWrite, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ManufacturerApi.apiManufacturersPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3992,7 +7514,7 @@ export const ManufacturerApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         apiManufacturersGetCollection(requestParameters: ManufacturerApiApiManufacturersGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiManufacturersGetCollection200Response> {
-            return localVarFp.apiManufacturersGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+            return localVarFp.apiManufacturersGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Removes the Manufacturer resource.
@@ -4011,7 +7533,7 @@ export const ManufacturerApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiManufacturersIdGet(requestParameters: ManufacturerApiApiManufacturersIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead> {
+        apiManufacturersIdGet(requestParameters: ManufacturerApiApiManufacturersIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead> {
             return localVarFp.apiManufacturersIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4021,8 +7543,8 @@ export const ManufacturerApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiManufacturersIdPatch(requestParameters: ManufacturerApiApiManufacturersIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead> {
-            return localVarFp.apiManufacturersIdPatch(requestParameters.id, requestParameters.manufacturerWriteManufacturerJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        apiManufacturersIdPatch(requestParameters: ManufacturerApiApiManufacturersIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead> {
+            return localVarFp.apiManufacturersIdPatch(requestParameters.id, requestParameters.manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a Manufacturer resource.
@@ -4031,8 +7553,8 @@ export const ManufacturerApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiManufacturersPost(requestParameters: ManufacturerApiApiManufacturersPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead> {
-            return localVarFp.apiManufacturersPost(requestParameters.manufacturerWriteManufacturer, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        apiManufacturersPost(requestParameters: ManufacturerApiApiManufacturersPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead> {
+            return localVarFp.apiManufacturersPost(requestParameters.manufacturerWriteManufacturerCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -4045,6 +7567,16 @@ export interface ManufacturerApiApiManufacturersGetCollectionRequest {
      * The collection page number
      */
     readonly page?: number
+
+    /**
+     * 
+     */
+    readonly status?: string
+
+    /**
+     * 
+     */
+    readonly status2?: Array<string>
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -4109,7 +7641,7 @@ export interface ManufacturerApiApiManufacturersIdPatchRequest {
     /**
      * The updated Manufacturer resource
      */
-    readonly manufacturerWriteManufacturerJsonMergePatch: ManufacturerWriteManufacturerJsonMergePatch
+    readonly manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch: ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -4129,7 +7661,7 @@ export interface ManufacturerApiApiManufacturersPostRequest {
     /**
      * The new Manufacturer resource
      */
-    readonly manufacturerWriteManufacturer: ManufacturerWriteManufacturer
+    readonly manufacturerWriteManufacturerCatalogStatusWrite: ManufacturerWriteManufacturerCatalogStatusWrite
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -4154,7 +7686,7 @@ export class ManufacturerApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiManufacturersGetCollection(requestParameters: ManufacturerApiApiManufacturersGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
-        return ManufacturerApiFp(this.configuration).apiManufacturersGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return ManufacturerApiFp(this.configuration).apiManufacturersGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4187,7 +7719,7 @@ export class ManufacturerApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiManufacturersIdPatch(requestParameters: ManufacturerApiApiManufacturersIdPatchRequest, options?: RawAxiosRequestConfig) {
-        return ManufacturerApiFp(this.configuration).apiManufacturersIdPatch(requestParameters.id, requestParameters.manufacturerWriteManufacturerJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return ManufacturerApiFp(this.configuration).apiManufacturersIdPatch(requestParameters.id, requestParameters.manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4198,7 +7730,585 @@ export class ManufacturerApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiManufacturersPost(requestParameters: ManufacturerApiApiManufacturersPostRequest, options?: RawAxiosRequestConfig) {
-        return ManufacturerApiFp(this.configuration).apiManufacturersPost(requestParameters.manufacturerWriteManufacturer, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return ManufacturerApiFp(this.configuration).apiManufacturersPost(requestParameters.manufacturerWriteManufacturerCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * PhotoPaperApi - axios parameter creator
+ */
+export const PhotoPaperApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieves the collection of PhotoPaper resources.
+         * @summary Retrieves the collection of PhotoPaper resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPhotoPapersGetCollection: async (page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/photo_papers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (status2) {
+                localVarQueryParameter['status[]'] = status2;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes the PhotoPaper resource.
+         * @summary Removes the PhotoPaper resource.
+         * @param {string} id PhotoPaper identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPhotoPapersIdDelete: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiPhotoPapersIdDelete', 'id', id)
+            const localVarPath = `/photo_papers/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a PhotoPaper resource.
+         * @summary Retrieves a PhotoPaper resource.
+         * @param {string} id PhotoPaper identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPhotoPapersIdGet: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiPhotoPapersIdGet', 'id', id)
+            const localVarPath = `/photo_papers/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates the PhotoPaper resource.
+         * @summary Updates the PhotoPaper resource.
+         * @param {string} id PhotoPaper identifier
+         * @param {PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch} photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch The updated PhotoPaper resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPhotoPapersIdPatch: async (id: string, photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch: PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiPhotoPapersIdPatch', 'id', id)
+            // verify required parameter 'photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch' is not null or undefined
+            assertParamExists('apiPhotoPapersIdPatch', 'photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch', photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch)
+            const localVarPath = `/photo_papers/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/merge-patch+json';
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a PhotoPaper resource.
+         * @summary Creates a PhotoPaper resource.
+         * @param {PhotoPaperWritePhotoPaperCatalogStatusWrite} photoPaperWritePhotoPaperCatalogStatusWrite The new PhotoPaper resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPhotoPapersPost: async (photoPaperWritePhotoPaperCatalogStatusWrite: PhotoPaperWritePhotoPaperCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'photoPaperWritePhotoPaperCatalogStatusWrite' is not null or undefined
+            assertParamExists('apiPhotoPapersPost', 'photoPaperWritePhotoPaperCatalogStatusWrite', photoPaperWritePhotoPaperCatalogStatusWrite)
+            const localVarPath = `/photo_papers`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/ld+json';
+            localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(photoPaperWritePhotoPaperCatalogStatusWrite, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PhotoPaperApi - functional programming interface
+ */
+export const PhotoPaperApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PhotoPaperApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Retrieves the collection of PhotoPaper resources.
+         * @summary Retrieves the collection of PhotoPaper resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPhotoPapersGetCollection(page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiPhotoPapersGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPhotoPapersGetCollection(page, status, status2, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PhotoPaperApi.apiPhotoPapersGetCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Removes the PhotoPaper resource.
+         * @summary Removes the PhotoPaper resource.
+         * @param {string} id PhotoPaper identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPhotoPapersIdDelete(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPhotoPapersIdDelete(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PhotoPaperApi.apiPhotoPapersIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a PhotoPaper resource.
+         * @summary Retrieves a PhotoPaper resource.
+         * @param {string} id PhotoPaper identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPhotoPapersIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPhotoPapersIdGet(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PhotoPaperApi.apiPhotoPapersIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Updates the PhotoPaper resource.
+         * @summary Updates the PhotoPaper resource.
+         * @param {string} id PhotoPaper identifier
+         * @param {PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch} photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch The updated PhotoPaper resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPhotoPapersIdPatch(id: string, photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch: PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPhotoPapersIdPatch(id, photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PhotoPaperApi.apiPhotoPapersIdPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Creates a PhotoPaper resource.
+         * @summary Creates a PhotoPaper resource.
+         * @param {PhotoPaperWritePhotoPaperCatalogStatusWrite} photoPaperWritePhotoPaperCatalogStatusWrite The new PhotoPaper resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiPhotoPapersPost(photoPaperWritePhotoPaperCatalogStatusWrite: PhotoPaperWritePhotoPaperCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPhotoPapersPost(photoPaperWritePhotoPaperCatalogStatusWrite, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['PhotoPaperApi.apiPhotoPapersPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * PhotoPaperApi - factory interface
+ */
+export const PhotoPaperApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PhotoPaperApiFp(configuration)
+    return {
+        /**
+         * Retrieves the collection of PhotoPaper resources.
+         * @summary Retrieves the collection of PhotoPaper resources.
+         * @param {PhotoPaperApiApiPhotoPapersGetCollectionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPhotoPapersGetCollection(requestParameters: PhotoPaperApiApiPhotoPapersGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiPhotoPapersGetCollection200Response> {
+            return localVarFp.apiPhotoPapersGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes the PhotoPaper resource.
+         * @summary Removes the PhotoPaper resource.
+         * @param {PhotoPaperApiApiPhotoPapersIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPhotoPapersIdDelete(requestParameters: PhotoPaperApiApiPhotoPapersIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiPhotoPapersIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a PhotoPaper resource.
+         * @summary Retrieves a PhotoPaper resource.
+         * @param {PhotoPaperApiApiPhotoPapersIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPhotoPapersIdGet(requestParameters: PhotoPaperApiApiPhotoPapersIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiPhotoPapersIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates the PhotoPaper resource.
+         * @summary Updates the PhotoPaper resource.
+         * @param {PhotoPaperApiApiPhotoPapersIdPatchRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPhotoPapersIdPatch(requestParameters: PhotoPaperApiApiPhotoPapersIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiPhotoPapersIdPatch(requestParameters.id, requestParameters.photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a PhotoPaper resource.
+         * @summary Creates a PhotoPaper resource.
+         * @param {PhotoPaperApiApiPhotoPapersPostRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiPhotoPapersPost(requestParameters: PhotoPaperApiApiPhotoPapersPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiPhotoPapersPost(requestParameters.photoPaperWritePhotoPaperCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for apiPhotoPapersGetCollection operation in PhotoPaperApi.
+ */
+export interface PhotoPaperApiApiPhotoPapersGetCollectionRequest {
+    /**
+     * The collection page number
+     */
+    readonly page?: number
+
+    /**
+     * 
+     */
+    readonly status?: string
+
+    /**
+     * 
+     */
+    readonly status2?: Array<string>
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPhotoPapersIdDelete operation in PhotoPaperApi.
+ */
+export interface PhotoPaperApiApiPhotoPapersIdDeleteRequest {
+    /**
+     * PhotoPaper identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPhotoPapersIdGet operation in PhotoPaperApi.
+ */
+export interface PhotoPaperApiApiPhotoPapersIdGetRequest {
+    /**
+     * PhotoPaper identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPhotoPapersIdPatch operation in PhotoPaperApi.
+ */
+export interface PhotoPaperApiApiPhotoPapersIdPatchRequest {
+    /**
+     * PhotoPaper identifier
+     */
+    readonly id: string
+
+    /**
+     * The updated PhotoPaper resource
+     */
+    readonly photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch: PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiPhotoPapersPost operation in PhotoPaperApi.
+ */
+export interface PhotoPaperApiApiPhotoPapersPostRequest {
+    /**
+     * The new PhotoPaper resource
+     */
+    readonly photoPaperWritePhotoPaperCatalogStatusWrite: PhotoPaperWritePhotoPaperCatalogStatusWrite
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * PhotoPaperApi - object-oriented interface
+ */
+export class PhotoPaperApi extends BaseAPI {
+    /**
+     * Retrieves the collection of PhotoPaper resources.
+     * @summary Retrieves the collection of PhotoPaper resources.
+     * @param {PhotoPaperApiApiPhotoPapersGetCollectionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPhotoPapersGetCollection(requestParameters: PhotoPaperApiApiPhotoPapersGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
+        return PhotoPaperApiFp(this.configuration).apiPhotoPapersGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes the PhotoPaper resource.
+     * @summary Removes the PhotoPaper resource.
+     * @param {PhotoPaperApiApiPhotoPapersIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPhotoPapersIdDelete(requestParameters: PhotoPaperApiApiPhotoPapersIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return PhotoPaperApiFp(this.configuration).apiPhotoPapersIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a PhotoPaper resource.
+     * @summary Retrieves a PhotoPaper resource.
+     * @param {PhotoPaperApiApiPhotoPapersIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPhotoPapersIdGet(requestParameters: PhotoPaperApiApiPhotoPapersIdGetRequest, options?: RawAxiosRequestConfig) {
+        return PhotoPaperApiFp(this.configuration).apiPhotoPapersIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates the PhotoPaper resource.
+     * @summary Updates the PhotoPaper resource.
+     * @param {PhotoPaperApiApiPhotoPapersIdPatchRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPhotoPapersIdPatch(requestParameters: PhotoPaperApiApiPhotoPapersIdPatchRequest, options?: RawAxiosRequestConfig) {
+        return PhotoPaperApiFp(this.configuration).apiPhotoPapersIdPatch(requestParameters.id, requestParameters.photoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates a PhotoPaper resource.
+     * @summary Creates a PhotoPaper resource.
+     * @param {PhotoPaperApiApiPhotoPapersPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiPhotoPapersPost(requestParameters: PhotoPaperApiApiPhotoPapersPostRequest, options?: RawAxiosRequestConfig) {
+        return PhotoPaperApiFp(this.configuration).apiPhotoPapersPost(requestParameters.photoPaperWritePhotoPaperCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -4216,8 +8326,8 @@ export const PrintApiAxiosParamCreator = function (configuration?: Configuration
          * @param {number} [page] The collection page number
          * @param {string} [session] 
          * @param {Array<string>} [session2] 
-         * @param {string} [paperBrand] 
-         * @param {Array<string>} [paperBrand2] 
+         * @param {string} [photoPaper] 
+         * @param {Array<string>} [photoPaper2] 
          * @param {string} [contactSheetRef] 
          * @param {string} [negativeNumber] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -4225,7 +8335,7 @@ export const PrintApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintSessionsIdprintsGetCollection: async (id: string, page?: number, session?: string, session2?: Array<string>, paperBrand?: string, paperBrand2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiPrintSessionsIdprintsGetCollection: async (id: string, page?: number, session?: string, session2?: Array<string>, photoPaper?: string, photoPaper2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('apiPrintSessionsIdprintsGetCollection', 'id', id)
             const localVarPath = `/print_sessions/{id}/prints`
@@ -4257,12 +8367,12 @@ export const PrintApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['session[]'] = session2;
             }
 
-            if (paperBrand !== undefined) {
-                localVarQueryParameter['paperBrand'] = paperBrand;
+            if (photoPaper !== undefined) {
+                localVarQueryParameter['photoPaper'] = photoPaper;
             }
 
-            if (paperBrand2) {
-                localVarQueryParameter['paperBrand[]'] = paperBrand2;
+            if (photoPaper2) {
+                localVarQueryParameter['photoPaper[]'] = photoPaper2;
             }
 
             if (contactSheetRef !== undefined) {
@@ -4296,8 +8406,8 @@ export const PrintApiAxiosParamCreator = function (configuration?: Configuration
          * @param {number} [page] The collection page number
          * @param {string} [session] 
          * @param {Array<string>} [session2] 
-         * @param {string} [paperBrand] 
-         * @param {Array<string>} [paperBrand2] 
+         * @param {string} [photoPaper] 
+         * @param {Array<string>} [photoPaper2] 
          * @param {string} [contactSheetRef] 
          * @param {string} [negativeNumber] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -4305,7 +8415,7 @@ export const PrintApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintsGetCollection: async (page?: number, session?: string, session2?: Array<string>, paperBrand?: string, paperBrand2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiPrintsGetCollection: async (page?: number, session?: string, session2?: Array<string>, photoPaper?: string, photoPaper2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/prints`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4334,12 +8444,12 @@ export const PrintApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['session[]'] = session2;
             }
 
-            if (paperBrand !== undefined) {
-                localVarQueryParameter['paperBrand'] = paperBrand;
+            if (photoPaper !== undefined) {
+                localVarQueryParameter['photoPaper'] = photoPaper;
             }
 
-            if (paperBrand2) {
-                localVarQueryParameter['paperBrand[]'] = paperBrand2;
+            if (photoPaper2) {
+                localVarQueryParameter['photoPaper[]'] = photoPaper2;
             }
 
             if (contactSheetRef !== undefined) {
@@ -4573,8 +8683,8 @@ export const PrintApiFp = function(configuration?: Configuration) {
          * @param {number} [page] The collection page number
          * @param {string} [session] 
          * @param {Array<string>} [session2] 
-         * @param {string} [paperBrand] 
-         * @param {Array<string>} [paperBrand2] 
+         * @param {string} [photoPaper] 
+         * @param {Array<string>} [photoPaper2] 
          * @param {string} [contactSheetRef] 
          * @param {string} [negativeNumber] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -4582,8 +8692,8 @@ export const PrintApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintSessionsIdprintsGetCollection(id: string, page?: number, session?: string, session2?: Array<string>, paperBrand?: string, paperBrand2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiPrintSessionsIdprintsGetCollection200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsIdprintsGetCollection(id, page, session, session2, paperBrand, paperBrand2, contactSheetRef, negativeNumber, xLOCALE, acceptLanguage, options);
+        async apiPrintSessionsIdprintsGetCollection(id: string, page?: number, session?: string, session2?: Array<string>, photoPaper?: string, photoPaper2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiPrintSessionsIdprintsGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsIdprintsGetCollection(id, page, session, session2, photoPaper, photoPaper2, contactSheetRef, negativeNumber, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PrintApi.apiPrintSessionsIdprintsGetCollection']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4594,8 +8704,8 @@ export const PrintApiFp = function(configuration?: Configuration) {
          * @param {number} [page] The collection page number
          * @param {string} [session] 
          * @param {Array<string>} [session2] 
-         * @param {string} [paperBrand] 
-         * @param {Array<string>} [paperBrand2] 
+         * @param {string} [photoPaper] 
+         * @param {Array<string>} [photoPaper2] 
          * @param {string} [contactSheetRef] 
          * @param {string} [negativeNumber] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -4603,8 +8713,8 @@ export const PrintApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintsGetCollection(page?: number, session?: string, session2?: Array<string>, paperBrand?: string, paperBrand2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiPrintSessionsIdprintsGetCollection200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintsGetCollection(page, session, session2, paperBrand, paperBrand2, contactSheetRef, negativeNumber, xLOCALE, acceptLanguage, options);
+        async apiPrintsGetCollection(page?: number, session?: string, session2?: Array<string>, photoPaper?: string, photoPaper2?: Array<string>, contactSheetRef?: string, negativeNumber?: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiPrintSessionsIdprintsGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintsGetCollection(page, session, session2, photoPaper, photoPaper2, contactSheetRef, negativeNumber, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PrintApi.apiPrintsGetCollection']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4687,7 +8797,7 @@ export const PrintApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         apiPrintSessionsIdprintsGetCollection(requestParameters: PrintApiApiPrintSessionsIdprintsGetCollectionRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiPrintSessionsIdprintsGetCollection200Response> {
-            return localVarFp.apiPrintSessionsIdprintsGetCollection(requestParameters.id, requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.paperBrand, requestParameters.paperBrand2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+            return localVarFp.apiPrintSessionsIdprintsGetCollection(requestParameters.id, requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.photoPaper, requestParameters.photoPaper2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves the collection of Print resources.
@@ -4697,7 +8807,7 @@ export const PrintApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         apiPrintsGetCollection(requestParameters: PrintApiApiPrintsGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiPrintSessionsIdprintsGetCollection200Response> {
-            return localVarFp.apiPrintsGetCollection(requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.paperBrand, requestParameters.paperBrand2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+            return localVarFp.apiPrintsGetCollection(requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.photoPaper, requestParameters.photoPaper2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Removes the Print resource.
@@ -4769,12 +8879,12 @@ export interface PrintApiApiPrintSessionsIdprintsGetCollectionRequest {
     /**
      * 
      */
-    readonly paperBrand?: string
+    readonly photoPaper?: string
 
     /**
      * 
      */
-    readonly paperBrand2?: Array<string>
+    readonly photoPaper2?: Array<string>
 
     /**
      * 
@@ -4819,12 +8929,12 @@ export interface PrintApiApiPrintsGetCollectionRequest {
     /**
      * 
      */
-    readonly paperBrand?: string
+    readonly photoPaper?: string
 
     /**
      * 
      */
-    readonly paperBrand2?: Array<string>
+    readonly photoPaper2?: Array<string>
 
     /**
      * 
@@ -4944,7 +9054,7 @@ export class PrintApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiPrintSessionsIdprintsGetCollection(requestParameters: PrintApiApiPrintSessionsIdprintsGetCollectionRequest, options?: RawAxiosRequestConfig) {
-        return PrintApiFp(this.configuration).apiPrintSessionsIdprintsGetCollection(requestParameters.id, requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.paperBrand, requestParameters.paperBrand2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return PrintApiFp(this.configuration).apiPrintSessionsIdprintsGetCollection(requestParameters.id, requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.photoPaper, requestParameters.photoPaper2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4955,7 +9065,7 @@ export class PrintApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiPrintsGetCollection(requestParameters: PrintApiApiPrintsGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
-        return PrintApiFp(this.configuration).apiPrintsGetCollection(requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.paperBrand, requestParameters.paperBrand2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return PrintApiFp(this.configuration).apiPrintsGetCollection(requestParameters.page, requestParameters.session, requestParameters.session2, requestParameters.photoPaper, requestParameters.photoPaper2, requestParameters.contactSheetRef, requestParameters.negativeNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5319,7 +9429,7 @@ export const PrintSessionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintSessionsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead>> {
+        async apiPrintSessionsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsIdGet(id, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PrintSessionApi.apiPrintSessionsIdGet']?.[localVarOperationServerIndex]?.url;
@@ -5335,7 +9445,7 @@ export const PrintSessionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintSessionsIdPatch(id: string, printSessionWritePrintSessionJsonMergePatch: PrintSessionWritePrintSessionJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead>> {
+        async apiPrintSessionsIdPatch(id: string, printSessionWritePrintSessionJsonMergePatch: PrintSessionWritePrintSessionJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsIdPatch(id, printSessionWritePrintSessionJsonMergePatch, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PrintSessionApi.apiPrintSessionsIdPatch']?.[localVarOperationServerIndex]?.url;
@@ -5350,7 +9460,7 @@ export const PrintSessionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintSessionsPost(printSessionWritePrintSession: PrintSessionWritePrintSession, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead>> {
+        async apiPrintSessionsPost(printSessionWritePrintSession: PrintSessionWritePrintSession, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsPost(printSessionWritePrintSession, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PrintSessionApi.apiPrintSessionsPost']?.[localVarOperationServerIndex]?.url;
@@ -5392,7 +9502,7 @@ export const PrintSessionApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintSessionsIdGet(requestParameters: PrintSessionApiApiPrintSessionsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead> {
+        apiPrintSessionsIdGet(requestParameters: PrintSessionApiApiPrintSessionsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead> {
             return localVarFp.apiPrintSessionsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5402,7 +9512,7 @@ export const PrintSessionApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintSessionsIdPatch(requestParameters: PrintSessionApiApiPrintSessionsIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead> {
+        apiPrintSessionsIdPatch(requestParameters: PrintSessionApiApiPrintSessionsIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead> {
             return localVarFp.apiPrintSessionsIdPatch(requestParameters.id, requestParameters.printSessionWritePrintSessionJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5412,7 +9522,7 @@ export const PrintSessionApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintSessionsPost(requestParameters: PrintSessionApiApiPrintSessionsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionTimestampableBlameableRead> {
+        apiPrintSessionsPost(requestParameters: PrintSessionApiApiPrintSessionsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead> {
             return localVarFp.apiPrintSessionsPost(requestParameters.printSessionWritePrintSession, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
     };
@@ -5600,6 +9710,584 @@ export class PrintSessionApi extends BaseAPI {
      */
     public apiPrintSessionsPost(requestParameters: PrintSessionApiApiPrintSessionsPostRequest, options?: RawAxiosRequestConfig) {
         return PrintSessionApiFp(this.configuration).apiPrintSessionsPost(requestParameters.printSessionWritePrintSession, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * TagApi - axios parameter creator
+ */
+export const TagApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieves the collection of Tag resources.
+         * @summary Retrieves the collection of Tag resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsGetCollection: async (page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/tags`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (status2) {
+                localVarQueryParameter['status[]'] = status2;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes the Tag resource.
+         * @summary Removes the Tag resource.
+         * @param {string} id Tag identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsIdDelete: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiTagsIdDelete', 'id', id)
+            const localVarPath = `/tags/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/problem+json,application/json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a Tag resource.
+         * @summary Retrieves a Tag resource.
+         * @param {string} id Tag identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsIdGet: async (id: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiTagsIdGet', 'id', id)
+            const localVarPath = `/tags/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates the Tag resource.
+         * @summary Updates the Tag resource.
+         * @param {string} id Tag identifier
+         * @param {TagWriteTagCatalogStatusWriteJsonMergePatch} tagWriteTagCatalogStatusWriteJsonMergePatch The updated Tag resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsIdPatch: async (id: string, tagWriteTagCatalogStatusWriteJsonMergePatch: TagWriteTagCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiTagsIdPatch', 'id', id)
+            // verify required parameter 'tagWriteTagCatalogStatusWriteJsonMergePatch' is not null or undefined
+            assertParamExists('apiTagsIdPatch', 'tagWriteTagCatalogStatusWriteJsonMergePatch', tagWriteTagCatalogStatusWriteJsonMergePatch)
+            const localVarPath = `/tags/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/merge-patch+json';
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(tagWriteTagCatalogStatusWriteJsonMergePatch, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a Tag resource.
+         * @summary Creates a Tag resource.
+         * @param {TagWriteTagCatalogStatusWrite} tagWriteTagCatalogStatusWrite The new Tag resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsPost: async (tagWriteTagCatalogStatusWrite: TagWriteTagCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'tagWriteTagCatalogStatusWrite' is not null or undefined
+            assertParamExists('apiTagsPost', 'tagWriteTagCatalogStatusWrite', tagWriteTagCatalogStatusWrite)
+            const localVarPath = `/tags`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oauth required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oauth", [], configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/ld+json';
+            localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
+
+            if (xLOCALE != null) {
+                localVarHeaderParameter['X-LOCALE'] = String(xLOCALE);
+            }
+            if (acceptLanguage != null) {
+                localVarHeaderParameter['Accept-Language'] = String(acceptLanguage);
+            }
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(tagWriteTagCatalogStatusWrite, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * TagApi - functional programming interface
+ */
+export const TagApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = TagApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Retrieves the collection of Tag resources.
+         * @summary Retrieves the collection of Tag resources.
+         * @param {number} [page] The collection page number
+         * @param {string} [status] 
+         * @param {Array<string>} [status2] 
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiTagsGetCollection(page?: number, status?: string, status2?: Array<string>, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiTagsGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTagsGetCollection(page, status, status2, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.apiTagsGetCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Removes the Tag resource.
+         * @summary Removes the Tag resource.
+         * @param {string} id Tag identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiTagsIdDelete(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTagsIdDelete(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.apiTagsIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a Tag resource.
+         * @summary Retrieves a Tag resource.
+         * @param {string} id Tag identifier
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiTagsIdGet(id: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTagsIdGet(id, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.apiTagsIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Updates the Tag resource.
+         * @summary Updates the Tag resource.
+         * @param {string} id Tag identifier
+         * @param {TagWriteTagCatalogStatusWriteJsonMergePatch} tagWriteTagCatalogStatusWriteJsonMergePatch The updated Tag resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiTagsIdPatch(id: string, tagWriteTagCatalogStatusWriteJsonMergePatch: TagWriteTagCatalogStatusWriteJsonMergePatch, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTagsIdPatch(id, tagWriteTagCatalogStatusWriteJsonMergePatch, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.apiTagsIdPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Creates a Tag resource.
+         * @summary Creates a Tag resource.
+         * @param {TagWriteTagCatalogStatusWrite} tagWriteTagCatalogStatusWrite The new Tag resource
+         * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+         * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiTagsPost(tagWriteTagCatalogStatusWrite: TagWriteTagCatalogStatusWrite, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTagsPost(tagWriteTagCatalogStatusWrite, xLOCALE, acceptLanguage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.apiTagsPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * TagApi - factory interface
+ */
+export const TagApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = TagApiFp(configuration)
+    return {
+        /**
+         * Retrieves the collection of Tag resources.
+         * @summary Retrieves the collection of Tag resources.
+         * @param {TagApiApiTagsGetCollectionRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsGetCollection(requestParameters: TagApiApiTagsGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiTagsGetCollection200Response> {
+            return localVarFp.apiTagsGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes the Tag resource.
+         * @summary Removes the Tag resource.
+         * @param {TagApiApiTagsIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsIdDelete(requestParameters: TagApiApiTagsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiTagsIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a Tag resource.
+         * @summary Retrieves a Tag resource.
+         * @param {TagApiApiTagsIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsIdGet(requestParameters: TagApiApiTagsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiTagsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates the Tag resource.
+         * @summary Updates the Tag resource.
+         * @param {TagApiApiTagsIdPatchRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsIdPatch(requestParameters: TagApiApiTagsIdPatchRequest, options?: RawAxiosRequestConfig): AxiosPromise<TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiTagsIdPatch(requestParameters.id, requestParameters.tagWriteTagCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a Tag resource.
+         * @summary Creates a Tag resource.
+         * @param {TagApiApiTagsPostRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiTagsPost(requestParameters: TagApiApiTagsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead> {
+            return localVarFp.apiTagsPost(requestParameters.tagWriteTagCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for apiTagsGetCollection operation in TagApi.
+ */
+export interface TagApiApiTagsGetCollectionRequest {
+    /**
+     * The collection page number
+     */
+    readonly page?: number
+
+    /**
+     * 
+     */
+    readonly status?: string
+
+    /**
+     * 
+     */
+    readonly status2?: Array<string>
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiTagsIdDelete operation in TagApi.
+ */
+export interface TagApiApiTagsIdDeleteRequest {
+    /**
+     * Tag identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiTagsIdGet operation in TagApi.
+ */
+export interface TagApiApiTagsIdGetRequest {
+    /**
+     * Tag identifier
+     */
+    readonly id: string
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiTagsIdPatch operation in TagApi.
+ */
+export interface TagApiApiTagsIdPatchRequest {
+    /**
+     * Tag identifier
+     */
+    readonly id: string
+
+    /**
+     * The updated Tag resource
+     */
+    readonly tagWriteTagCatalogStatusWriteJsonMergePatch: TagWriteTagCatalogStatusWriteJsonMergePatch
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * Request parameters for apiTagsPost operation in TagApi.
+ */
+export interface TagApiApiTagsPostRequest {
+    /**
+     * The new Tag resource
+     */
+    readonly tagWriteTagCatalogStatusWrite: TagWriteTagCatalogStatusWrite
+
+    /**
+     * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
+     */
+    readonly xLOCALE?: string
+
+    /**
+     * Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
+     */
+    readonly acceptLanguage?: string
+}
+
+/**
+ * TagApi - object-oriented interface
+ */
+export class TagApi extends BaseAPI {
+    /**
+     * Retrieves the collection of Tag resources.
+     * @summary Retrieves the collection of Tag resources.
+     * @param {TagApiApiTagsGetCollectionRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiTagsGetCollection(requestParameters: TagApiApiTagsGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
+        return TagApiFp(this.configuration).apiTagsGetCollection(requestParameters.page, requestParameters.status, requestParameters.status2, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes the Tag resource.
+     * @summary Removes the Tag resource.
+     * @param {TagApiApiTagsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiTagsIdDelete(requestParameters: TagApiApiTagsIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return TagApiFp(this.configuration).apiTagsIdDelete(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a Tag resource.
+     * @summary Retrieves a Tag resource.
+     * @param {TagApiApiTagsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiTagsIdGet(requestParameters: TagApiApiTagsIdGetRequest, options?: RawAxiosRequestConfig) {
+        return TagApiFp(this.configuration).apiTagsIdGet(requestParameters.id, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates the Tag resource.
+     * @summary Updates the Tag resource.
+     * @param {TagApiApiTagsIdPatchRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiTagsIdPatch(requestParameters: TagApiApiTagsIdPatchRequest, options?: RawAxiosRequestConfig) {
+        return TagApiFp(this.configuration).apiTagsIdPatch(requestParameters.id, requestParameters.tagWriteTagCatalogStatusWriteJsonMergePatch, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Creates a Tag resource.
+     * @summary Creates a Tag resource.
+     * @param {TagApiApiTagsPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public apiTagsPost(requestParameters: TagApiApiTagsPostRequest, options?: RawAxiosRequestConfig) {
+        return TagApiFp(this.configuration).apiTagsPost(requestParameters.tagWriteTagCatalogStatusWrite, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

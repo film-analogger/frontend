@@ -31,8 +31,8 @@ let id: string; //PrintSession identifier (default to undefined)
 let page: number; //The collection page number (optional) (default to 1)
 let session: string; // (optional) (default to undefined)
 let session2: Array<string>; // (optional) (default to undefined)
-let paperBrand: string; // (optional) (default to undefined)
-let paperBrand2: Array<string>; // (optional) (default to undefined)
+let photoPaper: string; // (optional) (default to undefined)
+let photoPaper2: Array<string>; // (optional) (default to undefined)
 let contactSheetRef: string; // (optional) (default to undefined)
 let negativeNumber: string; // (optional) (default to undefined)
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
@@ -43,8 +43,8 @@ const { status, data } = await apiInstance.apiPrintSessionsIdprintsGetCollection
     page,
     session,
     session2,
-    paperBrand,
-    paperBrand2,
+    photoPaper,
+    photoPaper2,
     contactSheetRef,
     negativeNumber,
     xLOCALE,
@@ -60,8 +60,8 @@ const { status, data } = await apiInstance.apiPrintSessionsIdprintsGetCollection
 | **page** | [**number**] | The collection page number | (optional) defaults to 1|
 | **session** | [**string**] |  | (optional) defaults to undefined|
 | **session2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
-| **paperBrand** | [**string**] |  | (optional) defaults to undefined|
-| **paperBrand2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
+| **photoPaper** | [**string**] |  | (optional) defaults to undefined|
+| **photoPaper2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
 | **contactSheetRef** | [**string**] |  | (optional) defaults to undefined|
 | **negativeNumber** | [**string**] |  | (optional) defaults to undefined|
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
@@ -110,8 +110,8 @@ const apiInstance = new PrintApi(configuration);
 let page: number; //The collection page number (optional) (default to 1)
 let session: string; // (optional) (default to undefined)
 let session2: Array<string>; // (optional) (default to undefined)
-let paperBrand: string; // (optional) (default to undefined)
-let paperBrand2: Array<string>; // (optional) (default to undefined)
+let photoPaper: string; // (optional) (default to undefined)
+let photoPaper2: Array<string>; // (optional) (default to undefined)
 let contactSheetRef: string; // (optional) (default to undefined)
 let negativeNumber: string; // (optional) (default to undefined)
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
@@ -121,8 +121,8 @@ const { status, data } = await apiInstance.apiPrintsGetCollection(
     page,
     session,
     session2,
-    paperBrand,
-    paperBrand2,
+    photoPaper,
+    photoPaper2,
     contactSheetRef,
     negativeNumber,
     xLOCALE,
@@ -137,8 +137,8 @@ const { status, data } = await apiInstance.apiPrintsGetCollection(
 | **page** | [**number**] | The collection page number | (optional) defaults to 1|
 | **session** | [**string**] |  | (optional) defaults to undefined|
 | **session2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
-| **paperBrand** | [**string**] |  | (optional) defaults to undefined|
-| **paperBrand2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
+| **photoPaper** | [**string**] |  | (optional) defaults to undefined|
+| **photoPaper2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
 | **contactSheetRef** | [**string**] |  | (optional) defaults to undefined|
 | **negativeNumber** | [**string**] |  | (optional) defaults to undefined|
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|

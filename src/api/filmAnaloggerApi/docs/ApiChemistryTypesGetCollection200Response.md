@@ -1,6 +1,6 @@
 # ApiChemistryTypesGetCollection200Response
 
-ChemistryType.jsonld-read-chemistry-type_translatable-read_timestampable-blameable-read collection.
+ChemistryType.jsonld-read-chemistry-type_translatable-read_timestampable-blameable-read_catalog-status-read collection.
 
 ## Properties
 
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **hydra_totalItems** | **number** |  | [optional] [default to undefined]
 **hydra_search** | [**HydraCollectionBaseSchemaNoPaginationHydraSearch**](HydraCollectionBaseSchemaNoPaginationHydraSearch.md) |  | [optional] [default to undefined]
 **hydra_view** | [**HydraCollectionBaseSchemaAllOfHydraView**](HydraCollectionBaseSchemaAllOfHydraView.md) |  | [optional] [default to undefined]
-**hydra_member** | [**Array&lt;ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead&gt;**](ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead.md) |  | [default to undefined]
+**hydra_member** | [**Array&lt;ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead&gt;**](ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead.md) |  | [default to undefined]
 
 ## Example
 

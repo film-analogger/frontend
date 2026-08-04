@@ -18,12 +18,7 @@ Name | Type | Description | Notes
 **paperHeightCm** | **number** |  | [optional] [default to undefined]
 **borderCm** | **number** |  | [optional] [default to undefined]
 **copies** | **number** |  | [optional] [default to undefined]
-**paperBrand** | **string** |  | [optional] [default to undefined]
-**paperBrandOther** | **string** |  | [optional] [default to undefined]
-**paperModel** | **string** |  | [optional] [default to undefined]
-**paperBase** | **string** |  | [optional] [default to undefined]
-**paperSurface** | **string** |  | [optional] [default to undefined]
-**paperSurfaceOther** | **string** |  | [optional] [default to undefined]
+**photoPaper** | **string** |  | [default to undefined]
 **preFlashSeconds** | **number** |  | [optional] [default to undefined]
 **exposures** | [**Array&lt;ExposureWritePrint&gt;**](ExposureWritePrint.md) |  | [optional] [default to undefined]
 **maskingNotes** | **string** |  | [optional] [default to undefined]
@@ -48,12 +43,7 @@ const instance: PrintWritePrint = {
     paperHeightCm,
     borderCm,
     copies,
-    paperBrand,
-    paperBrandOther,
-    paperModel,
-    paperBase,
-    paperSurface,
-    paperSurfaceOther,
+    photoPaper,
     preFlashSeconds,
     exposures,
     maskingNotes,

@@ -11,25 +11,28 @@ import {
     PrintSessionApi,
     type AppUserJsonldReadAppUserTimestampableBlameableRead,
     type ChemicalBathJsonldReadPrintSessionTimestampableBlameableRead,
-    type ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead,
-    type ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead,
-    type DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableRead,
+    type ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead,
+    type ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead,
+    type DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead,
     type ExposureJsonldReadPrintTimestampableBlameableRead,
-    type FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead,
-    type ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead,
+    type FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead,
+    type ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead,
     type PrintJsonldReadPrintTimestampableBlameableRead,
     type PrintSessionJsonldReadPrintSessionTimestampableBlameableRead,
 } from './filmAnaloggerApi';
 import { useTranslation } from 'react-i18next';
 
-export type FilmRead = FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead;
+export type FilmRead =
+    FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead;
 export type AppUserRead = AppUserJsonldReadAppUserTimestampableBlameableRead;
 export type ManufacturerRead =
-    ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead;
-export type ChemistryRead = ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead;
+    ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead;
+export type ChemistryRead =
+    ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead;
 export type ChemistryTypeRead =
-    ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableRead;
-export type DilutionRead = DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableRead;
+    ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+export type DilutionRead =
+    DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead;
 export type PrintSessionRead = PrintSessionJsonldReadPrintSessionTimestampableBlameableRead;
 export type PrintRead = PrintJsonldReadPrintTimestampableBlameableRead;
 export type ExposureRead = ExposureJsonldReadPrintTimestampableBlameableRead;

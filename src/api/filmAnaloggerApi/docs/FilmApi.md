@@ -27,11 +27,15 @@ const configuration = new Configuration();
 const apiInstance = new FilmApi(configuration);
 
 let page: number; //The collection page number (optional) (default to 1)
+let status: string; // (optional) (default to undefined)
+let status2: Array<string>; // (optional) (default to undefined)
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
 const { status, data } = await apiInstance.apiFilmsGetCollection(
     page,
+    status,
+    status2,
     xLOCALE,
     acceptLanguage
 );
@@ -42,6 +46,8 @@ const { status, data } = await apiInstance.apiFilmsGetCollection(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **page** | [**number**] | The collection page number | (optional) defaults to 1|
+| **status** | [**string**] |  | (optional) defaults to undefined|
+| **status2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
 
@@ -130,7 +136,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiFilmsIdGet**
-> FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead apiFilmsIdGet()
+> FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead apiFilmsIdGet()
 
 Retrieves a Film resource.
 
@@ -167,7 +173,7 @@ const { status, data } = await apiInstance.apiFilmsIdGet(
 
 ### Return type
 
-**FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead**
+**FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead**
 
 ### Authorization
 
@@ -190,7 +196,7 @@ const { status, data } = await apiInstance.apiFilmsIdGet(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiFilmsIdPatch**
-> FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead apiFilmsIdPatch(filmWriteFilmJsonMergePatch)
+> FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead apiFilmsIdPatch(filmWriteFilmCatalogStatusWriteJsonMergePatch)
 
 Updates the Film resource.
 
@@ -200,20 +206,20 @@ Updates the Film resource.
 import {
     FilmApi,
     Configuration,
-    FilmWriteFilmJsonMergePatch
+    FilmWriteFilmCatalogStatusWriteJsonMergePatch
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new FilmApi(configuration);
 
 let id: string; //Film identifier (default to undefined)
-let filmWriteFilmJsonMergePatch: FilmWriteFilmJsonMergePatch; //The updated Film resource
+let filmWriteFilmCatalogStatusWriteJsonMergePatch: FilmWriteFilmCatalogStatusWriteJsonMergePatch; //The updated Film resource
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
 const { status, data } = await apiInstance.apiFilmsIdPatch(
     id,
-    filmWriteFilmJsonMergePatch,
+    filmWriteFilmCatalogStatusWriteJsonMergePatch,
     xLOCALE,
     acceptLanguage
 );
@@ -223,7 +229,7 @@ const { status, data } = await apiInstance.apiFilmsIdPatch(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **filmWriteFilmJsonMergePatch** | **FilmWriteFilmJsonMergePatch**| The updated Film resource | |
+| **filmWriteFilmCatalogStatusWriteJsonMergePatch** | **FilmWriteFilmCatalogStatusWriteJsonMergePatch**| The updated Film resource | |
 | **id** | [**string**] | Film identifier | defaults to undefined|
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
@@ -231,7 +237,7 @@ const { status, data } = await apiInstance.apiFilmsIdPatch(
 
 ### Return type
 
-**FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead**
+**FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead**
 
 ### Authorization
 
@@ -256,7 +262,7 @@ const { status, data } = await apiInstance.apiFilmsIdPatch(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiFilmsPost**
-> FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead apiFilmsPost(filmWriteFilm)
+> FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead apiFilmsPost(filmWriteFilmCatalogStatusWrite)
 
 Creates a Film resource.
 
@@ -266,18 +272,18 @@ Creates a Film resource.
 import {
     FilmApi,
     Configuration,
-    FilmWriteFilm
+    FilmWriteFilmCatalogStatusWrite
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new FilmApi(configuration);
 
-let filmWriteFilm: FilmWriteFilm; //The new Film resource
+let filmWriteFilmCatalogStatusWrite: FilmWriteFilmCatalogStatusWrite; //The new Film resource
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
 const { status, data } = await apiInstance.apiFilmsPost(
-    filmWriteFilm,
+    filmWriteFilmCatalogStatusWrite,
     xLOCALE,
     acceptLanguage
 );
@@ -287,14 +293,14 @@ const { status, data } = await apiInstance.apiFilmsPost(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **filmWriteFilm** | **FilmWriteFilm**| The new Film resource | |
+| **filmWriteFilmCatalogStatusWrite** | **FilmWriteFilmCatalogStatusWrite**| The new Film resource | |
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
 
 
 ### Return type
 
-**FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead**
+**FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead**
 
 ### Authorization
 

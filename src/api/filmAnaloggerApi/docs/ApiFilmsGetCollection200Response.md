@@ -1,6 +1,6 @@
 # ApiFilmsGetCollection200Response
 
-Film.jsonld-read-film_translatable-read_timestampable-blameable-read collection.
+Film.jsonld-read-film_translatable-read_timestampable-blameable-read_catalog-status-read collection.
 
 ## Properties
 
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **hydra_totalItems** | **number** |  | [optional] [default to undefined]
 **hydra_search** | [**HydraCollectionBaseSchemaNoPaginationHydraSearch**](HydraCollectionBaseSchemaNoPaginationHydraSearch.md) |  | [optional] [default to undefined]
 **hydra_view** | [**HydraCollectionBaseSchemaAllOfHydraView**](HydraCollectionBaseSchemaAllOfHydraView.md) |  | [optional] [default to undefined]
-**hydra_member** | [**Array&lt;FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead&gt;**](FilmJsonldReadFilmTranslatableReadTimestampableBlameableRead.md) |  | [default to undefined]
+**hydra_member** | [**Array&lt;FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead&gt;**](FilmJsonldReadFilmTranslatableReadTimestampableBlameableReadCatalogStatusRead.md) |  | [default to undefined]
 
 ## Example
 

@@ -142,7 +142,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiPrintSessionsIdGet**
-> PrintSessionJsonldReadPrintSessionTimestampableBlameableRead apiPrintSessionsIdGet()
+> PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead apiPrintSessionsIdGet()
 
 Retrieves a PrintSession resource.
 
@@ -179,7 +179,7 @@ const { status, data } = await apiInstance.apiPrintSessionsIdGet(
 
 ### Return type
 
-**PrintSessionJsonldReadPrintSessionTimestampableBlameableRead**
+**PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead**
 
 ### Authorization
 
@@ -202,7 +202,7 @@ const { status, data } = await apiInstance.apiPrintSessionsIdGet(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiPrintSessionsIdPatch**
-> PrintSessionJsonldReadPrintSessionTimestampableBlameableRead apiPrintSessionsIdPatch(printSessionWritePrintSessionJsonMergePatch)
+> PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead apiPrintSessionsIdPatch(printSessionWritePrintSessionJsonMergePatch)
 
 Updates the PrintSession resource.
 
@@ -243,7 +243,7 @@ const { status, data } = await apiInstance.apiPrintSessionsIdPatch(
 
 ### Return type
 
-**PrintSessionJsonldReadPrintSessionTimestampableBlameableRead**
+**PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead**
 
 ### Authorization
 
@@ -268,7 +268,7 @@ const { status, data } = await apiInstance.apiPrintSessionsIdPatch(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiPrintSessionsPost**
-> PrintSessionJsonldReadPrintSessionTimestampableBlameableRead apiPrintSessionsPost(printSessionWritePrintSession)
+> PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead apiPrintSessionsPost(printSessionWritePrintSession)
 
 Creates a PrintSession resource.
 
@@ -306,7 +306,7 @@ const { status, data } = await apiInstance.apiPrintSessionsPost(
 
 ### Return type
 
-**PrintSessionJsonldReadPrintSessionTimestampableBlameableRead**
+**PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableRead**
 
 ### Authorization
 

@@ -22,12 +22,7 @@ Name | Type | Description | Notes
 **paperHeightCm** | **number** |  | [optional] [default to undefined]
 **borderCm** | **number** |  | [optional] [default to undefined]
 **copies** | **number** |  | [optional] [default to undefined]
-**paperBrand** | **string** |  | [optional] [default to undefined]
-**paperBrandOther** | **string** |  | [optional] [default to undefined]
-**paperModel** | **string** |  | [optional] [default to undefined]
-**paperBase** | **string** |  | [optional] [default to undefined]
-**paperSurface** | **string** |  | [optional] [default to undefined]
-**paperSurfaceOther** | **string** |  | [optional] [default to undefined]
+**photoPaper** | [**PhotoPaperJsonldReadPrintTimestampableBlameableRead**](PhotoPaperJsonldReadPrintTimestampableBlameableRead.md) |  | [default to undefined]
 **preFlashSeconds** | **number** |  | [optional] [default to undefined]
 **exposures** | [**Array&lt;ExposureJsonldReadPrintTimestampableBlameableRead&gt;**](ExposureJsonldReadPrintTimestampableBlameableRead.md) |  | [optional] [default to undefined]
 **maskingNotes** | **string** |  | [optional] [default to undefined]
@@ -60,12 +55,7 @@ const instance: PrintJsonldReadPrintTimestampableBlameableRead = {
     paperHeightCm,
     borderCm,
     copies,
-    paperBrand,
-    paperBrandOther,
-    paperModel,
-    paperBase,
-    paperSurface,
-    paperSurfaceOther,
+    photoPaper,
     preFlashSeconds,
     exposures,
     maskingNotes,

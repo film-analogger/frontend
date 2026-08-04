@@ -27,11 +27,15 @@ const configuration = new Configuration();
 const apiInstance = new ManufacturerApi(configuration);
 
 let page: number; //The collection page number (optional) (default to 1)
+let status: string; // (optional) (default to undefined)
+let status2: Array<string>; // (optional) (default to undefined)
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
 const { status, data } = await apiInstance.apiManufacturersGetCollection(
     page,
+    status,
+    status2,
     xLOCALE,
     acceptLanguage
 );
@@ -42,6 +46,8 @@ const { status, data } = await apiInstance.apiManufacturersGetCollection(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **page** | [**number**] | The collection page number | (optional) defaults to 1|
+| **status** | [**string**] |  | (optional) defaults to undefined|
+| **status2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
 
@@ -130,7 +136,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiManufacturersIdGet**
-> ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead apiManufacturersIdGet()
+> ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead apiManufacturersIdGet()
 
 Retrieves a Manufacturer resource.
 
@@ -167,7 +173,7 @@ const { status, data } = await apiInstance.apiManufacturersIdGet(
 
 ### Return type
 
-**ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead**
+**ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead**
 
 ### Authorization
 
@@ -190,7 +196,7 @@ const { status, data } = await apiInstance.apiManufacturersIdGet(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiManufacturersIdPatch**
-> ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead apiManufacturersIdPatch(manufacturerWriteManufacturerJsonMergePatch)
+> ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead apiManufacturersIdPatch(manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch)
 
 Updates the Manufacturer resource.
 
@@ -200,20 +206,20 @@ Updates the Manufacturer resource.
 import {
     ManufacturerApi,
     Configuration,
-    ManufacturerWriteManufacturerJsonMergePatch
+    ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new ManufacturerApi(configuration);
 
 let id: string; //Manufacturer identifier (default to undefined)
-let manufacturerWriteManufacturerJsonMergePatch: ManufacturerWriteManufacturerJsonMergePatch; //The updated Manufacturer resource
+let manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch: ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch; //The updated Manufacturer resource
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
 const { status, data } = await apiInstance.apiManufacturersIdPatch(
     id,
-    manufacturerWriteManufacturerJsonMergePatch,
+    manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch,
     xLOCALE,
     acceptLanguage
 );
@@ -223,7 +229,7 @@ const { status, data } = await apiInstance.apiManufacturersIdPatch(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **manufacturerWriteManufacturerJsonMergePatch** | **ManufacturerWriteManufacturerJsonMergePatch**| The updated Manufacturer resource | |
+| **manufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch** | **ManufacturerWriteManufacturerCatalogStatusWriteJsonMergePatch**| The updated Manufacturer resource | |
 | **id** | [**string**] | Manufacturer identifier | defaults to undefined|
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
@@ -231,7 +237,7 @@ const { status, data } = await apiInstance.apiManufacturersIdPatch(
 
 ### Return type
 
-**ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead**
+**ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead**
 
 ### Authorization
 
@@ -256,7 +262,7 @@ const { status, data } = await apiInstance.apiManufacturersIdPatch(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiManufacturersPost**
-> ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead apiManufacturersPost(manufacturerWriteManufacturer)
+> ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead apiManufacturersPost(manufacturerWriteManufacturerCatalogStatusWrite)
 
 Creates a Manufacturer resource.
 
@@ -266,18 +272,18 @@ Creates a Manufacturer resource.
 import {
     ManufacturerApi,
     Configuration,
-    ManufacturerWriteManufacturer
+    ManufacturerWriteManufacturerCatalogStatusWrite
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new ManufacturerApi(configuration);
 
-let manufacturerWriteManufacturer: ManufacturerWriteManufacturer; //The new Manufacturer resource
+let manufacturerWriteManufacturerCatalogStatusWrite: ManufacturerWriteManufacturerCatalogStatusWrite; //The new Manufacturer resource
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
 const { status, data } = await apiInstance.apiManufacturersPost(
-    manufacturerWriteManufacturer,
+    manufacturerWriteManufacturerCatalogStatusWrite,
     xLOCALE,
     acceptLanguage
 );
@@ -287,14 +293,14 @@ const { status, data } = await apiInstance.apiManufacturersPost(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **manufacturerWriteManufacturer** | **ManufacturerWriteManufacturer**| The new Manufacturer resource | |
+| **manufacturerWriteManufacturerCatalogStatusWrite** | **ManufacturerWriteManufacturerCatalogStatusWrite**| The new Manufacturer resource | |
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
 
 
 ### Return type
 
-**ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableRead**
+**ManufacturerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead**
 
 ### Authorization
 

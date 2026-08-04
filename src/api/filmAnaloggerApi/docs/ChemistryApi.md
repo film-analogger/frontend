@@ -27,11 +27,15 @@ const configuration = new Configuration();
 const apiInstance = new ChemistryApi(configuration);
 
 let page: number; //The collection page number (optional) (default to 1)
+let status: string; // (optional) (default to undefined)
+let status2: Array<string>; // (optional) (default to undefined)
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
 const { status, data } = await apiInstance.apiChemistriesGetCollection(
     page,
+    status,
+    status2,
     xLOCALE,
     acceptLanguage
 );
@@ -42,6 +46,8 @@ const { status, data } = await apiInstance.apiChemistriesGetCollection(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **page** | [**number**] | The collection page number | (optional) defaults to 1|
+| **status** | [**string**] |  | (optional) defaults to undefined|
+| **status2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
 
@@ -130,7 +136,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiChemistriesIdGet**
-> ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead apiChemistriesIdGet()
+> ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead apiChemistriesIdGet()
 
 Retrieves a Chemistry resource.
 
@@ -167,7 +173,7 @@ const { status, data } = await apiInstance.apiChemistriesIdGet(
 
 ### Return type
 
-**ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead**
+**ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead**
 
 ### Authorization
 
@@ -190,7 +196,7 @@ const { status, data } = await apiInstance.apiChemistriesIdGet(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiChemistriesIdPatch**
-> ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead apiChemistriesIdPatch(chemistryWriteChemistryJsonMergePatch)
+> ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead apiChemistriesIdPatch(chemistryWriteChemistryCatalogStatusWriteJsonMergePatch)
 
 Updates the Chemistry resource.
 
@@ -200,20 +206,20 @@ Updates the Chemistry resource.
 import {
     ChemistryApi,
     Configuration,
-    ChemistryWriteChemistryJsonMergePatch
+    ChemistryWriteChemistryCatalogStatusWriteJsonMergePatch
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new ChemistryApi(configuration);
 
 let id: string; //Chemistry identifier (default to undefined)
-let chemistryWriteChemistryJsonMergePatch: ChemistryWriteChemistryJsonMergePatch; //The updated Chemistry resource
+let chemistryWriteChemistryCatalogStatusWriteJsonMergePatch: ChemistryWriteChemistryCatalogStatusWriteJsonMergePatch; //The updated Chemistry resource
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
 const { status, data } = await apiInstance.apiChemistriesIdPatch(
     id,
-    chemistryWriteChemistryJsonMergePatch,
+    chemistryWriteChemistryCatalogStatusWriteJsonMergePatch,
     xLOCALE,
     acceptLanguage
 );
@@ -223,7 +229,7 @@ const { status, data } = await apiInstance.apiChemistriesIdPatch(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **chemistryWriteChemistryJsonMergePatch** | **ChemistryWriteChemistryJsonMergePatch**| The updated Chemistry resource | |
+| **chemistryWriteChemistryCatalogStatusWriteJsonMergePatch** | **ChemistryWriteChemistryCatalogStatusWriteJsonMergePatch**| The updated Chemistry resource | |
 | **id** | [**string**] | Chemistry identifier | defaults to undefined|
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
@@ -231,7 +237,7 @@ const { status, data } = await apiInstance.apiChemistriesIdPatch(
 
 ### Return type
 
-**ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead**
+**ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead**
 
 ### Authorization
 
@@ -256,7 +262,7 @@ const { status, data } = await apiInstance.apiChemistriesIdPatch(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiChemistriesPost**
-> ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead apiChemistriesPost(chemistryWriteChemistry)
+> ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead apiChemistriesPost(chemistryWriteChemistryCatalogStatusWrite)
 
 Creates a Chemistry resource.
 
@@ -266,18 +272,18 @@ Creates a Chemistry resource.
 import {
     ChemistryApi,
     Configuration,
-    ChemistryWriteChemistry
+    ChemistryWriteChemistryCatalogStatusWrite
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new ChemistryApi(configuration);
 
-let chemistryWriteChemistry: ChemistryWriteChemistry; //The new Chemistry resource
+let chemistryWriteChemistryCatalogStatusWrite: ChemistryWriteChemistryCatalogStatusWrite; //The new Chemistry resource
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
 const { status, data } = await apiInstance.apiChemistriesPost(
-    chemistryWriteChemistry,
+    chemistryWriteChemistryCatalogStatusWrite,
     xLOCALE,
     acceptLanguage
 );
@@ -287,14 +293,14 @@ const { status, data } = await apiInstance.apiChemistriesPost(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **chemistryWriteChemistry** | **ChemistryWriteChemistry**| The new Chemistry resource | |
+| **chemistryWriteChemistryCatalogStatusWrite** | **ChemistryWriteChemistryCatalogStatusWrite**| The new Chemistry resource | |
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
 
 
 ### Return type
 
-**ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableRead**
+**ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead**
 
 ### Authorization
 
