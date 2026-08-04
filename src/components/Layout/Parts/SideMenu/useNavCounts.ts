@@ -1,11 +1,18 @@
 import React from 'react';
-import { useChemistryApi, useFilmApi, useManufacturerApi, usePrintSessionApi } from '~/api/client';
+import {
+    useChemistryApi,
+    useDevelopmentLogApi,
+    useFilmApi,
+    useManufacturerApi,
+    usePrintSessionApi,
+} from '~/api/client';
 
 interface NavCounts {
     films?: number;
     chemistries?: number;
     manufacturers?: number;
     sessions?: number;
+    negatives?: number;
 }
 
 export const useNavCounts = (): NavCounts => {
@@ -13,6 +20,7 @@ export const useNavCounts = (): NavCounts => {
     const { chemistryApi } = useChemistryApi();
     const { manufacturerApi } = useManufacturerApi();
     const { printSessionApi } = usePrintSessionApi();
+    const { developmentLogApi } = useDevelopmentLogApi();
 
     const [counts, setCounts] = React.useState<NavCounts>({});
 
@@ -20,11 +28,12 @@ export const useNavCounts = (): NavCounts => {
         let cancelled = false;
 
         const load = async () => {
-            const [films, chemistries, manufacturers, sessions] = await Promise.all([
+            const [films, chemistries, manufacturers, sessions, negatives] = await Promise.all([
                 filmApi.apiFilmsGetCollection().catch(() => null),
                 chemistryApi.apiChemistriesGetCollection().catch(() => null),
                 manufacturerApi.apiManufacturersGetCollection().catch(() => null),
                 printSessionApi.apiPrintSessionsGetCollection().catch(() => null),
+                developmentLogApi.apiDevelopmentLogsGetCollection().catch(() => null),
             ]);
             if (cancelled) {
                 return;
@@ -39,6 +48,8 @@ export const useNavCounts = (): NavCounts => {
                     manufacturers?.data['hydra:member'].length,
                 sessions:
                     sessions?.data['hydra:totalItems'] ?? sessions?.data['hydra:member'].length,
+                negatives:
+                    negatives?.data['hydra:totalItems'] ?? negatives?.data['hydra:member'].length,
             });
         };
 
@@ -49,7 +60,7 @@ export const useNavCounts = (): NavCounts => {
         return () => {
             cancelled = true;
         };
-    }, [filmApi, chemistryApi, manufacturerApi, printSessionApi]);
+    }, [filmApi, chemistryApi, manufacturerApi, printSessionApi, developmentLogApi]);
 
     return counts;
 };

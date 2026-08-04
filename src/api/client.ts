@@ -2,19 +2,25 @@ import { useMemo } from 'react';
 import { useKeycloak } from '~/keycloak/useKeycloak';
 import {
     AppUserApi,
+    CameraApi,
     ChemistryApi,
     ChemistryTypeApi,
     Configuration,
+    DevelopmentLogApi,
     EnlargerApi,
     FilmApi,
     ManufacturerApi,
     PhotoPaperApi,
     PrintApi,
     PrintSessionApi,
+    TagApi,
     type AppUserJsonldReadAppUserTimestampableBlameableRead,
+    type CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead,
     type ChemicalBathJsonldReadPrintSessionTimestampableBlameableRead,
     type ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead,
     type ChemistryTypeJsonldReadChemistryTypeTranslatableReadTimestampableBlameableReadCatalogStatusRead,
+    type DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead,
+    type DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead,
     type DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead,
     type EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead,
     type ExposureJsonldReadPrintTimestampableBlameableRead,
@@ -24,6 +30,7 @@ import {
     type PrintJsonldReadPrintTimestampableBlameableRead,
     type PrintSessionJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead,
     type PrintSessionJsonldReadPrintSessionTimestampableBlameableRead,
+    type TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead,
 } from './filmAnaloggerApi';
 import { createCachedAxios } from './requestCache';
 import { useTranslation } from 'react-i18next';
@@ -51,6 +58,14 @@ export type PhotoPaperRead =
     PhotoPaperJsonldReadPhotoPaperTranslatableReadTimestampableBlameableReadCatalogStatusRead;
 export type EnlargerRead =
     EnlargerJsonldReadEnlargerTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+export type DevelopmentLogRead = DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableRead;
+// Returned by apiDevelopmentLogsIdGet: film, camera, steps' chemistry and tags
+// come fully nested, so a negative detail page needs this single call.
+export type DevelopmentLogDetailRead =
+    DevelopmentLogJsonldReadDevelopmentLogTimestampableBlameableReadReadFilmReadCameraReadTagTranslatableReadCatalogStatusRead;
+export type CameraRead =
+    CameraJsonldReadCameraTranslatableReadTimestampableBlameableReadCatalogStatusRead;
+export type TagRead = TagJsonldReadTagTranslatableReadTimestampableBlameableReadCatalogStatusRead;
 
 // Shared across every API instance so identical concurrent/rapid GET requests
 // (StrictMode's double-effect-invocation, or independent components fetching
@@ -171,6 +186,36 @@ const useEnlargerApi = () => {
     return { enlargerApi };
 };
 
+const useDevelopmentLogApi = () => {
+    const configuration = useApiConfiguration();
+    const developmentLogApi = useMemo(
+        () => new DevelopmentLogApi(configuration, undefined, cachedAxios),
+        [configuration],
+    );
+
+    return { developmentLogApi };
+};
+
+const useCameraApi = () => {
+    const configuration = useApiConfiguration();
+    const cameraApi = useMemo(
+        () => new CameraApi(configuration, undefined, cachedAxios),
+        [configuration],
+    );
+
+    return { cameraApi };
+};
+
+const useTagApi = () => {
+    const configuration = useApiConfiguration();
+    const tagApi = useMemo(
+        () => new TagApi(configuration, undefined, cachedAxios),
+        [configuration],
+    );
+
+    return { tagApi };
+};
+
 export {
     useFilmApi,
     useAppUserApi,
@@ -181,4 +226,7 @@ export {
     usePrintSessionApi,
     usePhotoPaperApi,
     useEnlargerApi,
+    useDevelopmentLogApi,
+    useCameraApi,
+    useTagApi,
 };

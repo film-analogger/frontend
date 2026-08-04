@@ -18,7 +18,13 @@ vi.mock('../OpenSource/OpenSource', () => ({
 }));
 
 vi.mock('./useNavCounts', () => ({
-    useNavCounts: () => ({ films: 12, chemistries: 9, manufacturers: 6, sessions: 28 }),
+    useNavCounts: () => ({
+        films: 12,
+        chemistries: 9,
+        manufacturers: 6,
+        sessions: 28,
+        negatives: 42,
+    }),
 }));
 
 const mockSetAppearance = vi.fn();
@@ -65,10 +71,18 @@ describe('SideMenu', () => {
 
     it('should render "soon" items as disabled', () => {
         renderSideMenu();
-        expect(screen.getByLabelText('components.sidemenu.filmLogSheet')).toHaveAttribute(
+        expect(screen.getByLabelText('components.sidemenu.developmentCharts')).toHaveAttribute(
             'aria-disabled',
             'true',
         );
+    });
+
+    it('should link the negatives item to /negatifs with its count', () => {
+        renderSideMenu();
+        expect(
+            screen.getByLabelText('components.sidemenu.filmLogSheet').closest('a'),
+        ).toHaveAttribute('href', '/negatifs');
+        expect(screen.getByText('42')).toBeInTheDocument();
     });
 
     it('should render the lab mode toggle', () => {

@@ -72,7 +72,8 @@ const SideMenu: React.FunctionComponent = () => {
                 {
                     translation: 'components.sidemenu.filmLogSheet',
                     icon: <GradientIcon />,
-                    soon: true,
+                    href: '/negatifs',
+                    count: counts.negatives,
                 },
                 {
                     translation: 'components.sidemenu.developmentCharts',

@@ -180,6 +180,99 @@
             }
         }
     },
+    "negatifs": {
+        "list": {
+            "title": "Négatifs",
+            "count": "{{count}} négatif",
+            "count_other": "{{count}} négatifs",
+            "chronological": "classement chronologique",
+            "allYears": "Tout",
+            "newNegative": "Consigner un négatif",
+            "empty": "Aucun négatif consigné pour le moment.",
+            "noArchive": "—",
+            "stepsCount": "{{count}} bain",
+            "stepsCount_other": "{{count}} bains"
+        },
+        "detail": {
+            "title": "Négatif",
+            "archiving": "Archivage physique",
+            "developedOn": "Développé le",
+            "steps": "Bains",
+            "totalDuration": "Durée totale",
+            "rating": "Note",
+            "ratingValue": "{{rating}} / 5",
+            "nominal": "nominal {{iso}}",
+            "timeline": "Chronologie des bains",
+            "totalLabel": "total {{duration}}",
+            "noSteps": "Aucun bain enregistré pour ce négatif.",
+            "unknownChemistry": "Chimie",
+            "developmentNotes": "Notes de développement",
+            "shooting": "Prise de vue",
+            "camera": "Boîtier",
+            "shotAt": "Pris en",
+            "isoShotAt": "ISO d'exposition",
+            "temperatureValue": "{{temperature}} °C",
+            "binder": "Classeur",
+            "sheet": "Feuille",
+            "noArchiving": "Pas encore archivé."
+        },
+        "wizard": {
+            "title": "Consigner un développement",
+            "subtitle": "Prise de vue, bains et finition, puis relecture.",
+            "steps": {
+                "context": "Prise de vue",
+                "steps": "Bains",
+                "finish": "Après séchage",
+                "review": "Relecture"
+            },
+            "fields": {
+                "film": "Pellicule",
+                "camera": "Boîtier",
+                "noCamera": "Aucun boîtier",
+                "shotYear": "Année",
+                "shotMonth": "Mois",
+                "shotDay": "Jour",
+                "isoShotAt": "ISO d'exposition",
+                "isoShotAtHint": "Peut différer de l'ISO nominal en cas de poussage ou de tirage",
+                "process": "Procédé",
+                "developedAt": "Date de développement",
+                "binderId": "Classeur",
+                "binderIdHint": "Un classeur par format de pellicule",
+                "contactSheetNumber": "Numéro de feuille",
+                "shootingNotes": "Notes de prise de vue",
+                "chemistry": "Chimie",
+                "noChemistry": "Aucune chimie (eau seule)",
+                "chemistryParts": "Parts de chimie",
+                "waterParts": "Parts d'eau",
+                "temperature": "Température (°C)",
+                "durationSeconds": "Durée (s)",
+                "agitationNote": "Agitation",
+                "stepNumber": "#",
+                "rating": "Note du développement",
+                "tags": "Tags",
+                "developmentNotes": "Notes de développement"
+            },
+            "addStep": "Ajouter un bain",
+            "removeStep": "Retirer le bain",
+            "noTags": "Aucun tag disponible pour le moment.",
+            "back": "Retour",
+            "next": "Étape suivante",
+            "submit": "Consigner le développement",
+            "submitting": "Enregistrement…",
+            "review": {
+                "film": "Pellicule & boîtier",
+                "developedAt": "Développé le",
+                "process": "Procédé",
+                "steps": "Bains",
+                "stepsCount": "{{count}} bain",
+                "stepsCount_other": "{{count}} bains",
+                "totalDuration": "Durée totale",
+                "totalDurationValue": "{{seconds}}s",
+                "rating": "Note",
+                "ratingValue": "{{rating}} / 5"
+            }
+        }
+    },
     "manufacturers": {
         "list": {
             "title": "Fabricants",
@@ -250,8 +343,8 @@
         "appearance": "Apparence"
     },
     "errors": {
-        "api" : {
-            "loadingData" : "Une erreur s'est produite lors du chargement des données. Veuillez réessayer plus tard."
+        "api": {
+            "loadingData": "Une erreur s'est produite lors du chargement des données. Veuillez réessayer plus tard."
         },
         "404": {
             "kind": "Introuvable",

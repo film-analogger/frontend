@@ -180,6 +180,99 @@
             }
         }
     },
+    "negatifs": {
+        "list": {
+            "title": "Negatives",
+            "count": "{{count}} negative",
+            "count_other": "{{count}} negatives",
+            "chronological": "chronological order",
+            "allYears": "All",
+            "newNegative": "Log a negative",
+            "empty": "No negatives logged yet.",
+            "noArchive": "—",
+            "stepsCount": "{{count}} step",
+            "stepsCount_other": "{{count}} steps"
+        },
+        "detail": {
+            "title": "Negative",
+            "archiving": "Physical archiving",
+            "developedOn": "Developed on",
+            "steps": "Steps",
+            "totalDuration": "Total duration",
+            "rating": "Rating",
+            "ratingValue": "{{rating}} / 5",
+            "nominal": "nominal {{iso}}",
+            "timeline": "Development timeline",
+            "totalLabel": "total {{duration}}",
+            "noSteps": "No development steps recorded for this negative.",
+            "unknownChemistry": "Chemistry",
+            "developmentNotes": "Development notes",
+            "shooting": "Shooting",
+            "camera": "Camera",
+            "shotAt": "Shot at",
+            "isoShotAt": "ISO exposed at",
+            "temperatureValue": "{{temperature}}°C",
+            "binder": "Binder",
+            "sheet": "Sheet",
+            "noArchiving": "Not archived yet."
+        },
+        "wizard": {
+            "title": "Log a development",
+            "subtitle": "Shooting info, development steps and finishing, then review.",
+            "steps": {
+                "context": "Shooting",
+                "steps": "Development steps",
+                "finish": "After drying",
+                "review": "Review"
+            },
+            "fields": {
+                "film": "Film",
+                "camera": "Camera",
+                "noCamera": "No camera",
+                "shotYear": "Year",
+                "shotMonth": "Month",
+                "shotDay": "Day",
+                "isoShotAt": "ISO exposed at",
+                "isoShotAtHint": "Can differ from the film's nominal ISO when pushed or pulled",
+                "process": "Process",
+                "developedAt": "Development date",
+                "binderId": "Binder",
+                "binderIdHint": "One binder per film format",
+                "contactSheetNumber": "Contact sheet number",
+                "shootingNotes": "Shooting notes",
+                "chemistry": "Chemistry",
+                "noChemistry": "No chemistry (water only)",
+                "chemistryParts": "Chemistry parts",
+                "waterParts": "Water parts",
+                "temperature": "Temperature (°C)",
+                "durationSeconds": "Duration (s)",
+                "agitationNote": "Agitation",
+                "stepNumber": "#",
+                "rating": "Development rating",
+                "tags": "Tags",
+                "developmentNotes": "Development notes"
+            },
+            "addStep": "Add a step",
+            "removeStep": "Remove the step",
+            "noTags": "No tags available yet.",
+            "back": "Back",
+            "next": "Next step",
+            "submit": "Log the development",
+            "submitting": "Saving…",
+            "review": {
+                "film": "Film & camera",
+                "developedAt": "Developed on",
+                "process": "Process",
+                "steps": "Steps",
+                "stepsCount": "{{count}} step",
+                "stepsCount_other": "{{count}} steps",
+                "totalDuration": "Total duration",
+                "totalDurationValue": "{{seconds}}s",
+                "rating": "Rating",
+                "ratingValue": "{{rating}} / 5"
+            }
+        }
+    },
     "manufacturers": {
         "list": {
             "title": "Manufacturers",
@@ -249,9 +342,9 @@
         "memberSince": "Member since {{date}}",
         "appearance": "Appearance"
     },
-    "errors" : {
-        "api" : {
-            "loadingData" : "An error occurred while loading data. Please try again later."
+    "errors": {
+        "api": {
+            "loadingData": "An error occurred while loading data. Please try again later."
         },
         "404": {
             "kind": "Not found",
@@ -315,8 +408,8 @@
             "chemistriesRepository": "Chemistries repository"
         }
     },
-    "legal" : {
-        "contact" : {
+    "legal": {
+        "contact": {
             "title": "Contact us",
             "description": "TODO"
         },

@@ -9,6 +9,9 @@ export default [
         route('sessions', './routes/sessions/SessionList.tsx'),
         route('sessions/new', './routes/sessions/wizard/NewSessionWizard.tsx'),
         route('sessions/:sessionId', './routes/sessions/SessionDetail.tsx'),
+        route('negatifs', './routes/negatifs/NegativeList.tsx'),
+        route('negatifs/new', './routes/negatifs/wizard/NewDevelopmentLogWizard.tsx'),
+        route('negatifs/:developmentLogId', './routes/negatifs/NegativeDetail.tsx'),
         ...prefix('data', [
             route('films', './routes/data/films/FilmList.tsx'),
             route('films/:filmId', './routes/data/films/FilmDetail.tsx'),
