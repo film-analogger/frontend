@@ -1,7 +1,7 @@
-import { Box, CircularProgress, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
 import keycloak from './keycloak';
 import { KeycloakContext } from './keycloakContext';
 
@@ -37,19 +37,10 @@ const KeycloakProvider: React.FunctionComponent<KeycloakProviderProps> = ({ chil
             {children}
         </KeycloakContext.Provider>
     ) : (
-        <Box
-            sx={{
-                alignItems: 'center',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 2,
-                height: '100vh',
-                justifyContent: 'center',
-            }}
-        >
-            <CircularProgress aria-label={t('app.loading')} />
-            <Typography variant="body2">{t('auth.loading')}</Typography>
-        </Box>
+        <PageLoader
+            activeStep={0}
+            steps={[{ title: t('auth.loading'), hint: t('components.pageLoader.authHint') }]}
+        />
     );
 };
 

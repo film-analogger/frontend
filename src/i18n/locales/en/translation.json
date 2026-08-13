@@ -509,6 +509,10 @@
         "header": {
             "search": "Search",
             "searchPlaceholder": "Film, chemistry…"
+        },
+        "pageLoader": {
+            "subtitle": "Film lab logbook",
+            "authHint": "Secure connection in progress…"
         }
     }
 }

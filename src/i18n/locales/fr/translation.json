@@ -509,6 +509,10 @@
         "header": {
             "search": "Recherche",
             "searchPlaceholder": "Pellicule, chimie…"
+        },
+        "pageLoader": {
+            "subtitle": "Carnet de labo argentique",
+            "authHint": "Connexion sécurisée en cours…"
         }
     }
 }
