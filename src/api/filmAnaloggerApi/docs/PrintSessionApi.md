@@ -31,6 +31,13 @@ let dateBefore: string; // (optional) (default to undefined)
 let dateStrictlyBefore: string; // (optional) (default to undefined)
 let dateAfter: string; // (optional) (default to undefined)
 let dateStrictlyAfter: string; // (optional) (default to undefined)
+let lab: string; // (optional) (default to undefined)
+let enlarger: string; // (optional) (default to undefined)
+let enlarger2: Array<string>; // (optional) (default to undefined)
+let chemicalBathsChemistryName: string; // (optional) (default to undefined)
+let notes: string; // (optional) (default to undefined)
+let orderDate: 'asc' | 'desc'; // (optional) (default to 'asc')
+let orderNumber: 'asc' | 'desc'; // (optional) (default to 'asc')
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
@@ -40,6 +47,13 @@ const { status, data } = await apiInstance.apiPrintSessionsGetCollection(
     dateStrictlyBefore,
     dateAfter,
     dateStrictlyAfter,
+    lab,
+    enlarger,
+    enlarger2,
+    chemicalBathsChemistryName,
+    notes,
+    orderDate,
+    orderNumber,
     xLOCALE,
     acceptLanguage
 );
@@ -54,6 +68,13 @@ const { status, data } = await apiInstance.apiPrintSessionsGetCollection(
 | **dateStrictlyBefore** | [**string**] |  | (optional) defaults to undefined|
 | **dateAfter** | [**string**] |  | (optional) defaults to undefined|
 | **dateStrictlyAfter** | [**string**] |  | (optional) defaults to undefined|
+| **lab** | [**string**] |  | (optional) defaults to undefined|
+| **enlarger** | [**string**] |  | (optional) defaults to undefined|
+| **enlarger2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
+| **chemicalBathsChemistryName** | [**string**] |  | (optional) defaults to undefined|
+| **notes** | [**string**] |  | (optional) defaults to undefined|
+| **orderDate** | [**&#39;asc&#39; | &#39;desc&#39;**]**Array<&#39;asc&#39; &#124; &#39;desc&#39;>** |  | (optional) defaults to 'asc'|
+| **orderNumber** | [**&#39;asc&#39; | &#39;desc&#39;**]**Array<&#39;asc&#39; &#124; &#39;desc&#39;>** |  | (optional) defaults to 'asc'|
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
 

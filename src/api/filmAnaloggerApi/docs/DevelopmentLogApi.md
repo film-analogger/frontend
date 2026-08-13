@@ -27,11 +27,83 @@ const configuration = new Configuration();
 const apiInstance = new DevelopmentLogApi(configuration);
 
 let page: number; //The collection page number (optional) (default to 1)
+let film: string; // (optional) (default to undefined)
+let film2: Array<string>; // (optional) (default to undefined)
+let camera: string; // (optional) (default to undefined)
+let camera2: Array<string>; // (optional) (default to undefined)
+let shotAtYear: number; // (optional) (default to undefined)
+let shotAtYear2: Array<number>; // (optional) (default to undefined)
+let shotAtMonth: number; // (optional) (default to undefined)
+let shotAtMonth2: Array<number>; // (optional) (default to undefined)
+let isoShotAt: number; // (optional) (default to undefined)
+let isoShotAt2: Array<number>; // (optional) (default to undefined)
+let shootingNotes: string; // (optional) (default to undefined)
+let process: string; // (optional) (default to undefined)
+let process2: Array<string>; // (optional) (default to undefined)
+let stepsChemistryName: string; // (optional) (default to undefined)
+let rating: number; // (optional) (default to undefined)
+let rating2: Array<number>; // (optional) (default to undefined)
+let tags: string; // (optional) (default to undefined)
+let tags2: Array<string>; // (optional) (default to undefined)
+let binderId: string; // (optional) (default to undefined)
+let contactSheetNumber: number; // (optional) (default to undefined)
+let contactSheetNumber2: Array<number>; // (optional) (default to undefined)
+let ratingBetween: string; // (optional) (default to undefined)
+let ratingGt: string; // (optional) (default to undefined)
+let ratingGte: string; // (optional) (default to undefined)
+let ratingLt: string; // (optional) (default to undefined)
+let ratingLte: string; // (optional) (default to undefined)
+let developedAtBefore: string; // (optional) (default to undefined)
+let developedAtStrictlyBefore: string; // (optional) (default to undefined)
+let developedAtAfter: string; // (optional) (default to undefined)
+let developedAtStrictlyAfter: string; // (optional) (default to undefined)
+let pulled: boolean; //Filters development logs shot below the film\'s nominal sensibility (isoShotAt < film.sensibility). (optional) (default to undefined)
+let pushed: boolean; //Filters development logs shot above the film\'s nominal sensibility (isoShotAt > film.sensibility). (optional) (default to undefined)
+let orderShotAt: 'asc' | 'desc'; // (optional) (default to 'asc')
+let orderDevelopedAt: 'asc' | 'desc'; // (optional) (default to 'asc')
+let orderBinderId: 'asc' | 'desc'; // (optional) (default to 'asc')
+let orderContactSheetNumber: 'asc' | 'desc'; // (optional) (default to 'asc')
 let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
 let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
 
 const { status, data } = await apiInstance.apiDevelopmentLogsGetCollection(
     page,
+    film,
+    film2,
+    camera,
+    camera2,
+    shotAtYear,
+    shotAtYear2,
+    shotAtMonth,
+    shotAtMonth2,
+    isoShotAt,
+    isoShotAt2,
+    shootingNotes,
+    process,
+    process2,
+    stepsChemistryName,
+    rating,
+    rating2,
+    tags,
+    tags2,
+    binderId,
+    contactSheetNumber,
+    contactSheetNumber2,
+    ratingBetween,
+    ratingGt,
+    ratingGte,
+    ratingLt,
+    ratingLte,
+    developedAtBefore,
+    developedAtStrictlyBefore,
+    developedAtAfter,
+    developedAtStrictlyAfter,
+    pulled,
+    pushed,
+    orderShotAt,
+    orderDevelopedAt,
+    orderBinderId,
+    orderContactSheetNumber,
     xLOCALE,
     acceptLanguage
 );
@@ -42,6 +114,42 @@ const { status, data } = await apiInstance.apiDevelopmentLogsGetCollection(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **page** | [**number**] | The collection page number | (optional) defaults to 1|
+| **film** | [**string**] |  | (optional) defaults to undefined|
+| **film2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
+| **camera** | [**string**] |  | (optional) defaults to undefined|
+| **camera2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
+| **shotAtYear** | [**number**] |  | (optional) defaults to undefined|
+| **shotAtYear2** | **Array&lt;number&gt;** |  | (optional) defaults to undefined|
+| **shotAtMonth** | [**number**] |  | (optional) defaults to undefined|
+| **shotAtMonth2** | **Array&lt;number&gt;** |  | (optional) defaults to undefined|
+| **isoShotAt** | [**number**] |  | (optional) defaults to undefined|
+| **isoShotAt2** | **Array&lt;number&gt;** |  | (optional) defaults to undefined|
+| **shootingNotes** | [**string**] |  | (optional) defaults to undefined|
+| **process** | [**string**] |  | (optional) defaults to undefined|
+| **process2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
+| **stepsChemistryName** | [**string**] |  | (optional) defaults to undefined|
+| **rating** | [**number**] |  | (optional) defaults to undefined|
+| **rating2** | **Array&lt;number&gt;** |  | (optional) defaults to undefined|
+| **tags** | [**string**] |  | (optional) defaults to undefined|
+| **tags2** | **Array&lt;string&gt;** |  | (optional) defaults to undefined|
+| **binderId** | [**string**] |  | (optional) defaults to undefined|
+| **contactSheetNumber** | [**number**] |  | (optional) defaults to undefined|
+| **contactSheetNumber2** | **Array&lt;number&gt;** |  | (optional) defaults to undefined|
+| **ratingBetween** | [**string**] |  | (optional) defaults to undefined|
+| **ratingGt** | [**string**] |  | (optional) defaults to undefined|
+| **ratingGte** | [**string**] |  | (optional) defaults to undefined|
+| **ratingLt** | [**string**] |  | (optional) defaults to undefined|
+| **ratingLte** | [**string**] |  | (optional) defaults to undefined|
+| **developedAtBefore** | [**string**] |  | (optional) defaults to undefined|
+| **developedAtStrictlyBefore** | [**string**] |  | (optional) defaults to undefined|
+| **developedAtAfter** | [**string**] |  | (optional) defaults to undefined|
+| **developedAtStrictlyAfter** | [**string**] |  | (optional) defaults to undefined|
+| **pulled** | [**boolean**] | Filters development logs shot below the film\&#39;s nominal sensibility (isoShotAt &lt; film.sensibility). | (optional) defaults to undefined|
+| **pushed** | [**boolean**] | Filters development logs shot above the film\&#39;s nominal sensibility (isoShotAt &gt; film.sensibility). | (optional) defaults to undefined|
+| **orderShotAt** | [**&#39;asc&#39; | &#39;desc&#39;**]**Array<&#39;asc&#39; &#124; &#39;desc&#39;>** |  | (optional) defaults to 'asc'|
+| **orderDevelopedAt** | [**&#39;asc&#39; | &#39;desc&#39;**]**Array<&#39;asc&#39; &#124; &#39;desc&#39;>** |  | (optional) defaults to 'asc'|
+| **orderBinderId** | [**&#39;asc&#39; | &#39;desc&#39;**]**Array<&#39;asc&#39; &#124; &#39;desc&#39;>** |  | (optional) defaults to 'asc'|
+| **orderContactSheetNumber** | [**&#39;asc&#39; | &#39;desc&#39;**]**Array<&#39;asc&#39; &#124; &#39;desc&#39;>** |  | (optional) defaults to 'asc'|
 | **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
 | **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
 

@@ -183,15 +183,42 @@
     "negatifs": {
         "list": {
             "title": "Négatifs",
-            "count": "{{count}} négatif",
-            "count_other": "{{count}} négatifs",
-            "chronological": "classement chronologique",
-            "allYears": "Tout",
-            "newNegative": "Consigner un négatif",
+            "count": "{{count}} développement",
+            "count_other": "{{count}} développements",
+            "chronological": "triés par date de développement",
+            "newNegative": "Consigner un développement",
             "empty": "Aucun négatif consigné pour le moment.",
+            "noResults": "Aucun négatif ne correspond à ces filtres.",
             "noArchive": "—",
             "stepsCount": "{{count}} bain",
-            "stepsCount_other": "{{count}} bains"
+            "stepsCount_other": "{{count}} bains",
+            "searchPlaceholder": "Pellicule, boîtier, tag…",
+            "notesSearchLabel": "Recherche dans les notes",
+            "notesSearchPlaceholder": "anniversaire, concert, atelier…",
+            "developedOn": "dév. {{date}}",
+            "loadMore": "Charger la suite",
+            "rowsOfTotal": "{{visible}} lignes sur {{total}}",
+            "filters": {
+                "process": "Procédé",
+                "processAll": "Tous",
+                "exposition": "Exposition",
+                "expositionAll": "Toutes",
+                "expositionNormal": "Normale",
+                "expositionPush": "Poussée",
+                "expositionPull": "Tirée",
+                "binder": "Classeur",
+                "binderAll": "Tous les classeurs",
+                "film": "Pellicule",
+                "filmAll": "Toutes"
+            },
+            "columns": {
+                "archive": "Archivage",
+                "film": "Pellicule",
+                "dates": "Dates",
+                "notes": "Notes",
+                "sensitivity": "Sensibilité",
+                "rating": "Notation"
+            }
         },
         "detail": {
             "title": "Négatif",

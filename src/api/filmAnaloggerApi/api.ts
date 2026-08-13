@@ -7014,12 +7014,48 @@ export const DevelopmentLogApiAxiosParamCreator = function (configuration?: Conf
          * Retrieves the collection of DevelopmentLog resources.
          * @summary Retrieves the collection of DevelopmentLog resources.
          * @param {number} [page] The collection page number
+         * @param {string} [film] 
+         * @param {Array<string>} [film2] 
+         * @param {string} [camera] 
+         * @param {Array<string>} [camera2] 
+         * @param {number} [shotAtYear] 
+         * @param {Array<number>} [shotAtYear2] 
+         * @param {number} [shotAtMonth] 
+         * @param {Array<number>} [shotAtMonth2] 
+         * @param {number} [isoShotAt] 
+         * @param {Array<number>} [isoShotAt2] 
+         * @param {string} [shootingNotes] 
+         * @param {string} [process] 
+         * @param {Array<string>} [process2] 
+         * @param {string} [stepsChemistryName] 
+         * @param {number} [rating] 
+         * @param {Array<number>} [rating2] 
+         * @param {string} [tags] 
+         * @param {Array<string>} [tags2] 
+         * @param {string} [binderId] 
+         * @param {number} [contactSheetNumber] 
+         * @param {Array<number>} [contactSheetNumber2] 
+         * @param {string} [ratingBetween] 
+         * @param {string} [ratingGt] 
+         * @param {string} [ratingGte] 
+         * @param {string} [ratingLt] 
+         * @param {string} [ratingLte] 
+         * @param {string} [developedAtBefore] 
+         * @param {string} [developedAtStrictlyBefore] 
+         * @param {string} [developedAtAfter] 
+         * @param {string} [developedAtStrictlyAfter] 
+         * @param {boolean} [pulled] Filters development logs shot below the film\&#39;s nominal sensibility (isoShotAt &lt; film.sensibility).
+         * @param {boolean} [pushed] Filters development logs shot above the film\&#39;s nominal sensibility (isoShotAt &gt; film.sensibility).
+         * @param {ApiDevelopmentLogsGetCollectionOrderShotAtEnum} [orderShotAt] 
+         * @param {ApiDevelopmentLogsGetCollectionOrderDevelopedAtEnum} [orderDevelopedAt] 
+         * @param {ApiDevelopmentLogsGetCollectionOrderBinderIdEnum} [orderBinderId] 
+         * @param {ApiDevelopmentLogsGetCollectionOrderContactSheetNumberEnum} [orderContactSheetNumber] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDevelopmentLogsGetCollection: async (page?: number, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiDevelopmentLogsGetCollection: async (page?: number, film?: string, film2?: Array<string>, camera?: string, camera2?: Array<string>, shotAtYear?: number, shotAtYear2?: Array<number>, shotAtMonth?: number, shotAtMonth2?: Array<number>, isoShotAt?: number, isoShotAt2?: Array<number>, shootingNotes?: string, process?: string, process2?: Array<string>, stepsChemistryName?: string, rating?: number, rating2?: Array<number>, tags?: string, tags2?: Array<string>, binderId?: string, contactSheetNumber?: number, contactSheetNumber2?: Array<number>, ratingBetween?: string, ratingGt?: string, ratingGte?: string, ratingLt?: string, ratingLte?: string, developedAtBefore?: string, developedAtStrictlyBefore?: string, developedAtAfter?: string, developedAtStrictlyAfter?: string, pulled?: boolean, pushed?: boolean, orderShotAt?: ApiDevelopmentLogsGetCollectionOrderShotAtEnum, orderDevelopedAt?: ApiDevelopmentLogsGetCollectionOrderDevelopedAtEnum, orderBinderId?: ApiDevelopmentLogsGetCollectionOrderBinderIdEnum, orderContactSheetNumber?: ApiDevelopmentLogsGetCollectionOrderContactSheetNumberEnum, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/development_logs`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7038,6 +7074,150 @@ export const DevelopmentLogApiAxiosParamCreator = function (configuration?: Conf
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
+            }
+
+            if (film !== undefined) {
+                localVarQueryParameter['film'] = film;
+            }
+
+            if (film2) {
+                localVarQueryParameter['film[]'] = film2;
+            }
+
+            if (camera !== undefined) {
+                localVarQueryParameter['camera'] = camera;
+            }
+
+            if (camera2) {
+                localVarQueryParameter['camera[]'] = camera2;
+            }
+
+            if (shotAtYear !== undefined) {
+                localVarQueryParameter['shotAt.year'] = shotAtYear;
+            }
+
+            if (shotAtYear2) {
+                localVarQueryParameter['shotAt.year[]'] = shotAtYear2;
+            }
+
+            if (shotAtMonth !== undefined) {
+                localVarQueryParameter['shotAt.month'] = shotAtMonth;
+            }
+
+            if (shotAtMonth2) {
+                localVarQueryParameter['shotAt.month[]'] = shotAtMonth2;
+            }
+
+            if (isoShotAt !== undefined) {
+                localVarQueryParameter['isoShotAt'] = isoShotAt;
+            }
+
+            if (isoShotAt2) {
+                localVarQueryParameter['isoShotAt[]'] = isoShotAt2;
+            }
+
+            if (shootingNotes !== undefined) {
+                localVarQueryParameter['shootingNotes'] = shootingNotes;
+            }
+
+            if (process !== undefined) {
+                localVarQueryParameter['process'] = process;
+            }
+
+            if (process2) {
+                localVarQueryParameter['process[]'] = process2;
+            }
+
+            if (stepsChemistryName !== undefined) {
+                localVarQueryParameter['steps.chemistry.name'] = stepsChemistryName;
+            }
+
+            if (rating !== undefined) {
+                localVarQueryParameter['rating'] = rating;
+            }
+
+            if (rating2) {
+                localVarQueryParameter['rating[]'] = rating2;
+            }
+
+            if (tags !== undefined) {
+                localVarQueryParameter['tags'] = tags;
+            }
+
+            if (tags2) {
+                localVarQueryParameter['tags[]'] = tags2;
+            }
+
+            if (binderId !== undefined) {
+                localVarQueryParameter['binderId'] = binderId;
+            }
+
+            if (contactSheetNumber !== undefined) {
+                localVarQueryParameter['contactSheetNumber'] = contactSheetNumber;
+            }
+
+            if (contactSheetNumber2) {
+                localVarQueryParameter['contactSheetNumber[]'] = contactSheetNumber2;
+            }
+
+            if (ratingBetween !== undefined) {
+                localVarQueryParameter['rating[between]'] = ratingBetween;
+            }
+
+            if (ratingGt !== undefined) {
+                localVarQueryParameter['rating[gt]'] = ratingGt;
+            }
+
+            if (ratingGte !== undefined) {
+                localVarQueryParameter['rating[gte]'] = ratingGte;
+            }
+
+            if (ratingLt !== undefined) {
+                localVarQueryParameter['rating[lt]'] = ratingLt;
+            }
+
+            if (ratingLte !== undefined) {
+                localVarQueryParameter['rating[lte]'] = ratingLte;
+            }
+
+            if (developedAtBefore !== undefined) {
+                localVarQueryParameter['developedAt[before]'] = developedAtBefore;
+            }
+
+            if (developedAtStrictlyBefore !== undefined) {
+                localVarQueryParameter['developedAt[strictly_before]'] = developedAtStrictlyBefore;
+            }
+
+            if (developedAtAfter !== undefined) {
+                localVarQueryParameter['developedAt[after]'] = developedAtAfter;
+            }
+
+            if (developedAtStrictlyAfter !== undefined) {
+                localVarQueryParameter['developedAt[strictly_after]'] = developedAtStrictlyAfter;
+            }
+
+            if (pulled !== undefined) {
+                localVarQueryParameter['pulled'] = pulled;
+            }
+
+            if (pushed !== undefined) {
+                localVarQueryParameter['pushed'] = pushed;
+            }
+
+            if (orderShotAt !== undefined) {
+                localVarQueryParameter['order[shotAt]'] = orderShotAt;
+            }
+
+            if (orderDevelopedAt !== undefined) {
+                localVarQueryParameter['order[developedAt]'] = orderDevelopedAt;
+            }
+
+            if (orderBinderId !== undefined) {
+                localVarQueryParameter['order[binderId]'] = orderBinderId;
+            }
+
+            if (orderContactSheetNumber !== undefined) {
+                localVarQueryParameter['order[contactSheetNumber]'] = orderContactSheetNumber;
             }
 
             localVarHeaderParameter['Accept'] = 'application/ld+json,application/json,multipart/form-data,application/problem+json';
@@ -7260,13 +7440,49 @@ export const DevelopmentLogApiFp = function(configuration?: Configuration) {
          * Retrieves the collection of DevelopmentLog resources.
          * @summary Retrieves the collection of DevelopmentLog resources.
          * @param {number} [page] The collection page number
+         * @param {string} [film] 
+         * @param {Array<string>} [film2] 
+         * @param {string} [camera] 
+         * @param {Array<string>} [camera2] 
+         * @param {number} [shotAtYear] 
+         * @param {Array<number>} [shotAtYear2] 
+         * @param {number} [shotAtMonth] 
+         * @param {Array<number>} [shotAtMonth2] 
+         * @param {number} [isoShotAt] 
+         * @param {Array<number>} [isoShotAt2] 
+         * @param {string} [shootingNotes] 
+         * @param {string} [process] 
+         * @param {Array<string>} [process2] 
+         * @param {string} [stepsChemistryName] 
+         * @param {number} [rating] 
+         * @param {Array<number>} [rating2] 
+         * @param {string} [tags] 
+         * @param {Array<string>} [tags2] 
+         * @param {string} [binderId] 
+         * @param {number} [contactSheetNumber] 
+         * @param {Array<number>} [contactSheetNumber2] 
+         * @param {string} [ratingBetween] 
+         * @param {string} [ratingGt] 
+         * @param {string} [ratingGte] 
+         * @param {string} [ratingLt] 
+         * @param {string} [ratingLte] 
+         * @param {string} [developedAtBefore] 
+         * @param {string} [developedAtStrictlyBefore] 
+         * @param {string} [developedAtAfter] 
+         * @param {string} [developedAtStrictlyAfter] 
+         * @param {boolean} [pulled] Filters development logs shot below the film\&#39;s nominal sensibility (isoShotAt &lt; film.sensibility).
+         * @param {boolean} [pushed] Filters development logs shot above the film\&#39;s nominal sensibility (isoShotAt &gt; film.sensibility).
+         * @param {ApiDevelopmentLogsGetCollectionOrderShotAtEnum} [orderShotAt] 
+         * @param {ApiDevelopmentLogsGetCollectionOrderDevelopedAtEnum} [orderDevelopedAt] 
+         * @param {ApiDevelopmentLogsGetCollectionOrderBinderIdEnum} [orderBinderId] 
+         * @param {ApiDevelopmentLogsGetCollectionOrderContactSheetNumberEnum} [orderContactSheetNumber] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDevelopmentLogsGetCollection(page?: number, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiDevelopmentLogsGetCollection200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevelopmentLogsGetCollection(page, xLOCALE, acceptLanguage, options);
+        async apiDevelopmentLogsGetCollection(page?: number, film?: string, film2?: Array<string>, camera?: string, camera2?: Array<string>, shotAtYear?: number, shotAtYear2?: Array<number>, shotAtMonth?: number, shotAtMonth2?: Array<number>, isoShotAt?: number, isoShotAt2?: Array<number>, shootingNotes?: string, process?: string, process2?: Array<string>, stepsChemistryName?: string, rating?: number, rating2?: Array<number>, tags?: string, tags2?: Array<string>, binderId?: string, contactSheetNumber?: number, contactSheetNumber2?: Array<number>, ratingBetween?: string, ratingGt?: string, ratingGte?: string, ratingLt?: string, ratingLte?: string, developedAtBefore?: string, developedAtStrictlyBefore?: string, developedAtAfter?: string, developedAtStrictlyAfter?: string, pulled?: boolean, pushed?: boolean, orderShotAt?: ApiDevelopmentLogsGetCollectionOrderShotAtEnum, orderDevelopedAt?: ApiDevelopmentLogsGetCollectionOrderDevelopedAtEnum, orderBinderId?: ApiDevelopmentLogsGetCollectionOrderBinderIdEnum, orderContactSheetNumber?: ApiDevelopmentLogsGetCollectionOrderContactSheetNumberEnum, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiDevelopmentLogsGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevelopmentLogsGetCollection(page, film, film2, camera, camera2, shotAtYear, shotAtYear2, shotAtMonth, shotAtMonth2, isoShotAt, isoShotAt2, shootingNotes, process, process2, stepsChemistryName, rating, rating2, tags, tags2, binderId, contactSheetNumber, contactSheetNumber2, ratingBetween, ratingGt, ratingGte, ratingLt, ratingLte, developedAtBefore, developedAtStrictlyBefore, developedAtAfter, developedAtStrictlyAfter, pulled, pushed, orderShotAt, orderDevelopedAt, orderBinderId, orderContactSheetNumber, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DevelopmentLogApi.apiDevelopmentLogsGetCollection']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -7349,7 +7565,7 @@ export const DevelopmentLogApiFactory = function (configuration?: Configuration,
          * @throws {RequiredError}
          */
         apiDevelopmentLogsGetCollection(requestParameters: DevelopmentLogApiApiDevelopmentLogsGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiDevelopmentLogsGetCollection200Response> {
-            return localVarFp.apiDevelopmentLogsGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+            return localVarFp.apiDevelopmentLogsGetCollection(requestParameters.page, requestParameters.film, requestParameters.film2, requestParameters.camera, requestParameters.camera2, requestParameters.shotAtYear, requestParameters.shotAtYear2, requestParameters.shotAtMonth, requestParameters.shotAtMonth2, requestParameters.isoShotAt, requestParameters.isoShotAt2, requestParameters.shootingNotes, requestParameters.process, requestParameters.process2, requestParameters.stepsChemistryName, requestParameters.rating, requestParameters.rating2, requestParameters.tags, requestParameters.tags2, requestParameters.binderId, requestParameters.contactSheetNumber, requestParameters.contactSheetNumber2, requestParameters.ratingBetween, requestParameters.ratingGt, requestParameters.ratingGte, requestParameters.ratingLt, requestParameters.ratingLte, requestParameters.developedAtBefore, requestParameters.developedAtStrictlyBefore, requestParameters.developedAtAfter, requestParameters.developedAtStrictlyAfter, requestParameters.pulled, requestParameters.pushed, requestParameters.orderShotAt, requestParameters.orderDevelopedAt, requestParameters.orderBinderId, requestParameters.orderContactSheetNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Removes the DevelopmentLog resource.
@@ -7402,6 +7618,186 @@ export interface DevelopmentLogApiApiDevelopmentLogsGetCollectionRequest {
      * The collection page number
      */
     readonly page?: number
+
+    /**
+     * 
+     */
+    readonly film?: string
+
+    /**
+     * 
+     */
+    readonly film2?: Array<string>
+
+    /**
+     * 
+     */
+    readonly camera?: string
+
+    /**
+     * 
+     */
+    readonly camera2?: Array<string>
+
+    /**
+     * 
+     */
+    readonly shotAtYear?: number
+
+    /**
+     * 
+     */
+    readonly shotAtYear2?: Array<number>
+
+    /**
+     * 
+     */
+    readonly shotAtMonth?: number
+
+    /**
+     * 
+     */
+    readonly shotAtMonth2?: Array<number>
+
+    /**
+     * 
+     */
+    readonly isoShotAt?: number
+
+    /**
+     * 
+     */
+    readonly isoShotAt2?: Array<number>
+
+    /**
+     * 
+     */
+    readonly shootingNotes?: string
+
+    /**
+     * 
+     */
+    readonly process?: string
+
+    /**
+     * 
+     */
+    readonly process2?: Array<string>
+
+    /**
+     * 
+     */
+    readonly stepsChemistryName?: string
+
+    /**
+     * 
+     */
+    readonly rating?: number
+
+    /**
+     * 
+     */
+    readonly rating2?: Array<number>
+
+    /**
+     * 
+     */
+    readonly tags?: string
+
+    /**
+     * 
+     */
+    readonly tags2?: Array<string>
+
+    /**
+     * 
+     */
+    readonly binderId?: string
+
+    /**
+     * 
+     */
+    readonly contactSheetNumber?: number
+
+    /**
+     * 
+     */
+    readonly contactSheetNumber2?: Array<number>
+
+    /**
+     * 
+     */
+    readonly ratingBetween?: string
+
+    /**
+     * 
+     */
+    readonly ratingGt?: string
+
+    /**
+     * 
+     */
+    readonly ratingGte?: string
+
+    /**
+     * 
+     */
+    readonly ratingLt?: string
+
+    /**
+     * 
+     */
+    readonly ratingLte?: string
+
+    /**
+     * 
+     */
+    readonly developedAtBefore?: string
+
+    /**
+     * 
+     */
+    readonly developedAtStrictlyBefore?: string
+
+    /**
+     * 
+     */
+    readonly developedAtAfter?: string
+
+    /**
+     * 
+     */
+    readonly developedAtStrictlyAfter?: string
+
+    /**
+     * Filters development logs shot below the film\&#39;s nominal sensibility (isoShotAt &lt; film.sensibility).
+     */
+    readonly pulled?: boolean
+
+    /**
+     * Filters development logs shot above the film\&#39;s nominal sensibility (isoShotAt &gt; film.sensibility).
+     */
+    readonly pushed?: boolean
+
+    /**
+     * 
+     */
+    readonly orderShotAt?: ApiDevelopmentLogsGetCollectionOrderShotAtEnum
+
+    /**
+     * 
+     */
+    readonly orderDevelopedAt?: ApiDevelopmentLogsGetCollectionOrderDevelopedAtEnum
+
+    /**
+     * 
+     */
+    readonly orderBinderId?: ApiDevelopmentLogsGetCollectionOrderBinderIdEnum
+
+    /**
+     * 
+     */
+    readonly orderContactSheetNumber?: ApiDevelopmentLogsGetCollectionOrderContactSheetNumberEnum
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -7511,7 +7907,7 @@ export class DevelopmentLogApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiDevelopmentLogsGetCollection(requestParameters: DevelopmentLogApiApiDevelopmentLogsGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
-        return DevelopmentLogApiFp(this.configuration).apiDevelopmentLogsGetCollection(requestParameters.page, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return DevelopmentLogApiFp(this.configuration).apiDevelopmentLogsGetCollection(requestParameters.page, requestParameters.film, requestParameters.film2, requestParameters.camera, requestParameters.camera2, requestParameters.shotAtYear, requestParameters.shotAtYear2, requestParameters.shotAtMonth, requestParameters.shotAtMonth2, requestParameters.isoShotAt, requestParameters.isoShotAt2, requestParameters.shootingNotes, requestParameters.process, requestParameters.process2, requestParameters.stepsChemistryName, requestParameters.rating, requestParameters.rating2, requestParameters.tags, requestParameters.tags2, requestParameters.binderId, requestParameters.contactSheetNumber, requestParameters.contactSheetNumber2, requestParameters.ratingBetween, requestParameters.ratingGt, requestParameters.ratingGte, requestParameters.ratingLt, requestParameters.ratingLte, requestParameters.developedAtBefore, requestParameters.developedAtStrictlyBefore, requestParameters.developedAtAfter, requestParameters.developedAtStrictlyAfter, requestParameters.pulled, requestParameters.pushed, requestParameters.orderShotAt, requestParameters.orderDevelopedAt, requestParameters.orderBinderId, requestParameters.orderContactSheetNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7559,6 +7955,26 @@ export class DevelopmentLogApi extends BaseAPI {
     }
 }
 
+export const ApiDevelopmentLogsGetCollectionOrderShotAtEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ApiDevelopmentLogsGetCollectionOrderShotAtEnum = typeof ApiDevelopmentLogsGetCollectionOrderShotAtEnum[keyof typeof ApiDevelopmentLogsGetCollectionOrderShotAtEnum];
+export const ApiDevelopmentLogsGetCollectionOrderDevelopedAtEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ApiDevelopmentLogsGetCollectionOrderDevelopedAtEnum = typeof ApiDevelopmentLogsGetCollectionOrderDevelopedAtEnum[keyof typeof ApiDevelopmentLogsGetCollectionOrderDevelopedAtEnum];
+export const ApiDevelopmentLogsGetCollectionOrderBinderIdEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ApiDevelopmentLogsGetCollectionOrderBinderIdEnum = typeof ApiDevelopmentLogsGetCollectionOrderBinderIdEnum[keyof typeof ApiDevelopmentLogsGetCollectionOrderBinderIdEnum];
+export const ApiDevelopmentLogsGetCollectionOrderContactSheetNumberEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ApiDevelopmentLogsGetCollectionOrderContactSheetNumberEnum = typeof ApiDevelopmentLogsGetCollectionOrderContactSheetNumberEnum[keyof typeof ApiDevelopmentLogsGetCollectionOrderContactSheetNumberEnum];
 
 
 /**
@@ -10687,12 +11103,19 @@ export const PrintSessionApiAxiosParamCreator = function (configuration?: Config
          * @param {string} [dateStrictlyBefore] 
          * @param {string} [dateAfter] 
          * @param {string} [dateStrictlyAfter] 
+         * @param {string} [lab] 
+         * @param {string} [enlarger] 
+         * @param {Array<string>} [enlarger2] 
+         * @param {string} [chemicalBathsChemistryName] 
+         * @param {string} [notes] 
+         * @param {ApiPrintSessionsGetCollectionOrderDateEnum} [orderDate] 
+         * @param {ApiPrintSessionsGetCollectionOrderNumberEnum} [orderNumber] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintSessionsGetCollection: async (page?: number, dateBefore?: string, dateStrictlyBefore?: string, dateAfter?: string, dateStrictlyAfter?: string, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiPrintSessionsGetCollection: async (page?: number, dateBefore?: string, dateStrictlyBefore?: string, dateAfter?: string, dateStrictlyAfter?: string, lab?: string, enlarger?: string, enlarger2?: Array<string>, chemicalBathsChemistryName?: string, notes?: string, orderDate?: ApiPrintSessionsGetCollectionOrderDateEnum, orderNumber?: ApiPrintSessionsGetCollectionOrderNumberEnum, xLOCALE?: string, acceptLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/print_sessions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10727,6 +11150,34 @@ export const PrintSessionApiAxiosParamCreator = function (configuration?: Config
 
             if (dateStrictlyAfter !== undefined) {
                 localVarQueryParameter['date[strictly_after]'] = dateStrictlyAfter;
+            }
+
+            if (lab !== undefined) {
+                localVarQueryParameter['lab'] = lab;
+            }
+
+            if (enlarger !== undefined) {
+                localVarQueryParameter['enlarger'] = enlarger;
+            }
+
+            if (enlarger2) {
+                localVarQueryParameter['enlarger[]'] = enlarger2;
+            }
+
+            if (chemicalBathsChemistryName !== undefined) {
+                localVarQueryParameter['chemicalBaths.chemistry.name'] = chemicalBathsChemistryName;
+            }
+
+            if (notes !== undefined) {
+                localVarQueryParameter['notes'] = notes;
+            }
+
+            if (orderDate !== undefined) {
+                localVarQueryParameter['order[date]'] = orderDate;
+            }
+
+            if (orderNumber !== undefined) {
+                localVarQueryParameter['order[number]'] = orderNumber;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json,application/ld+json,multipart/form-data';
@@ -10953,13 +11404,20 @@ export const PrintSessionApiFp = function(configuration?: Configuration) {
          * @param {string} [dateStrictlyBefore] 
          * @param {string} [dateAfter] 
          * @param {string} [dateStrictlyAfter] 
+         * @param {string} [lab] 
+         * @param {string} [enlarger] 
+         * @param {Array<string>} [enlarger2] 
+         * @param {string} [chemicalBathsChemistryName] 
+         * @param {string} [notes] 
+         * @param {ApiPrintSessionsGetCollectionOrderDateEnum} [orderDate] 
+         * @param {ApiPrintSessionsGetCollectionOrderNumberEnum} [orderNumber] 
          * @param {string} [xLOCALE] Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
          * @param {string} [acceptLanguage] Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintSessionsGetCollection(page?: number, dateBefore?: string, dateStrictlyBefore?: string, dateAfter?: string, dateStrictlyAfter?: string, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiPrintSessionsGetCollection200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsGetCollection(page, dateBefore, dateStrictlyBefore, dateAfter, dateStrictlyAfter, xLOCALE, acceptLanguage, options);
+        async apiPrintSessionsGetCollection(page?: number, dateBefore?: string, dateStrictlyBefore?: string, dateAfter?: string, dateStrictlyAfter?: string, lab?: string, enlarger?: string, enlarger2?: Array<string>, chemicalBathsChemistryName?: string, notes?: string, orderDate?: ApiPrintSessionsGetCollectionOrderDateEnum, orderNumber?: ApiPrintSessionsGetCollectionOrderNumberEnum, xLOCALE?: string, acceptLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiPrintSessionsGetCollection200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsGetCollection(page, dateBefore, dateStrictlyBefore, dateAfter, dateStrictlyAfter, lab, enlarger, enlarger2, chemicalBathsChemistryName, notes, orderDate, orderNumber, xLOCALE, acceptLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PrintSessionApi.apiPrintSessionsGetCollection']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -11042,7 +11500,7 @@ export const PrintSessionApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         apiPrintSessionsGetCollection(requestParameters: PrintSessionApiApiPrintSessionsGetCollectionRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiPrintSessionsGetCollection200Response> {
-            return localVarFp.apiPrintSessionsGetCollection(requestParameters.page, requestParameters.dateBefore, requestParameters.dateStrictlyBefore, requestParameters.dateAfter, requestParameters.dateStrictlyAfter, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
+            return localVarFp.apiPrintSessionsGetCollection(requestParameters.page, requestParameters.dateBefore, requestParameters.dateStrictlyBefore, requestParameters.dateAfter, requestParameters.dateStrictlyAfter, requestParameters.lab, requestParameters.enlarger, requestParameters.enlarger2, requestParameters.chemicalBathsChemistryName, requestParameters.notes, requestParameters.orderDate, requestParameters.orderNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Removes the PrintSession resource.
@@ -11115,6 +11573,41 @@ export interface PrintSessionApiApiPrintSessionsGetCollectionRequest {
      * 
      */
     readonly dateStrictlyAfter?: string
+
+    /**
+     * 
+     */
+    readonly lab?: string
+
+    /**
+     * 
+     */
+    readonly enlarger?: string
+
+    /**
+     * 
+     */
+    readonly enlarger2?: Array<string>
+
+    /**
+     * 
+     */
+    readonly chemicalBathsChemistryName?: string
+
+    /**
+     * 
+     */
+    readonly notes?: string
+
+    /**
+     * 
+     */
+    readonly orderDate?: ApiPrintSessionsGetCollectionOrderDateEnum
+
+    /**
+     * 
+     */
+    readonly orderNumber?: ApiPrintSessionsGetCollectionOrderNumberEnum
 
     /**
      * Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;)
@@ -11224,7 +11717,7 @@ export class PrintSessionApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public apiPrintSessionsGetCollection(requestParameters: PrintSessionApiApiPrintSessionsGetCollectionRequest = {}, options?: RawAxiosRequestConfig) {
-        return PrintSessionApiFp(this.configuration).apiPrintSessionsGetCollection(requestParameters.page, requestParameters.dateBefore, requestParameters.dateStrictlyBefore, requestParameters.dateAfter, requestParameters.dateStrictlyAfter, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+        return PrintSessionApiFp(this.configuration).apiPrintSessionsGetCollection(requestParameters.page, requestParameters.dateBefore, requestParameters.dateStrictlyBefore, requestParameters.dateAfter, requestParameters.dateStrictlyAfter, requestParameters.lab, requestParameters.enlarger, requestParameters.enlarger2, requestParameters.chemicalBathsChemistryName, requestParameters.notes, requestParameters.orderDate, requestParameters.orderNumber, requestParameters.xLOCALE, requestParameters.acceptLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11272,6 +11765,16 @@ export class PrintSessionApi extends BaseAPI {
     }
 }
 
+export const ApiPrintSessionsGetCollectionOrderDateEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ApiPrintSessionsGetCollectionOrderDateEnum = typeof ApiPrintSessionsGetCollectionOrderDateEnum[keyof typeof ApiPrintSessionsGetCollectionOrderDateEnum];
+export const ApiPrintSessionsGetCollectionOrderNumberEnum = {
+    Asc: 'asc',
+    Desc: 'desc'
+} as const;
+export type ApiPrintSessionsGetCollectionOrderNumberEnum = typeof ApiPrintSessionsGetCollectionOrderNumberEnum[keyof typeof ApiPrintSessionsGetCollectionOrderNumberEnum];
 
 
 /**

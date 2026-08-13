@@ -12,6 +12,7 @@ import {
     type PrintRead,
     type PrintSessionRead,
 } from '~/api/client';
+import { fetchAllHydraPages } from '~/api/hydraPagination';
 import { idFromIri } from '~/domain/iri';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
 
@@ -37,11 +38,10 @@ const SessionList: React.FunctionComponent = () => {
 
     React.useEffect(() => {
         Promise.all([
-            printSessionApi.apiPrintSessionsGetCollection(),
-            printApi.apiPrintsGetCollection(),
+            fetchAllHydraPages((page) => printSessionApi.apiPrintSessionsGetCollection({ page })),
+            fetchAllHydraPages((page) => printApi.apiPrintsGetCollection({ page })),
         ])
-            .then(([sessionsRes, printsRes]) => {
-                const fetched = sessionsRes.data['hydra:member'];
+            .then(([fetched, fetchedPrints]) => {
                 const enlargerIds = Array.from(
                     new Set(fetched.map((session) => idFromIri(session.enlarger['@id']))),
                 );
@@ -49,7 +49,7 @@ const SessionList: React.FunctionComponent = () => {
                     enlargerIds.map((id) => enlargerApi.apiEnlargersIdGet({ id })),
                 ).then((enlargerResList) => {
                     setSessions(fetched);
-                    setPrints(printsRes.data['hydra:member']);
+                    setPrints(fetchedPrints);
                     setEnlargers(enlargerResList.map((res) => res.data));
                     setYearFilter(
                         (current) => current ?? (fetched[0] ? yearOf(fetched[0].date) : null),

@@ -183,15 +183,42 @@
     "negatifs": {
         "list": {
             "title": "Negatives",
-            "count": "{{count}} negative",
-            "count_other": "{{count}} negatives",
-            "chronological": "chronological order",
-            "allYears": "All",
-            "newNegative": "Log a negative",
+            "count": "{{count}} development",
+            "count_other": "{{count}} developments",
+            "chronological": "sorted by development date",
+            "newNegative": "Log a development",
             "empty": "No negatives logged yet.",
+            "noResults": "No negative matches these filters.",
             "noArchive": "—",
             "stepsCount": "{{count}} step",
-            "stepsCount_other": "{{count}} steps"
+            "stepsCount_other": "{{count}} steps",
+            "searchPlaceholder": "Film, camera, tag…",
+            "notesSearchLabel": "Search in notes",
+            "notesSearchPlaceholder": "birthday, concert, workshop…",
+            "developedOn": "dev. {{date}}",
+            "loadMore": "Load more",
+            "rowsOfTotal": "{{visible}} of {{total}} rows",
+            "filters": {
+                "process": "Process",
+                "processAll": "All",
+                "exposition": "Exposure",
+                "expositionAll": "All",
+                "expositionNormal": "Normal",
+                "expositionPush": "Pushed",
+                "expositionPull": "Pulled",
+                "binder": "Binder",
+                "binderAll": "All binders",
+                "film": "Film",
+                "filmAll": "All"
+            },
+            "columns": {
+                "archive": "Archive",
+                "film": "Film",
+                "dates": "Dates",
+                "notes": "Notes",
+                "sensitivity": "Sensitivity",
+                "rating": "Rating"
+            }
         },
         "detail": {
             "title": "Negative",
