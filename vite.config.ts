@@ -8,7 +8,7 @@ export default defineConfig({
         reactRouter(),
         tsconfigPaths(),
         // eslint-disable-next-line no-undef
-        ...(!process.env.CI
+        ...(!process.env.CI && process.env.VITE_E2E_AUTH !== 'true'
             ? [
                   eslint({
                       cache: true,
