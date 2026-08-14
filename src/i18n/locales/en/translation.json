@@ -74,6 +74,8 @@
                 "formats": "Formats",
                 "formatsHint": "Not tracked by the catalog yet — kept here for reference.",
                 "inversible": "Reversal film",
+                "inversibleOn": "Reversal (E-6, slide)",
+                "inversibleOff": "Negative",
                 "officialDocumentationUrl": "Official documentation",
                 "description": "Description"
             }
@@ -386,8 +388,11 @@
                 "dilutionOfficial": "Official dilution",
                 "dilutionRemove": "Remove this dilution",
                 "dilutionAdd": "Add a dilution",
-                "tempMin": "Min. temperature (°C)",
-                "tempMax": "Max. temperature (°C)",
+                "temperatureRange": "Temperature range",
+                "temperatureMin": "Minimum",
+                "temperatureMax": "Maximum",
+                "temperatureDecrease": "Decrease",
+                "temperatureIncrease": "Increase",
                 "officialDocumentationUrl": "Official documentation",
                 "description": "Description"
             }
@@ -693,8 +698,11 @@
                 "variableContrast": "Variable contrast (multigrade)",
                 "grade": "Grade",
                 "gradeNone": "Not specified",
-                "toning": "Selenium toning possible",
+                "toning": "Toning",
+                "toningOn": "Selenium toning possible",
+                "toningOff": "No toning",
                 "formats": "Formats",
+                "officialDocumentationUrl": "Official documentation",
                 "description": "Description"
             }
         }

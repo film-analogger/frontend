@@ -1,5 +1,5 @@
 import CameraRollIcon from '@mui/icons-material/CameraRoll';
-import { FormControlLabel, Grid, MenuItem, Switch, TextField } from '@mui/material';
+import { Box, FormControlLabel, Grid, MenuItem, Switch } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFilmApi, useManufacturerApi, type ManufacturerRead, type FilmRead } from '~/api/client';
@@ -9,6 +9,9 @@ import {
 } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
+import { DialogLinkField } from './DialogLinkField';
+import { DialogTextField } from './DialogTextField';
+import { FieldLabel } from './FieldLabel';
 import { IdentityColorFields, type IdentityColors } from './IdentityColorFields';
 import { ManufacturerSelectField } from './ManufacturerSelectField';
 
@@ -126,8 +129,7 @@ export const AddFilmDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('films.add.fields.name')}
                         onChange={(e) => {
                             setName(e.target.value);
@@ -135,9 +137,8 @@ export const AddFilmDialog: React.FunctionComponent<{
                         value={name}
                     />
                 </Grid>
-                <Grid size={{ xs: 6, sm: 3 }}>
-                    <TextField
-                        fullWidth
+                <Grid size={{ xs: 12, sm: 6 }}>
+                    <DialogTextField
                         label={t('films.add.fields.sensibility')}
                         onChange={(e) => {
                             setSensibility(e.target.value);
@@ -146,9 +147,8 @@ export const AddFilmDialog: React.FunctionComponent<{
                         value={sensibility}
                     />
                 </Grid>
-                <Grid size={{ xs: 6, sm: 3 }}>
-                    <TextField
-                        fullWidth
+                <Grid size={{ xs: 12, sm: 6 }}>
+                    <DialogTextField
                         label={t('films.add.fields.process')}
                         onChange={(e) => {
                             setProcess(
@@ -166,11 +166,10 @@ export const AddFilmDialog: React.FunctionComponent<{
                                 {p}
                             </MenuItem>
                         ))}
-                    </TextField>
+                    </DialogTextField>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('films.add.fields.emulsionType')}
                         onChange={(e) => {
                             setEmulsionType(e.target.value);
@@ -187,11 +186,10 @@ export const AddFilmDialog: React.FunctionComponent<{
                                 {type}
                             </MenuItem>
                         ))}
-                    </TextField>
+                    </DialogTextField>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         helperText={t('films.add.fields.formatsHint')}
                         label={t('films.add.fields.formats')}
                         onChange={(e) => {
@@ -201,22 +199,29 @@ export const AddFilmDialog: React.FunctionComponent<{
                         value={formats}
                     />
                 </Grid>
-                <Grid size={12}>
-                    <FormControlLabel
-                        control={
-                            <Switch
-                                checked={inversible}
-                                onChange={(e) => {
-                                    setInversible(e.target.checked);
-                                }}
-                            />
-                        }
-                        label={t('films.add.fields.inversible')}
-                    />
+                <Grid size={{ xs: 12, sm: 6 }}>
+                    <Box>
+                        <FieldLabel>{t('films.add.fields.inversible')}</FieldLabel>
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={inversible}
+                                    onChange={(e) => {
+                                        setInversible(e.target.checked);
+                                    }}
+                                />
+                            }
+                            label={
+                                inversible
+                                    ? t('films.add.fields.inversibleOn')
+                                    : t('films.add.fields.inversibleOff')
+                            }
+                            sx={{ ml: 0 }}
+                        />
+                    </Box>
                 </Grid>
-                <Grid size={12}>
-                    <TextField
-                        fullWidth
+                <Grid size={{ xs: 12, sm: 6 }}>
+                    <DialogLinkField
                         label={t('films.add.fields.officialDocumentationUrl')}
                         onChange={(e) => {
                             setOfficialDocumentationUrl(e.target.value);
@@ -225,8 +230,7 @@ export const AddFilmDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={12}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('films.add.fields.description')}
                         minRows={3}
                         multiline
@@ -237,17 +241,17 @@ export const AddFilmDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={12}>
+                    <CatalogScopeField
+                        onChange={setScope}
+                        value={scope}
+                    />
+                </Grid>
+                <Grid size={12}>
                     <IdentityColorFields
                         onChange={(patch) => {
                             setColors((c) => ({ ...c, ...patch }));
                         }}
                         value={colors}
-                    />
-                </Grid>
-                <Grid size={12}>
-                    <CatalogScopeField
-                        onChange={setScope}
-                        value={scope}
                     />
                 </Grid>
             </Grid>

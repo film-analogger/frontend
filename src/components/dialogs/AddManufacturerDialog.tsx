@@ -1,11 +1,13 @@
 import FactoryIcon from '@mui/icons-material/Factory';
-import { Grid, TextField } from '@mui/material';
+import { Grid } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useManufacturerApi, type ManufacturerRead } from '~/api/client';
 import type { ManufacturerWriteManufacturerCatalogStatusWrite } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
+import { DialogLinkField } from './DialogLinkField';
+import { DialogTextField } from './DialogTextField';
 import { IdentityColorFields, type IdentityColors } from './IdentityColorFields';
 
 export const AddManufacturerDialog: React.FunctionComponent<{
@@ -70,8 +72,7 @@ export const AddManufacturerDialog: React.FunctionComponent<{
                 spacing={1.75}
             >
                 <Grid size={12}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('manufacturers.add.fields.name')}
                         onChange={(e) => {
                             setName(e.target.value);
@@ -80,8 +81,7 @@ export const AddManufacturerDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={12}>
-                    <TextField
-                        fullWidth
+                    <DialogLinkField
                         label={t('manufacturers.add.fields.website')}
                         onChange={(e) => {
                             setWebsite(e.target.value);
@@ -90,17 +90,17 @@ export const AddManufacturerDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={12}>
+                    <CatalogScopeField
+                        onChange={setScope}
+                        value={scope}
+                    />
+                </Grid>
+                <Grid size={12}>
                     <IdentityColorFields
                         onChange={(patch) => {
                             setColors((c) => ({ ...c, ...patch }));
                         }}
                         value={colors}
-                    />
-                </Grid>
-                <Grid size={12}>
-                    <CatalogScopeField
-                        onChange={setScope}
-                        value={scope}
                     />
                 </Grid>
             </Grid>

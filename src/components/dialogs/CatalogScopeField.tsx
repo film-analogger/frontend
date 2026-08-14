@@ -3,6 +3,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import { Box, ButtonBase, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { FieldLabel } from './FieldLabel';
 
 export type CatalogScope = 'personal' | 'pending';
 
@@ -29,12 +30,7 @@ export const CatalogScopeField: React.FunctionComponent<{
 
     return (
         <Box>
-            <Typography
-                color="text.secondary"
-                sx={{ mb: 0.75, fontSize: '11.5px', fontWeight: 600 }}
-            >
-                {t('dialogs.scope.label')}
-            </Typography>
+            <FieldLabel>{t('dialogs.scope.label')}</FieldLabel>
             <Stack
                 direction="row"
                 spacing={1.25}
@@ -56,7 +52,7 @@ export const CatalogScopeField: React.FunctionComponent<{
                                 borderRadius: '11px',
                                 border: '1px solid',
                                 borderColor: selected ? 'primary.main' : 'divider',
-                                backgroundColor: selected ? 'action.selected' : 'transparent',
+                                backgroundColor: selected ? 'action.hover' : 'background.default',
                                 textAlign: 'left',
                             }}
                         >

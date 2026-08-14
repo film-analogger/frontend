@@ -1,8 +1,9 @@
-import { MenuItem, Stack, TextField } from '@mui/material';
+import { MenuItem, Stack } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import type { ManufacturerRead } from '~/api/client';
 import { AddManufacturerDialog } from './AddManufacturerDialog';
+import { DialogTextField } from './DialogTextField';
 import { InlineAddButton } from './InlineAddButton';
 
 export const ManufacturerSelectField: React.FunctionComponent<{
@@ -19,9 +20,9 @@ export const ManufacturerSelectField: React.FunctionComponent<{
             <Stack
                 direction="row"
                 spacing={1}
+                sx={{ alignItems: 'flex-end' }}
             >
-                <TextField
-                    fullWidth
+                <DialogTextField
                     label={t('dialogs.manufacturer.label')}
                     onChange={(e) => {
                         onChange(e.target.value);
@@ -37,7 +38,7 @@ export const ManufacturerSelectField: React.FunctionComponent<{
                             {manufacturer.name}
                         </MenuItem>
                     ))}
-                </TextField>
+                </DialogTextField>
                 <InlineAddButton
                     ariaLabel={t('dialogs.manufacturer.add')}
                     onClick={() => {

@@ -1,6 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { FieldLabel } from './FieldLabel';
 
 export interface IdentityColors {
     primaryColor: string;
@@ -22,12 +23,7 @@ export const IdentityColorFields: React.FunctionComponent<{
 
     return (
         <Box>
-            <Typography
-                color="text.secondary"
-                sx={{ mb: 0.75, fontSize: '11.5px', fontWeight: 600 }}
-            >
-                {t('dialogs.colors.label')}
-            </Typography>
+            <FieldLabel>{t('dialogs.colors.label')}</FieldLabel>
             <Stack
                 direction="row"
                 spacing={1.25}
@@ -41,10 +37,11 @@ export const IdentityColorFields: React.FunctionComponent<{
                             flex: 1,
                             alignItems: 'center',
                             minWidth: 0,
-                            p: '6px 9px',
+                            p: '8px 11px',
                             borderRadius: '11px',
                             border: '1px solid',
                             borderColor: 'divider',
+                            backgroundColor: 'background.default',
                         }}
                     >
                         <input

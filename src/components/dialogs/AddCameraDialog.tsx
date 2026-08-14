@@ -1,5 +1,5 @@
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import { Grid, MenuItem, TextField } from '@mui/material';
+import { Grid, MenuItem } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -14,6 +14,7 @@ import {
 } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
+import { DialogTextField } from './DialogTextField';
 import { ManufacturerSelectField } from './ManufacturerSelectField';
 
 const filmFormats = Object.values(CameraWriteCameraCatalogStatusWriteFilmFormatEnum);
@@ -94,9 +95,8 @@ export const AddCameraDialog: React.FunctionComponent<{
                 container
                 spacing={1.75}
             >
-                <Grid size={{ xs: 12, sm: 6 }}>
-                    <TextField
-                        fullWidth
+                <Grid size={12}>
+                    <DialogTextField
                         label={t('cameras.add.fields.name')}
                         onChange={(e) => {
                             setName(e.target.value);
@@ -114,9 +114,8 @@ export const AddCameraDialog: React.FunctionComponent<{
                         value={manufacturerId}
                     />
                 </Grid>
-                <Grid size={12}>
-                    <TextField
-                        fullWidth
+                <Grid size={{ xs: 12, sm: 6 }}>
+                    <DialogTextField
                         label={t('cameras.add.fields.filmFormat')}
                         onChange={(e) => {
                             setFilmFormat(
@@ -135,11 +134,10 @@ export const AddCameraDialog: React.FunctionComponent<{
                                 {format}
                             </MenuItem>
                         ))}
-                    </TextField>
+                    </DialogTextField>
                 </Grid>
                 <Grid size={12}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('cameras.add.fields.description')}
                         minRows={3}
                         multiline

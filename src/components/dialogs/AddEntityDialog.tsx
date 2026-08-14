@@ -45,13 +45,22 @@ export const AddEntityDialog: React.FunctionComponent<{
     return (
         <Dialog
             fullWidth
-            maxWidth="sm"
+            maxWidth="md"
             onClose={() => {
                 if (!submitting) {
                     onClose();
                 }
             }}
             open={open}
+            slotProps={{
+                backdrop: {
+                    sx: {
+                        backgroundColor: 'rgba(20, 18, 16, 0.55)',
+                        backdropFilter: 'blur(2px)',
+                    },
+                },
+                paper: { sx: { borderRadius: '18px' } },
+            }}
         >
             <Stack
                 direction="row"

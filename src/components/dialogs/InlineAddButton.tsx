@@ -9,7 +9,12 @@ export const InlineAddButton: React.FunctionComponent<{
     <IconButton
         aria-label={ariaLabel}
         onClick={onClick}
-        sx={{ flex: '0 0 auto', border: '1px dashed', borderColor: 'divider' }}
+        sx={{
+            flex: '0 0 auto',
+            border: '1px dashed',
+            borderColor: 'divider',
+            borderRadius: '11px',
+        }}
     >
         <AddIcon fontSize="small" />
     </IconButton>

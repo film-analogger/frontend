@@ -1,5 +1,5 @@
 import TextureIcon from '@mui/icons-material/Texture';
-import { FormControlLabel, Grid, MenuItem, Switch, TextField } from '@mui/material';
+import { Box, FormControlLabel, Grid, MenuItem, Switch } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -17,6 +17,9 @@ import {
 } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
+import { DialogLinkField } from './DialogLinkField';
+import { DialogTextField } from './DialogTextField';
+import { FieldLabel } from './FieldLabel';
 import { ManufacturerSelectField } from './ManufacturerSelectField';
 
 const paperBases = Object.values(PhotoPaperWritePhotoPaperCatalogStatusWritePaperBaseEnum);
@@ -57,6 +60,7 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
     // Not yet backed by the API — kept local until the paper catalog exposes a
     // toning field, per the parallel API work.
     const [toning, setToning] = React.useState(false);
+    const [officialDocumentationUrl, setOfficialDocumentationUrl] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [scope, setScope] = React.useState<CatalogScope>('personal');
     const [prevOpen, setPrevOpen] = React.useState(open);
@@ -76,6 +80,7 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
             setGrade('');
             setFormats('');
             setToning(false);
+            setOfficialDocumentationUrl('');
             setDescription('');
             setScope('personal');
         }
@@ -114,6 +119,7 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
             grade: variableContrast ? undefined : grade || undefined,
             process,
             availableFormats: formatsList.length > 0 ? formatsList : undefined,
+            officialDocumentationUrl: officialDocumentationUrl || undefined,
             description: description || undefined,
             status: scope,
         };
@@ -150,8 +156,7 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('photoPapers.add.fields.name')}
                         onChange={(e) => {
                             setName(e.target.value);
@@ -160,8 +165,7 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('photoPapers.add.fields.paperBase')}
                         onChange={(e) => {
                             setPaperBase(
@@ -180,11 +184,10 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                                 {t(`photoPapers.add.fields.paperBaseOptions.${base}`)}
                             </MenuItem>
                         ))}
-                    </TextField>
+                    </DialogTextField>
                 </Grid>
                 <Grid size={{ xs: 12, sm: isOtherSurface ? 3 : 6 }}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('photoPapers.add.fields.paperSurface')}
                         onChange={(e) => {
                             setPaperSurface(
@@ -203,12 +206,11 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                                 {t(`photoPapers.add.fields.paperSurfaceOptions.${surface}`)}
                             </MenuItem>
                         ))}
-                    </TextField>
+                    </DialogTextField>
                 </Grid>
                 {isOtherSurface ? (
                     <Grid size={{ xs: 12, sm: 3 }}>
-                        <TextField
-                            fullWidth
+                        <DialogTextField
                             label={t('photoPapers.add.fields.paperSurfaceOther')}
                             onChange={(e) => {
                                 setPaperSurfaceOther(e.target.value);
@@ -218,8 +220,7 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                     </Grid>
                 ) : null}
                 <Grid size={{ xs: 12, sm: variableContrast ? 12 : 6 }}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('photoPapers.add.fields.process')}
                         onChange={(e) => {
                             setProcess(
@@ -238,12 +239,11 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                                 {p}
                             </MenuItem>
                         ))}
-                    </TextField>
+                    </DialogTextField>
                 </Grid>
                 {variableContrast ? null : (
                     <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                            fullWidth
+                        <DialogTextField
                             label={t('photoPapers.add.fields.grade')}
                             onChange={(e) => {
                                 setGrade(
@@ -263,7 +263,7 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                                     {g}
                                 </MenuItem>
                             ))}
-                        </TextField>
+                        </DialogTextField>
                     </Grid>
                 )}
                 <Grid size={{ xs: 12, sm: 6 }}>
@@ -280,21 +280,28 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
-                    <FormControlLabel
-                        control={
-                            <Switch
-                                checked={toning}
-                                onChange={(e) => {
-                                    setToning(e.target.checked);
-                                }}
-                            />
-                        }
-                        label={t('photoPapers.add.fields.toning')}
-                    />
+                    <Box>
+                        <FieldLabel>{t('photoPapers.add.fields.toning')}</FieldLabel>
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={toning}
+                                    onChange={(e) => {
+                                        setToning(e.target.checked);
+                                    }}
+                                />
+                            }
+                            label={
+                                toning
+                                    ? t('photoPapers.add.fields.toningOn')
+                                    : t('photoPapers.add.fields.toningOff')
+                            }
+                            sx={{ ml: 0 }}
+                        />
+                    </Box>
                 </Grid>
                 <Grid size={12}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('photoPapers.add.fields.formats')}
                         onChange={(e) => {
                             setFormats(e.target.value);
@@ -304,8 +311,16 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={12}>
-                    <TextField
-                        fullWidth
+                    <DialogLinkField
+                        label={t('photoPapers.add.fields.officialDocumentationUrl')}
+                        onChange={(e) => {
+                            setOfficialDocumentationUrl(e.target.value);
+                        }}
+                        value={officialDocumentationUrl}
+                    />
+                </Grid>
+                <Grid size={12}>
+                    <DialogTextField
                         label={t('photoPapers.add.fields.description')}
                         minRows={3}
                         multiline

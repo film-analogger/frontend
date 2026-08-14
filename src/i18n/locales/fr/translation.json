@@ -74,6 +74,8 @@
                 "formats": "Formats",
                 "formatsHint": "Pas encore suivi par le référentiel — conservé ici pour mémoire.",
                 "inversible": "Film inversible",
+                "inversibleOn": "Inversible (E-6, diapositive)",
+                "inversibleOff": "Négatif",
                 "officialDocumentationUrl": "Documentation officielle",
                 "description": "Description"
             }
@@ -386,8 +388,11 @@
                 "dilutionOfficial": "Dilution officielle",
                 "dilutionRemove": "Retirer cette dilution",
                 "dilutionAdd": "Ajouter une dilution",
-                "tempMin": "Température min. (°C)",
-                "tempMax": "Température max. (°C)",
+                "temperatureRange": "Plage de température",
+                "temperatureMin": "Minimum",
+                "temperatureMax": "Maximum",
+                "temperatureDecrease": "Diminuer",
+                "temperatureIncrease": "Augmenter",
                 "officialDocumentationUrl": "Documentation officielle",
                 "description": "Description"
             }
@@ -693,8 +698,11 @@
                 "variableContrast": "Multigrade (contraste variable)",
                 "grade": "Gradation",
                 "gradeNone": "Non précisée",
-                "toning": "Virage sélénium possible",
+                "toning": "Virage",
+                "toningOn": "Virage sélénium possible",
+                "toningOff": "Sans virage",
                 "formats": "Formats",
+                "officialDocumentationUrl": "Documentation officielle",
                 "description": "Description"
             }
         }

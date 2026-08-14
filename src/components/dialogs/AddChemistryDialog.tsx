@@ -2,16 +2,14 @@ import AddIcon from '@mui/icons-material/Add';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
+    Box,
     Button,
     FormControlLabel,
     Grid,
     IconButton,
     MenuItem,
-    Paper,
     Stack,
     Switch,
-    TextField,
-    Typography,
 } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +27,15 @@ import {
 } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
+import { DialogLinkField } from './DialogLinkField';
+import { DialogRangeField } from './DialogRangeField';
+import { DialogTextField } from './DialogTextField';
+import { FieldLabel } from './FieldLabel';
 import { ManufacturerSelectField } from './ManufacturerSelectField';
+
+const temperatureScaleMin = 12;
+const temperatureScaleMax = 50;
+const defaultTemperatureRange: [number, number] = [18, 24];
 
 const processes = Object.values(ChemistryWriteChemistryCatalogStatusWriteProcessEnum);
 
@@ -71,8 +77,7 @@ export const AddChemistryDialog: React.FunctionComponent<{
         );
     const [chemistryTypeId, setChemistryTypeId] = React.useState('');
     const [dilutions, setDilutions] = React.useState<DilutionRow[]>([createDilutionRow()]);
-    const [tempMin, setTempMin] = React.useState('');
-    const [tempMax, setTempMax] = React.useState('');
+    const [tempRange, setTempRange] = React.useState<[number, number]>(defaultTemperatureRange);
     const [officialDocumentationUrl, setOfficialDocumentationUrl] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [scope, setScope] = React.useState<CatalogScope>('personal');
@@ -88,8 +93,7 @@ export const AddChemistryDialog: React.FunctionComponent<{
             setProcess(ChemistryWriteChemistryCatalogStatusWriteProcessEnum.Bw);
             setChemistryTypeId('');
             setDilutions([createDilutionRow()]);
-            setTempMin('');
-            setTempMax('');
+            setTempRange(defaultTemperatureRange);
             setOfficialDocumentationUrl('');
             setDescription('');
             setScope('personal');
@@ -128,8 +132,8 @@ export const AddChemistryDialog: React.FunctionComponent<{
             chemistryType: chemistryTypes.find((t) => t.id === chemistryTypeId)?.['@id'] ?? '',
             manufacturer: manufacturers.find((m) => m.id === manufacturerId)?.['@id'] ?? '',
             description: description || undefined,
-            referenceTemperatureMin: tempMin !== '' ? Number(tempMin) : undefined,
-            referenceTemperatureMax: tempMax !== '' ? Number(tempMax) : undefined,
+            referenceTemperatureMin: tempRange[0],
+            referenceTemperatureMax: tempRange[1],
             officialDocumentationUrl: officialDocumentationUrl || undefined,
             dilutions: dilutions
                 .filter((row) => row.chemistryParts !== '' && row.waterParts !== '')
@@ -173,8 +177,7 @@ export const AddChemistryDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('chemistries.add.fields.name')}
                         onChange={(e) => {
                             setName(e.target.value);
@@ -183,8 +186,26 @@ export const AddChemistryDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
+                        label={t('chemistries.add.fields.chemistryType')}
+                        onChange={(e) => {
+                            setChemistryTypeId(e.target.value);
+                        }}
+                        select
+                        value={chemistryTypeId}
+                    >
+                        {chemistryTypeOptions.map((type) => (
+                            <MenuItem
+                                key={type['@id']}
+                                value={type.id}
+                            >
+                                {type.typeLabel}
+                            </MenuItem>
+                        ))}
+                    </DialogTextField>
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                    <DialogTextField
                         label={t('chemistries.add.fields.process')}
                         onChange={(e) => {
                             setProcess(
@@ -204,67 +225,50 @@ export const AddChemistryDialog: React.FunctionComponent<{
                                 {p}
                             </MenuItem>
                         ))}
-                    </TextField>
-                </Grid>
-                <Grid size={{ xs: 12, sm: 6 }}>
-                    <TextField
-                        fullWidth
-                        label={t('chemistries.add.fields.chemistryType')}
-                        onChange={(e) => {
-                            setChemistryTypeId(e.target.value);
-                        }}
-                        select
-                        value={chemistryTypeId}
-                    >
-                        {chemistryTypeOptions.map((type) => (
-                            <MenuItem
-                                key={type['@id']}
-                                value={type.id}
-                            >
-                                {type.typeLabel}
-                            </MenuItem>
-                        ))}
-                    </TextField>
+                    </DialogTextField>
                 </Grid>
 
                 <Grid size={12}>
-                    <Typography
-                        color="text.secondary"
-                        sx={{ mb: 0.75, fontSize: '11.5px', fontWeight: 600 }}
-                    >
-                        {t('chemistries.add.fields.dilutions')}
-                    </Typography>
+                    <FieldLabel>{t('chemistries.add.fields.dilutions')}</FieldLabel>
                     <Stack spacing={1}>
                         {dilutions.map((row) => (
-                            <Paper
+                            <Box
                                 key={row.key}
-                                sx={{ p: 1.25 }}
-                                variant="outlined"
+                                sx={{
+                                    p: 1.25,
+                                    borderRadius: '11px',
+                                    border: '1px solid',
+                                    borderColor: 'divider',
+                                    backgroundColor: 'background.default',
+                                }}
                             >
                                 <Stack
                                     direction="row"
                                     spacing={1}
                                     sx={{ alignItems: 'center' }}
                                 >
-                                    <TextField
+                                    <DialogTextField
                                         label={t('chemistries.add.fields.dilutionChemistryParts')}
                                         onChange={(e) => {
                                             updateDilution(row.key, {
                                                 chemistryParts: e.target.value,
                                             });
                                         }}
-                                        size="small"
                                         sx={{ width: 88 }}
                                         type="number"
                                         value={row.chemistryParts}
                                     />
-                                    <Typography color="text.secondary">+</Typography>
-                                    <TextField
+                                    <Box
+                                        component="span"
+                                        sx={{ color: 'text.secondary' }}
+                                    >
+                                        +
+                                    </Box>
+                                    <DialogTextField
                                         label={t('chemistries.add.fields.dilutionWaterParts')}
                                         onChange={(e) => {
                                             updateDilution(row.key, { waterParts: e.target.value });
                                         }}
-                                        size="small"
                                         sx={{ width: 88 }}
                                         type="number"
                                         value={row.waterParts}
@@ -296,14 +300,14 @@ export const AddChemistryDialog: React.FunctionComponent<{
                                         <DeleteIcon fontSize="small" />
                                     </IconButton>
                                 </Stack>
-                            </Paper>
+                            </Box>
                         ))}
                         <Button
                             onClick={() => {
                                 setDilutions((rows) => [...rows, createDilutionRow()]);
                             }}
                             startIcon={<AddIcon />}
-                            sx={{ alignSelf: 'flex-start' }}
+                            sx={{ alignSelf: 'flex-start', borderRadius: '11px' }}
                             variant="outlined"
                         >
                             {t('chemistries.add.fields.dilutionAdd')}
@@ -311,32 +315,29 @@ export const AddChemistryDialog: React.FunctionComponent<{
                     </Stack>
                 </Grid>
 
-                <Grid size={{ xs: 6 }}>
-                    <TextField
-                        fullWidth
-                        label={t('chemistries.add.fields.tempMin')}
-                        onChange={(e) => {
-                            setTempMin(e.target.value);
+                <Grid size={12}>
+                    <FieldLabel>{t('chemistries.add.fields.temperatureRange')}</FieldLabel>
+                    <DialogRangeField
+                        decreaseAriaLabel={t('chemistries.add.fields.temperatureDecrease')}
+                        increaseAriaLabel={t('chemistries.add.fields.temperatureIncrease')}
+                        maxLabel={t('chemistries.add.fields.temperatureMax')}
+                        minLabel={t('chemistries.add.fields.temperatureMin')}
+                        onChangeMax={(value) => {
+                            setTempRange(([lo]) => [lo, value]);
                         }}
-                        type="number"
-                        value={tempMin}
-                    />
-                </Grid>
-                <Grid size={{ xs: 6 }}>
-                    <TextField
-                        fullWidth
-                        label={t('chemistries.add.fields.tempMax')}
-                        onChange={(e) => {
-                            setTempMax(e.target.value);
+                        onChangeMin={(value) => {
+                            setTempRange(([, hi]) => [value, hi]);
                         }}
-                        type="number"
-                        value={tempMax}
+                        scaleMax={temperatureScaleMax}
+                        scaleMin={temperatureScaleMin}
+                        unit="°C"
+                        valueMax={tempRange[1]}
+                        valueMin={tempRange[0]}
                     />
                 </Grid>
 
                 <Grid size={12}>
-                    <TextField
-                        fullWidth
+                    <DialogLinkField
                         label={t('chemistries.add.fields.officialDocumentationUrl')}
                         onChange={(e) => {
                             setOfficialDocumentationUrl(e.target.value);
@@ -345,8 +346,7 @@ export const AddChemistryDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={12}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('chemistries.add.fields.description')}
                         minRows={3}
                         multiline

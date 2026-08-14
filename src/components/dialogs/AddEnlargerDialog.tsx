@@ -1,5 +1,7 @@
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
-import { Chip, Grid, MenuItem, Stack, TextField, Typography } from '@mui/material';
+import { Box, ButtonBase, Grid, MenuItem, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -14,11 +16,23 @@ import {
 } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
+import { DialogTextField } from './DialogTextField';
+import { FieldLabel } from './FieldLabel';
 import { ManufacturerSelectField } from './ManufacturerSelectField';
 
 const lightSources = Object.values(EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum);
 
-const negativeFormats = ['24x36', '6x4.5', '6x6', '6x7', '6x9', '4x5', '8x10'];
+// Negative format codes and the film-stock family they belong to, mirrored
+// from the "Modales ajout" mockup's enlarger chip list.
+const negativeFormats: { format: string; family: string }[] = [
+    { format: '24x36', family: '135' },
+    { format: '6x4.5', family: '120' },
+    { format: '6x6', family: '120' },
+    { format: '6x7', family: '120' },
+    { format: '6x9', family: '120' },
+    { format: '4x5', family: 'plan-film' },
+    { format: '8x10', family: 'plan-film' },
+];
 
 export const AddEnlargerDialog: React.FunctionComponent<{
     readonly open: boolean;
@@ -110,8 +124,7 @@ export const AddEnlargerDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('enlargers.add.fields.name')}
                         onChange={(e) => {
                             setName(e.target.value);
@@ -120,8 +133,7 @@ export const AddEnlargerDialog: React.FunctionComponent<{
                     />
                 </Grid>
                 <Grid size={12}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('enlargers.add.fields.lightSource')}
                         onChange={(e) => {
                             setLightSource(
@@ -141,27 +153,19 @@ export const AddEnlargerDialog: React.FunctionComponent<{
                                 {t(`enlargers.add.fields.lightSourceOptions.${source}`)}
                             </MenuItem>
                         ))}
-                    </TextField>
+                    </DialogTextField>
                 </Grid>
                 <Grid size={12}>
-                    <Typography
-                        color="text.secondary"
-                        sx={{ mb: 0.75, fontSize: '11.5px', fontWeight: 600 }}
-                    >
-                        {t('enlargers.add.fields.formats')}
-                    </Typography>
+                    <FieldLabel>{t('enlargers.add.fields.formats')}</FieldLabel>
                     <Stack
                         direction="row"
-                        spacing={1}
                         sx={{ flexWrap: 'wrap', gap: 1 }}
                     >
-                        {negativeFormats.map((format) => {
+                        {negativeFormats.map(({ format, family }) => {
                             const selected = formats.includes(format);
                             return (
-                                <Chip
-                                    color={selected ? 'primary' : 'default'}
+                                <ButtonBase
                                     key={format}
-                                    label={format}
                                     onClick={() => {
                                         setFormats((current) =>
                                             selected
@@ -169,15 +173,47 @@ export const AddEnlargerDialog: React.FunctionComponent<{
                                                 : [...current, format],
                                         );
                                     }}
-                                    variant={selected ? 'filled' : 'outlined'}
-                                />
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '7px',
+                                        p: '8px 12px',
+                                        borderRadius: '9px',
+                                        border: '1px solid',
+                                        borderColor: selected ? 'primary.main' : 'divider',
+                                        backgroundColor: selected
+                                            ? 'action.hover'
+                                            : 'background.default',
+                                    }}
+                                >
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            color: selected ? 'primary.main' : 'text.secondary',
+                                        }}
+                                    >
+                                        {selected ? (
+                                            <CheckCircleIcon sx={{ fontSize: 15 }} />
+                                        ) : (
+                                            <RadioButtonUncheckedIcon sx={{ fontSize: 15 }} />
+                                        )}
+                                    </Box>
+                                    <Typography sx={{ fontSize: '12.5px', fontWeight: 600 }}>
+                                        {format}
+                                    </Typography>
+                                    <Typography
+                                        color="text.secondary"
+                                        sx={{ fontSize: '11px', fontWeight: 500 }}
+                                    >
+                                        {family}
+                                    </Typography>
+                                </ButtonBase>
                             );
                         })}
                     </Stack>
                 </Grid>
                 <Grid size={12}>
-                    <TextField
-                        fullWidth
+                    <DialogTextField
                         label={t('enlargers.add.fields.description')}
                         minRows={3}
                         multiline
