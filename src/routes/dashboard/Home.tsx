@@ -3,7 +3,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import TimerIcon from '@mui/icons-material/Timer';
-import { Box, Button, CircularProgress, Grid, Paper, Stack, Typography } from '@mui/material';
+import { Box, Button, Grid, Paper, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
@@ -12,15 +12,15 @@ import {
     useFilmApi,
     usePrintApi,
     usePrintSessionApi,
-    type EnlargerRead,
     type FilmRead,
     type PrintRead,
     type PrintSessionRead,
 } from '~/api/client';
 import { FilmName } from '~/components/Widgets/FilmName/FilmName';
 import { ProcessChip } from '~/components/Widgets/ProcessChip/ProcessChip';
-import { idFromIri } from '~/domain/iri';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
+import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
 export const handle: RouteCrumbHandle = {
     crumb: { section: 'components.sidemenu.group.logbook', title: 'home.title' },
@@ -46,39 +46,48 @@ const Home: React.FunctionComponent = () => {
 
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState(false);
+    const { activeStep, trackStep, setActiveStep } = useStepProgress();
     const [sessions, setSessions] = React.useState<PrintSessionRead[]>([]);
     const [prints, setPrints] = React.useState<PrintRead[]>([]);
     const [films, setFilms] = React.useState<FilmRead[]>([]);
-    const [enlargers, setEnlargers] = React.useState<EnlargerRead[]>([]);
+
+    const loaderSteps = [
+        { title: t('loaders.session.title'), hint: t('loaders.session.hint') },
+        { title: t('loaders.print.title'), hint: t('loaders.print.hint') },
+        { title: t('loaders.film.title'), hint: t('loaders.film.hint') },
+    ];
 
     React.useEffect(() => {
+        let cancelled = false;
+
         Promise.all([
-            printSessionApi.apiPrintSessionsGetCollection(),
-            printApi.apiPrintsGetCollection(),
-            filmApi.apiFilmsGetCollection(),
+            trackStep(printSessionApi.apiPrintSessionsGetCollection()),
+            trackStep(printApi.apiPrintsGetCollection()),
+            trackStep(filmApi.apiFilmsGetCollection()),
         ])
             .then(([sessionRes, printRes, filmRes]) => {
                 const sessions = sessionRes.data['hydra:member'];
-                const enlargerIds = Array.from(
-                    new Set(sessions.map((session) => idFromIri(session.enlarger['@id']))),
-                );
-                return Promise.all(
-                    enlargerIds.map((id) => enlargerApi.apiEnlargersIdGet({ id })),
-                ).then((enlargerResList) => {
-                    setSessions(sessions);
-                    setPrints(printRes.data['hydra:member']);
-                    setFilms(filmRes.data['hydra:member']);
-                    setEnlargers(enlargerResList.map((res) => res.data));
-                    setLoaded(true);
-                });
+                if (cancelled) {
+                    return;
+                }
+                setActiveStep(3);
+                setSessions(sessions);
+                setPrints(printRes.data['hydra:member']);
+                setFilms(filmRes.data['hydra:member']);
+                setLoaded(true);
             })
             .catch((err: unknown) => {
-                console.error('Error fetching dashboard data:', err);
-                setError(err);
+                if (!cancelled) {
+                    console.error('Error fetching dashboard data:', err);
+                    setError(err);
+                }
             });
-    }, [printSessionApi, printApi, filmApi, enlargerApi]);
 
-    const enlargerById = new Map(enlargers.map((enlarger) => [enlarger['@id'], enlarger]));
+        return () => {
+            cancelled = true;
+        };
+    }, [printSessionApi, printApi, filmApi, enlargerApi, trackStep, setActiveStep]);
+
     const recentSessions = [...sessions].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
 
     const baseSeconds = prints.flatMap((print) =>
@@ -117,10 +126,9 @@ const Home: React.FunctionComponent = () => {
             {error ? (
                 <Typography color="error">{t('errors.api.loadingData')}</Typography>
             ) : !loaded ? (
-                <CircularProgress
-                    aria-label={t('app.loading')}
-                    enableTrackSlot
-                    size="3rem"
+                <PageLoader
+                    activeStep={activeStep}
+                    steps={loaderSteps}
                 />
             ) : (
                 <React.Fragment>
@@ -262,8 +270,6 @@ const Home: React.FunctionComponent = () => {
                                                     variant="caption"
                                                 >
                                                     {session.date} · {session.lab} ·{' '}
-                                                    {enlargerById.get(session.enlarger['@id'])
-                                                        ?.name ?? '—'}
                                                 </Typography>
                                             </Box>
                                             <ChevronRightIcon sx={{ opacity: 0.4 }} />

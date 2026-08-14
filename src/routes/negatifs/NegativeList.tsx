@@ -5,7 +5,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import {
     Box,
     Button,
-    CircularProgress,
     InputAdornment,
     MenuItem,
     OutlinedInput,
@@ -33,6 +32,8 @@ import { idFromIri } from '~/domain/iri';
 import { developmentLogArchiveRef } from '~/domain/developmentLog';
 import { getProcessStyle, type Process } from '~/domain/processColors';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
+import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
 export const handle: RouteCrumbHandle = {
     crumb: { section: 'components.sidemenu.group.logbook', title: 'negatifs.list.title' },
@@ -84,6 +85,7 @@ const NegativeList: React.FunctionComponent = () => {
 
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState(false);
+    const { activeStep, trackStep, setActiveStep } = useStepProgress();
     const [logs, setLogs] = React.useState<DevelopmentLogRead[]>([]);
     const [films, setFilms] = React.useState<FilmRead[]>([]);
     const [cameras, setCameras] = React.useState<CameraRead[]>([]);
@@ -116,8 +118,19 @@ const NegativeList: React.FunctionComponent = () => {
         setVisibleCount(pageSize);
     }
 
+    const loaderSteps = [
+        { title: t('loaders.developmentLog.title'), hint: t('loaders.developmentLog.hint') },
+        { title: t('loaders.film.title'), hint: t('loaders.film.hint') },
+        { title: t('loaders.camera.title'), hint: t('loaders.camera.hint') },
+        { title: t('loaders.tag.title'), hint: t('loaders.tag.hint') },
+    ];
+
     React.useEffect(() => {
-        fetchAllHydraPages((page) => developmentLogApi.apiDevelopmentLogsGetCollection({ page }))
+        trackStep(
+            fetchAllHydraPages((page) =>
+                developmentLogApi.apiDevelopmentLogsGetCollection({ page }),
+            ),
+        )
             .then((fetched) => {
                 const filmIds = Array.from(
                     new Set(fetched.map((log) => idFromIri(log.film['@id']))),
@@ -140,10 +153,13 @@ const NegativeList: React.FunctionComponent = () => {
                     ),
                 );
                 return Promise.all([
-                    Promise.all(filmIds.map((id) => filmApi.apiFilmsIdGet({ id }))),
-                    Promise.all(cameraIds.map((id) => cameraApi.apiCamerasIdGet({ id }))),
-                    Promise.all(tagIds.map((id) => tagApi.apiTagsIdGet({ id }))),
+                    trackStep(Promise.all(filmIds.map((id) => filmApi.apiFilmsIdGet({ id })))),
+                    trackStep(
+                        Promise.all(cameraIds.map((id) => cameraApi.apiCamerasIdGet({ id }))),
+                    ),
+                    trackStep(Promise.all(tagIds.map((id) => tagApi.apiTagsIdGet({ id })))),
                 ]).then(([filmResList, cameraResList, tagResList]) => {
+                    setActiveStep(4);
                     setLogs(fetched);
                     setFilms(filmResList.map((res2) => res2.data));
                     setCameras(cameraResList.map((res2) => res2.data));
@@ -155,17 +171,16 @@ const NegativeList: React.FunctionComponent = () => {
                 console.error('Error fetching development logs:', err);
                 setError(err);
             });
-    }, [developmentLogApi, filmApi, cameraApi, tagApi]);
+    }, [developmentLogApi, filmApi, cameraApi, tagApi, trackStep, setActiveStep]);
 
     if (error) {
         return <Typography color="error">{t('errors.api.loadingData')}</Typography>;
     }
     if (!loaded) {
         return (
-            <CircularProgress
-                aria-label={t('app.loading')}
-                enableTrackSlot
-                size="3rem"
+            <PageLoader
+                activeStep={activeStep}
+                steps={loaderSteps}
             />
         );
     }

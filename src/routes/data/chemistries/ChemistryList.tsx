@@ -1,12 +1,14 @@
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TuneIcon from '@mui/icons-material/Tune';
-import { Box, Chip, CircularProgress, Stack, Typography } from '@mui/material';
+import { Box, Chip, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
 import { useChemistryApi, type ChemistryRead } from '~/api/client';
 import { getProcessStyle, type Process } from '~/domain/processColors';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
+import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
 export const handle: RouteCrumbHandle = {
     crumb: { section: 'components.sidemenu.group.reference', title: 'chemistries.list.title' },
@@ -22,14 +24,19 @@ const ChemistryList: React.FunctionComponent = () => {
 
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState(false);
+    const { activeStep, trackStep, setActiveStep } = useStepProgress();
     const [chemistries, setChemistries] = React.useState<ChemistryRead[]>([]);
     const [processFilter, setProcessFilter] = React.useState<Process | null>(null);
     const [typeFilter, setTypeFilter] = React.useState<string | null>(null);
 
+    const loaderSteps = [
+        { title: t('loaders.chemistries.title'), hint: t('loaders.chemistries.hint') },
+    ];
+
     React.useEffect(() => {
-        chemistryApi
-            .apiChemistriesGetCollection()
+        trackStep(chemistryApi.apiChemistriesGetCollection())
             .then((res) => {
+                setActiveStep(1);
                 setChemistries(res.data['hydra:member']);
                 setLoaded(true);
             })
@@ -37,17 +44,16 @@ const ChemistryList: React.FunctionComponent = () => {
                 console.error('Error fetching chemistries:', err);
                 setError(err);
             });
-    }, [chemistryApi]);
+    }, [chemistryApi, trackStep, setActiveStep]);
 
     if (error) {
         return <Typography color="error">{t('errors.api.loadingData')}</Typography>;
     }
     if (!loaded) {
         return (
-            <CircularProgress
-                aria-label={t('app.loading')}
-                enableTrackSlot
-                size="3rem"
+            <PageLoader
+                activeStep={activeStep}
+                steps={loaderSteps}
             />
         );
     }

@@ -3,6 +3,7 @@ import { alpha, Box, Stack, Typography, useTheme } from '@mui/material';
 import { useColorScheme } from '@mui/material/styles';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { PerforationRow } from './PerforationRow';
 
 const breathe = keyframes`
     0%,
@@ -11,15 +12,6 @@ const breathe = keyframes`
     }
     50% {
         opacity: 1;
-    }
-`;
-
-const strip = keyframes`
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-34px);
     }
 `;
 
@@ -40,8 +32,6 @@ const sweep = keyframes`
         transform: translateX(260%);
     }
 `;
-
-const perforationCount = 26;
 
 const logoVariant = (colorScheme: string | undefined): 'light' | 'dark' | 'lab' => {
     if (colorScheme === 'lab') {
@@ -75,46 +65,15 @@ export const PageLoader: React.FunctionComponent<{
     const sweepColor = alpha(theme.palette.text.primary, isLab ? 0.22 : 0.09);
     const variant = logoVariant(colorScheme);
 
-    const perforationRow = (
-        <Box sx={{ height: 20, overflow: 'hidden', opacity: 0.75 }}>
-            <Stack
-                direction="row"
-                sx={{
-                    alignItems: 'center',
-                    gap: '20px',
-                    height: '100%',
-                    pl: 1.25,
-                    width: 'max-content',
-                    animation: `${strip} 900ms linear infinite`,
-                }}
-            >
-                {Array.from({ length: perforationCount }, (_, index) => (
-                    <Box
-                        key={index}
-                        sx={{
-                            flex: '0 0 14px',
-                            height: 9,
-                            borderRadius: '4px',
-                            backgroundColor: perfColor,
-                        }}
-                    />
-                ))}
-            </Stack>
-        </Box>
-    );
-
     return (
         <Box
-            aria-label={t('app.loading')}
-            aria-live="polite"
-            role="status"
             sx={{
-                minHeight: '100vh',
-                display: 'flex',
                 alignItems: 'center',
+                display: 'flex',
                 justifyContent: 'center',
-                backgroundColor: 'background.default',
+                minHeight: '50vh',
                 p: 4,
+                width: '100%',
             }}
         >
             <Stack sx={{ alignItems: 'center', gap: 3.25, width: '100%', maxWidth: 420 }}>
@@ -159,7 +118,7 @@ export const PageLoader: React.FunctionComponent<{
                         overflow: 'hidden',
                     }}
                 >
-                    {perforationRow}
+                    <PerforationRow />
                     <Box
                         sx={{
                             height: 74,
@@ -191,7 +150,7 @@ export const PageLoader: React.FunctionComponent<{
                             }}
                         />
                     </Box>
-                    {perforationRow}
+                    <PerforationRow />
                 </Box>
 
                 <Stack sx={{ width: '100%', gap: 1.1 }}>

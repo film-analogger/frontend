@@ -87,7 +87,7 @@ describe('NegativeList', () => {
     it('shows a loading indicator while development logs are being fetched', () => {
         mockApiDevelopmentLogsGetCollection.mockReturnValue(new Promise(() => {}));
         renderNegativeList();
-        expect(screen.getByRole('progressbar')).toBeInTheDocument();
+        expect(screen.getByText('loaders.developmentLog.title')).toBeInTheDocument();
     });
 
     it('shows an error message when the request fails', async () => {

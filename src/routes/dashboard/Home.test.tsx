@@ -122,7 +122,7 @@ describe('Home', () => {
         mockApiPrintsGetCollection.mockReturnValue(new Promise(() => {}));
         mockApiFilmsGetCollection.mockReturnValue(new Promise(() => {}));
         renderHome();
-        expect(screen.getByRole('progressbar')).toBeInTheDocument();
+        expect(screen.getByText('loaders.session.title')).toBeInTheDocument();
     });
 
     it('shows an error message when the request fails', async () => {

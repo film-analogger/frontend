@@ -61,7 +61,7 @@ describe('ChemistryList', () => {
     it('shows a loading indicator while chemistries are being fetched', () => {
         mockApiChemistriesGetCollection.mockReturnValue(new Promise(() => {}));
         renderChemistryList();
-        expect(screen.getByRole('progressbar')).toBeInTheDocument();
+        expect(screen.getByText('loaders.chemistries.title')).toBeInTheDocument();
     });
 
     it('shows an error message when the request fails', async () => {

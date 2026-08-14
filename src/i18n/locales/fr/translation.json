@@ -514,5 +514,47 @@
             "subtitle": "Carnet de labo argentique",
             "authHint": "Connexion sécurisée en cours…"
         }
+    },
+    "loaders": {
+        "page": {
+            "title": "Chargement de la page",
+            "hint": "récupération des données en cours…"
+        },
+        "enlarger": {
+            "title": "Agrandisseurs",
+            "hint": "récupération des agrandisseurs en cours…"
+        },
+        "film": {
+            "title": "Pellicules",
+            "hint": "récupération des pellicules en cours…"
+        },
+        "session": {
+            "title": "Séances",
+            "hint": "récupération des séances en cours…"
+        },
+        "chemistries": {
+            "title": "Chimies",
+            "hint": "récupération des chimies en cours…"
+        },
+        "print": {
+            "title": "Tirages",
+            "hint": "récupération des tirages en cours…"
+        },
+        "manufacturers": {
+            "title": "Fabricants",
+            "hint": "récupération des fabricants en cours…"
+        },
+        "developmentLog": {
+            "title": "Fiches de développement",
+            "hint": "récupération des fiches de développement en cours…"
+        },
+        "camera": {
+            "title": "Appareils",
+            "hint": "récupération des appareils en cours…"
+        },
+        "tag": {
+            "title": "Étiquettes",
+            "hint": "récupération des étiquettes en cours…"
+        }
     }
 }

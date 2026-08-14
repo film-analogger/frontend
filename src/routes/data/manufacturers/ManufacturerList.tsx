@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
@@ -12,6 +12,8 @@ import {
 } from '~/api/client';
 import { ManufacturerCard } from '~/components/Widgets/ManufacturerCard/ManufacturerCard';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
+import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
 export const handle: RouteCrumbHandle = {
     crumb: {
@@ -28,17 +30,25 @@ const ManufacturerList: React.FunctionComponent = () => {
 
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState(false);
+    const { activeStep, trackStep, setActiveStep } = useStepProgress();
     const [manufacturers, setManufacturers] = React.useState<ManufacturerRead[]>([]);
     const [films, setFilms] = React.useState<FilmRead[]>([]);
     const [chemistries, setChemistries] = React.useState<ChemistryRead[]>([]);
 
+    const loaderSteps = [
+        { title: t('loaders.manufacturers.title'), hint: t('loaders.manufacturers.hint') },
+        { title: t('loaders.film.title'), hint: t('loaders.film.hint') },
+        { title: t('loaders.chemistries.title'), hint: t('loaders.chemistries.hint') },
+    ];
+
     React.useEffect(() => {
         Promise.all([
-            manufacturerApi.apiManufacturersGetCollection(),
-            filmApi.apiFilmsGetCollection(),
-            chemistryApi.apiChemistriesGetCollection(),
+            trackStep(manufacturerApi.apiManufacturersGetCollection()),
+            trackStep(filmApi.apiFilmsGetCollection()),
+            trackStep(chemistryApi.apiChemistriesGetCollection()),
         ])
             .then(([manufRes, filmRes, chemRes]) => {
+                setActiveStep(3);
                 setManufacturers(manufRes.data['hydra:member']);
                 setFilms(filmRes.data['hydra:member']);
                 setChemistries(chemRes.data['hydra:member']);
@@ -48,17 +58,16 @@ const ManufacturerList: React.FunctionComponent = () => {
                 console.error('Error fetching manufacturers:', err);
                 setError(err);
             });
-    }, [manufacturerApi, filmApi, chemistryApi]);
+    }, [manufacturerApi, filmApi, chemistryApi, trackStep, setActiveStep]);
 
     if (error) {
         return <Typography color="error">{t('errors.api.loadingData')}</Typography>;
     }
     if (!loaded) {
         return (
-            <CircularProgress
-                aria-label={t('app.loading')}
-                enableTrackSlot
-                size="3rem"
+            <PageLoader
+                activeStep={activeStep}
+                steps={loaderSteps}
             />
         );
     }

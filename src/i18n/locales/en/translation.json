@@ -514,5 +514,47 @@
             "subtitle": "Film lab logbook",
             "authHint": "Secure connection in progress…"
         }
+    },
+    "loaders": {
+        "page": {
+            "title": "Loading page",
+            "hint": "fetching data…"
+        },
+        "enlarger": {
+            "title": "Enlargers",
+            "hint": "fetching enlargers…"
+        },
+        "film": {
+            "title": "Films",
+            "hint": "fetching films…"
+        },
+        "session": {
+            "title": "Sessions",
+            "hint": "fetching sessions…"
+        },
+        "chemistries": {
+            "title": "Chemistries",
+            "hint": "fetching chemistries…"
+        },
+        "print": {
+            "title": "Prints",
+            "hint": "fetching prints…"
+        },
+        "manufacturers": {
+            "title": "Manufacturers",
+            "hint": "fetching manufacturers…"
+        },
+        "developmentLog": {
+            "title": "Development logs",
+            "hint": "fetching development logs…"
+        },
+        "camera": {
+            "title": "Cameras",
+            "hint": "fetching cameras…"
+        },
+        "tag": {
+            "title": "Tags",
+            "hint": "fetching tags…"
+        }
     }
 }

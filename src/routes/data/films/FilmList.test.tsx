@@ -57,7 +57,7 @@ describe('FilmList', () => {
     it('shows a loading indicator while films are being fetched', () => {
         mockApiFilmsGetCollection.mockReturnValue(new Promise(() => {}));
         renderFilmList();
-        expect(screen.getByRole('progressbar')).toBeInTheDocument();
+        expect(screen.getByText('loaders.film.title')).toBeInTheDocument();
     });
 
     it('shows an error message when the request fails', async () => {

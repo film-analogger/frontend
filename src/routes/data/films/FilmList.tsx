@@ -1,4 +1,4 @@
-import { Box, Chip, CircularProgress, Grid, Stack, Typography } from '@mui/material';
+import { Box, Chip, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
@@ -6,6 +6,8 @@ import { FilmCard } from '~/components/Widgets/FilmCard/FilmCard';
 import { useFilmApi, type FilmRead } from '~/api/client';
 import { getProcessStyle, type Process } from '~/domain/processColors';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
+import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
 export const handle: RouteCrumbHandle = {
     crumb: { section: 'components.sidemenu.group.reference', title: 'films.list.title' },
@@ -19,19 +21,23 @@ const FilmList: React.FunctionComponent = () => {
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState<boolean>(false);
     const [loading, setLoading] = React.useState<boolean>(false);
+    const { activeStep, trackStep, setActiveStep } = useStepProgress();
 
     const [films, setFilms] = React.useState<FilmRead[]>([]);
     const [processFilter, setProcessFilter] = React.useState<Process | null>(null);
+
+    const loaderSteps = [{ title: t('loaders.film.title'), hint: t('loaders.film.hint') }];
 
     React.useEffect(() => {
         const fetchFilms = async () => {
             setLoaded(false);
             setLoading(true);
-            const res = await filmApi.apiFilmsGetCollection().catch((err: unknown) => {
+            const res = await trackStep(filmApi.apiFilmsGetCollection()).catch((err: unknown) => {
                 console.error('Error fetching films:', err);
                 setError(err);
             });
             if (res) {
+                setActiveStep(1);
                 setFilms(res.data['hydra:member']);
                 setLoaded(true);
                 setLoading(false);
@@ -42,7 +48,7 @@ const FilmList: React.FunctionComponent = () => {
         if (!loaded && !loading) {
             fetchFilms().catch(console.error);
         }
-    }, [filmApi, loaded, loading]);
+    }, [filmApi, loaded, loading, trackStep, setActiveStep]);
 
     const processCounts = React.useMemo(() => {
         const counts = new Map<Process, number>();
@@ -75,10 +81,9 @@ const FilmList: React.FunctionComponent = () => {
             {error ? (
                 <Typography color="error">{t('errors.api.loadingData')}</Typography>
             ) : !loaded ? (
-                <CircularProgress
-                    aria-label={t('app.loading')}
-                    enableTrackSlot
-                    size="3rem"
+                <PageLoader
+                    activeStep={activeStep}
+                    steps={loaderSteps}
                 />
             ) : (
                 <React.Fragment>

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
 import keycloak from './keycloak';
 import { KeycloakContext } from './keycloakContext';
+import { Box } from '@mui/material';
 
 interface KeycloakProviderProps {
     readonly children: React.ReactNode;
@@ -37,10 +38,24 @@ const KeycloakProvider: React.FunctionComponent<KeycloakProviderProps> = ({ chil
             {children}
         </KeycloakContext.Provider>
     ) : (
-        <PageLoader
-            activeStep={0}
-            steps={[{ title: t('auth.loading'), hint: t('components.pageLoader.authHint') }]}
-        />
+        <Box
+            aria-label={t('app.loading')}
+            aria-live="polite"
+            role="status"
+            sx={{
+                minHeight: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'background.default',
+                p: 4,
+            }}
+        >
+            <PageLoader
+                activeStep={0}
+                steps={[{ title: t('auth.loading'), hint: t('components.pageLoader.authHint') }]}
+            />
+        </Box>
     );
 };
 

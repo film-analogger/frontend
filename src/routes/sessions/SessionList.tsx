@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { Box, Button, CircularProgress, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
@@ -15,6 +15,8 @@ import {
 import { fetchAllHydraPages } from '~/api/hydraPagination';
 import { idFromIri } from '~/domain/iri';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
+import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
 export const handle: RouteCrumbHandle = {
     crumb: { section: 'components.sidemenu.group.logbook', title: 'sessions.list.title' },
@@ -31,23 +33,35 @@ const SessionList: React.FunctionComponent = () => {
 
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState(false);
+    const { activeStep, trackStep, setActiveStep } = useStepProgress();
     const [sessions, setSessions] = React.useState<PrintSessionRead[]>([]);
     const [prints, setPrints] = React.useState<PrintRead[]>([]);
     const [enlargers, setEnlargers] = React.useState<EnlargerRead[]>([]);
     const [yearFilter, setYearFilter] = React.useState<string | null>(null);
 
+    const loaderSteps = [
+        { title: t('loaders.session.title'), hint: t('loaders.session.hint') },
+        { title: t('loaders.print.title'), hint: t('loaders.print.hint') },
+        { title: t('loaders.enlarger.title'), hint: t('loaders.enlarger.hint') },
+    ];
+
     React.useEffect(() => {
         Promise.all([
-            fetchAllHydraPages((page) => printSessionApi.apiPrintSessionsGetCollection({ page })),
-            fetchAllHydraPages((page) => printApi.apiPrintsGetCollection({ page })),
+            trackStep(
+                fetchAllHydraPages((page) =>
+                    printSessionApi.apiPrintSessionsGetCollection({ page }),
+                ),
+            ),
+            trackStep(fetchAllHydraPages((page) => printApi.apiPrintsGetCollection({ page }))),
         ])
             .then(([fetched, fetchedPrints]) => {
                 const enlargerIds = Array.from(
                     new Set(fetched.map((session) => idFromIri(session.enlarger['@id']))),
                 );
-                return Promise.all(
-                    enlargerIds.map((id) => enlargerApi.apiEnlargersIdGet({ id })),
+                return trackStep(
+                    Promise.all(enlargerIds.map((id) => enlargerApi.apiEnlargersIdGet({ id }))),
                 ).then((enlargerResList) => {
+                    setActiveStep(3);
                     setSessions(fetched);
                     setPrints(fetchedPrints);
                     setEnlargers(enlargerResList.map((res) => res.data));
@@ -61,17 +75,16 @@ const SessionList: React.FunctionComponent = () => {
                 console.error('Error fetching print sessions:', err);
                 setError(err);
             });
-    }, [printSessionApi, printApi, enlargerApi]);
+    }, [printSessionApi, printApi, enlargerApi, trackStep, setActiveStep]);
 
     if (error) {
         return <Typography color="error">{t('errors.api.loadingData')}</Typography>;
     }
     if (!loaded) {
         return (
-            <CircularProgress
-                aria-label={t('app.loading')}
-                enableTrackSlot
-                size="3rem"
+            <PageLoader
+                activeStep={activeStep}
+                steps={loaderSteps}
             />
         );
     }
