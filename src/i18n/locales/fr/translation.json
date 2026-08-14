@@ -551,6 +551,8 @@
             "films": "Pellicules",
             "chemistries": "Chimies",
             "manufacturers": "Fabricants",
+            "cameras": "Appareils photo",
+            "enlargers": "Agrandisseurs",
             "photoPaper": "Papiers photo",
             "soon": "À venir",
             "labMode": "Mode labo",
@@ -606,6 +608,10 @@
             "title": "Appareils",
             "hint": "récupération des appareils en cours…"
         },
+        "photoPapers": {
+            "title": "Papiers photo",
+            "hint": "récupération des papiers photo en cours…"
+        },
         "tag": {
             "title": "Étiquettes",
             "hint": "récupération des étiquettes en cours…"
@@ -639,6 +645,21 @@
         }
     },
     "cameras": {
+        "list": {
+            "title": "Boîtiers",
+            "count": "{{count}} boîtier",
+            "count_other": "{{count}} boîtiers",
+            "columns": {
+                "model": "Modèle",
+                "manufacturer": "Fabricant",
+                "filmFormat": "Format"
+            }
+        },
+        "detail": {
+            "title": "Détail boîtier",
+            "filmFormatLabel": "Format : {{format}}",
+            "noDescription": "Aucune description pour ce boîtier pour le moment."
+        },
         "add": {
             "trigger": "Ajouter un boîtier",
             "title": "Nouveau boîtier",
@@ -653,6 +674,24 @@
         }
     },
     "enlargers": {
+        "list": {
+            "title": "Agrandisseurs",
+            "count": "{{count}} agrandisseur",
+            "count_other": "{{count}} agrandisseurs",
+            "columns": {
+                "model": "Modèle",
+                "manufacturer": "Fabricant",
+                "lightSource": "Source lumineuse",
+                "formats": "Formats de négatif"
+            }
+        },
+        "detail": {
+            "title": "Détail agrandisseur",
+            "lightSource": "Source lumineuse",
+            "formats": "Formats de négatif tirables",
+            "noFormats": "Aucun format de négatif précisé.",
+            "noDescription": "Aucune description pour cet agrandisseur pour le moment."
+        },
         "add": {
             "trigger": "Ajouter un agrandisseur",
             "title": "Nouvel agrandisseur",
@@ -673,6 +712,27 @@
         }
     },
     "photoPapers": {
+        "list": {
+            "title": "Papiers photo",
+            "count": "{{count}} papier",
+            "count_other": "{{count}} papiers",
+            "columns": {
+                "name": "Nom",
+                "manufacturer": "Fabricant",
+                "paper": "Support / surface",
+                "process": "Procédé"
+            }
+        },
+        "detail": {
+            "title": "Détail papier photo",
+            "officialDoc": "Documentation officielle",
+            "formats": "Formats",
+            "noFormats": "Aucun format précisé.",
+            "variableContrastOn": "Multigrade (contraste variable)",
+            "variableContrastOff": "Papier gradué",
+            "gradeLabel": "Gradation : {{grade}}",
+            "noDescription": "Aucune description pour ce papier pour le moment."
+        },
         "add": {
             "trigger": "Ajouter un papier",
             "title": "Nouveau papier photo",

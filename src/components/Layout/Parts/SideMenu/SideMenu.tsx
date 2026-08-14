@@ -13,6 +13,8 @@ import CameraRollIcon from '@mui/icons-material/CameraRoll';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import FactoryIcon from '@mui/icons-material/Factory';
 import WallpaperIcon from '@mui/icons-material/Wallpaper';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
 import { Link as RouterLink, useLocation } from 'react-router';
 
 import { AppLogo } from '~/components/Widgets/AppLogo/AppLogo';
@@ -90,9 +92,19 @@ const SideMenu: React.FunctionComponent = () => {
                     href: '/data/manufacturers',
                 },
                 {
+                    translation: 'components.sidemenu.cameras',
+                    icon: <PhotoCameraIcon />,
+                    href: '/data/cameras',
+                },
+                {
+                    translation: 'components.sidemenu.enlargers',
+                    icon: <SettingsInputCompositeIcon />,
+                    href: '/data/enlargers',
+                },
+                {
                     translation: 'components.sidemenu.photoPaper',
                     icon: <WallpaperIcon />,
-                    soon: true,
+                    href: '/data/photo-papers',
                 },
             ],
         },

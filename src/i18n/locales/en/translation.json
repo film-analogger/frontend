@@ -551,6 +551,8 @@
             "films": "Films",
             "chemistries": "Chemistries",
             "manufacturers": "Manufacturers",
+            "cameras": "Cameras",
+            "enlargers": "Enlargers",
             "photoPaper": "Photo paper",
             "soon": "Soon",
             "labMode": "Darkroom mode",
@@ -606,6 +608,10 @@
             "title": "Cameras",
             "hint": "fetching cameras…"
         },
+        "photoPapers": {
+            "title": "Photo papers",
+            "hint": "fetching photo papers…"
+        },
         "tag": {
             "title": "Tags",
             "hint": "fetching tags…"
@@ -639,6 +645,21 @@
         }
     },
     "cameras": {
+        "list": {
+            "title": "Cameras",
+            "count": "{{count}} camera",
+            "count_other": "{{count}} cameras",
+            "columns": {
+                "model": "Model",
+                "manufacturer": "Manufacturer",
+                "filmFormat": "Format"
+            }
+        },
+        "detail": {
+            "title": "Camera detail",
+            "filmFormatLabel": "Format: {{format}}",
+            "noDescription": "No description for this camera yet."
+        },
         "add": {
             "trigger": "Add a camera",
             "title": "New camera",
@@ -653,6 +674,24 @@
         }
     },
     "enlargers": {
+        "list": {
+            "title": "Enlargers",
+            "count": "{{count}} enlarger",
+            "count_other": "{{count}} enlargers",
+            "columns": {
+                "model": "Model",
+                "manufacturer": "Manufacturer",
+                "lightSource": "Light source",
+                "formats": "Negative formats"
+            }
+        },
+        "detail": {
+            "title": "Enlarger detail",
+            "lightSource": "Light source",
+            "formats": "Printable negative formats",
+            "noFormats": "No negative format specified.",
+            "noDescription": "No description for this enlarger yet."
+        },
         "add": {
             "trigger": "Add an enlarger",
             "title": "New enlarger",
@@ -673,6 +712,27 @@
         }
     },
     "photoPapers": {
+        "list": {
+            "title": "Photo papers",
+            "count": "{{count}} paper",
+            "count_other": "{{count}} papers",
+            "columns": {
+                "name": "Name",
+                "manufacturer": "Manufacturer",
+                "paper": "Base / surface",
+                "process": "Process"
+            }
+        },
+        "detail": {
+            "title": "Photo paper detail",
+            "officialDoc": "Official documentation",
+            "formats": "Formats",
+            "noFormats": "No format specified.",
+            "variableContrastOn": "Variable contrast (multigrade)",
+            "variableContrastOff": "Graded paper",
+            "gradeLabel": "Grade: {{grade}}",
+            "noDescription": "No description for this paper yet."
+        },
         "add": {
             "trigger": "Add a paper",
             "title": "New photo paper",
