@@ -7,9 +7,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  | [default to undefined]
 **process** | **string** |  | [default to undefined]
-**chemistryType** | [**ChemistryTypeWriteChemistryCatalogStatusWrite**](ChemistryTypeWriteChemistryCatalogStatusWrite.md) |  | [default to undefined]
-**manufacturer** | [**ManufacturerWriteChemistryCatalogStatusWrite**](ManufacturerWriteChemistryCatalogStatusWrite.md) |  | [default to undefined]
+**chemistryType** | **string** |  | [default to undefined]
+**manufacturer** | **string** |  | [default to undefined]
 **description** | **string** |  | [optional] [default to undefined]
+**referenceTemperatureMin** | **number** |  | [optional] [default to undefined]
+**referenceTemperatureMax** | **number** |  | [optional] [default to undefined]
+**openShelfLifeDays** | **number** |  | [optional] [default to undefined]
 **dilutions** | [**Array&lt;DilutionWriteChemistryCatalogStatusWrite&gt;**](DilutionWriteChemistryCatalogStatusWrite.md) |  | [optional] [default to undefined]
 **officialDocumentationUrl** | **string** |  | [optional] [default to undefined]
 **status** | **string** |  | [default to StatusEnum_Personal]
@@ -25,6 +28,9 @@ const instance: ChemistryWriteChemistryCatalogStatusWrite = {
     chemistryType,
     manufacturer,
     description,
+    referenceTemperatureMin,
+    referenceTemperatureMax,
+    openShelfLifeDays,
     dilutions,
     officialDocumentationUrl,
     status,

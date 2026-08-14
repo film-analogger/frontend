@@ -12,6 +12,10 @@ Name | Type | Description | Notes
 **paperSurface** | **string** |  | [default to undefined]
 **paperSurfaceOther** | **string** |  | [optional] [default to undefined]
 **variableContrast** | **boolean** |  | [optional] [default to undefined]
+**grade** | **string** |  | [optional] [default to undefined]
+**process** | **string** |  | [default to undefined]
+**availableFormats** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**officialDocumentationUrl** | **string** |  | [optional] [default to undefined]
 **description** | **string** |  | [optional] [default to undefined]
 **translations** | **Array&lt;string | null&gt;** | array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into | [optional] [default to undefined]
 **isTranslated** | **boolean** |  | [optional] [default to false]
@@ -34,6 +38,10 @@ const instance: PhotoPaperReadPrintSessionReadPrintSessionItemTimestampableBlame
     paperSurface,
     paperSurfaceOther,
     variableContrast,
+    grade,
+    process,
+    availableFormats,
+    officialDocumentationUrl,
     description,
     translations,
     isTranslated,

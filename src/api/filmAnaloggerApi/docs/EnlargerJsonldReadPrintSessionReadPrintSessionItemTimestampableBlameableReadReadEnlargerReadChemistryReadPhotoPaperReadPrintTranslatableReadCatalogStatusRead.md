@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **name** | **string** |  | [default to undefined]
 **manufacturer** | [**ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead**](ManufacturerJsonldReadPrintSessionReadPrintSessionItemTimestampableBlameableReadReadEnlargerReadChemistryReadPhotoPaperReadPrintTranslatableReadCatalogStatusRead.md) |  | [default to undefined]
 **lightSource** | **string** |  | [optional] [default to undefined]
+**filmFormats** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**negativeFormats** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
 **description** | **string** |  | [optional] [default to undefined]
 **translations** | **Array&lt;string | null&gt;** | array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into | [optional] [default to undefined]
 **isTranslated** | **boolean** |  | [optional] [default to false]
@@ -34,6 +36,8 @@ const instance: EnlargerJsonldReadPrintSessionReadPrintSessionItemTimestampableB
     name,
     manufacturer,
     lightSource,
+    filmFormats,
+    negativeFormats,
     description,
     translations,
     isTranslated,

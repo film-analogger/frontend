@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **primaryColor** | **string** |  | [optional] [default to undefined]
 **secondaryColor** | **string** |  | [optional] [default to undefined]
 **tertiaryColor** | **string** |  | [optional] [default to undefined]
-**manufacturer** | [**ManufacturerWriteFilmCatalogStatusWrite**](ManufacturerWriteFilmCatalogStatusWrite.md) |  | [optional] [default to undefined]
+**manufacturer** | **string** |  | [optional] [default to undefined]
 **status** | **string** |  | [optional] [default to StatusEnum_Personal]
 
 ## Example

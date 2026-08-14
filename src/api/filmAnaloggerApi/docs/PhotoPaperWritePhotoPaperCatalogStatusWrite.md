@@ -6,11 +6,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  | [default to undefined]
-**manufacturer** | [**ManufacturerWritePhotoPaperCatalogStatusWrite**](ManufacturerWritePhotoPaperCatalogStatusWrite.md) |  | [default to undefined]
+**manufacturer** | **string** |  | [default to undefined]
 **paperBase** | **string** |  | [default to undefined]
 **paperSurface** | **string** |  | [default to undefined]
 **paperSurfaceOther** | **string** |  | [optional] [default to undefined]
 **variableContrast** | **boolean** |  | [optional] [default to undefined]
+**grade** | **string** |  | [optional] [default to undefined]
+**process** | **string** |  | [default to undefined]
+**availableFormats** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**officialDocumentationUrl** | **string** |  | [optional] [default to undefined]
 **description** | **string** |  | [optional] [default to undefined]
 **status** | **string** |  | [default to StatusEnum_Personal]
 
@@ -26,6 +30,10 @@ const instance: PhotoPaperWritePhotoPaperCatalogStatusWrite = {
     paperSurface,
     paperSurfaceOther,
     variableContrast,
+    grade,
+    process,
+    availableFormats,
+    officialDocumentationUrl,
     description,
     status,
 };

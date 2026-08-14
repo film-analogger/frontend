@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  | [optional] [default to undefined]
-**manufacturer** | [**ManufacturerWriteCameraCatalogStatusWrite**](ManufacturerWriteCameraCatalogStatusWrite.md) |  | [optional] [default to undefined]
+**manufacturer** | **string** |  | [optional] [default to undefined]
 **filmFormat** | **string** |  | [optional] [default to undefined]
 **description** | **string** |  | [optional] [default to undefined]
 **status** | **string** |  | [optional] [default to StatusEnum_Personal]

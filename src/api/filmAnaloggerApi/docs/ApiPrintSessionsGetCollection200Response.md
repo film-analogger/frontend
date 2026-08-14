@@ -1,6 +1,6 @@
 # ApiPrintSessionsGetCollection200Response
 
-PrintSession.jsonld-read-print-session_timestampable-blameable-read collection.
+PrintSession.jsonld-read-print-session_timestampable-blameable-read_read-enlarger_translatable-read_catalog-status-read collection.
 
 ## Properties
 
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **hydra_totalItems** | **number** |  | [optional] [default to undefined]
 **hydra_search** | [**HydraCollectionBaseSchemaNoPaginationHydraSearch**](HydraCollectionBaseSchemaNoPaginationHydraSearch.md) |  | [optional] [default to undefined]
 **hydra_view** | [**HydraCollectionBaseSchemaAllOfHydraView**](HydraCollectionBaseSchemaAllOfHydraView.md) |  | [optional] [default to undefined]
-**hydra_member** | [**Array&lt;PrintSessionJsonldReadPrintSessionTimestampableBlameableRead&gt;**](PrintSessionJsonldReadPrintSessionTimestampableBlameableRead.md) |  | [default to undefined]
+**hydra_member** | [**Array&lt;PrintSessionJsonldReadPrintSessionTimestampableBlameableReadReadEnlargerTranslatableReadCatalogStatusRead&gt;**](PrintSessionJsonldReadPrintSessionTimestampableBlameableReadReadEnlargerTranslatableReadCatalogStatusRead.md) |  | [default to undefined]
 
 ## Example
 

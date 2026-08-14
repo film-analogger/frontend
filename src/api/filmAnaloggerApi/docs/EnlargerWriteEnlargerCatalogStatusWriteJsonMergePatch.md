@@ -6,8 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  | [optional] [default to undefined]
-**manufacturer** | [**ManufacturerWriteEnlargerCatalogStatusWrite**](ManufacturerWriteEnlargerCatalogStatusWrite.md) |  | [optional] [default to undefined]
+**manufacturer** | **string** |  | [optional] [default to undefined]
 **lightSource** | **string** |  | [optional] [default to undefined]
+**filmFormats** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**negativeFormats** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
 **description** | **string** |  | [optional] [default to undefined]
 **status** | **string** |  | [optional] [default to StatusEnum_Personal]
 
@@ -20,6 +22,8 @@ const instance: EnlargerWriteEnlargerCatalogStatusWriteJsonMergePatch = {
     name,
     manufacturer,
     lightSource,
+    filmFormats,
+    negativeFormats,
     description,
     status,
 };

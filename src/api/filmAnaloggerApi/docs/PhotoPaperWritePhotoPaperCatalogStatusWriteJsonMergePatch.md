@@ -6,11 +6,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  | [optional] [default to undefined]
-**manufacturer** | [**ManufacturerWritePhotoPaperCatalogStatusWrite**](ManufacturerWritePhotoPaperCatalogStatusWrite.md) |  | [optional] [default to undefined]
+**manufacturer** | **string** |  | [optional] [default to undefined]
 **paperBase** | **string** |  | [optional] [default to undefined]
 **paperSurface** | **string** |  | [optional] [default to undefined]
 **paperSurfaceOther** | **string** |  | [optional] [default to undefined]
 **variableContrast** | **boolean** |  | [optional] [default to undefined]
+**grade** | **string** |  | [optional] [default to undefined]
+**process** | **string** |  | [optional] [default to undefined]
+**availableFormats** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**officialDocumentationUrl** | **string** |  | [optional] [default to undefined]
 **description** | **string** |  | [optional] [default to undefined]
 **status** | **string** |  | [optional] [default to StatusEnum_Personal]
 
@@ -26,6 +30,10 @@ const instance: PhotoPaperWritePhotoPaperCatalogStatusWriteJsonMergePatch = {
     paperSurface,
     paperSurfaceOther,
     variableContrast,
+    grade,
+    process,
+    availableFormats,
+    officialDocumentationUrl,
     description,
     status,
 };

@@ -14,6 +14,9 @@ Name | Type | Description | Notes
 **chemistryType** | [**ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead**](ChemistryTypeJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead.md) |  | [default to undefined]
 **manufacturer** | [**ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead**](ManufacturerJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead.md) |  | [default to undefined]
 **description** | **string** |  | [optional] [default to undefined]
+**referenceTemperatureMin** | **number** |  | [optional] [default to undefined]
+**referenceTemperatureMax** | **number** |  | [optional] [default to undefined]
+**openShelfLifeDays** | **number** |  | [optional] [default to undefined]
 **dilutions** | [**Array&lt;DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead&gt;**](DilutionJsonldReadChemistryTranslatableReadTimestampableBlameableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **officialDocumentationUrl** | **string** |  | [optional] [default to undefined]
 **translations** | **Array&lt;string | null&gt;** | array of TranslatedField objects, each containing the name of the translated field and the locale it was translated into | [optional] [default to undefined]
@@ -39,6 +42,9 @@ const instance: ChemistryJsonldReadChemistryTranslatableReadTimestampableBlameab
     chemistryType,
     manufacturer,
     description,
+    referenceTemperatureMin,
+    referenceTemperatureMax,
+    openShelfLifeDays,
     dilutions,
     officialDocumentationUrl,
     translations,
