@@ -1,7 +1,7 @@
 import { Box, IconButton, Stack } from '@mui/material';
 import DarkModeIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeIcon from '@mui/icons-material/LightModeRounded';
-import WbIncandescentIcon from '@mui/icons-material/WbIncandescentRounded';
+import ScienceIcon from '@mui/icons-material/Science';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppearanceMode, type AppearanceMode } from '~/Theme/useAppearanceMode';
@@ -10,7 +10,7 @@ import { pillSwitchContainerSx, pillSwitchItemSx } from '~/Theme/pillSwitchStyle
 const OPTIONS: { mode: Exclude<AppearanceMode, 'system'>; icon: React.ReactNode }[] = [
     { mode: 'light', icon: <LightModeIcon fontSize="small" /> },
     { mode: 'dark', icon: <DarkModeIcon fontSize="small" /> },
-    { mode: 'lab', icon: <WbIncandescentIcon fontSize="small" /> },
+    { mode: 'lab', icon: <ScienceIcon fontSize="small" /> },
 ];
 
 export const AppearanceModeSwitch: React.FunctionComponent = () => {

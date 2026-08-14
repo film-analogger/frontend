@@ -7,21 +7,18 @@ import OpenSource from '../OpenSource/OpenSource';
 import { Chip, Stack, Typography } from '@mui/material';
 import { chipClasses } from '@mui/material/Chip';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
-import GradientIcon from '@mui/icons-material/Gradient';
-import ScienceIcon from '@mui/icons-material/Science';
+import TheatersIcon from '@mui/icons-material/Theaters';
+import TungstenIcon from '@mui/icons-material/Tungsten';
 import CameraRollIcon from '@mui/icons-material/CameraRoll';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import FactoryIcon from '@mui/icons-material/Factory';
-import TextureIcon from '@mui/icons-material/Texture';
+import WallpaperIcon from '@mui/icons-material/Wallpaper';
 import { Link as RouterLink, useLocation } from 'react-router';
 
 import { AppLogo } from '~/components/Widgets/AppLogo/AppLogo';
 import { drawerWidth } from '~/Theme/Constants/layout';
 import { useTranslation } from 'react-i18next';
-import { useNavCounts } from './useNavCounts';
 import { LabModeToggle } from './LabModeToggle';
-
 const Drawer = styled(MuiDrawer)({
     width: drawerWidth,
     flexShrink: 0,
@@ -44,7 +41,6 @@ interface NavItem {
 const SideMenu: React.FunctionComponent = () => {
     const { t } = useTranslation();
     const location = useLocation();
-    const counts = useNavCounts();
     const theme = useTheme();
     const activeColor = theme.palette.mode === 'light' ? 'primary.dark' : 'primary.light';
 
@@ -65,20 +61,13 @@ const SideMenu: React.FunctionComponent = () => {
                 { translation: 'components.sidemenu.home', icon: <HomeRoundedIcon />, href: '/' },
                 {
                     translation: 'components.sidemenu.sessions',
-                    icon: <LocalPrintshopIcon />,
+                    icon: <TungstenIcon />,
                     href: '/sessions',
-                    count: counts.sessions,
                 },
                 {
                     translation: 'components.sidemenu.filmLogSheet',
-                    icon: <GradientIcon />,
+                    icon: <TheatersIcon />,
                     href: '/negatifs',
-                    count: counts.negatives,
-                },
-                {
-                    translation: 'components.sidemenu.developmentCharts',
-                    icon: <ScienceIcon />,
-                    soon: true,
                 },
             ],
         },
@@ -89,23 +78,20 @@ const SideMenu: React.FunctionComponent = () => {
                     translation: 'components.sidemenu.films',
                     icon: <CameraRollIcon />,
                     href: '/data/films',
-                    count: counts.films,
                 },
                 {
                     translation: 'components.sidemenu.chemistries',
                     icon: <BiotechIcon />,
                     href: '/data/chemistries',
-                    count: counts.chemistries,
                 },
                 {
                     translation: 'components.sidemenu.manufacturers',
                     icon: <FactoryIcon />,
                     href: '/data/manufacturers',
-                    count: counts.manufacturers,
                 },
                 {
                     translation: 'components.sidemenu.photoPaper',
-                    icon: <TextureIcon />,
+                    icon: <WallpaperIcon />,
                     soon: true,
                 },
             ],

@@ -1,5 +1,5 @@
 import { Box, ButtonBase, Typography } from '@mui/material';
-import WbIncandescentIcon from '@mui/icons-material/WbIncandescentRounded';
+import ScienceIcon from '@mui/icons-material/Science';
 import type React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppearanceMode } from '~/Theme/useAppearanceMode';
@@ -31,7 +31,7 @@ export const LabModeToggle: React.FunctionComponent = () => {
                 '&:hover': { borderColor: 'primary.main' },
             }}
         >
-            <WbIncandescentIcon
+            <ScienceIcon
                 color={isLab ? 'primary' : 'inherit'}
                 sx={{ fontSize: '20px' }}
             />
