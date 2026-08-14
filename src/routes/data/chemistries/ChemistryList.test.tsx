@@ -36,12 +36,22 @@ const makeChemistry = (overrides: Partial<ChemistryRead>): ChemistryRead => ({
 });
 
 const mockApiChemistriesGetCollection = vi.fn();
+const mockApiManufacturersGetCollection = vi.fn();
+const mockApiChemistryTypesGetCollection = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
         ...actual,
         useChemistryApi: () => ({
             chemistryApi: { apiChemistriesGetCollection: mockApiChemistriesGetCollection },
+        }),
+        useManufacturerApi: () => ({
+            manufacturerApi: { apiManufacturersGetCollection: mockApiManufacturersGetCollection },
+        }),
+        useChemistryTypeApi: () => ({
+            chemistryTypeApi: {
+                apiChemistryTypesGetCollection: mockApiChemistryTypesGetCollection,
+            },
         }),
     };
 });
@@ -56,6 +66,12 @@ const renderChemistryList = () =>
 describe('ChemistryList', () => {
     beforeEach(() => {
         mockApiChemistriesGetCollection.mockReset();
+        mockApiManufacturersGetCollection.mockReset().mockResolvedValue({
+            data: { 'hydra:member': [] },
+        });
+        mockApiChemistryTypesGetCollection.mockReset().mockResolvedValue({
+            data: { 'hydra:member': [] },
+        });
     });
 
     it('shows a loading indicator while chemistries are being fetched', () => {

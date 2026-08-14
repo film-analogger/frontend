@@ -190,7 +190,13 @@ const NewDevelopmentLogWizard: React.FunctionComponent = () => {
                             <NegativeContextStep
                                 cameras={cameras}
                                 films={films}
+                                onCameraCreated={(camera) => {
+                                    setCameras((current) => [camera, ...current]);
+                                }}
                                 onChange={patch}
+                                onFilmCreated={(film) => {
+                                    setFilms((current) => [film, ...current]);
+                                }}
                                 state={state}
                             />
                         ) : null}

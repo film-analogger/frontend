@@ -212,6 +212,9 @@ const NewSessionWizard: React.FunctionComponent = () => {
                         <SessionContextStep
                             enlargers={enlargers}
                             onChange={patch}
+                            onEnlargerCreated={(enlarger) => {
+                                setEnlargers((current) => [enlarger, ...current]);
+                            }}
                             state={state}
                         />
                     )
@@ -230,6 +233,9 @@ const NewSessionWizard: React.FunctionComponent = () => {
                             onChange={(baths) => {
                                 patch({ baths });
                             }}
+                            onChemistryCreated={(chemistry) => {
+                                setChemistries((current) => [chemistry, ...current]);
+                            }}
                         />
                     )
                 ) : null}
@@ -244,6 +250,9 @@ const NewSessionWizard: React.FunctionComponent = () => {
                         <PrintsStep
                             onChange={(prints) => {
                                 patch({ prints });
+                            }}
+                            onPhotoPaperCreated={(photoPaper) => {
+                                setPhotoPapers((current) => [photoPaper, ...current]);
                             }}
                             photoPapers={photoPapers}
                             prints={state.prints}

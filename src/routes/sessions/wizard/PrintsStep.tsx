@@ -10,7 +10,8 @@ export const PrintsStep: React.FunctionComponent<{
     readonly prints: WizardPrint[];
     readonly photoPapers: PhotoPaperRead[];
     readonly onChange: (prints: WizardPrint[]) => void;
-}> = ({ prints, photoPapers, onChange }) => {
+    readonly onPhotoPaperCreated: (photoPaper: PhotoPaperRead) => void;
+}> = ({ prints, photoPapers, onChange, onPhotoPaperCreated }) => {
     const { t } = useTranslation();
 
     return (
@@ -22,6 +23,7 @@ export const PrintsStep: React.FunctionComponent<{
                     onChange={(patch) => {
                         onChange(prints.map((p) => (p.key === print.key ? { ...p, ...patch } : p)));
                     }}
+                    onPhotoPaperCreated={onPhotoPaperCreated}
                     onRemove={() => {
                         onChange(prints.filter((p) => p.key !== print.key));
                     }}

@@ -60,6 +60,7 @@ const mockApiCamerasGetCollection = vi.fn();
 const mockApiChemistriesGetCollection = vi.fn();
 const mockApiTagsGetCollection = vi.fn();
 const mockApiDevelopmentLogsPost = vi.fn();
+const mockApiManufacturersGetCollection = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
@@ -74,6 +75,9 @@ vi.mock('~/api/client', async () => {
         useTagApi: () => ({ tagApi: { apiTagsGetCollection: mockApiTagsGetCollection } }),
         useDevelopmentLogApi: () => ({
             developmentLogApi: { apiDevelopmentLogsPost: mockApiDevelopmentLogsPost },
+        }),
+        useManufacturerApi: () => ({
+            manufacturerApi: { apiManufacturersGetCollection: mockApiManufacturersGetCollection },
         }),
     };
 });
@@ -108,6 +112,9 @@ describe('NewDevelopmentLogWizard', () => {
             data: { 'hydra:member': [] },
         });
         mockApiDevelopmentLogsPost.mockReset();
+        mockApiManufacturersGetCollection.mockReset().mockResolvedValue({
+            data: { 'hydra:member': [] },
+        });
         mockNavigate.mockReset();
     });
 

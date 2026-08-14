@@ -1,0 +1,202 @@
+import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
+import { Chip, Grid, MenuItem, Stack, TextField, Typography } from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+    useEnlargerApi,
+    useManufacturerApi,
+    type EnlargerRead,
+    type ManufacturerRead,
+} from '~/api/client';
+import {
+    EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum,
+    type EnlargerWriteEnlargerCatalogStatusWrite,
+    type ManufacturerWriteEnlargerCatalogStatusWrite,
+} from '~/api/filmAnaloggerApi';
+import { AddEntityDialog } from './AddEntityDialog';
+import { asIri } from './asIri';
+import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
+import { ManufacturerSelectField } from './ManufacturerSelectField';
+
+const lightSources = Object.values(EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum);
+
+const negativeFormats = ['24x36', '6x4.5', '6x6', '6x7', '6x9', '4x5', '8x10'];
+
+export const AddEnlargerDialog: React.FunctionComponent<{
+    readonly open: boolean;
+    readonly onClose: () => void;
+    readonly onCreated: (enlarger: EnlargerRead) => void;
+}> = ({ open, onClose, onCreated }) => {
+    const { t } = useTranslation();
+    const { enlargerApi } = useEnlargerApi();
+    const { manufacturerApi } = useManufacturerApi();
+
+    const [manufacturers, setManufacturers] = React.useState<ManufacturerRead[]>([]);
+    const [manufacturerId, setManufacturerId] = React.useState('');
+    const [name, setName] = React.useState('');
+    const [lightSource, setLightSource] = React.useState<
+        EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum | ''
+    >('');
+    // Not yet backed by the API — kept local until the enlarger catalog exposes
+    // a supported-negative-formats field, per the parallel API work.
+    const [formats, setFormats] = React.useState<string[]>([]);
+    const [description, setDescription] = React.useState('');
+    const [scope, setScope] = React.useState<CatalogScope>('personal');
+    const [prevOpen, setPrevOpen] = React.useState(open);
+
+    // Reset the form whenever the dialog opens again, without an effect —
+    // see https://react.dev/learn/you-might-not-need-an-effect.
+    if (open !== prevOpen) {
+        setPrevOpen(open);
+        if (open) {
+            setManufacturerId('');
+            setName('');
+            setLightSource('');
+            setFormats([]);
+            setDescription('');
+            setScope('personal');
+        }
+    }
+
+    React.useEffect(() => {
+        if (!open) {
+            return;
+        }
+        manufacturerApi
+            .apiManufacturersGetCollection()
+            .then((res) => {
+                setManufacturers(res.data['hydra:member']);
+            })
+            .catch((err: unknown) => {
+                console.error('Error fetching manufacturers:', err);
+            });
+    }, [open, manufacturerApi]);
+
+    const handleSubmit = async () => {
+        const payload: EnlargerWriteEnlargerCatalogStatusWrite = {
+            name,
+            manufacturer: asIri(manufacturerId) as ManufacturerWriteEnlargerCatalogStatusWrite,
+            lightSource: lightSource || undefined,
+            description: description || undefined,
+            status: scope,
+        };
+        const res = await enlargerApi.apiEnlargersPost({
+            enlargerWriteEnlargerCatalogStatusWrite: payload,
+        });
+        onCreated(res.data);
+        onClose();
+    };
+
+    return (
+        <AddEntityDialog
+            icon={<SettingsInputCompositeIcon fontSize="small" />}
+            intro={t('enlargers.add.intro')}
+            onClose={onClose}
+            onSubmit={handleSubmit}
+            open={open}
+            submitDisabled={name.trim() === '' || manufacturerId === ''}
+            submitLabel={t('enlargers.add.submit')}
+            title={t('enlargers.add.title')}
+        >
+            <Grid
+                container
+                spacing={1.75}
+            >
+                <Grid size={{ xs: 12, sm: 6 }}>
+                    <ManufacturerSelectField
+                        manufacturers={manufacturers}
+                        onChange={setManufacturerId}
+                        onManufacturerCreated={(manufacturer) => {
+                            setManufacturers((list) => [...list, manufacturer]);
+                        }}
+                        value={manufacturerId}
+                    />
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6 }}>
+                    <TextField
+                        fullWidth
+                        label={t('enlargers.add.fields.name')}
+                        onChange={(e) => {
+                            setName(e.target.value);
+                        }}
+                        value={name}
+                    />
+                </Grid>
+                <Grid size={12}>
+                    <TextField
+                        fullWidth
+                        label={t('enlargers.add.fields.lightSource')}
+                        onChange={(e) => {
+                            setLightSource(
+                                e.target
+                                    .value as EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum,
+                            );
+                        }}
+                        select
+                        value={lightSource}
+                    >
+                        <MenuItem value="">{t('enlargers.add.fields.lightSourceNone')}</MenuItem>
+                        {lightSources.map((source) => (
+                            <MenuItem
+                                key={source}
+                                value={source}
+                            >
+                                {t(`enlargers.add.fields.lightSourceOptions.${source}`)}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </Grid>
+                <Grid size={12}>
+                    <Typography
+                        color="text.secondary"
+                        sx={{ mb: 0.75, fontSize: '11.5px', fontWeight: 600 }}
+                    >
+                        {t('enlargers.add.fields.formats')}
+                    </Typography>
+                    <Stack
+                        direction="row"
+                        spacing={1}
+                        sx={{ flexWrap: 'wrap', gap: 1 }}
+                    >
+                        {negativeFormats.map((format) => {
+                            const selected = formats.includes(format);
+                            return (
+                                <Chip
+                                    color={selected ? 'primary' : 'default'}
+                                    key={format}
+                                    label={format}
+                                    onClick={() => {
+                                        setFormats((current) =>
+                                            selected
+                                                ? current.filter((f) => f !== format)
+                                                : [...current, format],
+                                        );
+                                    }}
+                                    variant={selected ? 'filled' : 'outlined'}
+                                />
+                            );
+                        })}
+                    </Stack>
+                </Grid>
+                <Grid size={12}>
+                    <TextField
+                        fullWidth
+                        label={t('enlargers.add.fields.description')}
+                        minRows={3}
+                        multiline
+                        onChange={(e) => {
+                            setDescription(e.target.value);
+                        }}
+                        value={description}
+                    />
+                </Grid>
+                <Grid size={12}>
+                    <CatalogScopeField
+                        onChange={setScope}
+                        value={scope}
+                    />
+                </Grid>
+            </Grid>
+        </AddEntityDialog>
+    );
+};

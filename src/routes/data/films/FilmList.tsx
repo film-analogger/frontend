@@ -1,4 +1,5 @@
-import { Box, Chip, Grid, Stack, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { Box, Button, Chip, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
@@ -6,6 +7,7 @@ import { FilmCard } from '~/components/Widgets/FilmCard/FilmCard';
 import { useFilmApi, type FilmRead } from '~/api/client';
 import { getProcessStyle, type Process } from '~/domain/processColors';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { AddFilmDialog } from '~/components/dialogs/AddFilmDialog';
 import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
 import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
@@ -25,6 +27,7 @@ const FilmList: React.FunctionComponent = () => {
 
     const [films, setFilms] = React.useState<FilmRead[]>([]);
     const [processFilter, setProcessFilter] = React.useState<Process | null>(null);
+    const [addOpen, setAddOpen] = React.useState(false);
 
     const loaderSteps = [{ title: t('loaders.film.title'), hint: t('loaders.film.hint') }];
 
@@ -64,19 +67,35 @@ const FilmList: React.FunctionComponent = () => {
 
     return (
         <Box>
-            <Typography
-                sx={{ mb: 0.5 }}
-                variant="h1"
+            <Stack
+                direction="row"
+                sx={{ alignItems: 'flex-start', justifyContent: 'space-between', gap: 2 }}
             >
-                {t('films.list.title')}
-            </Typography>
-            <Typography
-                color="text.secondary"
-                sx={{ mb: 2 }}
-                variant="body2"
-            >
-                {t('films.list.count', { count: films.length })}
-            </Typography>
+                <Box>
+                    <Typography
+                        sx={{ mb: 0.5 }}
+                        variant="h1"
+                    >
+                        {t('films.list.title')}
+                    </Typography>
+                    <Typography
+                        color="text.secondary"
+                        sx={{ mb: 2 }}
+                        variant="body2"
+                    >
+                        {t('films.list.count', { count: films.length })}
+                    </Typography>
+                </Box>
+                <Button
+                    onClick={() => {
+                        setAddOpen(true);
+                    }}
+                    startIcon={<AddIcon />}
+                    variant="contained"
+                >
+                    {t('films.add.trigger')}
+                </Button>
+            </Stack>
 
             {error ? (
                 <Typography color="error">{t('errors.api.loadingData')}</Typography>
@@ -142,6 +161,16 @@ const FilmList: React.FunctionComponent = () => {
                     </Grid>
                 </React.Fragment>
             )}
+
+            <AddFilmDialog
+                onClose={() => {
+                    setAddOpen(false);
+                }}
+                onCreated={(film) => {
+                    setFilms((current) => [film, ...current]);
+                }}
+                open={addOpen}
+            />
         </Box>
     );
 };

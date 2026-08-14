@@ -59,6 +59,24 @@
                 "title": "Dans mon carnet",
                 "empty": "Aucun tirage enregistré pour cette pellicule pour le moment."
             }
+        },
+        "add": {
+            "trigger": "Ajouter une pellicule",
+            "title": "Nouvelle pellicule",
+            "submit": "Ajouter la pellicule",
+            "intro": "La pellicule rejoint le référentiel et devient disponible pour tous les développements. Les couleurs de bandeau sont reprises du fabricant si tu ne les précises pas.",
+            "fields": {
+                "name": "Nom",
+                "sensibility": "Sensibilité nominale (ISO)",
+                "process": "Procédé",
+                "emulsionType": "Type d'émulsion",
+                "emulsionTypeNone": "Non précisé",
+                "formats": "Formats",
+                "formatsHint": "Pas encore suivi par le référentiel — conservé ici pour mémoire.",
+                "inversible": "Film inversible",
+                "officialDocumentationUrl": "Documentation officielle",
+                "description": "Description"
+            }
         }
     },
     "sessions": {
@@ -314,6 +332,16 @@
             "chemistries": "Chimies ({{count}})",
             "noFilms": "Aucune pellicule référencée pour ce fabricant pour le moment.",
             "noChemistries": "Aucune chimie référencée pour ce fabricant pour le moment."
+        },
+        "add": {
+            "trigger": "Ajouter un fabricant",
+            "title": "Nouveau fabricant",
+            "submit": "Ajouter le fabricant",
+            "intro": "Le fabricant regroupe ses pellicules, ses chimies et ses papiers. Ses couleurs d'identité servent de valeurs par défaut aux fiches qui lui sont rattachées.",
+            "fields": {
+                "name": "Nom",
+                "website": "Site officiel"
+            }
         }
     },
     "chemistries": {
@@ -342,6 +370,27 @@
             "chemistryParts_other": "{{count}} parts de chimie",
             "waterParts": "{{count}} part d'eau",
             "waterParts_other": "{{count}} parts d'eau"
+        },
+        "add": {
+            "trigger": "Ajouter une chimie",
+            "title": "Nouvelle chimie",
+            "submit": "Ajouter la chimie",
+            "intro": "La chimie devient disponible dans les étapes de développement et de tirage. Ses dilutions servent de valeurs par défaut dans les recettes.",
+            "fields": {
+                "name": "Nom",
+                "process": "Procédé",
+                "chemistryType": "Type",
+                "dilutions": "Dilutions",
+                "dilutionChemistryParts": "Chimie",
+                "dilutionWaterParts": "Eau",
+                "dilutionOfficial": "Dilution officielle",
+                "dilutionRemove": "Retirer cette dilution",
+                "dilutionAdd": "Ajouter une dilution",
+                "tempMin": "Température min. (°C)",
+                "tempMax": "Température max. (°C)",
+                "officialDocumentationUrl": "Documentation officielle",
+                "description": "Description"
+            }
         }
     },
     "dashboard": {
@@ -555,6 +604,97 @@
         "tag": {
             "title": "Étiquettes",
             "hint": "récupération des étiquettes en cours…"
+        }
+    },
+    "dialogs": {
+        "close": "Fermer",
+        "cancel": "Annuler",
+        "submitError": "Une erreur est survenue. Réessaie.",
+        "footerHint": "Ajouté au référentiel, réutilisable ensuite.",
+        "scope": {
+            "label": "Portée de la fiche",
+            "private": {
+                "label": "Donnée personnelle",
+                "desc": "Visible seulement dans ton carnet."
+            },
+            "submit": {
+                "label": "Proposer à la validation",
+                "desc": "Relue par l'équipe, puis versée au référentiel public."
+            }
+        },
+        "colors": {
+            "label": "Couleurs d'identité",
+            "primary": "Primaire",
+            "secondary": "Secondaire",
+            "tertiary": "Tertiaire"
+        },
+        "manufacturer": {
+            "label": "Fabricant",
+            "add": "Ajouter un fabricant"
+        }
+    },
+    "cameras": {
+        "add": {
+            "trigger": "Ajouter un boîtier",
+            "title": "Nouveau boîtier",
+            "submit": "Ajouter le boîtier",
+            "intro": "Le boîtier sert à retrouver les négatifs par appareil. Le format détermine le classeur proposé par défaut.",
+            "fields": {
+                "name": "Modèle",
+                "filmFormat": "Format",
+                "filmFormatNone": "Non précisé",
+                "description": "Description"
+            }
+        }
+    },
+    "enlargers": {
+        "add": {
+            "trigger": "Ajouter un agrandisseur",
+            "title": "Nouvel agrandisseur",
+            "submit": "Ajouter l'agrandisseur",
+            "intro": "L'agrandisseur est rattaché aux séances de tirage : la source lumineuse et les formats de négatif tirables conditionnent les temps d'exposition proposés.",
+            "fields": {
+                "name": "Modèle",
+                "lightSource": "Source lumineuse",
+                "lightSourceNone": "Non précisée",
+                "lightSourceOptions": {
+                    "condenser": "Condenseur",
+                    "diffusor": "Diffusion opale",
+                    "color_head": "Tête couleur"
+                },
+                "formats": "Formats de négatif tirables",
+                "description": "Description"
+            }
+        }
+    },
+    "photoPapers": {
+        "add": {
+            "trigger": "Ajouter un papier",
+            "title": "Nouveau papier photo",
+            "submit": "Ajouter le papier",
+            "intro": "Le papier est rattaché aux séances de tirage. Support, surface et gradation servent de repères pour retrouver un tirage et refaire la même recette.",
+            "fields": {
+                "name": "Nom",
+                "paperBase": "Support",
+                "paperBaseOptions": {
+                    "rc": "RC (plastifié)",
+                    "fb": "Baryté fibre"
+                },
+                "paperSurface": "Surface",
+                "paperSurfaceOptions": {
+                    "glossy": "Brillant",
+                    "satin": "Satiné",
+                    "pearl": "Perlé",
+                    "matt": "Mat",
+                    "other": "Autre"
+                },
+                "paperSurfaceOther": "Précision surface",
+                "variableContrast": "Multigrade (contraste variable)",
+                "toning": "Virage sélénium possible",
+                "formats": "Formats",
+                "formatsHint": "Pas encore suivi par le référentiel — conservé ici pour mémoire.",
+                "description": "Description"
+            }
         }
     }
 }

@@ -34,11 +34,15 @@ const makeFilm = (overrides: Partial<FilmRead>): FilmRead => ({
 });
 
 const mockApiFilmsGetCollection = vi.fn();
+const mockApiManufacturersGetCollection = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
         ...actual,
         useFilmApi: () => ({ filmApi: { apiFilmsGetCollection: mockApiFilmsGetCollection } }),
+        useManufacturerApi: () => ({
+            manufacturerApi: { apiManufacturersGetCollection: mockApiManufacturersGetCollection },
+        }),
     };
 });
 
@@ -52,6 +56,9 @@ const renderFilmList = () =>
 describe('FilmList', () => {
     beforeEach(() => {
         mockApiFilmsGetCollection.mockReset();
+        mockApiManufacturersGetCollection.mockReset().mockResolvedValue({
+            data: { 'hydra:member': [] },
+        });
     });
 
     it('shows a loading indicator while films are being fetched', () => {

@@ -1,4 +1,5 @@
-import { Box, Grid, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
@@ -12,6 +13,7 @@ import {
 } from '~/api/client';
 import { ManufacturerCard } from '~/components/Widgets/ManufacturerCard/ManufacturerCard';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { AddManufacturerDialog } from '~/components/dialogs/AddManufacturerDialog';
 import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
 import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
@@ -34,6 +36,7 @@ const ManufacturerList: React.FunctionComponent = () => {
     const [manufacturers, setManufacturers] = React.useState<ManufacturerRead[]>([]);
     const [films, setFilms] = React.useState<FilmRead[]>([]);
     const [chemistries, setChemistries] = React.useState<ChemistryRead[]>([]);
+    const [addOpen, setAddOpen] = React.useState(false);
 
     const loaderSteps = [
         { title: t('loaders.manufacturers.title'), hint: t('loaders.manufacturers.hint') },
@@ -74,19 +77,35 @@ const ManufacturerList: React.FunctionComponent = () => {
 
     return (
         <Box>
-            <Typography
-                sx={{ mb: 0.5 }}
-                variant="h1"
+            <Stack
+                direction="row"
+                sx={{ alignItems: 'flex-start', justifyContent: 'space-between', gap: 2 }}
             >
-                {t('manufacturers.list.title')}
-            </Typography>
-            <Typography
-                color="text.secondary"
-                sx={{ mb: 3 }}
-                variant="body2"
-            >
-                {t('manufacturers.list.count', { count: manufacturers.length })}
-            </Typography>
+                <Box>
+                    <Typography
+                        sx={{ mb: 0.5 }}
+                        variant="h1"
+                    >
+                        {t('manufacturers.list.title')}
+                    </Typography>
+                    <Typography
+                        color="text.secondary"
+                        sx={{ mb: 3 }}
+                        variant="body2"
+                    >
+                        {t('manufacturers.list.count', { count: manufacturers.length })}
+                    </Typography>
+                </Box>
+                <Button
+                    onClick={() => {
+                        setAddOpen(true);
+                    }}
+                    startIcon={<AddIcon />}
+                    variant="contained"
+                >
+                    {t('manufacturers.add.trigger')}
+                </Button>
+            </Stack>
 
             <Grid
                 container
@@ -127,6 +146,16 @@ const ManufacturerList: React.FunctionComponent = () => {
                     );
                 })}
             </Grid>
+
+            <AddManufacturerDialog
+                onClose={() => {
+                    setAddOpen(false);
+                }}
+                onCreated={(manufacturer) => {
+                    setManufacturers((current) => [manufacturer, ...current]);
+                }}
+                open={addOpen}
+            />
         </Box>
     );
 };

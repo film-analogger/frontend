@@ -59,6 +59,24 @@
                 "title": "In your logbook",
                 "empty": "No print recorded for this film yet."
             }
+        },
+        "add": {
+            "trigger": "Add a film",
+            "title": "New film",
+            "submit": "Add the film",
+            "intro": "The film joins the catalog and becomes available for every development. Its banner colors default to the manufacturer's if left blank.",
+            "fields": {
+                "name": "Name",
+                "sensibility": "Nominal sensibility (ISO)",
+                "process": "Process",
+                "emulsionType": "Emulsion type",
+                "emulsionTypeNone": "Not specified",
+                "formats": "Formats",
+                "formatsHint": "Not tracked by the catalog yet — kept here for reference.",
+                "inversible": "Reversal film",
+                "officialDocumentationUrl": "Official documentation",
+                "description": "Description"
+            }
         }
     },
     "sessions": {
@@ -314,6 +332,16 @@
             "chemistries": "Chemistries ({{count}})",
             "noFilms": "No film catalogued for this manufacturer yet.",
             "noChemistries": "No chemistry catalogued for this manufacturer yet."
+        },
+        "add": {
+            "trigger": "Add a manufacturer",
+            "title": "New manufacturer",
+            "submit": "Add the manufacturer",
+            "intro": "The manufacturer groups its films, chemistries and papers. Its identity colors become the defaults for entries attached to it.",
+            "fields": {
+                "name": "Name",
+                "website": "Official website"
+            }
         }
     },
     "chemistries": {
@@ -342,6 +370,27 @@
             "chemistryParts_other": "{{count}} parts of chemistry",
             "waterParts": "{{count}} part of water",
             "waterParts_other": "{{count}} parts of water"
+        },
+        "add": {
+            "trigger": "Add a chemistry",
+            "title": "New chemistry",
+            "submit": "Add the chemistry",
+            "intro": "The chemistry becomes available in development and print steps. Its dilutions serve as defaults in recipes.",
+            "fields": {
+                "name": "Name",
+                "process": "Process",
+                "chemistryType": "Type",
+                "dilutions": "Dilutions",
+                "dilutionChemistryParts": "Chemistry",
+                "dilutionWaterParts": "Water",
+                "dilutionOfficial": "Official dilution",
+                "dilutionRemove": "Remove this dilution",
+                "dilutionAdd": "Add a dilution",
+                "tempMin": "Min. temperature (°C)",
+                "tempMax": "Max. temperature (°C)",
+                "officialDocumentationUrl": "Official documentation",
+                "description": "Description"
+            }
         }
     },
     "dashboard": {
@@ -555,6 +604,97 @@
         "tag": {
             "title": "Tags",
             "hint": "fetching tags…"
+        }
+    },
+    "dialogs": {
+        "close": "Close",
+        "cancel": "Cancel",
+        "submitError": "Something went wrong. Please try again.",
+        "footerHint": "Added to the catalog, reusable afterwards.",
+        "scope": {
+            "label": "Entry visibility",
+            "private": {
+                "label": "Personal entry",
+                "desc": "Only visible in your own logbook."
+            },
+            "submit": {
+                "label": "Submit for validation",
+                "desc": "Reviewed by the team, then added to the public catalog."
+            }
+        },
+        "colors": {
+            "label": "Identity colors",
+            "primary": "Primary",
+            "secondary": "Secondary",
+            "tertiary": "Tertiary"
+        },
+        "manufacturer": {
+            "label": "Manufacturer",
+            "add": "Add a manufacturer"
+        }
+    },
+    "cameras": {
+        "add": {
+            "trigger": "Add a camera",
+            "title": "New camera",
+            "submit": "Add the camera",
+            "intro": "The camera is used to find negatives by body. Its format sets the binder suggested afterwards.",
+            "fields": {
+                "name": "Model",
+                "filmFormat": "Format",
+                "filmFormatNone": "Not specified",
+                "description": "Description"
+            }
+        }
+    },
+    "enlargers": {
+        "add": {
+            "trigger": "Add an enlarger",
+            "title": "New enlarger",
+            "submit": "Add the enlarger",
+            "intro": "The enlarger is attached to print sessions: its light source and printable negative formats condition the exposure times suggested afterwards.",
+            "fields": {
+                "name": "Model",
+                "lightSource": "Light source",
+                "lightSourceNone": "Not specified",
+                "lightSourceOptions": {
+                    "condenser": "Condenser",
+                    "diffusor": "Diffusion",
+                    "color_head": "Color head"
+                },
+                "formats": "Printable negative formats",
+                "description": "Description"
+            }
+        }
+    },
+    "photoPapers": {
+        "add": {
+            "trigger": "Add a paper",
+            "title": "New photo paper",
+            "submit": "Add the paper",
+            "intro": "The paper is attached to print sessions. Base, surface and grade help you find a print again and repeat the same recipe.",
+            "fields": {
+                "name": "Name",
+                "paperBase": "Base",
+                "paperBaseOptions": {
+                    "rc": "RC (resin-coated)",
+                    "fb": "Fiber-based baryta"
+                },
+                "paperSurface": "Surface",
+                "paperSurfaceOptions": {
+                    "glossy": "Glossy",
+                    "satin": "Satin",
+                    "pearl": "Pearl",
+                    "matt": "Matt",
+                    "other": "Other"
+                },
+                "paperSurfaceOther": "Surface (specify)",
+                "variableContrast": "Variable contrast (multigrade)",
+                "toning": "Selenium toning possible",
+                "formats": "Formats",
+                "formatsHint": "Not tracked by the catalog yet — kept here for reference.",
+                "description": "Description"
+            }
         }
     }
 }
