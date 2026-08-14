@@ -9,18 +9,20 @@ import {
     type PhotoPaperRead,
 } from '~/api/client';
 import {
+    PhotoPaperWritePhotoPaperCatalogStatusWriteGradeEnum,
     PhotoPaperWritePhotoPaperCatalogStatusWritePaperBaseEnum,
     PhotoPaperWritePhotoPaperCatalogStatusWritePaperSurfaceEnum,
-    type ManufacturerWritePhotoPaperCatalogStatusWrite,
+    PhotoPaperWritePhotoPaperCatalogStatusWriteProcessEnum,
     type PhotoPaperWritePhotoPaperCatalogStatusWrite,
 } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
-import { asIri } from './asIri';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
 import { ManufacturerSelectField } from './ManufacturerSelectField';
 
 const paperBases = Object.values(PhotoPaperWritePhotoPaperCatalogStatusWritePaperBaseEnum);
 const paperSurfaces = Object.values(PhotoPaperWritePhotoPaperCatalogStatusWritePaperSurfaceEnum);
+const processes = Object.values(PhotoPaperWritePhotoPaperCatalogStatusWriteProcessEnum);
+const grades = Object.values(PhotoPaperWritePhotoPaperCatalogStatusWriteGradeEnum);
 
 export const AddPhotoPaperDialog: React.FunctionComponent<{
     readonly open: boolean;
@@ -43,10 +45,17 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
             PhotoPaperWritePhotoPaperCatalogStatusWritePaperSurfaceEnum.Pearl,
         );
     const [paperSurfaceOther, setPaperSurfaceOther] = React.useState('');
+    const [process, setProcess] =
+        React.useState<PhotoPaperWritePhotoPaperCatalogStatusWriteProcessEnum>(
+            PhotoPaperWritePhotoPaperCatalogStatusWriteProcessEnum.BwPrint,
+        );
     const [variableContrast, setVariableContrast] = React.useState(true);
-    // Not yet backed by the API — kept local until the paper catalog exposes
-    // supported-formats and toning fields, per the parallel API work.
+    const [grade, setGrade] = React.useState<
+        PhotoPaperWritePhotoPaperCatalogStatusWriteGradeEnum | ''
+    >('');
     const [formats, setFormats] = React.useState('');
+    // Not yet backed by the API — kept local until the paper catalog exposes a
+    // toning field, per the parallel API work.
     const [toning, setToning] = React.useState(false);
     const [description, setDescription] = React.useState('');
     const [scope, setScope] = React.useState<CatalogScope>('personal');
@@ -62,7 +71,9 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
             setPaperBase(PhotoPaperWritePhotoPaperCatalogStatusWritePaperBaseEnum.Rc);
             setPaperSurface(PhotoPaperWritePhotoPaperCatalogStatusWritePaperSurfaceEnum.Pearl);
             setPaperSurfaceOther('');
+            setProcess(PhotoPaperWritePhotoPaperCatalogStatusWriteProcessEnum.BwPrint);
             setVariableContrast(true);
+            setGrade('');
             setFormats('');
             setToning(false);
             setDescription('');
@@ -88,13 +99,21 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
         paperSurface === PhotoPaperWritePhotoPaperCatalogStatusWritePaperSurfaceEnum.Other;
 
     const handleSubmit = async () => {
+        const formatsList = formats
+            .split(',')
+            .map((format) => format.trim())
+            .filter((format) => format !== '');
+
         const payload: PhotoPaperWritePhotoPaperCatalogStatusWrite = {
             name,
-            manufacturer: asIri(manufacturerId) as ManufacturerWritePhotoPaperCatalogStatusWrite,
+            manufacturer: manufacturers.find((m) => m.id === manufacturerId)?.['@id'] ?? '',
             paperBase,
             paperSurface,
             paperSurfaceOther: isOtherSurface ? paperSurfaceOther || undefined : undefined,
             variableContrast,
+            grade: variableContrast ? undefined : grade || undefined,
+            process,
+            availableFormats: formatsList.length > 0 ? formatsList : undefined,
             description: description || undefined,
             status: scope,
         };
@@ -198,6 +217,55 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                         />
                     </Grid>
                 ) : null}
+                <Grid size={{ xs: 12, sm: variableContrast ? 12 : 6 }}>
+                    <TextField
+                        fullWidth
+                        label={t('photoPapers.add.fields.process')}
+                        onChange={(e) => {
+                            setProcess(
+                                e.target
+                                    .value as PhotoPaperWritePhotoPaperCatalogStatusWriteProcessEnum,
+                            );
+                        }}
+                        select
+                        value={process}
+                    >
+                        {processes.map((p) => (
+                            <MenuItem
+                                key={p}
+                                value={p}
+                            >
+                                {p}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </Grid>
+                {variableContrast ? null : (
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                        <TextField
+                            fullWidth
+                            label={t('photoPapers.add.fields.grade')}
+                            onChange={(e) => {
+                                setGrade(
+                                    e.target
+                                        .value as PhotoPaperWritePhotoPaperCatalogStatusWriteGradeEnum,
+                                );
+                            }}
+                            select
+                            value={grade}
+                        >
+                            <MenuItem value="">{t('photoPapers.add.fields.gradeNone')}</MenuItem>
+                            {grades.map((g) => (
+                                <MenuItem
+                                    key={g}
+                                    value={g}
+                                >
+                                    {g}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Grid>
+                )}
                 <Grid size={{ xs: 12, sm: 6 }}>
                     <FormControlLabel
                         control={
@@ -227,7 +295,6 @@ export const AddPhotoPaperDialog: React.FunctionComponent<{
                 <Grid size={12}>
                     <TextField
                         fullWidth
-                        helperText={t('photoPapers.add.fields.formatsHint')}
                         label={t('photoPapers.add.fields.formats')}
                         onChange={(e) => {
                             setFormats(e.target.value);

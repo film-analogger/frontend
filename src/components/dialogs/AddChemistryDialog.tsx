@@ -25,12 +25,9 @@ import {
 } from '~/api/client';
 import {
     ChemistryWriteChemistryCatalogStatusWriteProcessEnum,
-    type ChemistryTypeWriteChemistryCatalogStatusWrite,
     type ChemistryWriteChemistryCatalogStatusWrite,
-    type ManufacturerWriteChemistryCatalogStatusWrite,
 } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
-import { asIri } from './asIri';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
 import { ManufacturerSelectField } from './ManufacturerSelectField';
 
@@ -74,8 +71,6 @@ export const AddChemistryDialog: React.FunctionComponent<{
         );
     const [chemistryTypeId, setChemistryTypeId] = React.useState('');
     const [dilutions, setDilutions] = React.useState<DilutionRow[]>([createDilutionRow()]);
-    // Not yet backed by the API — kept local until dilutions carry a working
-    // temperature range, per the parallel API work.
     const [tempMin, setTempMin] = React.useState('');
     const [tempMax, setTempMax] = React.useState('');
     const [officialDocumentationUrl, setOfficialDocumentationUrl] = React.useState('');
@@ -130,9 +125,11 @@ export const AddChemistryDialog: React.FunctionComponent<{
         const payload: ChemistryWriteChemistryCatalogStatusWrite = {
             name,
             process,
-            chemistryType: asIri(chemistryTypeId) as ChemistryTypeWriteChemistryCatalogStatusWrite,
-            manufacturer: asIri(manufacturerId) as ManufacturerWriteChemistryCatalogStatusWrite,
+            chemistryType: chemistryTypes.find((t) => t.id === chemistryTypeId)?.['@id'] ?? '',
+            manufacturer: manufacturers.find((m) => m.id === manufacturerId)?.['@id'] ?? '',
             description: description || undefined,
+            referenceTemperatureMin: tempMin !== '' ? Number(tempMin) : undefined,
+            referenceTemperatureMax: tempMax !== '' ? Number(tempMax) : undefined,
             officialDocumentationUrl: officialDocumentationUrl || undefined,
             dilutions: dilutions
                 .filter((row) => row.chemistryParts !== '' && row.waterParts !== '')

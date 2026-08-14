@@ -689,10 +689,12 @@
                     "other": "Autre"
                 },
                 "paperSurfaceOther": "Précision surface",
+                "process": "Procédé",
                 "variableContrast": "Multigrade (contraste variable)",
+                "grade": "Gradation",
+                "gradeNone": "Non précisée",
                 "toning": "Virage sélénium possible",
                 "formats": "Formats",
-                "formatsHint": "Pas encore suivi par le référentiel — conservé ici pour mémoire.",
                 "description": "Description"
             }
         }

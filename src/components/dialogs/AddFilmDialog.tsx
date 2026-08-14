@@ -6,10 +6,8 @@ import { useFilmApi, useManufacturerApi, type ManufacturerRead, type FilmRead } 
 import {
     FilmWriteFilmCatalogStatusWriteProcessEnum,
     type FilmWriteFilmCatalogStatusWrite,
-    type ManufacturerWriteFilmCatalogStatusWrite,
 } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
-import { asIri } from './asIri';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
 import { IdentityColorFields, type IdentityColors } from './IdentityColorFields';
 import { ManufacturerSelectField } from './ManufacturerSelectField';
@@ -94,7 +92,7 @@ export const AddFilmDialog: React.FunctionComponent<{
             primaryColor: colors.primaryColor || undefined,
             secondaryColor: colors.secondaryColor || undefined,
             tertiaryColor: colors.tertiaryColor || undefined,
-            manufacturer: asIri(manufacturerId) as ManufacturerWriteFilmCatalogStatusWrite,
+            manufacturer: manufacturers.find((m) => m.id === manufacturerId)?.['@id'] ?? '',
             status: scope,
         };
         const res = await filmApi.apiFilmsPost({ filmWriteFilmCatalogStatusWrite: payload });

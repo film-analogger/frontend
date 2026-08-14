@@ -11,10 +11,8 @@ import {
 import {
     EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum,
     type EnlargerWriteEnlargerCatalogStatusWrite,
-    type ManufacturerWriteEnlargerCatalogStatusWrite,
 } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
-import { asIri } from './asIri';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
 import { ManufacturerSelectField } from './ManufacturerSelectField';
 
@@ -37,8 +35,6 @@ export const AddEnlargerDialog: React.FunctionComponent<{
     const [lightSource, setLightSource] = React.useState<
         EnlargerWriteEnlargerCatalogStatusWriteLightSourceEnum | ''
     >('');
-    // Not yet backed by the API — kept local until the enlarger catalog exposes
-    // a supported-negative-formats field, per the parallel API work.
     const [formats, setFormats] = React.useState<string[]>([]);
     const [description, setDescription] = React.useState('');
     const [scope, setScope] = React.useState<CatalogScope>('personal');
@@ -75,8 +71,9 @@ export const AddEnlargerDialog: React.FunctionComponent<{
     const handleSubmit = async () => {
         const payload: EnlargerWriteEnlargerCatalogStatusWrite = {
             name,
-            manufacturer: asIri(manufacturerId) as ManufacturerWriteEnlargerCatalogStatusWrite,
+            manufacturer: manufacturers.find((m) => m.id === manufacturerId)?.['@id'] ?? '',
             lightSource: lightSource || undefined,
+            negativeFormats: formats.length > 0 ? formats : undefined,
             description: description || undefined,
             status: scope,
         };

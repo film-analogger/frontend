@@ -110,7 +110,7 @@ describe('AddFilmDialog', () => {
             filmWriteFilmCatalogStatusWrite: {
                 name: 'HP5 Plus',
                 sensibility: 400,
-                manufacturer: '1',
+                manufacturer: '/manufacturers/1',
                 status: 'personal',
             },
         });

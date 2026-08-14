@@ -119,8 +119,8 @@ describe('AddChemistryDialog', () => {
         expect(mockApiChemistriesPost.mock.calls[0]?.[0]).toMatchObject({
             chemistryWriteChemistryCatalogStatusWrite: {
                 name: 'ID-11',
-                manufacturer: '1',
-                chemistryType: '1',
+                manufacturer: '/manufacturers/1',
+                chemistryType: '/chemistry_types/1',
                 dilutions: [{ chemistryParts: 1, waterParts: 9, official: false }],
             },
         });

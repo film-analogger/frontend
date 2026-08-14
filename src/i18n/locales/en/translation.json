@@ -689,10 +689,12 @@
                     "other": "Other"
                 },
                 "paperSurfaceOther": "Surface (specify)",
+                "process": "Process",
                 "variableContrast": "Variable contrast (multigrade)",
+                "grade": "Grade",
+                "gradeNone": "Not specified",
                 "toning": "Selenium toning possible",
                 "formats": "Formats",
-                "formatsHint": "Not tracked by the catalog yet — kept here for reference.",
                 "description": "Description"
             }
         }

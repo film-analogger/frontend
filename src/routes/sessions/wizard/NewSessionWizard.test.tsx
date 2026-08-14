@@ -65,6 +65,7 @@ const photoPaper: PhotoPaperRead = {
     },
     paperBase: 'rc',
     paperSurface: 'glossy',
+    process: 'B&W Print',
     status: 'official',
 };
 

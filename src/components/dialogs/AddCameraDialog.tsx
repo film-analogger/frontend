@@ -11,10 +11,8 @@ import {
 import {
     CameraWriteCameraCatalogStatusWriteFilmFormatEnum,
     type CameraWriteCameraCatalogStatusWrite,
-    type ManufacturerWriteCameraCatalogStatusWrite,
 } from '~/api/filmAnaloggerApi';
 import { AddEntityDialog } from './AddEntityDialog';
-import { asIri } from './asIri';
 import { CatalogScopeField, type CatalogScope } from './CatalogScopeField';
 import { ManufacturerSelectField } from './ManufacturerSelectField';
 
@@ -69,7 +67,7 @@ export const AddCameraDialog: React.FunctionComponent<{
     const handleSubmit = async () => {
         const payload: CameraWriteCameraCatalogStatusWrite = {
             name,
-            manufacturer: asIri(manufacturerId) as ManufacturerWriteCameraCatalogStatusWrite,
+            manufacturer: manufacturers.find((m) => m.id === manufacturerId)?.['@id'] ?? '',
             filmFormat: filmFormat || undefined,
             description: description || undefined,
             status: scope,
