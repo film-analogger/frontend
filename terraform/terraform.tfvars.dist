@@ -1,4 +1,4 @@
-### mandatiory variables
+### mandatory variables
 keycloak_realm_master_client_secret = "!ChangeMe!"
 keycloak_server_url = "http://localhost:8080"
 
