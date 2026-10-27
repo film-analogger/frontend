@@ -7,6 +7,7 @@ All URIs are relative to *http://localhost*
 |[**apiAppUsersGetCollection**](#apiappusersgetcollection) | **GET** /app_users | Retrieves the collection of AppUser resources.|
 |[**apiAppUsersIdGet**](#apiappusersidget) | **GET** /app_users/{id} | Retrieves a AppUser resource.|
 |[**apiAppUsersIdPatch**](#apiappusersidpatch) | **PATCH** /app_users/{id} | Updates the AppUser resource.|
+|[**me**](#me) | **GET** /me | Get the current user|
 |[**uploadAvatar**](#uploadavatar) | **POST** /app_users/{id}/avatar | Upload user avatar|
 
 # **apiAppUsersGetCollection**
@@ -190,6 +191,63 @@ const { status, data } = await apiInstance.apiAppUsersIdPatch(
 |**200** | AppUser resource updated |  -  |
 |**400** | Invalid input |  -  |
 |**422** | An error occurred |  -  |
+|**404** | Not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **me**
+> AppUserJsonldReadAppUserTimestampableBlameableRead me()
+
+Returns the profile of the currently authenticated user.
+
+### Example
+
+```typescript
+import {
+    AppUserApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new AppUserApi(configuration);
+
+let xLOCALE: string; //Locale (e.g. \"en\", \"fr\") (optional) (default to undefined)
+let acceptLanguage: string; //Accept-Language (e.g. \"en\", \"fr\", \"en-US,en;q=0.9,fr;q=0.8\") - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used (optional) (default to undefined)
+
+const { status, data } = await apiInstance.me(
+    xLOCALE,
+    acceptLanguage
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **xLOCALE** | [**string**] | Locale (e.g. \&quot;en\&quot;, \&quot;fr\&quot;) | (optional) defaults to undefined|
+| **acceptLanguage** | [**string**] | Accept-Language (e.g. \&quot;en\&quot;, \&quot;fr\&quot;, \&quot;en-US,en;q&#x3D;0.9,fr;q&#x3D;0.8\&quot;) - used as a fallback if X-LOCALE is not set, the first language in the list that matches an available locale will be used | (optional) defaults to undefined|
+
+
+### Return type
+
+**AppUserJsonldReadAppUserTimestampableBlameableRead**
+
+### Authorization
+
+[oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/ld+json, multipart/form-data, application/problem+json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**401** | Unauthorized |  -  |
+|**200** | AppUser resource |  -  |
+|**403** | Forbidden |  -  |
 |**404** | Not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -34,6 +34,15 @@ export const inputsCustomizations: Components<Theme> = {
                 boxShadow: 'none',
                 borderRadius: (theme.vars ?? theme).shape.borderRadius,
                 textTransform: 'none',
+                // The primary/contained variant below paints a light gradient
+                // background (readable with its own black text) that MUI's
+                // default disabled-state text color doesn't account for,
+                // making disabled labels unreadable. Drop the gradient once
+                // disabled so the button falls back to the theme's ordinary
+                // (contrast-safe) disabled colors.
+                '&.Mui-disabled': {
+                    backgroundImage: 'none',
+                },
                 variants: [
                     {
                         props: {

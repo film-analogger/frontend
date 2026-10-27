@@ -45,6 +45,7 @@ const makeLog = (overrides: Partial<DevelopmentLogRead>): DevelopmentLogRead => 
 const mockApiDevelopmentLogsGetCollection = vi.fn();
 const mockApiFilmsIdGet = vi.fn();
 const mockApiCamerasIdGet = vi.fn();
+const mockApiTagsIdGet = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
@@ -56,6 +57,7 @@ vi.mock('~/api/client', async () => {
         }),
         useFilmApi: () => ({ filmApi: { apiFilmsIdGet: mockApiFilmsIdGet } }),
         useCameraApi: () => ({ cameraApi: { apiCamerasIdGet: mockApiCamerasIdGet } }),
+        useTagApi: () => ({ tagApi: { apiTagsIdGet: mockApiTagsIdGet } }),
     };
 });
 
@@ -66,19 +68,26 @@ const renderNegativeList = () =>
         </MemoryRouter>,
     );
 
+const selectFilter = async (name: string, optionName: string) => {
+    fireEvent.mouseDown(screen.getByRole('combobox', { name }));
+    fireEvent.click(await screen.findByRole('option', { name: optionName }));
+};
+
 describe('NegativeList', () => {
     beforeEach(() => {
         mockApiDevelopmentLogsGetCollection.mockReset();
         mockApiFilmsIdGet.mockReset();
         mockApiCamerasIdGet.mockReset();
+        mockApiTagsIdGet.mockReset();
         mockApiFilmsIdGet.mockResolvedValue({ data: film });
         mockApiCamerasIdGet.mockResolvedValue({ data: {} });
+        mockApiTagsIdGet.mockResolvedValue({ data: {} });
     });
 
     it('shows a loading indicator while development logs are being fetched', () => {
         mockApiDevelopmentLogsGetCollection.mockReturnValue(new Promise(() => {}));
         renderNegativeList();
-        expect(screen.getByRole('progressbar')).toBeInTheDocument();
+        expect(screen.getByText('loaders.developmentLog.title')).toBeInTheDocument();
     });
 
     it('shows an error message when the request fails', async () => {
@@ -87,16 +96,16 @@ describe('NegativeList', () => {
         expect(await screen.findByText('errors.api.loadingData')).toBeInTheDocument();
     });
 
-    it('renders the fetched development logs grouped by month', async () => {
+    it('renders the fetched development logs as a table', async () => {
         mockApiDevelopmentLogsGetCollection.mockResolvedValue({
             data: { 'hydra:member': [makeLog({})] },
         });
         renderNegativeList();
-        expect(await screen.findByText('Ilford')).toBeInTheDocument();
-        expect(screen.getByText('HP5 Plus')).toBeInTheDocument();
+        expect(await screen.findByText('HP5 Plus')).toBeInTheDocument();
+        expect(screen.getByText('Ilford · —')).toBeInTheDocument();
     });
 
-    it('filters development logs by process when a filter chip is clicked', async () => {
+    it('filters development logs by process', async () => {
         mockApiDevelopmentLogsGetCollection.mockResolvedValue({
             data: {
                 'hydra:member': [
@@ -106,13 +115,28 @@ describe('NegativeList', () => {
             },
         });
         renderNegativeList();
-        await waitFor(() => {
-            expect(screen.getByText('B&W · 1')).toBeInTheDocument();
-        });
+        await screen.findAllByText('HP5 Plus');
         expect(screen.getAllByText('HP5 Plus')).toHaveLength(2);
 
-        fireEvent.click(screen.getByText('C-41 · 1'));
+        await selectFilter('negatifs.list.filters.process', 'C-41 (1)');
 
-        expect(screen.getAllByText('HP5 Plus')).toHaveLength(1);
+        await waitFor(() => {
+            expect(screen.getAllByText('HP5 Plus')).toHaveLength(1);
+        });
+    }, 15000);
+
+    it('filters development logs by search text across film and manufacturer', async () => {
+        mockApiDevelopmentLogsGetCollection.mockResolvedValue({
+            data: { 'hydra:member': [makeLog({})] },
+        });
+        renderNegativeList();
+        await screen.findByText('HP5 Plus');
+
+        fireEvent.change(screen.getByPlaceholderText('negatifs.list.searchPlaceholder'), {
+            target: { value: 'nonexistent film name' },
+        });
+
+        expect(screen.queryByText('HP5 Plus')).not.toBeInTheDocument();
+        expect(screen.getByText('negatifs.list.noResults')).toBeInTheDocument();
     });
 });

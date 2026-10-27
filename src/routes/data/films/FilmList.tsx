@@ -1,4 +1,5 @@
-import { Box, Chip, CircularProgress, Grid, Stack, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { Box, Button, Chip, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
@@ -6,6 +7,9 @@ import { FilmCard } from '~/components/Widgets/FilmCard/FilmCard';
 import { useFilmApi, type FilmRead } from '~/api/client';
 import { getProcessStyle, type Process } from '~/domain/processColors';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { AddFilmDialog } from '~/components/dialogs/AddFilmDialog';
+import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
+import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
 export const handle: RouteCrumbHandle = {
     crumb: { section: 'components.sidemenu.group.reference', title: 'films.list.title' },
@@ -19,9 +23,13 @@ const FilmList: React.FunctionComponent = () => {
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState<boolean>(false);
     const [loading, setLoading] = React.useState<boolean>(false);
+    const { activeStep, trackStep, setActiveStep } = useStepProgress();
 
     const [films, setFilms] = React.useState<FilmRead[]>([]);
     const [processFilter, setProcessFilter] = React.useState<Process | null>(null);
+    const [addOpen, setAddOpen] = React.useState(false);
+
+    const loaderSteps = [{ title: t('loaders.film.title'), hint: t('loaders.film.hint') }];
 
     React.useEffect(() => {
         const fetchFilms = async () => {
@@ -41,7 +49,7 @@ const FilmList: React.FunctionComponent = () => {
         if (!loaded && !loading) {
             fetchFilms().catch(console.error);
         }
-    }, [filmApi, loaded, loading]);
+    }, [filmApi, loaded, loading, trackStep, setActiveStep]);
 
     const processCounts = React.useMemo(() => {
         const counts = new Map<Process, number>();
@@ -57,27 +65,42 @@ const FilmList: React.FunctionComponent = () => {
 
     return (
         <Box>
-            <Typography
-                sx={{ mb: 0.5 }}
-                variant="h1"
+            <Stack
+                direction="row"
+                sx={{ alignItems: 'flex-start', justifyContent: 'space-between', gap: 2 }}
             >
-                {t('films.list.title')}
-            </Typography>
-            <Typography
-                color="text.secondary"
-                sx={{ mb: 2 }}
-                variant="body2"
-            >
-                {t('films.list.count', { count: films.length })}
-            </Typography>
+                <Box>
+                    <Typography
+                        sx={{ mb: 0.5 }}
+                        variant="h1"
+                    >
+                        {t('films.list.title')}
+                    </Typography>
+                    <Typography
+                        color="text.secondary"
+                        sx={{ mb: 2 }}
+                        variant="body2"
+                    >
+                        {t('films.list.count', { count: films.length })}
+                    </Typography>
+                </Box>
+                <Button
+                    onClick={() => {
+                        setAddOpen(true);
+                    }}
+                    startIcon={<AddIcon />}
+                    variant="contained"
+                >
+                    {t('films.add.trigger')}
+                </Button>
+            </Stack>
 
             {error ? (
                 <Typography color="error">{t('errors.api.loadingData')}</Typography>
             ) : !loaded ? (
-                <CircularProgress
-                    aria-label={t('app.loading')}
-                    enableTrackSlot
-                    size="3rem"
+                <PageLoader
+                    activeStep={activeStep}
+                    steps={loaderSteps}
                 />
             ) : (
                 <React.Fragment>
@@ -136,6 +159,16 @@ const FilmList: React.FunctionComponent = () => {
                     </Grid>
                 </React.Fragment>
             )}
+
+            <AddFilmDialog
+                onClose={() => {
+                    setAddOpen(false);
+                }}
+                onCreated={(film) => {
+                    setFilms((current) => [film, ...current]);
+                }}
+                open={addOpen}
+            />
         </Box>
     );
 };

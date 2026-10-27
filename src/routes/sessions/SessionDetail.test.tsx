@@ -103,6 +103,7 @@ const session: PrintSessionDetailRead = {
                 },
                 paperBase: 'rc',
                 paperSurface: 'glossy',
+                process: 'B&W Print',
                 status: 'official',
             },
             exposures: [

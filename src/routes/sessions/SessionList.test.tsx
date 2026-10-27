@@ -92,7 +92,7 @@ describe('SessionList', () => {
     it('shows a loading indicator while sessions are being fetched', () => {
         mockApiPrintSessionsGetCollection.mockReturnValue(new Promise(() => {}));
         renderSessionList();
-        expect(screen.getByRole('progressbar')).toBeInTheDocument();
+        expect(screen.getByText('loaders.session.title')).toBeInTheDocument();
     });
 
     it('shows an error message when the request fails', async () => {

@@ -101,7 +101,7 @@ describe('ManufacturerList', () => {
         mockApiFilmsGetCollection.mockReturnValue(new Promise(() => {}));
         mockApiChemistriesGetCollection.mockReturnValue(new Promise(() => {}));
         renderManufacturerList();
-        expect(screen.getByRole('progressbar')).toBeInTheDocument();
+        expect(screen.getByText('loaders.manufacturers.title')).toBeInTheDocument();
     });
 
     it('shows an error message when the request fails', async () => {

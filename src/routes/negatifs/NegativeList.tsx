@@ -1,6 +1,19 @@
 import AddIcon from '@mui/icons-material/Add';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { Box, Button, Chip, CircularProgress, Rating, Stack, Typography } from '@mui/material';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import SearchIcon from '@mui/icons-material/Search';
+import {
+    Box,
+    Button,
+    InputAdornment,
+    MenuItem,
+    OutlinedInput,
+    Rating,
+    Select,
+    Stack,
+    Typography,
+    useTheme,
+} from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
@@ -8,47 +21,117 @@ import {
     useCameraApi,
     useDevelopmentLogApi,
     useFilmApi,
+    useTagApi,
     type CameraRead,
     type DevelopmentLogRead,
     type FilmRead,
+    type TagRead,
 } from '~/api/client';
+import { fetchAllHydraPages } from '~/api/hydraPagination';
 import { idFromIri } from '~/domain/iri';
-import {
-    developmentLogArchiveRef,
-    formatPushPullStops,
-    formatStepsDuration,
-    totalStepsSeconds,
-} from '~/domain/developmentLog';
+import { developmentLogArchiveRef } from '~/domain/developmentLog';
 import { getProcessStyle, type Process } from '~/domain/processColors';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
-import { FilmName } from '~/components/Widgets/FilmName/FilmName';
+import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
+import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
 export const handle: RouteCrumbHandle = {
     crumb: { section: 'components.sidemenu.group.logbook', title: 'negatifs.list.title' },
 };
 
-const monthKey = (date: string) => date.slice(0, 7);
-const yearOf = (date: string) => date.slice(0, 4);
+const pageSize = 20;
+const ALL = 'all';
+
+const columnLabelSx = {
+    fontSize: '10.5px',
+    fontWeight: 700,
+    letterSpacing: '0.05em',
+    textTransform: 'uppercase' as const,
+    color: 'text.secondary',
+};
+
+const filterLabelSx = {
+    fontSize: '10px',
+    fontWeight: 700,
+    letterSpacing: '0.05em',
+    textTransform: 'uppercase' as const,
+    color: 'text.secondary',
+};
+
+// A label matching the known precision ("2026", "2026-07" or "2026-07-14") reverses
+// cleanly into "2026", "07/2026" or "14/07/2026" — no need to branch on precision.
+const toDMY = (label: string) => label.split('-').reverse().join('/');
+
+type Exposition = 'normal' | 'push' | 'pull';
+
+const expositionOf = (log: Pick<DevelopmentLogRead, 'pushPullStops'>): Exposition => {
+    const stops = log.pushPullStops ?? 0;
+    if (stops > 0) {
+        return 'push';
+    }
+    if (stops < 0) {
+        return 'pull';
+    }
+    return 'normal';
+};
 
 const NegativeList: React.FunctionComponent = () => {
     const { t, i18n } = useTranslation();
+    const theme = useTheme();
     const { developmentLogApi } = useDevelopmentLogApi();
     const { filmApi } = useFilmApi();
     const { cameraApi } = useCameraApi();
+    const { tagApi } = useTagApi();
 
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState(false);
+    const { activeStep, trackStep, setActiveStep } = useStepProgress();
     const [logs, setLogs] = React.useState<DevelopmentLogRead[]>([]);
     const [films, setFilms] = React.useState<FilmRead[]>([]);
     const [cameras, setCameras] = React.useState<CameraRead[]>([]);
-    const [yearFilter, setYearFilter] = React.useState<string | null>(null);
-    const [processFilter, setProcessFilter] = React.useState<Process | null>(null);
+    const [tags, setTags] = React.useState<TagRead[]>([]);
+
+    const [search, setSearch] = React.useState('');
+    const [notesSearch, setNotesSearch] = React.useState('');
+    const [processFilter, setProcessFilter] = React.useState<Process | typeof ALL>(ALL);
+    const [expositionFilter, setExpositionFilter] = React.useState<Exposition | typeof ALL>(ALL);
+    const [binderFilter, setBinderFilter] = React.useState<string>(ALL);
+    const [filmFilter, setFilmFilter] = React.useState<string>(ALL);
+    const [sortDir, setSortDir] = React.useState<'asc' | 'desc'>('desc');
+    const [visibleCount, setVisibleCount] = React.useState(pageSize);
+
+    // Reset pagination when the visible set changes, following React's
+    // "adjust state during render" pattern instead of an effect (avoids an
+    // extra commit + cascading render for what is just derived state).
+    const filtersKey = [
+        search,
+        notesSearch,
+        processFilter,
+        expositionFilter,
+        binderFilter,
+        filmFilter,
+        sortDir,
+    ].join('|');
+    const [appliedFiltersKey, setAppliedFiltersKey] = React.useState(filtersKey);
+    if (filtersKey !== appliedFiltersKey) {
+        setAppliedFiltersKey(filtersKey);
+        setVisibleCount(pageSize);
+    }
+
+    const loaderSteps = [
+        { title: t('loaders.developmentLog.title'), hint: t('loaders.developmentLog.hint') },
+        { title: t('loaders.film.title'), hint: t('loaders.film.hint') },
+        { title: t('loaders.camera.title'), hint: t('loaders.camera.hint') },
+        { title: t('loaders.tag.title'), hint: t('loaders.tag.hint') },
+    ];
 
     React.useEffect(() => {
-        developmentLogApi
-            .apiDevelopmentLogsGetCollection()
-            .then((res) => {
-                const fetched = res.data['hydra:member'];
+        trackStep(
+            fetchAllHydraPages((page) =>
+                developmentLogApi.apiDevelopmentLogsGetCollection({ page }),
+            ),
+        )
+            .then((fetched) => {
                 const filmIds = Array.from(
                     new Set(fetched.map((log) => idFromIri(log.film['@id']))),
                 );
@@ -62,17 +145,25 @@ const NegativeList: React.FunctionComponent = () => {
                             .map((camera) => idFromIri(camera['@id'])),
                     ),
                 );
+                const tagIds = Array.from(
+                    new Set(
+                        fetched.flatMap((log) =>
+                            (log.tags ?? []).map((tag) => idFromIri(tag['@id'])),
+                        ),
+                    ),
+                );
                 return Promise.all([
-                    Promise.all(filmIds.map((id) => filmApi.apiFilmsIdGet({ id }))),
-                    Promise.all(cameraIds.map((id) => cameraApi.apiCamerasIdGet({ id }))),
-                ]).then(([filmResList, cameraResList]) => {
+                    trackStep(Promise.all(filmIds.map((id) => filmApi.apiFilmsIdGet({ id })))),
+                    trackStep(
+                        Promise.all(cameraIds.map((id) => cameraApi.apiCamerasIdGet({ id }))),
+                    ),
+                    trackStep(Promise.all(tagIds.map((id) => tagApi.apiTagsIdGet({ id })))),
+                ]).then(([filmResList, cameraResList, tagResList]) => {
+                    setActiveStep(4);
                     setLogs(fetched);
                     setFilms(filmResList.map((res2) => res2.data));
                     setCameras(cameraResList.map((res2) => res2.data));
-                    setYearFilter(
-                        (current) =>
-                            current ?? (fetched[0] ? yearOf(fetched[0].developedAt) : null),
-                    );
+                    setTags(tagResList.map((res2) => res2.data));
                     setLoaded(true);
                 });
             })
@@ -80,50 +171,99 @@ const NegativeList: React.FunctionComponent = () => {
                 console.error('Error fetching development logs:', err);
                 setError(err);
             });
-    }, [developmentLogApi, filmApi, cameraApi]);
+    }, [developmentLogApi, filmApi, cameraApi, tagApi, trackStep, setActiveStep]);
 
     if (error) {
         return <Typography color="error">{t('errors.api.loadingData')}</Typography>;
     }
     if (!loaded) {
         return (
-            <CircularProgress
-                aria-label={t('app.loading')}
-                enableTrackSlot
-                size="3rem"
+            <PageLoader
+                activeStep={activeStep}
+                steps={loaderSteps}
             />
         );
     }
 
     const filmById = new Map(films.map((film) => [film['@id'], film]));
     const cameraById = new Map(cameras.map((camera) => [camera['@id'], camera]));
+    const tagById = new Map(tags.map((tag) => [tag['@id'], tag]));
+    const primaryStrong = theme.palette.mode === 'light' ? 'primary.dark' : 'primary.light';
+    // developedAt is a full date-time; shotAt.label is a hand-formatted
+    // partial-precision string ("2026", "2026-07" or "2026-07-14") that toDMY
+    // already handles correctly, so only developedAt needs a real formatter.
+    const developedAtFormatter = new Intl.DateTimeFormat(i18n.language, {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    });
 
     const processCounts = new Map<Process, number>();
+    const expositionCounts = new Map<Exposition, number>();
     logs.forEach((log) => {
         processCounts.set(log.process, (processCounts.get(log.process) ?? 0) + 1);
+        const exposition = expositionOf(log);
+        expositionCounts.set(exposition, (expositionCounts.get(exposition) ?? 0) + 1);
+    });
+    const binderIds = Array.from(
+        new Set(
+            logs
+                .map((log) => log.binderId)
+                .filter((binderId): binderId is NonNullable<typeof binderId> => Boolean(binderId)),
+        ),
+    ).sort();
+    const filmOptions = [...films].sort((a, b) => a.name.localeCompare(b.name));
+
+    const expositionLabels: Record<Exposition, string> = {
+        normal: t('negatifs.list.filters.expositionNormal'),
+        push: t('negatifs.list.filters.expositionPush'),
+        pull: t('negatifs.list.filters.expositionPull'),
+    };
+
+    const searchNeedle = search.trim().toLowerCase();
+    const notesNeedle = notesSearch.trim().toLowerCase();
+
+    const filtered = logs.filter((log) => {
+        if (processFilter !== ALL && log.process !== processFilter) {
+            return false;
+        }
+        if (expositionFilter !== ALL && expositionOf(log) !== expositionFilter) {
+            return false;
+        }
+        if (binderFilter !== ALL && log.binderId !== binderFilter) {
+            return false;
+        }
+        if (filmFilter !== ALL && log.film['@id'] !== filmFilter) {
+            return false;
+        }
+        const camera = log.camera ? cameraById.get(log.camera['@id']) : undefined;
+        if (searchNeedle) {
+            const film = filmById.get(log.film['@id']);
+            const haystack = [film?.name, film?.manufacturer.name, camera?.name]
+                .concat((log.tags ?? []).map((tag) => tagById.get(tag['@id'])?.name))
+                .filter(Boolean)
+                .join(' ')
+                .toLowerCase();
+            if (!haystack.includes(searchNeedle)) {
+                return false;
+            }
+        }
+        if (notesNeedle) {
+            const notes = `${log.shootingNotes ?? ''} ${log.developmentNotes ?? ''}`.toLowerCase();
+            if (!notes.includes(notesNeedle)) {
+                return false;
+            }
+        }
+        return true;
     });
 
-    const years = Array.from(new Set(logs.map((log) => yearOf(log.developedAt)))).sort((a, b) =>
-        b.localeCompare(a),
+    const sorted = [...filtered].sort((a, b) =>
+        sortDir === 'desc'
+            ? b.developedAt.localeCompare(a.developedAt)
+            : a.developedAt.localeCompare(b.developedAt),
     );
 
-    const visibleLogs = logs
-        .filter((log) => !yearFilter || yearOf(log.developedAt) === yearFilter)
-        .filter((log) => !processFilter || log.process === processFilter);
-    const sorted = [...visibleLogs].sort((a, b) => b.developedAt.localeCompare(a.developedAt));
-
-    const months = new Map<string, DevelopmentLogRead[]>();
-    sorted.forEach((log) => {
-        const key = monthKey(log.developedAt);
-        months.set(key, [...(months.get(key) ?? []), log]);
-    });
-
-    const monthFormatter = new Intl.DateTimeFormat(i18n.language, {
-        year: 'numeric',
-        month: 'long',
-    });
-    const dayFormatter = new Intl.DateTimeFormat(i18n.language, { day: '2-digit' });
-    const shortMonthFormatter = new Intl.DateTimeFormat(i18n.language, { month: 'short' });
+    const visible = sorted.slice(0, visibleCount);
 
     return (
         <Box>
@@ -140,247 +280,424 @@ const NegativeList: React.FunctionComponent = () => {
                         {t('negatifs.list.title')}
                     </Typography>
                     <Typography color="text.secondary">
-                        {t('negatifs.list.count', { count: sorted.length })} ·{' '}
+                        {t('negatifs.list.count', { count: logs.length })} ·{' '}
                         {t('negatifs.list.chronological')}
                     </Typography>
                 </Box>
-                <Stack
-                    direction="row"
-                    sx={{ alignItems: 'center', gap: 1 }}
+                <OutlinedInput
+                    inputProps={{
+                        'aria-label': t('negatifs.list.searchPlaceholder'),
+                        sx: { fontSize: '13.5px' },
+                    }}
+                    onChange={(event) => {
+                        setSearch(event.target.value);
+                    }}
+                    placeholder={t('negatifs.list.searchPlaceholder')}
+                    size="small"
+                    startAdornment={
+                        <InputAdornment position="start">
+                            <SearchIcon
+                                fontSize="small"
+                                sx={{ opacity: 0.6 }}
+                            />
+                        </InputAdornment>
+                    }
+                    sx={{ width: 250, borderRadius: 2.5, backgroundColor: 'background.default' }}
+                    value={search}
+                />
+                <Button
+                    component={RouterLink}
+                    startIcon={<AddIcon />}
+                    to="/negatifs/new"
+                    variant="contained"
                 >
-                    {years.length > 0 ? (
-                        <Stack
-                            direction="row"
-                            sx={{
-                                alignItems: 'center',
-                                borderRadius: '10px',
-                                border: '1px solid',
-                                borderColor: 'divider',
-                                backgroundColor: 'background.paper',
-                                p: '3px',
-                            }}
-                        >
-                            {[...years, null].map((year) => (
-                                <Box
-                                    component="button"
-                                    key={year ?? 'all'}
-                                    onClick={() => {
-                                        setYearFilter(year);
-                                    }}
-                                    sx={{
-                                        all: 'unset',
-                                        cursor: 'pointer',
-                                        px: '12px',
-                                        py: '6px',
-                                        borderRadius: '8px',
-                                        fontSize: '12.5px',
-                                        fontWeight: 600,
-                                        backgroundColor:
-                                            yearFilter === year ? 'primary.main' : 'transparent',
-                                        color:
-                                            yearFilter === year
-                                                ? 'primary.contrastText'
-                                                : 'text.secondary',
-                                    }}
-                                    type="button"
-                                >
-                                    {year ?? t('negatifs.list.allYears')}
-                                </Box>
-                            ))}
-                        </Stack>
-                    ) : null}
-                    <Button
-                        component={RouterLink}
-                        startIcon={<AddIcon />}
-                        to="/negatifs/new"
-                        variant="contained"
-                    >
-                        {t('negatifs.list.newNegative')}
-                    </Button>
-                </Stack>
+                    {t('negatifs.list.newNegative')}
+                </Button>
             </Stack>
 
-            {processCounts.size > 0 ? (
-                <Stack
-                    direction="row"
-                    spacing={1}
-                    sx={{ flexWrap: 'wrap', gap: 1, mb: 3 }}
-                >
-                    {Array.from(processCounts.entries()).map(([process, count]) => (
-                        <Chip
-                            key={process}
-                            label={`${process} · ${String(count)}`}
-                            onClick={() => {
-                                setProcessFilter((current) =>
-                                    current === process ? null : process,
-                                );
-                            }}
-                            sx={{
-                                borderColor: getProcessStyle(process).color,
-                                ...(processFilter === process
-                                    ? {
-                                          backgroundColor: getProcessStyle(process).color,
-                                          color: getProcessStyle(process).fg,
-                                      }
-                                    : {}),
-                            }}
-                            variant={processFilter === process ? 'filled' : 'outlined'}
-                        />
-                    ))}
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: 1.5,
+                    p: '14px 16px',
+                    mb: 1.75,
+                    borderRadius: '14px',
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    backgroundColor: 'background.paper',
+                }}
+            >
+                <Stack sx={{ flex: '1 1 160px', minWidth: 0, gap: 0.5 }}>
+                    <Typography sx={filterLabelSx}>{t('negatifs.list.filters.process')}</Typography>
+                    <Select
+                        aria-label={t('negatifs.list.filters.process')}
+                        onChange={(event) => {
+                            setProcessFilter(event.target.value);
+                        }}
+                        size="small"
+                        value={processFilter}
+                    >
+                        <MenuItem value={ALL}>{t('negatifs.list.filters.processAll')}</MenuItem>
+                        {Array.from(processCounts.entries()).map(([process, count]) => (
+                            <MenuItem
+                                key={process}
+                                value={process}
+                            >
+                                <Stack
+                                    direction="row"
+                                    sx={{ alignItems: 'center', gap: 1 }}
+                                >
+                                    <Box
+                                        sx={{
+                                            width: 8,
+                                            height: 8,
+                                            borderRadius: '50%',
+                                            backgroundColor: getProcessStyle(process).color,
+                                            flex: '0 0 auto',
+                                        }}
+                                    />
+                                    <span>
+                                        {process} ({count})
+                                    </span>
+                                </Stack>
+                            </MenuItem>
+                        ))}
+                    </Select>
                 </Stack>
-            ) : null}
+                <Stack sx={{ flex: '1 1 160px', minWidth: 0, gap: 0.5 }}>
+                    <Typography sx={filterLabelSx}>
+                        {t('negatifs.list.filters.exposition')}
+                    </Typography>
+                    <Select
+                        aria-label={t('negatifs.list.filters.exposition')}
+                        onChange={(event) => {
+                            setExpositionFilter(event.target.value);
+                        }}
+                        size="small"
+                        value={expositionFilter}
+                    >
+                        <MenuItem value={ALL}>{t('negatifs.list.filters.expositionAll')}</MenuItem>
+                        {Array.from(expositionCounts.entries()).map(([exposition, count]) => (
+                            <MenuItem
+                                key={exposition}
+                                value={exposition}
+                            >
+                                {expositionLabels[exposition]} ({count})
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </Stack>
+                <Stack sx={{ flex: '1 1 160px', minWidth: 0, gap: 0.5 }}>
+                    <Typography sx={filterLabelSx}>{t('negatifs.list.filters.binder')}</Typography>
+                    <Select
+                        aria-label={t('negatifs.list.filters.binder')}
+                        onChange={(event) => {
+                            setBinderFilter(event.target.value);
+                        }}
+                        size="small"
+                        value={binderFilter}
+                    >
+                        <MenuItem value={ALL}>{t('negatifs.list.filters.binderAll')}</MenuItem>
+                        {binderIds.map((binderId) => (
+                            <MenuItem
+                                key={binderId}
+                                value={binderId}
+                            >
+                                {binderId}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </Stack>
+                <Stack sx={{ flex: '1 1 160px', minWidth: 0, gap: 0.5 }}>
+                    <Typography sx={filterLabelSx}>{t('negatifs.list.filters.film')}</Typography>
+                    <Select
+                        aria-label={t('negatifs.list.filters.film')}
+                        onChange={(event) => {
+                            setFilmFilter(event.target.value);
+                        }}
+                        size="small"
+                        value={filmFilter}
+                    >
+                        <MenuItem value={ALL}>{t('negatifs.list.filters.filmAll')}</MenuItem>
+                        {filmOptions.map((film) => (
+                            <MenuItem
+                                key={film['@id']}
+                                value={film['@id']}
+                            >
+                                {film.name}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </Stack>
+                <Stack sx={{ flex: '1 1 100%', minWidth: 0, gap: 0.5 }}>
+                    <Typography sx={filterLabelSx}>
+                        {t('negatifs.list.notesSearchLabel')}
+                    </Typography>
+                    <OutlinedInput
+                        multiline
+                        onChange={(event) => {
+                            setNotesSearch(event.target.value);
+                        }}
+                        placeholder={t('negatifs.list.notesSearchPlaceholder')}
+                        rows={2}
+                        sx={{ height: 'auto' }}
+                        value={notesSearch}
+                    />
+                </Stack>
+            </Box>
 
-            {months.size === 0 ? (
+            {logs.length === 0 ? (
                 <Typography color="text.secondary">{t('negatifs.list.empty')}</Typography>
             ) : (
-                Array.from(months.entries()).map(([key, monthLogs]) => (
-                    <Box
-                        key={key}
-                        sx={{ mb: 3 }}
+                <Box
+                    sx={{
+                        minWidth: 0,
+                        borderRadius: '14px',
+                        border: '1px solid',
+                        borderColor: 'divider',
+                        backgroundColor: 'background.paper',
+                        overflowX: 'auto',
+                    }}
+                >
+                    <Stack
+                        direction="row"
+                        sx={{
+                            alignItems: 'center',
+                            px: '14px',
+                            minWidth: 820,
+                            backgroundColor: 'background.default',
+                            borderBottom: '1px solid',
+                            borderColor: 'divider',
+                        }}
                     >
-                        <Stack
-                            direction="row"
-                            sx={{ alignItems: 'center', gap: 1.5, mb: 1.25 }}
+                        <Typography sx={{ ...columnLabelSx, flex: '0 0 100px', py: '11px' }}>
+                            {t('negatifs.list.columns.archive')}
+                        </Typography>
+                        <Typography sx={{ ...columnLabelSx, flex: '0 0 200px', py: '11px' }}>
+                            {t('negatifs.list.columns.film')}
+                        </Typography>
+                        <Box
+                            component="button"
+                            onClick={() => {
+                                setSortDir((d) => (d === 'desc' ? 'asc' : 'desc'));
+                            }}
+                            sx={{
+                                all: 'unset',
+                                cursor: 'pointer',
+                                flex: '0 0 120px',
+                                py: '11px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                ...columnLabelSx,
+                                color: primaryStrong,
+                            }}
+                            type="button"
                         >
-                            <Typography
-                                sx={{
-                                    fontWeight: 700,
-                                    letterSpacing: '0.06em',
-                                    textTransform: 'uppercase',
-                                }}
-                                variant="caption"
-                            >
-                                {monthFormatter.format(new Date(`${key}-01`))}
-                            </Typography>
-                            <Box sx={{ flex: 1, height: '1px', backgroundColor: 'divider' }} />
-                            <Typography
-                                color="text.secondary"
-                                variant="caption"
-                            >
-                                {t('negatifs.list.count', { count: monthLogs.length })}
-                            </Typography>
-                        </Stack>
-                        <Stack spacing={1.25}>
-                            {monthLogs.map((log) => {
-                                const film = filmById.get(log.film['@id']);
-                                const camera = log.camera
-                                    ? cameraById.get(log.camera['@id'])
-                                    : undefined;
-                                const totalSeconds = totalStepsSeconds(log.steps);
-                                const ref = developmentLogArchiveRef(log);
-                                const pushLabel = formatPushPullStops(log.pushPullStops);
-                                return (
-                                    <Box
-                                        component={RouterLink}
-                                        key={log['@id']}
+                            {t('negatifs.list.columns.dates')}
+                            {sortDir === 'desc' ? (
+                                <ArrowDownwardIcon sx={{ fontSize: 14 }} />
+                            ) : (
+                                <ArrowUpwardIcon sx={{ fontSize: 14 }} />
+                            )}
+                        </Box>
+                        <Typography sx={{ ...columnLabelSx, flex: 1, py: '11px' }}>
+                            {t('negatifs.list.columns.notes')}
+                        </Typography>
+                        <Typography
+                            sx={{
+                                ...columnLabelSx,
+                                flex: '0 0 90px',
+                                py: '11px',
+                                textAlign: 'right',
+                            }}
+                        >
+                            {t('negatifs.list.columns.sensitivity')}
+                        </Typography>
+                        <Typography
+                            sx={{
+                                ...columnLabelSx,
+                                flex: '0 0 120px',
+                                py: '11px',
+                                textAlign: 'right',
+                            }}
+                        >
+                            {t('negatifs.list.columns.rating')}
+                        </Typography>
+                    </Stack>
+
+                    {visible.length === 0 ? (
+                        <Typography
+                            color="text.secondary"
+                            sx={{ p: 2.5 }}
+                        >
+                            {t('negatifs.list.noResults')}
+                        </Typography>
+                    ) : (
+                        visible.map((log) => {
+                            const film = filmById.get(log.film['@id']);
+                            const camera = log.camera
+                                ? cameraById.get(log.camera['@id'])
+                                : undefined;
+                            const ref = developmentLogArchiveRef(log);
+                            const stops = log.pushPullStops ?? 0;
+                            return (
+                                <Box
+                                    component={RouterLink}
+                                    key={log['@id']}
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        width: '100%',
+                                        minWidth: 820,
+                                        px: '14px',
+                                        borderBottom: '1px solid',
+                                        borderColor: 'divider',
+                                        textDecoration: 'none',
+                                        color: 'inherit',
+                                        '&:hover': { backgroundColor: 'action.hover' },
+                                    }}
+                                    to={`/negatifs/${log.id ?? ''}`}
+                                >
+                                    <Typography
                                         sx={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: 2,
-                                            p: 2,
-                                            borderRadius: '14px',
-                                            border: '1px solid',
-                                            borderColor: 'divider',
-                                            backgroundColor: 'background.paper',
-                                            textDecoration: 'none',
-                                            color: 'inherit',
-                                            transition:
-                                                'transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease',
-                                            '&:hover': {
-                                                borderColor: 'primary.main',
-                                                boxShadow: (theme) => theme.shadows[4],
-                                                transform: 'translateX(3px)',
-                                            },
+                                            flex: '0 0 100px',
+                                            py: '9px',
+                                            fontFamily: 'ui-monospace, monospace',
+                                            fontSize: '12px',
+                                            fontWeight: 700,
+                                            color: primaryStrong,
                                         }}
-                                        to={`/negatifs/${log.id ?? ''}`}
+                                    >
+                                        {ref ?? t('negatifs.list.noArchive')}
+                                    </Typography>
+                                    <Stack
+                                        direction="row"
+                                        sx={{ flex: '0 0 200px', py: '9px', gap: '9px', pr: 1 }}
                                     >
                                         <Box
                                             sx={{
-                                                width: 52,
-                                                height: 52,
-                                                flex: '0 0 52px',
-                                                borderRadius: '13px',
-                                                border: '1px solid',
-                                                borderColor: 'divider',
-                                                backgroundColor: 'background.default',
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
+                                                flex: '0 0 4px',
+                                                height: 26,
+                                                borderRadius: '2px',
+                                                backgroundColor: film?.primaryColor ?? 'divider',
+                                            }}
+                                        />
+                                        <Stack sx={{ minWidth: 0, gap: '1px' }}>
+                                            <Typography
+                                                noWrap
+                                                sx={{ fontSize: '13px', fontWeight: 600 }}
+                                            >
+                                                {film?.name ?? '—'}
+                                            </Typography>
+                                            <Typography
+                                                color="text.secondary"
+                                                noWrap
+                                                sx={{ fontSize: '11px' }}
+                                            >
+                                                {film?.manufacturer.name ?? '—'} ·{' '}
+                                                {camera?.filmFormat ?? '—'}
+                                            </Typography>
+                                        </Stack>
+                                    </Stack>
+                                    <Stack sx={{ flex: '0 0 120px', py: '9px', gap: '1px' }}>
+                                        <Typography
+                                            sx={{
+                                                fontFamily: 'ui-monospace, monospace',
+                                                fontSize: '12px',
                                             }}
                                         >
-                                            <Typography sx={{ fontWeight: 600, lineHeight: 1 }}>
-                                                {dayFormatter.format(new Date(log.developedAt))}
-                                            </Typography>
-                                            <Typography
-                                                color="text.secondary"
-                                                sx={{
-                                                    textTransform: 'uppercase',
-                                                    fontSize: '9.5px',
-                                                    letterSpacing: '0.05em',
-                                                }}
-                                            >
-                                                {shortMonthFormatter.format(
+                                            {toDMY(log.shotAt.label ?? '')}
+                                        </Typography>
+                                        <Typography
+                                            color="text.secondary"
+                                            sx={{
+                                                fontFamily: 'ui-monospace, monospace',
+                                                fontSize: '11px',
+                                            }}
+                                        >
+                                            {t('negatifs.list.developedOn', {
+                                                date: developedAtFormatter.format(
                                                     new Date(log.developedAt),
-                                                )}
-                                            </Typography>
-                                        </Box>
-                                        {film ? (
-                                            <FilmName
-                                                film={film}
-                                                sx={{ flex: '0 0 auto' }}
-                                            />
-                                        ) : null}
-                                        <Box sx={{ flex: 1, minWidth: 0 }}>
-                                            <Stack
-                                                direction="row"
-                                                sx={{ alignItems: 'baseline', gap: 1.125 }}
-                                            >
-                                                <Typography
-                                                    color="text.secondary"
-                                                    sx={{
-                                                        fontFamily: 'ui-monospace, monospace',
-                                                        fontSize: '12px',
-                                                        fontWeight: 700,
-                                                    }}
-                                                >
-                                                    {ref ?? t('negatifs.list.noArchive')}
-                                                </Typography>
-                                                <Typography
-                                                    color="text.secondary"
-                                                    variant="caption"
-                                                >
-                                                    {log.shotAt.label} ·{' '}
-                                                    {t('components.filmCard.iso', {
-                                                        iso: log.isoShotAt,
-                                                    })}
-                                                    {pushLabel ? ` · ${pushLabel}` : ''}
-                                                </Typography>
-                                            </Stack>
-                                            <Typography
-                                                color="text.secondary"
-                                                sx={{ fontSize: '11.5px', mt: 0.5 }}
-                                            >
-                                                {camera?.name ?? '—'} ·{' '}
-                                                {t('negatifs.list.stepsCount', {
-                                                    count: (log.steps ?? []).length,
-                                                })}{' '}
-                                                · {formatStepsDuration(totalSeconds)}
-                                            </Typography>
-                                        </Box>
+                                                ),
+                                            })}
+                                        </Typography>
+                                    </Stack>
+                                    <Typography
+                                        noWrap
+                                        sx={{ flex: 1, py: '11px', fontSize: '12.5px', pr: 1 }}
+                                    >
+                                        {log.shootingNotes || t('negatifs.list.noArchive')}
+                                    </Typography>
+                                    <Typography
+                                        sx={{
+                                            flex: '0 0 90px',
+                                            py: '11px',
+                                            textAlign: 'right',
+                                            fontFamily: 'ui-monospace, monospace',
+                                            fontSize: '12.5px',
+                                            fontWeight: stops === 0 ? 400 : 700,
+                                            color: stops === 0 ? 'text.secondary' : 'text.primary',
+                                        }}
+                                    >
+                                        {t('components.filmCard.iso', { iso: log.isoShotAt })}
+                                    </Typography>
+                                    <Box
+                                        sx={{
+                                            flex: '0 0 120px',
+                                            py: '11px',
+                                            display: 'flex',
+                                            justifyContent: 'flex-end',
+                                        }}
+                                    >
                                         <Rating
                                             precision={1}
                                             readOnly
                                             size="small"
                                             value={log.rating ?? 0}
                                         />
-                                        <ChevronRightIcon sx={{ opacity: 0.4 }} />
                                     </Box>
-                                );
-                            })}
+                                </Box>
+                            );
+                        })
+                    )}
+
+                    {visible.length > 0 ? (
+                        <Stack
+                            direction="row"
+                            sx={{ alignItems: 'center', gap: 1.5, px: 2, py: 1.375 }}
+                        >
+                            <Typography
+                                color="text.secondary"
+                                sx={{ flex: 1, fontSize: '12px' }}
+                            >
+                                {t('negatifs.list.rowsOfTotal', {
+                                    visible: visible.length,
+                                    total: sorted.length,
+                                })}
+                            </Typography>
+                            {visibleCount < sorted.length ? (
+                                <Box
+                                    component="button"
+                                    onClick={() => {
+                                        setVisibleCount((c) => c + pageSize);
+                                    }}
+                                    sx={{
+                                        all: 'unset',
+                                        cursor: 'pointer',
+                                        fontSize: '12px',
+                                        fontWeight: 600,
+                                        color: primaryStrong,
+                                    }}
+                                    type="button"
+                                >
+                                    {t('negatifs.list.loadMore')}
+                                </Box>
+                            ) : null}
                         </Stack>
-                    </Box>
-                ))
+                    ) : null}
+                </Box>
             )}
         </Box>
     );

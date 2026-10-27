@@ -8,6 +8,12 @@ Name | Type | Description | Notes
 **chemistryParts** | **number** |  | [default to 1]
 **waterParts** | **number** |  | [default to 0]
 **official** | **boolean** |  | [optional] [default to false]
+**description** | **string** |  | [optional] [default to undefined]
+**reusable** | **boolean** |  | [optional] [default to false]
+**topUpRequired** | **boolean** |  | [optional] [default to false]
+**notes** | **string** |  | [optional] [default to undefined]
+**capacity** | **string** |  | [optional] [default to undefined]
+**dilutedShelfLifeDays** | **number** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -18,6 +24,12 @@ const instance: DilutionWriteChemistryCatalogStatusWrite = {
     chemistryParts,
     waterParts,
     official,
+    description,
+    reusable,
+    topUpRequired,
+    notes,
+    capacity,
+    dilutedShelfLifeDays,
 };
 ```
 

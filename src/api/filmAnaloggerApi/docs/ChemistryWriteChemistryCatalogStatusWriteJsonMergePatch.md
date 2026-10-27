@@ -7,9 +7,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  | [optional] [default to undefined]
 **process** | **string** |  | [optional] [default to undefined]
-**chemistryType** | [**ChemistryTypeWriteChemistryCatalogStatusWrite**](ChemistryTypeWriteChemistryCatalogStatusWrite.md) |  | [optional] [default to undefined]
-**manufacturer** | [**ManufacturerWriteChemistryCatalogStatusWrite**](ManufacturerWriteChemistryCatalogStatusWrite.md) |  | [optional] [default to undefined]
+**chemistryType** | **string** |  | [optional] [default to undefined]
+**manufacturer** | **string** |  | [optional] [default to undefined]
 **description** | **string** |  | [optional] [default to undefined]
+**referenceTemperatureMin** | **number** |  | [optional] [default to undefined]
+**referenceTemperatureMax** | **number** |  | [optional] [default to undefined]
+**openShelfLifeDays** | **number** |  | [optional] [default to undefined]
 **dilutions** | [**Array&lt;DilutionWriteChemistryCatalogStatusWrite&gt;**](DilutionWriteChemistryCatalogStatusWrite.md) |  | [optional] [default to undefined]
 **officialDocumentationUrl** | **string** |  | [optional] [default to undefined]
 **status** | **string** |  | [optional] [default to StatusEnum_Personal]
@@ -25,6 +28,9 @@ const instance: ChemistryWriteChemistryCatalogStatusWriteJsonMergePatch = {
     chemistryType,
     manufacturer,
     description,
+    referenceTemperatureMin,
+    referenceTemperatureMax,
+    openShelfLifeDays,
     dilutions,
     officialDocumentationUrl,
     status,

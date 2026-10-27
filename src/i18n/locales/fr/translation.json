@@ -59,6 +59,26 @@
                 "title": "Dans mon carnet",
                 "empty": "Aucun tirage enregistré pour cette pellicule pour le moment."
             }
+        },
+        "add": {
+            "trigger": "Ajouter une pellicule",
+            "title": "Nouvelle pellicule",
+            "submit": "Ajouter la pellicule",
+            "intro": "La pellicule rejoint le référentiel et devient disponible pour tous les développements. Les couleurs de bandeau sont reprises du fabricant si tu ne les précises pas.",
+            "fields": {
+                "name": "Nom",
+                "sensibility": "Sensibilité nominale (ISO)",
+                "process": "Procédé",
+                "emulsionType": "Type d'émulsion",
+                "emulsionTypeNone": "Non précisé",
+                "formats": "Formats",
+                "formatsHint": "Pas encore suivi par le référentiel — conservé ici pour mémoire.",
+                "inversible": "Film inversible",
+                "inversibleOn": "Inversible (E-6, diapositive)",
+                "inversibleOff": "Négatif",
+                "officialDocumentationUrl": "Documentation officielle",
+                "description": "Description"
+            }
         }
     },
     "sessions": {
@@ -183,15 +203,42 @@
     "negatifs": {
         "list": {
             "title": "Négatifs",
-            "count": "{{count}} négatif",
-            "count_other": "{{count}} négatifs",
-            "chronological": "classement chronologique",
-            "allYears": "Tout",
-            "newNegative": "Consigner un négatif",
+            "count": "{{count}} développement",
+            "count_other": "{{count}} développements",
+            "chronological": "triés par date de développement",
+            "newNegative": "Consigner un développement",
             "empty": "Aucun négatif consigné pour le moment.",
+            "noResults": "Aucun négatif ne correspond à ces filtres.",
             "noArchive": "—",
             "stepsCount": "{{count}} bain",
-            "stepsCount_other": "{{count}} bains"
+            "stepsCount_other": "{{count}} bains",
+            "searchPlaceholder": "Pellicule, boîtier, tag…",
+            "notesSearchLabel": "Recherche dans les notes",
+            "notesSearchPlaceholder": "anniversaire, concert, atelier…",
+            "developedOn": "dév. {{date}}",
+            "loadMore": "Charger la suite",
+            "rowsOfTotal": "{{visible}} lignes sur {{total}}",
+            "filters": {
+                "process": "Procédé",
+                "processAll": "Tous",
+                "exposition": "Exposition",
+                "expositionAll": "Toutes",
+                "expositionNormal": "Normale",
+                "expositionPush": "Poussée",
+                "expositionPull": "Tirée",
+                "binder": "Classeur",
+                "binderAll": "Tous les classeurs",
+                "film": "Pellicule",
+                "filmAll": "Toutes"
+            },
+            "columns": {
+                "archive": "Archivage",
+                "film": "Pellicule",
+                "dates": "Dates",
+                "notes": "Notes",
+                "sensitivity": "Sensibilité",
+                "rating": "Notation"
+            }
         },
         "detail": {
             "title": "Négatif",
@@ -287,6 +334,16 @@
             "chemistries": "Chimies ({{count}})",
             "noFilms": "Aucune pellicule référencée pour ce fabricant pour le moment.",
             "noChemistries": "Aucune chimie référencée pour ce fabricant pour le moment."
+        },
+        "add": {
+            "trigger": "Ajouter un fabricant",
+            "title": "Nouveau fabricant",
+            "submit": "Ajouter le fabricant",
+            "intro": "Le fabricant regroupe ses pellicules, ses chimies et ses papiers. Ses couleurs d'identité servent de valeurs par défaut aux fiches qui lui sont rattachées.",
+            "fields": {
+                "name": "Nom",
+                "website": "Site officiel"
+            }
         }
     },
     "chemistries": {
@@ -315,6 +372,30 @@
             "chemistryParts_other": "{{count}} parts de chimie",
             "waterParts": "{{count}} part d'eau",
             "waterParts_other": "{{count}} parts d'eau"
+        },
+        "add": {
+            "trigger": "Ajouter une chimie",
+            "title": "Nouvelle chimie",
+            "submit": "Ajouter la chimie",
+            "intro": "La chimie devient disponible dans les étapes de développement et de tirage. Ses dilutions servent de valeurs par défaut dans les recettes.",
+            "fields": {
+                "name": "Nom",
+                "process": "Procédé",
+                "chemistryType": "Type",
+                "dilutions": "Dilutions",
+                "dilutionChemistryParts": "Chimie",
+                "dilutionWaterParts": "Eau",
+                "dilutionOfficial": "Dilution officielle",
+                "dilutionRemove": "Retirer cette dilution",
+                "dilutionAdd": "Ajouter une dilution",
+                "temperatureRange": "Plage de température",
+                "temperatureMin": "Minimum",
+                "temperatureMax": "Maximum",
+                "temperatureDecrease": "Diminuer",
+                "temperatureIncrease": "Augmenter",
+                "officialDocumentationUrl": "Documentation officielle",
+                "description": "Description"
+            }
         }
     },
     "dashboard": {
@@ -471,6 +552,8 @@
             "films": "Pellicules",
             "chemistries": "Chimies",
             "manufacturers": "Fabricants",
+            "cameras": "Appareils photo",
+            "enlargers": "Agrandisseurs",
             "photoPaper": "Papiers photo",
             "soon": "À venir",
             "labMode": "Mode labo",
@@ -483,6 +566,206 @@
         "header": {
             "search": "Recherche",
             "searchPlaceholder": "Pellicule, chimie…"
+        },
+        "pageLoader": {
+            "subtitle": "Carnet de labo argentique",
+            "authHint": "Connexion sécurisée en cours…"
+        }
+    },
+    "loaders": {
+        "page": {
+            "title": "Chargement de la page",
+            "hint": "récupération des données en cours…"
+        },
+        "enlarger": {
+            "title": "Agrandisseurs",
+            "hint": "récupération des agrandisseurs en cours…"
+        },
+        "film": {
+            "title": "Pellicules",
+            "hint": "récupération des pellicules en cours…"
+        },
+        "session": {
+            "title": "Séances",
+            "hint": "récupération des séances en cours…"
+        },
+        "chemistries": {
+            "title": "Chimies",
+            "hint": "récupération des chimies en cours…"
+        },
+        "print": {
+            "title": "Tirages",
+            "hint": "récupération des tirages en cours…"
+        },
+        "manufacturers": {
+            "title": "Fabricants",
+            "hint": "récupération des fabricants en cours…"
+        },
+        "developmentLog": {
+            "title": "Fiches de développement",
+            "hint": "récupération des fiches de développement en cours…"
+        },
+        "camera": {
+            "title": "Appareils",
+            "hint": "récupération des appareils en cours…"
+        },
+        "photoPapers": {
+            "title": "Papiers photo",
+            "hint": "récupération des papiers photo en cours…"
+        },
+        "tag": {
+            "title": "Étiquettes",
+            "hint": "récupération des étiquettes en cours…"
+        }
+    },
+    "dialogs": {
+        "close": "Fermer",
+        "cancel": "Annuler",
+        "submitError": "Une erreur est survenue. Réessaie.",
+        "footerHint": "Ajouté au référentiel, réutilisable ensuite.",
+        "scope": {
+            "label": "Portée de la fiche",
+            "private": {
+                "label": "Donnée personnelle",
+                "desc": "Visible seulement dans ton carnet."
+            },
+            "submit": {
+                "label": "Proposer à la validation",
+                "desc": "Relue par l'équipe, puis versée au référentiel public."
+            }
+        },
+        "colors": {
+            "label": "Couleurs d'identité",
+            "primary": "Primaire",
+            "secondary": "Secondaire",
+            "tertiary": "Tertiaire"
+        },
+        "manufacturer": {
+            "label": "Fabricant",
+            "add": "Ajouter un fabricant"
+        }
+    },
+    "cameras": {
+        "list": {
+            "title": "Boîtiers",
+            "count": "{{count}} boîtier",
+            "count_other": "{{count}} boîtiers",
+            "columns": {
+                "model": "Modèle",
+                "manufacturer": "Fabricant",
+                "filmFormat": "Format"
+            }
+        },
+        "detail": {
+            "title": "Détail boîtier",
+            "filmFormatLabel": "Format : {{format}}",
+            "noDescription": "Aucune description pour ce boîtier pour le moment."
+        },
+        "add": {
+            "trigger": "Ajouter un boîtier",
+            "title": "Nouveau boîtier",
+            "submit": "Ajouter le boîtier",
+            "intro": "Le boîtier sert à retrouver les négatifs par appareil. Le format détermine le classeur proposé par défaut.",
+            "fields": {
+                "name": "Modèle",
+                "filmFormat": "Format",
+                "filmFormatNone": "Non précisé",
+                "description": "Description"
+            }
+        }
+    },
+    "enlargers": {
+        "list": {
+            "title": "Agrandisseurs",
+            "count": "{{count}} agrandisseur",
+            "count_other": "{{count}} agrandisseurs",
+            "columns": {
+                "model": "Modèle",
+                "manufacturer": "Fabricant",
+                "lightSource": "Source lumineuse",
+                "formats": "Formats de négatif"
+            }
+        },
+        "detail": {
+            "title": "Détail agrandisseur",
+            "lightSource": "Source lumineuse",
+            "formats": "Formats de négatif tirables",
+            "noFormats": "Aucun format de négatif précisé.",
+            "noDescription": "Aucune description pour cet agrandisseur pour le moment."
+        },
+        "add": {
+            "trigger": "Ajouter un agrandisseur",
+            "title": "Nouvel agrandisseur",
+            "submit": "Ajouter l'agrandisseur",
+            "intro": "L'agrandisseur est rattaché aux séances de tirage : la source lumineuse et les formats de négatif tirables conditionnent les temps d'exposition proposés.",
+            "fields": {
+                "name": "Modèle",
+                "lightSource": "Source lumineuse",
+                "lightSourceNone": "Non précisée",
+                "lightSourceOptions": {
+                    "condenser": "Condenseur",
+                    "diffusor": "Diffusion opale",
+                    "color_head": "Tête couleur"
+                },
+                "formats": "Formats de négatif tirables",
+                "description": "Description"
+            }
+        }
+    },
+    "photoPapers": {
+        "list": {
+            "title": "Papiers photo",
+            "count": "{{count}} papier",
+            "count_other": "{{count}} papiers",
+            "columns": {
+                "name": "Nom",
+                "manufacturer": "Fabricant",
+                "paper": "Support / surface",
+                "process": "Procédé"
+            }
+        },
+        "detail": {
+            "title": "Détail papier photo",
+            "officialDoc": "Documentation officielle",
+            "formats": "Formats",
+            "noFormats": "Aucun format précisé.",
+            "variableContrastOn": "Multigrade (contraste variable)",
+            "variableContrastOff": "Papier gradué",
+            "gradeLabel": "Gradation : {{grade}}",
+            "noDescription": "Aucune description pour ce papier pour le moment."
+        },
+        "add": {
+            "trigger": "Ajouter un papier",
+            "title": "Nouveau papier photo",
+            "submit": "Ajouter le papier",
+            "intro": "Le papier est rattaché aux séances de tirage. Support, surface et gradation servent de repères pour retrouver un tirage et refaire la même recette.",
+            "fields": {
+                "name": "Nom",
+                "paperBase": "Support",
+                "paperBaseOptions": {
+                    "rc": "RC (plastifié)",
+                    "fb": "Baryté fibre"
+                },
+                "paperSurface": "Surface",
+                "paperSurfaceOptions": {
+                    "glossy": "Brillant",
+                    "satin": "Satiné",
+                    "pearl": "Perlé",
+                    "matt": "Mat",
+                    "other": "Autre"
+                },
+                "paperSurfaceOther": "Précision surface",
+                "process": "Procédé",
+                "variableContrast": "Multigrade (contraste variable)",
+                "grade": "Gradation",
+                "gradeNone": "Non précisée",
+                "toning": "Virage",
+                "toningOn": "Virage sélénium possible",
+                "toningOff": "Sans virage",
+                "formats": "Formats",
+                "officialDocumentationUrl": "Documentation officielle",
+                "description": "Description"
+            }
         }
     }
 }

@@ -45,13 +45,16 @@ const KeycloakProvider: React.FunctionComponent<KeycloakProviderProps> = ({ chil
 
     return (
         <Box
+            aria-label={t('app.loading')}
+            aria-live="polite"
+            role="status"
             sx={{
-                alignItems: 'center',
+                minHeight: '100vh',
                 display: 'flex',
-                flexDirection: 'column',
-                gap: 2,
-                height: '100vh',
+                alignItems: 'center',
                 justifyContent: 'center',
+                backgroundColor: 'background.default',
+                p: 4,
             }}
         >
             {initError ? (

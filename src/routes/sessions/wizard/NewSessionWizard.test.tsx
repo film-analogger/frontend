@@ -65,6 +65,7 @@ const photoPaper: PhotoPaperRead = {
     },
     paperBase: 'rc',
     paperSurface: 'glossy',
+    process: 'B&W Print',
     status: 'official',
 };
 
@@ -73,6 +74,8 @@ const mockApiPrintSessionsPost = vi.fn();
 const mockApiPrintsPost = vi.fn();
 const mockApiEnlargersGetCollection = vi.fn();
 const mockApiPhotoPapersGetCollection = vi.fn();
+const mockApiManufacturersGetCollection = vi.fn();
+const mockApiChemistryTypesGetCollection = vi.fn();
 vi.mock('~/api/client', async () => {
     const actual = await vi.importActual('~/api/client');
     return {
@@ -89,6 +92,14 @@ vi.mock('~/api/client', async () => {
         }),
         usePhotoPaperApi: () => ({
             photoPaperApi: { apiPhotoPapersGetCollection: mockApiPhotoPapersGetCollection },
+        }),
+        useManufacturerApi: () => ({
+            manufacturerApi: { apiManufacturersGetCollection: mockApiManufacturersGetCollection },
+        }),
+        useChemistryTypeApi: () => ({
+            chemistryTypeApi: {
+                apiChemistryTypesGetCollection: mockApiChemistryTypesGetCollection,
+            },
         }),
     };
 });
@@ -124,6 +135,12 @@ describe('NewSessionWizard', () => {
         });
         mockApiPhotoPapersGetCollection.mockReset().mockResolvedValue({
             data: { 'hydra:member': [photoPaper] },
+        });
+        mockApiManufacturersGetCollection.mockReset().mockResolvedValue({
+            data: { 'hydra:member': [] },
+        });
+        mockApiChemistryTypesGetCollection.mockReset().mockResolvedValue({
+            data: { 'hydra:member': [] },
         });
     });
 

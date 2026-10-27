@@ -7,11 +7,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** |  | [optional] [readonly] [default to undefined]
 **name** | **string** |  | [default to undefined]
+**description** | **string** |  | [optional] [default to undefined]
 **films** | [**Array&lt;FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](FilmReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **chemistries** | [**Array&lt;ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](ChemistryReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **cameras** | [**Array&lt;CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](CameraReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **enlargers** | [**Array&lt;EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](EnlargerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **photoPapers** | [**Array&lt;PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](PhotoPaperReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
+**enlargerLenses** | [**Array&lt;EnlargerLensReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](EnlargerLensReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **primaryColor** | **string** |  | [optional] [default to undefined]
 **secondaryColor** | **string** |  | [optional] [default to undefined]
 **tertiaryColor** | **string** |  | [optional] [default to undefined]
@@ -32,11 +34,13 @@ import { ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadC
 const instance: ManufacturerReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead = {
     id,
     name,
+    description,
     films,
     chemistries,
     cameras,
     enlargers,
     photoPapers,
+    enlargerLenses,
     primaryColor,
     secondaryColor,
     tertiaryColor,

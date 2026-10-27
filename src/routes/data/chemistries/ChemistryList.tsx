@@ -1,12 +1,16 @@
+import AddIcon from '@mui/icons-material/Add';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TuneIcon from '@mui/icons-material/Tune';
-import { Box, Chip, CircularProgress, Stack, Typography } from '@mui/material';
+import { Box, Button, Chip, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router';
 import { useChemistryApi, type ChemistryRead } from '~/api/client';
 import { getProcessStyle, type Process } from '~/domain/processColors';
 import type { RouteCrumbHandle } from '~/components/Layout/Parts/AppBar/AppBar';
+import { AddChemistryDialog } from '~/components/dialogs/AddChemistryDialog';
+import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
+import { useStepProgress } from '~/components/Widgets/Loaders/useStepProgress';
 
 export const handle: RouteCrumbHandle = {
     crumb: { section: 'components.sidemenu.group.reference', title: 'chemistries.list.title' },
@@ -22,14 +26,20 @@ const ChemistryList: React.FunctionComponent = () => {
 
     const [error, setError] = React.useState<unknown>(null);
     const [loaded, setLoaded] = React.useState(false);
+    const { activeStep, trackStep, setActiveStep } = useStepProgress();
     const [chemistries, setChemistries] = React.useState<ChemistryRead[]>([]);
     const [processFilter, setProcessFilter] = React.useState<Process | null>(null);
     const [typeFilter, setTypeFilter] = React.useState<string | null>(null);
+    const [addOpen, setAddOpen] = React.useState(false);
+
+    const loaderSteps = [
+        { title: t('loaders.chemistries.title'), hint: t('loaders.chemistries.hint') },
+    ];
 
     React.useEffect(() => {
-        chemistryApi
-            .apiChemistriesGetCollection()
+        trackStep(chemistryApi.apiChemistriesGetCollection())
             .then((res) => {
+                setActiveStep(1);
                 setChemistries(res.data['hydra:member']);
                 setLoaded(true);
             })
@@ -37,17 +47,16 @@ const ChemistryList: React.FunctionComponent = () => {
                 console.error('Error fetching chemistries:', err);
                 setError(err);
             });
-    }, [chemistryApi]);
+    }, [chemistryApi, trackStep, setActiveStep]);
 
     if (error) {
         return <Typography color="error">{t('errors.api.loadingData')}</Typography>;
     }
     if (!loaded) {
         return (
-            <CircularProgress
-                aria-label={t('app.loading')}
-                enableTrackSlot
-                size="3rem"
+            <PageLoader
+                activeStep={activeStep}
+                steps={loaderSteps}
             />
         );
     }
@@ -67,19 +76,35 @@ const ChemistryList: React.FunctionComponent = () => {
 
     return (
         <Box>
-            <Typography
-                sx={{ mb: 0.5 }}
-                variant="h1"
+            <Stack
+                direction="row"
+                sx={{ alignItems: 'flex-start', justifyContent: 'space-between', gap: 2 }}
             >
-                {t('chemistries.list.title')}
-            </Typography>
-            <Typography
-                color="text.secondary"
-                sx={{ mb: 2 }}
-                variant="body2"
-            >
-                {t('chemistries.list.count', { count: chemistries.length })}
-            </Typography>
+                <Box>
+                    <Typography
+                        sx={{ mb: 0.5 }}
+                        variant="h1"
+                    >
+                        {t('chemistries.list.title')}
+                    </Typography>
+                    <Typography
+                        color="text.secondary"
+                        sx={{ mb: 2 }}
+                        variant="body2"
+                    >
+                        {t('chemistries.list.count', { count: chemistries.length })}
+                    </Typography>
+                </Box>
+                <Button
+                    onClick={() => {
+                        setAddOpen(true);
+                    }}
+                    startIcon={<AddIcon />}
+                    variant="contained"
+                >
+                    {t('chemistries.add.trigger')}
+                </Button>
+            </Stack>
 
             {processes.length > 0 || types.size > 0 ? (
                 <Box
@@ -362,6 +387,16 @@ const ChemistryList: React.FunctionComponent = () => {
                     );
                 })}
             </Box>
+
+            <AddChemistryDialog
+                onClose={() => {
+                    setAddOpen(false);
+                }}
+                onCreated={(chemistry) => {
+                    setChemistries((current) => [chemistry, ...current]);
+                }}
+                open={addOpen}
+            />
         </Box>
     );
 };

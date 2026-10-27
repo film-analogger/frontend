@@ -22,6 +22,12 @@ export default [
             ),
             route('chemistries', './routes/data/chemistries/ChemistryList.tsx'),
             route('chemistries/:chemistryId', './routes/data/chemistries/ChemistryDetail.tsx'),
+            route('cameras', './routes/data/cameras/CameraList.tsx'),
+            route('cameras/:cameraId', './routes/data/cameras/CameraDetail.tsx'),
+            route('enlargers', './routes/data/enlargers/EnlargerList.tsx'),
+            route('enlargers/:enlargerId', './routes/data/enlargers/EnlargerDetail.tsx'),
+            route('photo-papers', './routes/data/photoPapers/PhotoPaperList.tsx'),
+            route('photo-papers/:photoPaperId', './routes/data/photoPapers/PhotoPaperDetail.tsx'),
         ]),
         ...prefix('legal', [
             route('contact', './routes/legal/contact/Contact.tsx'),

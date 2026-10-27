@@ -10,11 +10,13 @@ Name | Type | Description | Notes
 **type** | **string** |  | [default to undefined]
 **id** | **string** |  | [optional] [readonly] [default to undefined]
 **name** | **string** |  | [default to undefined]
+**description** | **string** |  | [optional] [default to undefined]
 **films** | [**Array&lt;FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](FilmJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **chemistries** | [**Array&lt;ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](ChemistryJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **cameras** | [**Array&lt;CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](CameraJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **enlargers** | [**Array&lt;EnlargerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](EnlargerJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **photoPapers** | [**Array&lt;PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](PhotoPaperJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
+**enlargerLenses** | [**Array&lt;EnlargerLensJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead&gt;**](EnlargerLensJsonldReadManufacturerTimestampableBlameableReadTranslatableReadCatalogStatusRead.md) |  | [optional] [default to undefined]
 **primaryColor** | **string** |  | [optional] [default to undefined]
 **secondaryColor** | **string** |  | [optional] [default to undefined]
 **tertiaryColor** | **string** |  | [optional] [default to undefined]
@@ -38,11 +40,13 @@ const instance: ManufacturerJsonldReadManufacturerTimestampableBlameableReadTran
     type,
     id,
     name,
+    description,
     films,
     chemistries,
     cameras,
     enlargers,
     photoPapers,
+    enlargerLenses,
     primaryColor,
     secondaryColor,
     tertiaryColor,
