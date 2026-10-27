@@ -1,5 +1,5 @@
 
-resource "keycloak_openid_client" "client-frontend" {
+resource "keycloak_openid_client" "client_frontend" {
     realm_id  = data.keycloak_realm.film_analogger.id
     client_id = "film-analogger-frontend"
 
