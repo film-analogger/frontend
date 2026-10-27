@@ -67,6 +67,9 @@ export const PageLoader: React.FunctionComponent<{
 
     return (
         <Box
+            aria-label={t('app.loading')}
+            aria-live="polite"
+            role="status"
             sx={{
                 alignItems: 'center',
                 display: 'flex',

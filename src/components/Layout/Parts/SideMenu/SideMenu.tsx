@@ -15,6 +15,7 @@ import FactoryIcon from '@mui/icons-material/Factory';
 import WallpaperIcon from '@mui/icons-material/Wallpaper';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
+import ScienceIcon from '@mui/icons-material/Science';
 import { Link as RouterLink, useLocation } from 'react-router';
 
 import { AppLogo } from '~/components/Widgets/AppLogo/AppLogo';
@@ -70,6 +71,11 @@ const SideMenu: React.FunctionComponent = () => {
                     translation: 'components.sidemenu.filmLogSheet',
                     icon: <TheatersIcon />,
                     href: '/negatifs',
+                },
+                {
+                    translation: 'components.sidemenu.developmentCharts',
+                    icon: <ScienceIcon />,
+                    soon: true,
                 },
             ],
         },
