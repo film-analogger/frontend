@@ -1,9 +1,7 @@
 import React from 'react';
-import { useKeycloak } from '~/keycloak/useKeycloak';
 import { useAppUserApi, type AppUserRead } from './client';
 
 export const useCurrentAppUser = () => {
-    const { keycloak } = useKeycloak();
     const { appUserApi } = useAppUserApi();
 
     const [error, setError] = React.useState<unknown>(null);
@@ -16,14 +14,8 @@ export const useCurrentAppUser = () => {
             setLoaded(false);
             setLoading(true);
             try {
-                const res = await appUserApi.apiAppUsersGetCollection();
-                // The API has no `/me` endpoint, so the current user is resolved
-                // by matching the Keycloak subject against the collection.
-                const currentUser =
-                    res.data['hydra:member'].find(
-                        (member) => member.keycloakSub === keycloak.subject,
-                    ) ?? null;
-                setUser(currentUser);
+                const res = await appUserApi.me();
+                setUser(res.data);
             } catch (err: unknown) {
                 console.error('Error fetching current user:', err);
                 setError(err);
@@ -35,7 +27,7 @@ export const useCurrentAppUser = () => {
         if (!loaded && !loading) {
             fetchCurrentUser().catch(console.error);
         }
-    }, [appUserApi, keycloak.subject, loaded, loading]);
+    }, [appUserApi, loaded, loading]);
 
     return { error, loaded, loading, user };
 };
