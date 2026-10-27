@@ -13,7 +13,6 @@ const OpenSource: React.FunctionComponent = () => {
     const subTextSx: NonNullable<SxProps<Theme>> = React.useCallback(
         (theme: Theme) => ({
             color: (theme.vars ?? theme).palette.text.secondary,
-            opacity: 0.85,
             fontWeight: 500,
             fontSize: '0.825rem',
         }),

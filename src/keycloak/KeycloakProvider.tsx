@@ -1,10 +1,10 @@
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { PageLoader } from '~/components/Widgets/Loaders/PageLoader';
 import keycloak from './keycloak';
 import { KeycloakContext } from './keycloakContext';
-import { Box } from '@mui/material';
 
 interface KeycloakProviderProps {
     readonly children: React.ReactNode;
@@ -14,6 +14,7 @@ const KeycloakProvider: React.FunctionComponent<KeycloakProviderProps> = ({ chil
     const { t } = useTranslation();
     const [initialized, setInitialized] = useState(false);
     const [authenticated, setAuthenticated] = useState(false);
+    const [initError, setInitError] = useState(false);
 
     useEffect(() => {
         keycloak
@@ -29,15 +30,20 @@ const KeycloakProvider: React.FunctionComponent<KeycloakProviderProps> = ({ chil
                 };
             })
             .catch(() => {
+                setInitError(true);
                 setInitialized(true);
             });
     }, []);
 
-    return initialized && authenticated ? (
-        <KeycloakContext.Provider value={{ authenticated, keycloak }}>
-            {children}
-        </KeycloakContext.Provider>
-    ) : (
+    if (initialized && authenticated) {
+        return (
+            <KeycloakContext.Provider value={{ authenticated, keycloak }}>
+                {children}
+            </KeycloakContext.Provider>
+        );
+    }
+
+    return (
         <Box
             aria-label={t('app.loading')}
             aria-live="polite"
@@ -51,10 +57,29 @@ const KeycloakProvider: React.FunctionComponent<KeycloakProviderProps> = ({ chil
                 p: 4,
             }}
         >
-            <PageLoader
-                activeStep={0}
-                steps={[{ title: t('auth.loading'), hint: t('components.pageLoader.authHint') }]}
-            />
+            {initError ? (
+                <React.Fragment>
+                    <Typography
+                        color="error"
+                        variant="body2"
+                    >
+                        {t('auth.error')}
+                    </Typography>
+                    <Button
+                        onClick={() => {
+                            window.location.reload();
+                        }}
+                        startIcon={<RefreshIcon />}
+                    >
+                        {t('errors.actions.reload')}
+                    </Button>
+                </React.Fragment>
+            ) : (
+                <React.Fragment>
+                    <CircularProgress aria-label={t('app.loading')} />
+                    <Typography variant="body2">{t('auth.loading')}</Typography>
+                </React.Fragment>
+            )}
         </Box>
     );
 };

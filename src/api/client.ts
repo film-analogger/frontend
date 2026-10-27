@@ -80,12 +80,14 @@ const useApiConfiguration = () => {
     return useMemo(
         () =>
             new Configuration({
-                accessToken: keycloak.updateToken(5).then(() => {
+                accessToken: async () => {
+                    await keycloak.updateToken(5);
                     if (!keycloak.token) {
                         throw new Error('No token available');
                     }
                     return keycloak.token;
-                }),
+                },
+                basePath: import.meta.env.VITE_API_BASE_URL ?? '',
                 baseOptions: {
                     headers: {
                         'X-LOCALE': i18n.language,

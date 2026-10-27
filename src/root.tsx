@@ -12,7 +12,7 @@ import './root.css';
 import type { Route } from './+types/root';
 // import createEmotionCache from './createCache';
 import AppTheme from './Theme';
-import { Box, CssBaseline } from '@mui/material';
+import { Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import KeycloakProvider from './keycloak/KeycloakProvider';
 
@@ -61,7 +61,6 @@ export const Layout = ({ children }: { readonly children: React.ReactNode }) => 
                 <Links />
             </head>
             <body>
-                <CssBaseline />
                 {children}
                 <Scripts />
             </body>

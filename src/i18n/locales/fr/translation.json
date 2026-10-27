@@ -513,6 +513,7 @@
     },
     "auth": {
         "loading": "Connexion en cours...",
+        "error": "La connexion a échoué. Veuillez réessayer.",
         "logout": "Déconnexion"
     },
     "components": {
