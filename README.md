@@ -1,27 +1,24 @@
-# Welcome to React Router!
+# Film Analogger — Frontend
 
-A modern, production-ready template for building full-stack React applications using React Router.
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+The frontend for Film Analogger, a React Router 7 single-page application (SSR disabled) built with TypeScript, MUI, and Vite.
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
+- ⚡️ Vite 7 build with Hot Module Replacement (HMR)
+- 🔒 TypeScript in strict mode
+- 🎨 MUI v9 + Emotion for styling
+- 🌐 i18next-based localization (`en`, `fr`)
+- 🔐 Keycloak authentication
 - 📖 [React Router docs](https://reactrouter.com/)
 
 ## Getting Started
 
 ### Installation
 
-Install the dependencies:
+Install the dependencies (Yarn 4 / Berry):
 
 ```bash
-npm install
+yarn install
 ```
 
 ### Development
@@ -29,17 +26,25 @@ npm install
 Start the development server with HMR:
 
 ```bash
-npm run dev
+yarn dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+Your application will be available at `http://localhost:3000`.
 
 ## Building for Production
 
 Create a production build:
 
 ```bash
-npm run build
+yarn build
+```
+
+Since server-side rendering is disabled (SPA mode), the build only produces static client assets in `build/client/`.
+
+Serve the production build:
+
+```bash
+yarn start
 ```
 
 ## Deployment
@@ -49,39 +54,37 @@ npm run build
 To build and run using Docker:
 
 ```bash
-docker build -t my-app .
+docker build -t film-analogger-frontend .
 
 # Run the container
-docker run -p 3000:3000 my-app
+docker run -p 3000:3000 film-analogger-frontend
 ```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
 
 ### DIY Deployment
 
 If you're familiar with deploying Node applications, the built-in app server is production-ready.
 
-Make sure to deploy the output of `npm run build`
+Make sure to deploy the output of `yarn build`:
 
 ```
 ├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
+├── yarn.lock
+├── .yarnrc.yml
+├── .yarn/
 ├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+│   └── client/    # Static assets (SPA mode, no server bundle)
 ```
 
 ## Styling
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+This project uses [MUI](https://mui.com/) with [Emotion](https://emotion.sh/) for styling. See `CLAUDE.md` for conventions.
 
----
+## Git Hooks
 
-Built with ❤️ using React Router.
+[Husky](https://typicode.github.io/husky/) hooks are installed automatically via the `prepare` script on `yarn install`. They run:
+
+- **pre-commit**: `lint-staged` — lints staged files
+- **commit-msg**: validates the commit message against [Conventional Commits](https://www.conventionalcommits.org/) (`commitlint`)
+- **pre-push**: `lint`, `typecheck`, `test`, `pw` (Playwright e2e), and `i18n:check`
+
+Hook scripts live in `.husky/` and must be executable (`chmod +x`) to run — Git silently skips non-executable hook files.

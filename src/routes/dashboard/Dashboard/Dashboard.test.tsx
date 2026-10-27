@@ -16,10 +16,6 @@ vi.mock('~/components/Layout/Parts/SideMenu/SideMenu', () => ({
     default: () => <div data-testid="side-menu">SideMenu</div>,
 }));
 
-vi.mock('~/Theme/Constants/layout', () => ({
-    drawerWidth: 240,
-}));
-
 describe('Dashboard', () => {
     it('should render all layout components', () => {
         render(

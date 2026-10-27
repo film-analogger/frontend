@@ -30,14 +30,18 @@ export default defineConfig([
             '**/node_modules/**/*',
             '**/build/**/*',
             '**/dist/**/*',
+            'src/api/schema.d.ts',
+            '**/src/api/filmAnaloggerApi/**',
+            '.design-sync/**',
+            '.ds-sync/**',
+            'ds-bundle/**',
         ],
     },
     reactHooks.configs.flat.recommended,
     eslintPluginPrettier,
     jsxA11y.flatConfigs.recommended,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-    fixupConfigRules(i18next.configs['flat/recommended'] as any),
-    pluginReact.configs.flat.recommended,
+
+    fixupConfigRules(i18next.configs['flat/recommended']),
     tseslint.configs.strictTypeChecked,
     tseslint.configs.stylisticTypeChecked,
     {
@@ -75,11 +79,30 @@ export default defineConfig([
         plugins: {
             'react-refresh': reactRefresh,
             import: importPlugin,
+            react: pluginReact,
             'check-file': checkFile,
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
-            'react-refresh/only-export-components': ['error', { allowConstantExport: true }],
+            'react-refresh/only-export-components': [
+                'error',
+                {
+                    allowConstantExport: true,
+                    // React Router 7 route module convention: these exports live
+                    // alongside the default route component.
+                    allowExportNames: [
+                        'handle',
+                        'loader',
+                        'action',
+                        'meta',
+                        'links',
+                        'shouldRevalidate',
+                        'clientLoader',
+                        'clientAction',
+                        'headers',
+                    ],
+                },
+            ],
             'react/prefer-stateless-function': 'error',
             'react/button-has-type': 'error',
             'react/no-unused-prop-types': 'error',
@@ -129,6 +152,7 @@ export default defineConfig([
                     ignorePrimitives: true,
                 },
             ],
+            '@typescript-eslint/no-misused-spread': 'off',
             '@typescript-eslint/no-restricted-types': [
                 'error',
                 {
@@ -243,6 +267,7 @@ export default defineConfig([
     {
         files: ['**/*.test.{js,ts}'],
         rules: {
+            'react/no-multi-comp': 'off',
             'react/jsx-props-no-spreading': 'off',
             'check-file/filename-naming-convention': [
                 'error',
@@ -257,6 +282,7 @@ export default defineConfig([
         files: ['**/*.test.{jsx,tsx}', '**/*.spec.{jsx,tsx}', '**/__mocks__/**/*.{jsx,tsx}'],
         rules: {
             'react/jsx-props-no-spreading': 'off',
+            'react/no-multi-comp': 'off',
             'react/react-in-jsx-scope': 'off',
             'i18next/no-literal-string': 'off',
             '@typescript-eslint/no-empty-function': 'off',

@@ -1,10 +1,12 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import IconButton, { type IconButtonOwnProps } from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useTranslation } from 'react-i18next';
 
 import LanguageIcon from '@mui/icons-material/Language';
+import { pillSwitchContainerSx, pillSwitchItemSx } from '~/Theme/pillSwitchStyles';
 
 const LanguageIconDropdown: React.FunctionComponent<IconButtonOwnProps> = (props) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -32,19 +34,25 @@ const LanguageIconDropdown: React.FunctionComponent<IconButtonOwnProps> = (props
 
     return (
         <React.Fragment>
-            <IconButton
-                aria-controls={open ? 'color-scheme-menu' : undefined}
-                aria-expanded={open ? 'true' : undefined}
-                aria-haspopup="true"
-                aria-label="language-select-toggle"
-                data-screenshot="toggle-language"
-                disableRipple
-                onClick={handleClick}
-                size="small"
-                {...props}
+            <Box
+                data-screenshot="language-switch"
+                sx={pillSwitchContainerSx}
             >
-                <LanguageIcon />
-            </IconButton>
+                <IconButton
+                    aria-controls={open ? 'color-scheme-menu' : undefined}
+                    aria-expanded={open ? 'true' : undefined}
+                    aria-haspopup="true"
+                    aria-label="language-select-toggle"
+                    data-screenshot="toggle-language"
+                    disableRipple
+                    onClick={handleClick}
+                    size="small"
+                    sx={pillSwitchItemSx(open)}
+                    {...props}
+                >
+                    <LanguageIcon fontSize="small" />
+                </IconButton>
+            </Box>
             <Menu
                 anchorEl={anchorEl}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}

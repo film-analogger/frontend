@@ -4,16 +4,28 @@ import { useColorScheme, useTheme } from '@mui/material/styles';
 import { headerHeight } from '~/Theme/Constants/layout';
 import { useTranslation } from 'react-i18next';
 
+const variantForScheme = (colorScheme: string | undefined): 'light' | 'dark' | 'lab' => {
+    if (colorScheme === 'lab') {
+        return 'lab';
+    }
+    return colorScheme === 'dark' ? 'dark' : 'light';
+};
+
 export const AppLogo: React.FunctionComponent<{
     readonly width?: string;
     readonly height?: string;
 }> = ({ width = headerHeight, height = headerHeight }) => {
-    const { mode, systemMode } = useColorScheme();
-    const resolvedMode = mode === 'system' ? systemMode : mode;
-    const isDarkMode = resolvedMode === 'dark';
+    const { colorScheme } = useColorScheme();
+    const variant = variantForScheme(colorScheme);
     const { t } = useTranslation();
     const theme = useTheme();
     const isBiggerThanMd = useMediaQuery(theme.breakpoints.up('md'));
+
+    const altKey = {
+        light: 'components.applogo.logoLight',
+        dark: 'components.applogo.logoDark',
+        lab: 'components.applogo.logoLab',
+    }[variant];
 
     return isBiggerThanMd ? (
         <Box
@@ -24,33 +36,18 @@ export const AppLogo: React.FunctionComponent<{
                 display: 'inline-flex',
             }}
         >
-            {isDarkMode ? (
-                <Box
-                    alt={t('components.applogo.logoDark')}
-                    component="img"
-                    src="/logodark-inline.svg"
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        height: height,
-                        width: 'auto',
-                        transition: 'opacity 400ms ease',
-                    }}
-                />
-            ) : (
-                <Box
-                    alt={t('components.applogo.logoLight')}
-                    component="img"
-                    src="/logolight-inline.svg"
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        height: height,
-                        width: 'auto',
-                        transition: 'opacity 400ms ease',
-                    }}
-                />
-            )}
+            <Box
+                alt={t(altKey)}
+                component="img"
+                src={`/logo${variant}-inline.svg`}
+                sx={{
+                    position: 'absolute',
+                    inset: 0,
+                    height: height,
+                    width: 'auto',
+                    transition: 'opacity 400ms ease',
+                }}
+            />
         </Box>
     ) : (
         <Box
@@ -61,33 +58,18 @@ export const AppLogo: React.FunctionComponent<{
                 display: 'inline-flex',
             }}
         >
-            {isDarkMode ? (
-                <Box
-                    alt={`${t('components.applogo.logoDark') as string}-small`}
-                    component="img"
-                    src="/logodark.svg"
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: width,
-                        height: height,
-                        transition: 'opacity 400ms ease',
-                    }}
-                />
-            ) : (
-                <Box
-                    alt={`${t('components.applogo.logoLight') as string}-small`}
-                    component="img"
-                    src="/logolight.svg"
-                    sx={{
-                        position: 'absolute',
-                        inset: 0,
-                        width: width,
-                        height: height,
-                        transition: 'opacity 400ms ease',
-                    }}
-                />
-            )}
+            <Box
+                alt={t(altKey)}
+                component="img"
+                src={`/logo${variant}.svg`}
+                sx={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: width,
+                    height: height,
+                    transition: 'opacity 400ms ease',
+                }}
+            />
         </Box>
     );
 };

@@ -100,6 +100,7 @@ export const dataDisplayCustomizations: Components<Theme> = {
                     {
                         props: {
                             color: 'default',
+                            variant: 'filled',
                         },
                         style: {
                             borderColor: gray[200],
@@ -124,7 +125,24 @@ export const dataDisplayCustomizations: Components<Theme> = {
                     },
                     {
                         props: {
+                            color: 'default',
+                            variant: 'outlined',
+                        },
+                        style: {
+                            backgroundColor: 'transparent',
+                            borderColor: (theme.vars ?? theme).palette.divider,
+                            [`& .${chipClasses.label}`]: {
+                                color: (theme.vars ?? theme).palette.text.secondary,
+                            },
+                            [`& .${chipClasses.icon}`]: {
+                                color: (theme.vars ?? theme).palette.text.secondary,
+                            },
+                        },
+                    },
+                    {
+                        props: {
                             color: 'success',
+                            variant: 'filled',
                         },
                         style: {
                             borderColor: green[200],
@@ -149,7 +167,33 @@ export const dataDisplayCustomizations: Components<Theme> = {
                     },
                     {
                         props: {
+                            color: 'success',
+                            variant: 'outlined',
+                        },
+                        style: {
+                            backgroundColor: 'transparent',
+                            borderColor: green[200],
+                            [`& .${chipClasses.label}`]: {
+                                color: green[500],
+                            },
+                            [`& .${chipClasses.icon}`]: {
+                                color: green[500],
+                            },
+                            ...theme.applyStyles('dark', {
+                                borderColor: green[800],
+                                [`& .${chipClasses.label}`]: {
+                                    color: green[300],
+                                },
+                                [`& .${chipClasses.icon}`]: {
+                                    color: green[300],
+                                },
+                            }),
+                        },
+                    },
+                    {
+                        props: {
                             color: 'error',
+                            variant: 'filled',
                         },
                         style: {
                             borderColor: red[100],
@@ -163,6 +207,31 @@ export const dataDisplayCustomizations: Components<Theme> = {
                             ...theme.applyStyles('dark', {
                                 borderColor: red[800],
                                 backgroundColor: red[900],
+                                [`& .${chipClasses.label}`]: {
+                                    color: red[200],
+                                },
+                                [`& .${chipClasses.icon}`]: {
+                                    color: red[300],
+                                },
+                            }),
+                        },
+                    },
+                    {
+                        props: {
+                            color: 'error',
+                            variant: 'outlined',
+                        },
+                        style: {
+                            backgroundColor: 'transparent',
+                            borderColor: red[100],
+                            [`& .${chipClasses.label}`]: {
+                                color: red[500],
+                            },
+                            [`& .${chipClasses.icon}`]: {
+                                color: red[500],
+                            },
+                            ...theme.applyStyles('dark', {
+                                borderColor: red[800],
                                 [`& .${chipClasses.label}`]: {
                                     color: red[200],
                                 },
