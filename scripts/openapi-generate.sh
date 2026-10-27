@@ -1,4 +1,4 @@
-#/bin/bash
+#!/usr/bin/env bash
 
 curl -s -H 'Accept: application/vnd.openapi+json' http://localhost:1080/docs > openapi.json
 
