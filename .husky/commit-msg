@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-yarn commitizen check --allow-abort --commit-msg-file $1
+yarn commitizen check --allow-abort --commit-msg-file "$1"
