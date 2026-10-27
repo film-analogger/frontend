@@ -4,7 +4,7 @@
 
 - **Framework**: React 19 + React Router 7 (SPA mode, SSR disabled)
 - **Language**: TypeScript (strict mode)
-- **UI Library**: MUI (Material UI) v7 with Emotion for styling
+- **UI Library**: MUI (Material UI) v9 with Emotion for styling
 - **Build Tool**: Vite 7
 - **Package Manager**: Yarn 4 (Berry)
 - **i18n**: i18next + react-i18next (locales: `en`, `fr`)
