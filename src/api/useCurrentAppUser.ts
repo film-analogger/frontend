@@ -15,11 +15,8 @@ export const useCurrentAppUser = () => {
         const fetchCurrentUser = async () => {
             setLoaded(false);
             setLoading(true);
-            const res = await appUserApi.apiAppUsersGetCollection().catch((err: unknown) => {
-                console.error('Error fetching current user:', err);
-                setError(err);
-            });
-            if (res) {
+            try {
+                const res = await appUserApi.apiAppUsersGetCollection();
                 // The API has no `/me` endpoint, so the current user is resolved
                 // by matching the Keycloak subject against the collection.
                 const currentUser =
@@ -27,10 +24,12 @@ export const useCurrentAppUser = () => {
                         (member) => member.keycloakSub === keycloak.subject,
                     ) ?? null;
                 setUser(currentUser);
+            } catch (err: unknown) {
+                console.error('Error fetching current user:', err);
+                setError(err);
+            } finally {
                 setLoaded(true);
                 setLoading(false);
-            } else {
-                setError(new Error('No response from API'));
             }
         };
         if (!loaded && !loading) {

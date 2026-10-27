@@ -27,16 +27,15 @@ const FilmList: React.FunctionComponent = () => {
         const fetchFilms = async () => {
             setLoaded(false);
             setLoading(true);
-            const res = await filmApi.apiFilmsGetCollection().catch((err: unknown) => {
+            try {
+                const res = await filmApi.apiFilmsGetCollection();
+                setFilms(res.data['hydra:member']);
+            } catch (err: unknown) {
                 console.error('Error fetching films:', err);
                 setError(err);
-            });
-            if (res) {
-                setFilms(res.data['hydra:member']);
+            } finally {
                 setLoaded(true);
                 setLoading(false);
-            } else {
-                setError(new Error('No response from API'));
             }
         };
         if (!loaded && !loading) {
