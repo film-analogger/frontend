@@ -432,6 +432,7 @@
     },
     "auth": {
         "loading": "Signing in...",
+        "error": "Sign-in failed. Please try again.",
         "logout": "Logout"
     },
     "components": {
